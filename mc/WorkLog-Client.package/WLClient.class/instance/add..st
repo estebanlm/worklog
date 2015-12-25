@@ -1,7 +1,11 @@
 actions
 add: aString 
-	(self connectionTo: 'add')
+	| response |
+	
+	response := (self connectionTo: 'add')
 		entity: (ZnEntity text: aString);
 		contentType: ZnMimeType textPlain;
-		post.
+		post;
+		response.
 		
+	^ self validateResponseAndAnswerMessage: response
