@@ -1,0 +1,34 @@
+#! /bin/bash -e
+
+PHARO_VM=pharo-sh
+IMAGE=../worklog.image
+lapse="day"
+
+print_usage() {
+	echo "Usage:" 
+	echo "    `basename $0` [-d|-w|-m]"
+	echo ""
+	echo "	-d  Show day review (default)."
+	echo "	-w  Show week review."
+	echo "	-m  Show month review."
+	echo "	-h  Prints this help."
+	echo ""
+}
+
+while getopts "eh" option; do 
+	case "$option" in
+		d) lapse="day" ;;
+		w) lapse="week" ;;
+		m) lapse="month" ;;
+		h) 
+			print_usage
+			exit 1
+			;;
+		\?)
+      		echo "Invalid option: -$OPTARG" >&2
+      		exit 1
+      		;;
+	esac
+done
+
+$PHARO_VM $IMAGE worklog --review --lapse="$lapse"
