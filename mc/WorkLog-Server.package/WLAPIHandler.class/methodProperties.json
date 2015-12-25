@@ -1,0 +1,14 @@
+{
+	"class" : {
+		"description" : "EstebanLorenzano 12/25/2015 12:59",
+		"initialize" : "EstebanLorenzano 12/25/2015 12:58" },
+	"instance" : {
+		"addLog" : "EstebanLorenzano 12/25/2015 15:56",
+		"notFound" : "EstebanLorenzano 12/25/2015 16:06",
+		"request" : "EstebanLorenzano 12/25/2015 12:16",
+		"responseError:" : "EstebanLorenzano 12/25/2015 15:56",
+		"responseOk:" : "EstebanLorenzano 12/25/2015 15:55",
+		"responseOkWith:" : "EstebanLorenzano 12/25/2015 16:58",
+		"responseOkWith:value:" : "EstebanLorenzano 12/25/2015 17:06",
+		"review:" : "EstebanLorenzano 12/25/2015 17:16",
+		"toJson:" : "EstebanLorenzano 12/25/2015 17:05" } }
