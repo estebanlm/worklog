@@ -1,0 +1,15 @@
+{
+	"class" : {
+		"commandName" : "EstebanLorenzano 12/23/2015 15:50",
+		"description" : "EstebanLorenzano 12/23/2015 15:50" },
+	"instance" : {
+		"activate" : "EstebanLorenzano 12/25/2015 11:25",
+		"activateAdd" : "EstebanLorenzano 12/24/2015 15:14",
+		"activateCreateConfig" : "EstebanLorenzano 12/25/2015 11:29",
+		"activateOpen" : "EstebanLorenzano 12/23/2015 20:57",
+		"activateReview" : "EstebanLorenzano 12/23/2015 20:57",
+		"error:" : "EstebanLorenzano 12/24/2015 15:16",
+		"inform:" : "EstebanLorenzano 12/23/2015 20:55",
+		"isRemainAlive" : "EstebanLorenzano 12/23/2015 19:06",
+		"logClient" : "EstebanLorenzano 12/23/2015 19:33",
+		"text" : "EstebanLorenzano 12/24/2015 15:14" } }

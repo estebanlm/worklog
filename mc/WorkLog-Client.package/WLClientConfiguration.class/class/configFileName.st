@@ -1,0 +1,3 @@
+accessing
+configFileName
+	^ 'worklog.ston'

@@ -1,0 +1,16 @@
+{
+	"category" : "WorkLog-Client-Model",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"url",
+		"username",
+		"password" ],
+	"name" : "WLClientConfiguration",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

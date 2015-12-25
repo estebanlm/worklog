@@ -1,0 +1,15 @@
+{
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"date",
+		"text" ],
+	"name" : "WLLog",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

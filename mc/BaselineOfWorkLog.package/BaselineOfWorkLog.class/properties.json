@@ -1,0 +1,14 @@
+{
+	"category" : "BaselineOfWorkLog",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "BaselineOfWorkLog",
+	"pools" : [
+		 ],
+	"super" : "BaselineOf",
+	"type" : "normal" }
