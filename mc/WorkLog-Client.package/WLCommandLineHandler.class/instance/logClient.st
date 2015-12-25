@@ -1,3 +1,0 @@
-accessing
-logClient
-	^ WLLogClient uniqueInstance
