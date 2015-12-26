@@ -1,5 +1,5 @@
 private
 inform: aString 
-	VTermOutputDriver stdout 
+	self stdout 
 		green: aString; 
-		cr.
+		lf; cr.

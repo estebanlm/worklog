@@ -1,5 +1,5 @@
 instance creation
-read
+readFromFileSystem
 	| reference |
 	reference := self configFileName asFileReference.
 	reference exists ifFalse: [ ^ self new ].
