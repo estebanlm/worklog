@@ -6,9 +6,9 @@
 		 ],
 	"commentStamp" : "",
 	"instvars" : [
-		"postListComponent" ],
-	"name" : "WLApplicationComponent",
+		 ],
+	"name" : "WLTodayPostListComponent",
 	"pools" : [
 		 ],
-	"super" : "WAComponent",
+	"super" : "WLPostListComponent",
 	"type" : "normal" }

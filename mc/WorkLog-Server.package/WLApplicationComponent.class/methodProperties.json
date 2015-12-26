@@ -2,4 +2,9 @@
 	"class" : {
 		"initialize" : "EstebanLorenzano 12/25/2015 13:12" },
 	"instance" : {
-		"renderContentOn:" : "EstebanLorenzano 12/25/2015 13:06" } }
+		"children" : "EstebanLorenzano 12/25/2015 19:21",
+		"initialize" : "EstebanLorenzano 12/25/2015 19:28",
+		"renderContentOn:" : "EstebanLorenzano 12/25/2015 19:21",
+		"renderHeaderOn:" : "EstebanLorenzano 12/25/2015 19:44",
+		"sortLogs:" : "EstebanLorenzano 12/25/2015 19:22",
+		"updateRoot:" : "EstebanLorenzano 12/25/2015 20:14" } }

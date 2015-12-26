@@ -1,0 +1,3 @@
+private
+basicPostList
+	^ self subclassResponsibility

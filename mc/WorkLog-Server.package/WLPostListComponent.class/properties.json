@@ -6,8 +6,8 @@
 		 ],
 	"commentStamp" : "",
 	"instvars" : [
-		"postListComponent" ],
-	"name" : "WLApplicationComponent",
+		"posts" ],
+	"name" : "WLPostListComponent",
 	"pools" : [
 		 ],
 	"super" : "WAComponent",

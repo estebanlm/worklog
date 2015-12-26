@@ -6,9 +6,9 @@
 		 ],
 	"commentStamp" : "",
 	"instvars" : [
-		"postListComponent" ],
-	"name" : "WLApplicationComponent",
+		 ],
+	"name" : "WLStaticLibrary",
 	"pools" : [
 		 ],
-	"super" : "WAComponent",
+	"super" : "WAFileLibrary",
 	"type" : "normal" }
