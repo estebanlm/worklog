@@ -2,6 +2,7 @@
 
 PHARO_VM=pharo-sh
 IMAGE=../worklog.image
+WL="$PHARO_VM $IMAGE worklog"
 lapse="day"
 
 print_usage() {
@@ -15,7 +16,7 @@ print_usage() {
 	echo ""
 }
 
-while getopts "eh" option; do 
+while getopts "dwmh" option; do 
 	case "$option" in
 		d) lapse="day" ;;
 		w) lapse="week" ;;
@@ -31,4 +32,4 @@ while getopts "eh" option; do
 	esac
 done
 
-$PHARO_VM $IMAGE worklog --review --lapse="$lapse"
+$WL --review --lapse="$lapse"
