@@ -1,0 +1,15 @@
+{
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"id",
+		"number" ],
+	"name" : "WLSequence",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

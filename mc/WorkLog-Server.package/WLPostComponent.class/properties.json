@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"post" ],
+	"name" : "WLPostComponent",
+	"pools" : [
+		 ],
+	"super" : "WAComponent",
+	"type" : "normal" }

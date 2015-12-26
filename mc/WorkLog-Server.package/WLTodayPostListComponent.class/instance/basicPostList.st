@@ -1,3 +1,3 @@
-private
+accessing
 basicPostList 
 	^ WLLog findDay

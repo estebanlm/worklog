@@ -5,6 +5,5 @@ renderContentOn: html
 			mediumSize: 6;
 			mediumOffset: 3;
 			with: [
-			self renderHeaderOn: html.
-			self posts do: [ :each | 
-				self renderPost: each on: html ]]]
+				self renderHeaderOn: html.
+				self renderPostsOn: html]]

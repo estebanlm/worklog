@@ -1,0 +1,3 @@
+accessing
+basicPostList 
+	^ WLLog findMonth

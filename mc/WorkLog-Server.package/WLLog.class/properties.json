@@ -6,6 +6,7 @@
 		 ],
 	"commentStamp" : "EstebanLorenzano 12/25/2015 12:29",
 	"instvars" : [
+		"permaLink",
 		"date",
 		"text" ],
 	"name" : "WLLog",
