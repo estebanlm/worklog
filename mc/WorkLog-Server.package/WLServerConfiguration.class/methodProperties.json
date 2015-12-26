@@ -1,0 +1,17 @@
+{
+	"class" : {
+		"configFileName" : "EstebanLorenzano 12/26/2015 12:50",
+		"installFromFileSystem" : "EstebanLorenzano 12/26/2015 13:02",
+		"sample" : "EstebanLorenzano 12/26/2015 13:03",
+		"stonName" : "EstebanLorenzano 12/26/2015 12:51",
+		"uniqueInstance" : "EstebanLorenzano 12/26/2015 12:50" },
+	"instance" : {
+		"database" : "EstebanLorenzano 12/26/2015 12:58",
+		"database:" : "EstebanLorenzano 12/26/2015 12:58",
+		"host" : "EstebanLorenzano 12/26/2015 12:58",
+		"host:" : "EstebanLorenzano 12/26/2015 12:58",
+		"port" : "EstebanLorenzano 12/26/2015 12:58",
+		"port:" : "EstebanLorenzano 12/26/2015 12:58",
+		"user" : "EstebanLorenzano 12/26/2015 12:58",
+		"user:" : "EstebanLorenzano 12/26/2015 12:58",
+		"writeToFile" : "EstebanLorenzano 12/26/2015 13:00" } }

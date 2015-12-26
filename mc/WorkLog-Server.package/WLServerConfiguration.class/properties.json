@@ -1,0 +1,17 @@
+{
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [
+		"uniqueInstance" ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"host",
+		"port",
+		"database",
+		"user" ],
+	"name" : "WLServerConfiguration",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
