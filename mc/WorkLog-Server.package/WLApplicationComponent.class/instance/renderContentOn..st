@@ -1,4 +1,13 @@
 rendering
 renderContentOn: html
 	self renderHeaderOn: html.
-	html render: postListComponent
+	html tbsRow showGrid; with: [ 
+		html tbsColumn 
+			mediumSize: 2;
+			mediumOffset: 2;
+			with: profileComponent.
+		html tbsColumn 
+			mediumSize: 6;
+			with: postListComponent ].
+
+	

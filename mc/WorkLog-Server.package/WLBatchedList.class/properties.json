@@ -4,12 +4,11 @@
 		 ],
 	"classvars" : [
 		 ],
-	"commentStamp" : "<historical>",
+	"commentStamp" : "",
 	"instvars" : [
-		"postListComponent",
-		"profileComponent" ],
-	"name" : "WLApplicationComponent",
+		 ],
+	"name" : "WLBatchedList",
 	"pools" : [
 		 ],
-	"super" : "WAComponent",
+	"super" : "TBSBatchedList",
 	"type" : "normal" }

@@ -4,11 +4,10 @@
 		 ],
 	"classvars" : [
 		 ],
-	"commentStamp" : "<historical>",
+	"commentStamp" : "",
 	"instvars" : [
-		"postListComponent",
-		"profileComponent" ],
-	"name" : "WLApplicationComponent",
+		"root" ],
+	"name" : "WLProfileComponent",
 	"pools" : [
 		 ],
 	"super" : "WAComponent",

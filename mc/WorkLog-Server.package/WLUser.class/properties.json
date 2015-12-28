@@ -9,7 +9,7 @@
 		"username",
 		"password",
 		"fullName",
-		"gravatar" ],
+		"gravatarUrl" ],
 	"name" : "WLUser",
 	"pools" : [
 		 ],

@@ -1,6 +1,6 @@
 factory
 createBatcherComponent
-	^ TBSBatchedList new 
+	^ WLBatchedList new 
 		batchSize: self class batchSize; 
 		items: self posts;
 		yourself
