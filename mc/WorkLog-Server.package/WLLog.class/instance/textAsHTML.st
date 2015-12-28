@@ -1,4 +1,4 @@
 accessing
 textAsHTML
-	self flag: #todo. 
-	^ self text
+	^ [ PRHTMLWriter write: self parsedText ]
+		on: PRError do: [ :e | self text ].
