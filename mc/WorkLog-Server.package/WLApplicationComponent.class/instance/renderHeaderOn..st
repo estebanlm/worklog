@@ -2,7 +2,7 @@ rendering
 renderHeaderOn: html
  	html tbsNavbar beDefault with: [
 		html tbsNavbarBrand
-			url: '#';
+			callback: [];
 			with: 'Esteban''s log'.
 			
 		"html tbsNav beNavbarNavigation; with: [ 
