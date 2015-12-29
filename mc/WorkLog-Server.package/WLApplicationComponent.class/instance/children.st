@@ -1,3 +1,3 @@
 hooks
 children 
-	^ { postListComponent. profileComponent }
+	^ super children, { profileComponent }

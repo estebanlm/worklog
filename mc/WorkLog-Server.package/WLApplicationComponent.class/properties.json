@@ -6,10 +6,9 @@
 		 ],
 	"commentStamp" : "<historical>",
 	"instvars" : [
-		"postListComponent",
 		"profileComponent" ],
 	"name" : "WLApplicationComponent",
 	"pools" : [
 		 ],
-	"super" : "WAComponent",
+	"super" : "WLBookmarkComponent",
 	"type" : "normal" }

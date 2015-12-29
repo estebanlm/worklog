@@ -6,8 +6,9 @@
 		 ],
 	"commentStamp" : "",
 	"instvars" : [
-		"batcherComponent" ],
-	"name" : "WLPostListComponent",
+		"content",
+		"routes" ],
+	"name" : "WLBookmarkComponent",
 	"pools" : [
 		 ],
 	"super" : "WAComponent",

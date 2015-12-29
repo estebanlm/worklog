@@ -1,3 +1,3 @@
 actions
 showThisMonth
-	postListComponent := WLThisMonthPostListComponent new
+	self content: self createThisMonthComponent

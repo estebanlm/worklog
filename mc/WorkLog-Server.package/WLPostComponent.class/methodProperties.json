@@ -1,8 +1,10 @@
 {
 	"class" : {
 		"new" : "EstebanLorenzano 12/26/2015 03:44",
+		"path" : "EstebanLorenzano 12/28/2015 17:55",
 		"post:" : "EstebanLorenzano 12/26/2015 03:43" },
 	"instance" : {
 		"initializePost:" : "EstebanLorenzano 12/26/2015 03:43",
 		"post" : "EstebanLorenzano 12/26/2015 03:43",
-		"renderContentOn:" : "EstebanLorenzano 12/26/2015 04:02" } }
+		"renderContentOn:" : "EstebanLorenzano 12/26/2015 04:02",
+		"updateUrl:" : "EstebanLorenzano 12/28/2015 17:54" } }

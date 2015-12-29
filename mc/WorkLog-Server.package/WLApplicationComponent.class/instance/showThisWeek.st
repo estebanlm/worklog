@@ -1,3 +1,3 @@
 actions
 showThisWeek
-	postListComponent := WLThisWeekPostListComponent new
+	self content: self createThisWeekComponent

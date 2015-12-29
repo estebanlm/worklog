@@ -8,6 +8,6 @@ renderContentOn: html
 			with: profileComponent.
 		html tbsColumn 
 			mediumSize: 6;
-			with: postListComponent ].
+			with: [ super renderContentOn: html ] ].
 
 	

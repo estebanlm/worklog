@@ -1,3 +1,3 @@
 actions
 showToday
-	postListComponent := WLTodayPostListComponent new
+	self content: self createTodayComponent

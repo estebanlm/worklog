@@ -1,0 +1,3 @@
+factory
+createTodayComponent
+	^ WLTodayPostListComponent new
