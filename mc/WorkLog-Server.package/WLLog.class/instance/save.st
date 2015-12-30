@@ -1,5 +1,7 @@
 persistence
 save
-	self isNew  ifTrue: [ permaLink := WLSequence nextPermaLinkNumber ].
+	self isNew  ifTrue: [ 
+		self generatePermaLink.
+		self generateReferencedLinks. ].
 	super save.
 	

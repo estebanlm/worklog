@@ -1,0 +1,15 @@
+{
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"link",
+		"url" ],
+	"name" : "WLExternalLink",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

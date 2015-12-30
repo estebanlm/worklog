@@ -1,4 +1,3 @@
 accessing
 parsedText
-	self flag: #todo. "Cache this"
-	^ PRDocumentParser parse: self text
+	^ parsedText ifNil: [ parsedText := PRDocumentParser parse: self text ]

@@ -8,7 +8,9 @@
 	"instvars" : [
 		"permaLink",
 		"date",
-		"text" ],
+		"text",
+		"parsedText",
+		"referencedLinks" ],
 	"name" : "WLLog",
 	"pools" : [
 		 ],
