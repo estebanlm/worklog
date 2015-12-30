@@ -1,3 +1,4 @@
 testing
 isSuitableFor: aLink
-	^ true
+	"Is abstract, so it always answer false"
+	^ false 

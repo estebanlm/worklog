@@ -9,11 +9,11 @@ renderReferencesOn: html
 			with: [ 
 				html table: [ 
 					html tableRow: [ 
-						html tableData: [ 
+						html tableData class: 'col-image'; with: [ 
 							html anchor 
 								url: each url;
 								target: '_new';
 								with: [ html image url: each thumbnailUrl ]].
-						html tableData: [ 
+						html tableData class: 'col-description'; with: [ 
 							html heading level: 5; with: each title. 
 							html anchor url: each url; target: '_new'; with: each url]]]]]

@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		 ],
+	"name" : "WLFacebookLink",
+	"pools" : [
+		 ],
+	"super" : "WLHtmlLink",
+	"type" : "normal" }

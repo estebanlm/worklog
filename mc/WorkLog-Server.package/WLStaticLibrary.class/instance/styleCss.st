@@ -13,7 +13,13 @@ styleCss
 .post .text h3,
 .post .text h4,
 .post .text h5 { 
-	font-size: smaller;
+	font-size: 1.1em;
+}
+
+.post .reference .col-image {
+	width: 100px;
+	text-align: center;
+	vertical-align: center;
 }
 
 .post .reference TABLE TR TD {
@@ -22,7 +28,8 @@ styleCss
 }
 
 .post .reference IMG { 
-	width: 128px;
+	max-width: 96px;
+	max-height: 72px;
 	display: inline;
 }
 '
