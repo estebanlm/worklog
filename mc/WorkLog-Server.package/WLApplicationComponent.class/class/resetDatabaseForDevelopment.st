@@ -1,0 +1,3 @@
+private
+resetDatabaseForDevelopment
+	VOMemoryRepository new enableSingleton

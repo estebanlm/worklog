@@ -1,12 +1,11 @@
 {
-	"category" : "WorkLog-Server-Model",
+	"category" : "WorkLog-Server-Model-Link",
 	"classinstvars" : [
 		 ],
 	"classvars" : [
 		 ],
 	"commentStamp" : "<historical>",
 	"instvars" : [
-		"link",
 		"url" ],
 	"name" : "WLExternalLink",
 	"pools" : [

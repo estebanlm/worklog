@@ -1,7 +1,7 @@
 {
 	"category" : "WorkLog-Server-View",
 	"classinstvars" : [
-		 ],
+		"production" ],
 	"classvars" : [
 		 ],
 	"commentStamp" : "<historical>",
