@@ -1,9 +1,9 @@
 #! /bin/bash -e
 
-PHARO_VM=pharo
+PHARO_VM=pharo-sh
 IMAGE=../worklog.image
 DEFAULT_EDITOR=vi
-WL="$PHARO_VM $IMAGE worklog"
+CMD="$PHARO_VM $IMAGE worklog"
 #variables
 open_system_editor=0
 open_editor=0
@@ -49,17 +49,16 @@ if [ $open_system_editor == 1 ]; then
 		rm $tmpfile
 		exit
 	fi
-	text="`cat $tmpfile`"
+	$CMD --add --file="`pwd`/$tmpfile"
 	rm $tmpfile
-	$WL --add --text="$text"
 	exit
 fi
 
 # test if we should open an editor
 if [ $open_editor == 1 ]; then
-	$WL --open-editor
+	$CMD --open-editor
 	exit
 fi
 
 # by default, we just send the entered text to edit
-$WL --add --text="$*"
+$CMD --add --text="$*"

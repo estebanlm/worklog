@@ -2,7 +2,7 @@
 
 PHARO_VM=pharo-sh
 IMAGE=../worklog.image
-WL="$PHARO_VM $IMAGE worklog"
+CMD="$PHARO_VM $IMAGE worklog"
 lapse="day"
 
 print_usage() {
