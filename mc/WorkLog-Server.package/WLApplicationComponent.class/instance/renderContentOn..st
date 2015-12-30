@@ -1,7 +1,7 @@
 rendering
 renderContentOn: html
 	self renderHeaderOn: html.
-	html tbsRow showGrid; with: [ 
+	html tbsRow "showGrid; "with: [ 
 		html tbsColumn 
 			mediumSize: 2;
 			mediumOffset: 2;
@@ -9,5 +9,8 @@ renderContentOn: html
 		html tbsColumn 
 			mediumSize: 6;
 			with: [ super renderContentOn: html ] ].
-
-	
+	html tbsRow "showGrid; "with: [
+		html tbsColumn 
+			mediumSize: 8;
+			mediumOffset: 2;
+			with: [ self renderFooterOn: html ]]

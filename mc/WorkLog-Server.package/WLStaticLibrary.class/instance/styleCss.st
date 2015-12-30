@@ -32,4 +32,11 @@ styleCss
 	max-height: 72px;
 	display: inline;
 }
+
+.footer { 
+	margin-top: 25px;
+	font-size: smaller;
+	text-align: center;
+	color: #c0c0c0;
+}
 '
