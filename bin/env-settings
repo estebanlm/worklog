@@ -1,0 +1,3 @@
+PHARO_VM=pharo-sh
+IMAGE=/usr/local/worklog/worklog.image
+CMD="$PHARO_VM $IMAGE worklog"

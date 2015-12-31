@@ -1,14 +1,13 @@
 #! /bin/bash -e
 
-PHARO_VM=pharo-sh
-IMAGE=../worklog.image
-DEFAULT_EDITOR=vi
-CMD="$PHARO_VM $IMAGE worklog"
+#Environment settings
+. /usr/local/worklog/env-settings
+
+#constants
+DEFAULT_EDITOR="mate --wait"
 #variables
 open_system_editor=0
 open_editor=0
-
-
 
 print_usage() {
 	echo "Usage:" 

@@ -1,6 +1,5 @@
 #! /bin/bash -e
 
-PHARO_VM=pharo-sh
-IMAGE=../worklog.image
+. /usr/local/worklog/bin/env-settings
 
 $PHARO_VM $IMAGE worklog --create-config

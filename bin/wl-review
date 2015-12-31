@@ -1,8 +1,7 @@
 #! /bin/bash -e
 
-PHARO_VM=pharo-sh
-IMAGE=../worklog.image
-CMD="$PHARO_VM $IMAGE worklog"
+. /usr/local/worklog/bin/env-settings
+
 lapse="day"
 
 print_usage() {
