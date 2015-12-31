@@ -9,7 +9,8 @@ baseline: spec
 		
 		spec 
 			package: 'WorkLog-Client';
-			package: 'WorkLog-Server' requires: #('VoyageMongo' 'Seaside3' 'Bootstrap' 'Pillar'). 
+			package: 'WorkLog-Server' with: [ 
+				spec requires: #('VoyageMongo' 'Seaside3' 'Bootstrap' 'Pillar') ]. 
 			
 		spec 
 			group: 'default' with: #('client' 'server');
