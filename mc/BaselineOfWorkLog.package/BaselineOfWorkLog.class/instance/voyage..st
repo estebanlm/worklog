@@ -4,5 +4,4 @@ voyage: spec
 		spec
 			className: #ConfigurationOfVoyageMongo;
 			versionString: #'stable';
-			loads: #('html');
 			repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo40/main/' ]
