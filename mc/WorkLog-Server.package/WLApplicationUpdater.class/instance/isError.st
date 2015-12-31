@@ -1,0 +1,3 @@
+testing
+isError
+	^ status = #error

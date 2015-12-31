@@ -1,0 +1,3 @@
+testing
+isUpdating
+	^ status = #updating

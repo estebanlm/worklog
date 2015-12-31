@@ -1,0 +1,16 @@
+{
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [
+		"uniqueInstance" ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"status",
+		"lastUpdateDate",
+		"lastErrorMessage" ],
+	"name" : "WLApplicationUpdater",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

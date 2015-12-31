@@ -1,0 +1,18 @@
+{
+	"class" : {
+		"new" : "EstebanLorenzano 12/31/2015 11:08",
+		"uniqueInstance" : "EstebanLorenzano 12/31/2015 11:08" },
+	"instance" : {
+		"basicUpdate" : "EstebanLorenzano 12/31/2015 11:55",
+		"initialize" : "EstebanLorenzano 12/31/2015 11:50",
+		"isError" : "EstebanLorenzano 12/31/2015 11:49",
+		"isOk" : "EstebanLorenzano 12/31/2015 11:49",
+		"isUpdating" : "EstebanLorenzano 12/31/2015 11:50",
+		"lastErrorMessage" : "EstebanLorenzano 12/31/2015 11:51",
+		"lastErrorMessage:" : "EstebanLorenzano 12/31/2015 11:51",
+		"lastUpdateDate" : "EstebanLorenzano 12/31/2015 11:52",
+		"lastUpdateDate:" : "EstebanLorenzano 12/31/2015 11:52",
+		"loadBaseline" : "EstebanLorenzano 12/31/2015 11:47",
+		"status" : "EstebanLorenzano 12/31/2015 11:52",
+		"status:" : "EstebanLorenzano 12/31/2015 11:49",
+		"update" : "EstebanLorenzano 12/31/2015 11:55" } }
