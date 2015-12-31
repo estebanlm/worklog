@@ -1,4 +1,4 @@
 *WorkLog-Server
 asHuman
-	String streamContents: [ :stream |
+	^ String streamContents: [ :stream |
 		stream << self asDate asString << ' ' << self asTime printMinutes ]
