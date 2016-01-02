@@ -1,9 +1,7 @@
 accessing
 permaLink
-	| request |
-	request := self requestContext request.
 	^ String streamContents: [ :stream | 
 		stream 
-			<< '/' << request uri path first 
+			<< '/' << WLApplicationComponent applicationPath
 			<< '/' << self class path 
 			<< '/' << self post permaLink  ]

@@ -1,7 +1,7 @@
 private
 registerApplication
 	| app | 
-	app := WAAdmin register: self asApplicationAt: 'web'.
+	app := WAAdmin register: self asApplicationAt: self applicationPath.
    app
       addLibrary: JQDeploymentLibrary;
       addLibrary: JQUiDeploymentLibrary;

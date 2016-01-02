@@ -1,11 +1,12 @@
 {
 	"class" : {
+		"applicationPath" : "EstebanLorenzano 1/2/2016 13:13",
 		"applicationTitle" : "EstebanLorenzano 12/28/2015 12:47",
 		"initialize" : "EstebanLorenzano 12/30/2015 15:53",
 		"isProduction" : "EstebanLorenzano 12/30/2015 15:56",
 		"prepareForDevelopment" : "EstebanLorenzano 12/30/2015 15:57",
 		"prepareForProduction" : "EstebanLorenzano 12/30/2015 16:00",
-		"registerApplication" : "EstebanLorenzano 12/30/2015 15:52",
+		"registerApplication" : "EstebanLorenzano 1/2/2016 13:14",
 		"resetDatabase" : "EstebanLorenzano 12/30/2015 15:56",
 		"resetDatabaseForDevelopment" : "EstebanLorenzano 12/30/2015 15:55",
 		"resetDatabaseForProduction" : "EstebanLorenzano 12/30/2015 15:54",
