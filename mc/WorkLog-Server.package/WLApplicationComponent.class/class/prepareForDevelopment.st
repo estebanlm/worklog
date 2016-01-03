@@ -1,3 +1,4 @@
 accessing
 prepareForDevelopment
-	production := false
+	production := false.
+	self resetDatabase.

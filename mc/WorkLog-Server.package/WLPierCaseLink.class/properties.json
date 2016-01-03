@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Server-Model-Pier",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		 ],
+	"name" : "WLPierCaseLink",
+	"pools" : [
+		 ],
+	"super" : "PRExternalLink",
+	"type" : "normal" }
