@@ -4,4 +4,4 @@ post: idString
 	<path: '/post/{idString}'>
 	| log |
 	log := (WLLog findByPermaLink: idString asNumber) ifNil: [ ^ nil ].
-	^ WLPostComponent post: log
+	^ WLDisqusPostComponent post: log

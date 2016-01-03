@@ -33,6 +33,11 @@ styleCss
 	display: inline;
 }
 
+.post .link {
+	float: right;
+	font-style: normal;
+}
+
 .footer { 
 	margin-top: 25px;
 	font-size: smaller;

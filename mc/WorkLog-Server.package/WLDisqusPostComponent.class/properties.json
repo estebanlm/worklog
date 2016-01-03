@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "WLDisqusPostComponent",
+	"pools" : [
+		 ],
+	"super" : "WLPostComponent",
+	"type" : "normal" }

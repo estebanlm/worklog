@@ -13,4 +13,6 @@ renderContentOn: html
 		html tbsColumn 
 			mediumSize: 8;
 			mediumOffset: 2;
-			with: [ self renderFooterOn: html ]]
+			with: [ self renderFooterOn: html ]].
+		
+	html html: '<script id="dsq-count-scr" src="//estebanlm-log.disqus.com/count.js" async></script>'

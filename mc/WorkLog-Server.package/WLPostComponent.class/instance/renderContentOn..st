@@ -14,9 +14,4 @@ renderContentOn: html
 				with: [ 
 					html span: self post dateAsHuman. 
 					html space.
-					html span: [ 
-						html text: '('.
-						html anchor 
-							url: self permaLink;
-							with: 'link'.
-						html text: ')' ] ] ].
+					self renderLinkOn: html ]]
