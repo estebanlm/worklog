@@ -1,10 +1,10 @@
 #! /bin/bash -e
 
 #Environment settings
-. /usr/local/worklog/env-settings
+. /usr/local/worklog/bin/env-settings
 
 #constants
-DEFAULT_EDITOR="mate --wait"
+DEFAULT_EDITOR="vi" #"mate --wait"
 #variables
 open_system_editor=0
 open_editor=0
@@ -45,11 +45,11 @@ if [ $open_system_editor == 1 ]; then
 	tmpfile=`mktemp NEWLOG.XXXXX`
 	$WL_EDITOR $tmpfile
 	if [ ! -s $tmpfile ]; then
-		rm $tmpfile
+		rm -f $tmpfile
 		exit
 	fi
 	$CMD --add --file="`pwd`/$tmpfile"
-	rm $tmpfile
+	rm -f $tmpfile
 	exit
 fi
 

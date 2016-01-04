@@ -6,17 +6,19 @@ admin_option=
 
 print_usage() {
 	echo "Usage:" 
-	echo "    `basename $0` [-u|-c]"
+	echo "    `basename $0` [-u|-r|-s]"
 	echo ""
-	echo "	-u  Update application."
-	echo "	-c  Reset configuration."
+	echo "	-u  Update server."
+	echo "	-r  Reset server configuration (reloads app)."
+	echo "	-r  Prints update server status."
 	echo ""
 }
 
-while getopts "uc" option; do 
+while getopts "usr" option; do 
 	case "$option" in
-		u) admin_option="--update-application" ;;
-		c) admin_option="--reset-configuration" ;;
+		u) admin_option="--update-server" ;;
+		s) admin_option="--update-server-status" ;;		
+		r) admin_option="--reset-server-config" ;;		
 		h) 
 			print_usage
 			exit 1
