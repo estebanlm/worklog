@@ -1,9 +1,10 @@
 # WorkLog
 
 This is a microblog app. Forget it about twitter, facebook, g+... Forget it about going social at all! 
-*WorkLog* will allow you to keep a log of your work process, with some features I found very usefull: 
 
-- You can add formatting using [pillar](http://www.smalltalkhub.com/#!/~Pier/Pillar) (Markdown suppor might come, but for the moment is not implemented)
+**WorkLog** will allow you to keep a log of your work process, with some features I found very usefull: 
+
+- You can add formatting using [pillar](http://www.smalltalkhub.com/#!/~Pier/Pillar) (Markdown support might come, but for the moment is not implemented)
 - You do not have 140 characters max (probably you will not need much more, but anyway, the limitation is annoying :P)
 - You can [disqus](http://disqus.com) posts.
 - Posts are interpreted and links are detected and listed (so is easy to find them)
