@@ -1,0 +1,13 @@
+#! /bin/bash
+
+#create destination
+mkdir /usr/local/worklog 2>/dev/null
+
+#copy binaries
+cp -f -R bin /usr/local/worklog
+
+#create links
+ln -F -s /usr/local/worklog/bin/wl /usr/local/bin
+ln -F -s /usr/local/worklog/bin/wl-review /usr/local/bin
+ln -F -s /usr/local/worklog/bin/wl-admin /usr/local/bin
+ln -F -s /usr/local/worklog/bin/wl-create-config /usr/local/bin
