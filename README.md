@@ -1,6 +1,6 @@
 # WorkLog
 
-This is a microblog app. Forget it about twitter, facebook, g+... Forget it about going social at all! 
+This is a microblog app. Forget about twitter, facebook, g+... Forget about going social at all! 
 
 **WorkLog** will allow you to keep a log of your work process, with some features I found very usefull: 
 
