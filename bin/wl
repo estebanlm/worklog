@@ -4,7 +4,7 @@
 . /usr/local/worklog/bin/env-settings
 
 #constants
-DEFAULT_EDITOR="vi" #"mate --wait"
+DEFAULT_EDITOR="mate --wait"
 #variables
 open_system_editor=0
 open_editor=0
@@ -42,7 +42,12 @@ if [ $open_system_editor == 1 ]; then
 	if [ -z "$WL_EDITOR" ]; then
 		WL_EDITOR="$DEFAULT_EDITOR"
 	fi
-	tmpfile=`mktemp NEWLOG.XXXXX`
+	#tmpfile=`mktemp NEWLOG.XXXXX`
+	tmpfile=".wl.pillar"
+	# ensure it does not exists
+	if [ -e $tmpfile ]; then
+		rm -f $tmpfile
+	fi
 	$WL_EDITOR $tmpfile
 	if [ ! -s $tmpfile ]; then
 		rm -f $tmpfile
