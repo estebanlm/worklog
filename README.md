@@ -8,7 +8,7 @@ This is a microblog app. Forget about twitter, facebook, g+... Forget about goin
 - You do not have 140 characters max (probably you will not need much more, but anyway, the limitation is annoying :P)
 - You can [disqus](http://disqus.com) posts.
 - Posts are interpreted and links are detected and listed (so is easy to find them)
-- Since is made for my own work, it 
+- Since is made for my own work, it understand links like \*case:12345\* as a link to pharo fogbugz case 12345. 
 - It has a command line!
 
 ## Server
