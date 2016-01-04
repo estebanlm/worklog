@@ -1,0 +1,3 @@
+accessing
+textMaxSize
+	^ 80

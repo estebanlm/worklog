@@ -7,8 +7,8 @@
 	"commentStamp" : "<historical>",
 	"instvars" : [
 		 ],
-	"name" : "WLDisqusPostComponent",
+	"name" : "WLRSSComponent",
 	"pools" : [
 		 ],
-	"super" : "WLPostComponent",
+	"super" : "RRComponent",
 	"type" : "normal" }

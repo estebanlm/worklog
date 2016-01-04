@@ -1,0 +1,1 @@
+I publish the day log as an rss entry

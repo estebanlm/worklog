@@ -8,6 +8,7 @@
 	"instvars" : [
 		"username",
 		"password",
+		"email",
 		"fullName",
 		"gravatarUrl" ],
 	"name" : "WLUser",
