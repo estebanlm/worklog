@@ -5,7 +5,7 @@ renderLinkOn: html
 		with: [ 
 			html anchor 
 				url: (self permaLink, '#disqus_thread');
-				with: 'No Comments'.
+				with: '0 Comments'.
 			html text: ' - '.
 			html anchor 
 				url: self permaLink;
