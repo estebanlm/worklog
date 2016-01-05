@@ -1,3 +1,3 @@
 testing
 isSuitableFor: aLink
-	^ aLink url asUrl host includesSubstring: 'bitbucket.com' 
+	^ aLink url asUrl host includesSubstring: 'bitbucket.org' 

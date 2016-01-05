@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Server-Tests",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "WLMediumLinkTest",
+	"pools" : [
+		 ],
+	"super" : "WLExternalLinkTest",
+	"type" : "normal" }

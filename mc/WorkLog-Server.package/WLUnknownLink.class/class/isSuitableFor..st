@@ -1,3 +1,3 @@
 testing
 isSuitableFor: aLink
-	^ self = WLHtmlLink
+	^ true
