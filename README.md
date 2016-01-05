@@ -11,6 +11,9 @@ This is a microblog app. Forget about twitter, facebook, g+... Forget about goin
 - Since is made for my own work, it understand links like \*case:12345\* as a link to pharo fogbugz case 12345. 
 - It has a command line!
 
+## Build Status
+- Master Branch: [![Build Status](https://travis-ci.org/estebanlm/worklog.png?branch=master)](https://travis-ci.org/estebanlm/worklog)
+
 ## Server
 It is a [Seaside](http://seaside.st) app, with a /web application a /api rest and a /rss client.
 It uses [Voyage](https://github.com/estebanlm/voyage) and a [MongoDB](https://www.mongodb.com) as backend. 
