@@ -3,10 +3,11 @@
 		"commandName" : "EstebanLorenzano 12/23/2015 15:50",
 		"description" : "EstebanLorenzano 12/23/2015 15:50" },
 	"instance" : {
-		"activate" : "EstebanLorenzano 12/31/2015 16:39",
+		"activate" : "EstebanLorenzano 1/5/2016 20:53",
 		"activateAdd" : "EstebanLorenzano 12/28/2015 11:30",
 		"activateCreateConfig" : "EstebanLorenzano 12/25/2015 11:29",
 		"activateOpen" : "EstebanLorenzano 12/23/2015 20:57",
+		"activateRemove" : "EstebanLorenzano 1/5/2016 20:54",
 		"activateResetServerConfig" : "EstebanLorenzano 12/31/2015 16:30",
 		"activateReview" : "EstebanLorenzano 12/25/2015 19:01",
 		"activateServerStatus" : "EstebanLorenzano 12/31/2015 16:35",
@@ -16,8 +17,10 @@
 		"client" : "EstebanLorenzano 12/25/2015 12:54",
 		"error:" : "EstebanLorenzano 12/24/2015 15:16",
 		"fileContents" : "EstebanLorenzano 12/28/2015 11:32",
+		"id" : "EstebanLorenzano 1/5/2016 20:55",
 		"inform:" : "EstebanLorenzano 12/25/2015 18:59",
 		"isRemainAlive" : "EstebanLorenzano 12/23/2015 19:06",
 		"lapse" : "EstebanLorenzano 12/25/2015 17:20",
+		"removePost:" : "EstebanLorenzano 1/5/2016 20:55",
 		"text" : "EstebanLorenzano 12/25/2015 17:19",
 		"withoutQuotes:" : "EstebanLorenzano 12/25/2015 17:20" } }

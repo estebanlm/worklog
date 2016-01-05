@@ -20,48 +20,58 @@ It uses [Voyage](https://github.com/estebanlm/voyage) and a [MongoDB](https://ww
 
 ## Client
 Is implemented as a command line handler. 
-You have severl bash scripts that wraps functionality, but basically you have: 
+You have several bash scripts that wraps functionality, but basically you have: 
 
-    Usage:
+Usage:
+
+    worklog --help
+    worklog --add [--text="<text to log>"|--file="<file to use as text>"]
+    worklog --open
+    worklog --review  --lapse=[day|week|month]
+    worklog --create-config
+    worklog --update-server
+    worklog --update-status
+    worklog --update-client
+    worklog --remove --id="<log id>" 
     
-        worklog --help
-        worklog --add [--text="<text to log>"|--file="<file to use as text>"]
-        worklog --open-editor
-        worklog --review  --lapse=[day|week|month]
-        worklog --create-config
-        worklog --update-server
-        worklog --update-status
-        worklog --update-client
+	--help		
+		Prints this help.
+		
+	--add
+		Adds a log..
+		
+	--text="<text to log>"
+		Specifies the text to log.
+	
+	--file="<file to use as text>"		
+		Specifies a file with the log.	
+		
+	--open-editor
+		Opens a dialog to add a log.
+		
+	--review
+		Prints a review of the worklog.
+		
+	--lapse=[day|week|month]
+		--review will be printed for this day (this is the default), this week or this month.
     
-	    --help		
-		    Prints this help.
-		
-	    --add
-		    Adds a log..
-		
-	    --text="<text to log>"
-		    Specifies the text to log.
-		
-	    --open-editor
-		    Opens a dialog to add a log.
-		
-	    --review
-		    Prints a review of the worklog.
-		
-	    --lapse=[day|week|month]
-		    --review will be printed for this day (this is the default), this week or this month.
+	--create-config
+		Create a sample configuration file.
     
-	    --create-config
-		    Create a sample configuration file.
-    
-	    --update-server
-		    Starts and update process on server (it will be updated with master branch on github).
+	--update-server
+		Starts and update process on server (it will be updated with master branch on github).
 		
-	    --update-server-status
-		    Prints update status from server
+	--update-server-status
+		Prints update status from server
     
-	    --update-client
-		    Updates this client (it will be updated with master branch on github).
+	--update-client
+		Updates this client (it will be updated with master branch on github).
+		
+	--remove
+		Remove one log identified with the permaLink number (needs to be used with --id). 
+		
+	 --id="<log id>" 
+		Refers to permaLink of the log to be removed with --remove 
 
 ## Future
 No idea (about the future in general and this app in particular). But it might be cool to add: 

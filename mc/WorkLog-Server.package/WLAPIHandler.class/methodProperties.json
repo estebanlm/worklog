@@ -3,11 +3,12 @@
 		"description" : "EstebanLorenzano 12/25/2015 12:59",
 		"initialize" : "EstebanLorenzano 12/25/2015 12:58" },
 	"instance" : {
-		"addLog" : "EstebanLorenzano 12/25/2015 15:56",
+		"addPost" : "EstebanLorenzano 1/5/2016 20:37",
 		"authenticateRequest:" : "EstebanLorenzano 12/26/2015 13:33",
 		"forbidden" : "EstebanLorenzano 12/26/2015 13:31",
 		"handleFiltered:" : "EstebanLorenzano 12/26/2015 13:32",
 		"notFound" : "EstebanLorenzano 12/25/2015 16:06",
+		"removePost:" : "EstebanLorenzano 1/5/2016 20:38",
 		"request" : "EstebanLorenzano 12/25/2015 12:16",
 		"resetConfig" : "EstebanLorenzano 12/28/2015 12:51",
 		"responseError:" : "EstebanLorenzano 12/25/2015 15:56",

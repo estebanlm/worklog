@@ -10,5 +10,6 @@ activate
 	(self argumentAt: 1) = '--update-server' ifTrue: [ ^ self activateUpdateServer ].
 	(self argumentAt: 1) = '--update-server-status' ifTrue: [ ^ self activateServerStatus ].
 	(self argumentAt: 1) = '--update-client' ifTrue: [ ^ self activateUpdateClient ]. 
+	(self argumentAt: 1) = '--remove' ifTrue: [ ^ self activateRemove ]. 
 	
 	self error: 'Not recognised: ', (self argumentAt: 1).

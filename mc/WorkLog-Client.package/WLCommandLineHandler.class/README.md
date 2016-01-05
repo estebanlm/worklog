@@ -10,6 +10,7 @@ Usage:
     worklog --update-server
     worklog --update-status
     worklog --update-client
+    worklog --remove --id="<log id>" 
 
 	--help		
 		Prints this help.
@@ -19,6 +20,9 @@ Usage:
 		
 	--text="<text to log>"
 		Specifies the text to log.
+	
+	--file="<file to use as text>"		
+		Specifies a file with the log.	
 		
 	--open-editor
 		Opens a dialog to add a log.
@@ -40,3 +44,9 @@ Usage:
 
 	--update-client
 		Updates this client (it will be updated with master branch on github).
+		
+	--remove
+		Remove one log identified with the permaLink number (needs to be used with --id). 
+		
+	 --id="<log id>" 
+		Refers to permaLink of the log to be removed with --remove 

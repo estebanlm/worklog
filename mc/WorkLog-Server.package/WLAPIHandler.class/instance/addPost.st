@@ -1,15 +1,15 @@
 actions
-addLog
+addPost
 	<post>
 	<path: '/add'>
 	<consumes: 'text/plain'>
 	<produces: 'application/json'>
 	
-	| text log |
+	| text post |
 
 	text := self request rawBody.
 	text ifEmpty: [ ^ self responseError: 'No text log' ].
 	
-	log := (WLLog text: text) save.
+	post := (WLLog text: text) save.
 	
-	^ self responseOk: ('{1}, logged.' format: { log asString })
+	^ self responseOk: ('{1}, logged.' format: { post asString })

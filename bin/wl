@@ -6,8 +6,7 @@
 #constants
 DEFAULT_EDITOR="mate --wait"
 #variables
-open_system_editor=0
-open_editor=0
+action=
 
 print_usage() {
 	echo "Usage:" 
@@ -15,30 +14,16 @@ print_usage() {
 	echo "    `basename $0` -o"
 	echo "    `basename $0` -e"
 	echo "    `basename $0` -h"
+	echo "    `basename $0` -r <id>"
 	echo ""
 	echo "	-e 	Opens the editor defined in WL_EDITOR (default $DEFAULT_EDITOR)."
 	echo "	-o 	Opens the editor window."
+	echo "	-r 	Removes a log identified with permaLink <id>."
 	echo "	-h 	Print this help."
 	echo ""
 }
 
-while getopts "eoh" option; do 
-	case "$option" in
-		e) open_system_editor=1 ;;
-		o) open_editor=1 ;;
-		h) 
-			print_usage
-			exit 1
-			;;
-		\?)
-      		echo "Invalid option: -$OPTARG" >&2
-      		exit 1
-      		;;
-	esac
-done
-
-# test if we should open a system editor
-if [ $open_system_editor == 1 ]; then
+open_system_editor() {
 	if [ -z "$WL_EDITOR" ]; then
 		WL_EDITOR="$DEFAULT_EDITOR"
 	fi
@@ -56,13 +41,34 @@ if [ $open_system_editor == 1 ]; then
 	$CMD --add --file="`pwd`/$tmpfile"
 	rm -f $tmpfile
 	exit
-fi
+}
 
-# test if we should open an editor
-if [ $open_editor == 1 ]; then
+open_inner_editor() {
 	$CMD --open-editor
 	exit
-fi
+}
 
-# by default, we just send the entered text to edit
+remove_log() {
+	$CMD --remove --id="$1"
+	exit
+}
+
+while getopts "eohr:" option; do 
+	case "$option" in
+		e) open_system_editor ;;
+		o) open_inner_editor ;;
+		r) remove_log $OPTARG ;;
+		h) 
+			print_usage
+			exit 1
+			;;
+		\?)
+      		echo "Invalid option: -$OPTARG" >&2
+      		exit 1
+      		;;
+	esac
+done
+
+# DEFAULT: we just send the entered text to edit
 $CMD --add --text="$*"
+
