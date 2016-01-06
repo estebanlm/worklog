@@ -31,4 +31,4 @@ while getopts "dwmh" option; do
 	esac
 done
 
-$WL --review --lapse="$lapse"
+$CMD --review --lapse="$lapse"
