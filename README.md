@@ -76,5 +76,7 @@ Usage:
 ## Future
 No idea (about the future in general and this app in particular). But it might be cool to add: 
 
+- Search by text
+- Archive (too see older months)
 - Team support (how cool would be a team showing their progess all together)
 - Markdown support
