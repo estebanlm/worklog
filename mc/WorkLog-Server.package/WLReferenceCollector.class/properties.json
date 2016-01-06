@@ -7,7 +7,7 @@
 	"commentStamp" : "",
 	"instvars" : [
 		"objects" ],
-	"name" : "PRReferenceCollector",
+	"name" : "WLReferenceCollector",
 	"pools" : [
 		 ],
 	"super" : "PRVisitor",

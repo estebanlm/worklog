@@ -1,3 +1,3 @@
 accessing
 textMaxSize
-	^ 80
+	^ 140 "Just to compete with twitter ;)"

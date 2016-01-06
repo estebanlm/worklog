@@ -2,7 +2,7 @@ private
 generateReferencedLinks
 	| objects |
 	
-	objects := PRReferenceCollector new
+	objects := WLReferenceCollector new
 		visit: self parsedText;
 		objects.
 	objects ifEmpty: [ ^ self ].

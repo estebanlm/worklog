@@ -9,4 +9,9 @@ renderFooterOn: html
 					url: '/rss';
 					with: 'Suscribe to my rss!' ].
 			html break.
-			html span: 'Copyright (C) 2015-2016 by Esteban Lorenzano.']
+			html span: [
+				html text: 'Copyright (C) 2015-2016 by Esteban Lorenzano - '.
+				html anchor
+					target: '_new'; 
+					url: 'http://github.com/estebanlm/worklog';
+					with: 'Fork me on GitHub']]
