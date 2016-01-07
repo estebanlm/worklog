@@ -2,6 +2,12 @@ rendering
 renderDisqusOn: html
 	html html: '<div id="disqus_thread"></div>
 <script>
+
+var disqus_config = function () {
+this.page.url = "', self fullPagePermaLink, '"; 
+this.page.identifier = "', self permaLink, '";
+};
+
 (function() {
 var d = document, s = d.createElement(''script'');
 
