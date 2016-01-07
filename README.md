@@ -76,7 +76,8 @@ Usage:
 ## Future
 No idea (about the future in general and this app in particular). But it might be cool to add: 
 
+- Make a builder/installer (maybe with CMake?). It would be cool to show how you can build apps "traditional style" :)
 - Search by text
 - Archive (too see older months)
 - Team support (how cool would be a team showing their progess all together)
-- Markdown support
+- Markdown support (?)
