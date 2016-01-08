@@ -2,7 +2,8 @@ private
 basicUpdate
 	self status: #updating.
 	self lastErrorMessage: nil.
-	[ self loadBaseline.
+	[ self prepareLoad.
+	  self loadBaseline.
 	  Smalltalk saveSession ]
 	on: Error do: [ :e | 
 		self lastErrorMessage: e messageText.
