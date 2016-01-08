@@ -6,14 +6,5 @@ activateReview
 
 	[ list := self client review: self lapse ]
 	on: Error do: [ :e | self error: e messageText ].
-
-	list 
-		do: [ :each |
-			Stdio stdout 
-				<< (each at: #date) << ':'; lf; cr.
-			((each at: #text) withNoLineLongerThan: 80) 
-				linesDo: [ :line | Stdio stdout << line; lf; cr ]]
-		separatedBy: [ 
-			Stdio stdout << '---'; lf; cr ].
-	
+	self exportAsChangeLog: list.
 	self quit.

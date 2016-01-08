@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Client-Model",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"rawLogs" ],
+	"name" : "WLChangeLogBuilder",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
