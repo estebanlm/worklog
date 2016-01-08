@@ -7,7 +7,7 @@ logToChangeLog: postDictionary
 			withNoLineLongerThan: 80)
 			lines.
 	^ String streamContents: [ :stream | 
-			stream << ' *' << String tab << lines first; cr.
+			stream << '  * ' << lines first; cr.
 			lines allButFirst
-				do: [ :each | stream << String tab << each ]
+				do: [ :each | stream << '    ' << each ]
 				separatedBy: [ stream cr ]]
