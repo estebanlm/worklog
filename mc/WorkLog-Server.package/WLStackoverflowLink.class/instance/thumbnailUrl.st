@@ -1,0 +1,3 @@
+accessing
+thumbnailUrl 
+	^ WLStaticLibrary / #stackoverflowPng

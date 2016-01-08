@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Server-Model-Link",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		 ],
+	"name" : "WLStackoverflowLink",
+	"pools" : [
+		 ],
+	"super" : "WLHtmlLink",
+	"type" : "normal" }
