@@ -66,7 +66,7 @@ remove_log() {
 	exit
 }
 
-while getopts "eohr:" option; do 
+while getopts ":e:f:o:r:h" option; do 
 	case "$option" in
 		e) open_system_editor ;;
 		f) log_file $OPTARG ;;
