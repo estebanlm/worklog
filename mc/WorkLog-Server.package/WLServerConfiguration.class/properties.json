@@ -11,7 +11,10 @@
 		"host",
 		"port",
 		"database",
-		"user" ],
+		"user",
+		"header",
+		"disqusAccount",
+		"production" ],
 	"name" : "WLServerConfiguration",
 	"pools" : [
 		 ],

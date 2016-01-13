@@ -10,7 +10,7 @@ renderFooterOn: html
 					with: 'Suscribe to my rss!' ].
 			html break.
 			html span: [
-				html text: 'Copyright (C) 2015-2016 by Esteban Lorenzano - '.
+				html text: ('Copyright (C) 2015-2016 by {1} - ' format: { WLServerConfiguration uniqueInstance user fullName }).
 				html anchor
 					target: '_new'; 
 					url: 'http://github.com/estebanlm/worklog';

@@ -15,4 +15,4 @@ renderContentOn: html
 			mediumOffset: 2;
 			with: [ self renderFooterOn: html ]].
 		
-	html html: '<script id="dsq-count-scr" src="//estebanlm-log.disqus.com/count.js" async></script>'
+	html html: ('<script id="dsq-count-scr" src="//{1}.disqus.com/count.js" async></script>' format: { WLServerConfiguration uniqueInstance disqusAccount })
