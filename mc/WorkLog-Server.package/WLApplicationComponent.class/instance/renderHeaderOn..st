@@ -2,8 +2,8 @@ rendering
 renderHeaderOn: html
  	html tbsNavbar beDefault with: [
 		html tbsNavbarBrand
-			callback: [];
-			with: 'Esteban''s log'.
+			callback: [ self showToday ];
+			with: WLApplicationComponent applicationHeader.
 			
 		"html tbsNav beNavbarNavigation; with: [ 
 			html tbsNavItem: [ html anchor callback: [ self showToday ]; with: 'Today' ].

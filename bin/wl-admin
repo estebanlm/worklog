@@ -10,11 +10,11 @@ print_usage() {
 	echo ""
 	echo "	-u  Update server."
 	echo "	-r  Reset server configuration (reloads app)."
-	echo "	-r  Prints update server status."
+	echo "	-s  Prints update server status."
 	echo ""
 }
 
-while getopts "usr" option; do 
+while getopts ":usrh" option; do 
 	case "$option" in
 		u) admin_option="--update-server" ;;
 		s) admin_option="--update-server-status" ;;		

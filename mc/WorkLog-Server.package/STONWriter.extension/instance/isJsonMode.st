@@ -1,3 +1,0 @@
-*WorkLog-Server
-isJsonMode
-	^ jsonMode
