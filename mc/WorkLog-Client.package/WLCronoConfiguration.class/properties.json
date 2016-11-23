@@ -1,0 +1,14 @@
+{
+	"category" : "WorkLog-Client-Model",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "<historical>",
+	"instvars" : [
+		"baseDir" ],
+	"name" : "WLCronoConfiguration",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }

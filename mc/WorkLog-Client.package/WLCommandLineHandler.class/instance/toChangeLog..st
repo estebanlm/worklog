@@ -1,4 +1,4 @@
-activation
+private
 toChangeLog: postDictionary
 	| lines |
 	lines := (postDictionary at: 'text') withNoLineLongerThan: 80.

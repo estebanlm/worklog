@@ -1,3 +1,3 @@
-as yet unclassified
+accessing
 url
 	^ 'http://log.smallworks.eu/api'
