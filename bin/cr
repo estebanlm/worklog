@@ -1,0 +1,48 @@
+#! /bin/bash -e
+
+#Environment settings
+. /usr/local/worklog/bin/env-settings
+
+IMAGE=../../worklog.image
+#constants
+CMD="$PHARO_VM $IMAGE crono"
+#variables
+action=
+
+print_usage() {
+	echo "Usage:" 
+	echo "    `basename $0` <text to log>"
+	echo "    `basename $0` -h"
+	echo "    `basename $0` -r <id>"
+	echo ""
+	echo "	-r 	Removes a log identified with permaLink <id>."
+	echo "	-h 	Print this help."
+	echo ""
+}
+
+review_log() {
+	$CMD --review
+	exit
+}
+
+while getopts "rh" option; do 
+	case "$option" in
+		r) review_log $OPTARG ;;
+		h) 
+			print_usage
+			exit 1
+			;;
+		\?)
+      		echo "Invalid option: -$OPTARG" >&2
+      		exit 1
+      		;;
+	esac
+done
+
+# DEFAULT: we just send the entered text to edit
+TMP_PREFIX=`basename $0`
+TMP_FILE=`mktemp /tmp/$TMP_PREFIX.XXXXXX`
+echo $@ > $TMP_FILE
+$CMD --add --file="$TMP_FILE"
+rm -f $TMP_FILE
+exit
