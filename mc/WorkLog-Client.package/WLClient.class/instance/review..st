@@ -1,6 +1,6 @@
 actions
 review: aString 
-	"aString can be 'day', 'week' or 'month'"
+	"aString can be 'day', 'week', 'lastWeek' or 'month'"
 	| response |
 	
 	response := (self connectionTo: 'review')

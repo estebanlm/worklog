@@ -1,15 +1,14 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
+	"super" : "WAComponent",
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
 	"instvars" : [
 		"content",
-		"routes" ],
+		"routes"
+	],
 	"name" : "WLBookmarkComponent",
-	"pools" : [
-		 ],
-	"super" : "WAComponent",
-	"type" : "normal" }
+	"type" : "normal"
+}

@@ -1,14 +1,13 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "EstebanLorenzano 12/30/2015 15:39",
-	"instvars" : [
-		"root" ],
-	"name" : "WLProfileComponent",
-	"pools" : [
-		 ],
 	"super" : "WAComponent",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"root"
+	],
+	"name" : "WLProfileComponent",
+	"type" : "normal"
+}

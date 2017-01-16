@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
-	"instvars" : [
-		 ],
-	"name" : "WLStaticLibrary",
-	"pools" : [
-		 ],
 	"super" : "WAFileLibrary",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLStaticLibrary",
+	"type" : "normal"
+}

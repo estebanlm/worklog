@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
-	"name" : "WLRSSComponent",
-	"pools" : [
-		 ],
 	"super" : "RRComponent",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLRSSComponent",
+	"type" : "normal"
+}

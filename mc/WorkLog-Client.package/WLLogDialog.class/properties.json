@@ -1,15 +1,14 @@
 {
-	"category" : "WorkLog-Client-GUI",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
+	"super" : "ComposableModel",
+	"category" : "WorkLog-Client-GUI",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
 	"instvars" : [
 		"textArea",
-		"acceptButton" ],
+		"acceptButton"
+	],
 	"name" : "WLLogDialog",
-	"pools" : [
-		 ],
-	"super" : "ComposableModel",
-	"type" : "normal" }
+	"type" : "normal"
+}

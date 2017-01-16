@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-Model-Link",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
-	"name" : "WLBitbucketLink",
-	"pools" : [
-		 ],
 	"super" : "WLHtmlLink",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-Model-Link",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLBitbucketLink",
+	"type" : "normal"
+}

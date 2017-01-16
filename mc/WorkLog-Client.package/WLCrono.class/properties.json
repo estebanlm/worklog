@@ -1,14 +1,13 @@
 {
+	"commentStamp" : "<historical>",
+	"super" : "Object",
 	"category" : "WorkLog-Client-Model",
 	"classinstvars" : [
-		"uniqueInstance" ],
-	"classvars" : [
-		 ],
-	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
+		"uniqueInstance"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
 	"name" : "WLCrono",
-	"pools" : [
-		 ],
-	"super" : "Object",
-	"type" : "normal" }
+	"type" : "normal"
+}

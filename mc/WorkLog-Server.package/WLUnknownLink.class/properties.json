@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-Model-Link",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
-	"name" : "WLUnknownLink",
-	"pools" : [
-		 ],
 	"super" : "WLHtmlLink",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-Model-Link",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLUnknownLink",
+	"type" : "normal"
+}

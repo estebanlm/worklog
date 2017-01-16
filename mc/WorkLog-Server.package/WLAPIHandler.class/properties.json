@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
-	"name" : "WLAPIHandler",
-	"pools" : [
-		 ],
 	"super" : "WARestfulHandler",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLAPIHandler",
+	"type" : "normal"
+}

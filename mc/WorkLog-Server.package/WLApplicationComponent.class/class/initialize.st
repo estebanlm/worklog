@@ -1,6 +1,4 @@
 class initialization
 initialize
-	Smalltalk 
-		removeFromStartUpList: self;
-		addToStartUpList: self.
+	SessionManager default registerUserClassNamed: self name.
 	self registerApplication.

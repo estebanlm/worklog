@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
-	"name" : "WLDisqusPostComponent",
-	"pools" : [
-		 ],
 	"super" : "WLPostComponent",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLDisqusPostComponent",
+	"type" : "normal"
+}

@@ -1,14 +1,13 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
-	"instvars" : [
-		"batcherComponent" ],
-	"name" : "WLPostListComponent",
-	"pools" : [
-		 ],
 	"super" : "WAComponent",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"batcherComponent"
+	],
+	"name" : "WLPostListComponent",
+	"type" : "normal"
+}

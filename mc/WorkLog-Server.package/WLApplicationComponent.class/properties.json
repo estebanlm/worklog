@@ -1,14 +1,15 @@
 {
+	"commentStamp" : "<historical>",
+	"super" : "WLBookmarkComponent",
 	"category" : "WorkLog-Server-View",
 	"classinstvars" : [
-		"production" ],
-	"classvars" : [
-		 ],
-	"commentStamp" : "<historical>",
+		"production"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
 	"instvars" : [
-		"profileComponent" ],
+		"profileComponent"
+	],
 	"name" : "WLApplicationComponent",
-	"pools" : [
-		 ],
-	"super" : "WLBookmarkComponent",
-	"type" : "normal" }
+	"type" : "normal"
+}

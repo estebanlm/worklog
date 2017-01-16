@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-View",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "EstebanLorenzano 12/30/2015 15:40",
-	"instvars" : [
-		 ],
-	"name" : "WLThisMonthPostListComponent",
-	"pools" : [
-		 ],
 	"super" : "WLPostListComponent",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLThisMonthPostListComponent",
+	"type" : "normal"
+}

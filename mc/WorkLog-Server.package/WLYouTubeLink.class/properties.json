@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-Model-Link",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
-	"name" : "WLYouTubeLink",
-	"pools" : [
-		 ],
 	"super" : "WLExternalLink",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-Model-Link",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLYouTubeLink",
+	"type" : "normal"
+}

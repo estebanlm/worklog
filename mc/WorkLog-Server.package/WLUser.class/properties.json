@@ -1,18 +1,17 @@
 {
-	"category" : "WorkLog-Server-Model",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
 	"instvars" : [
 		"username",
 		"password",
 		"email",
 		"fullName",
-		"gravatarUrl" ],
+		"gravatarUrl"
+	],
 	"name" : "WLUser",
-	"pools" : [
-		 ],
-	"super" : "Object",
-	"type" : "normal" }
+	"type" : "normal"
+}

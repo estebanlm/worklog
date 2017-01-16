@@ -1,18 +1,17 @@
 {
-	"category" : "WorkLog-Server-Model",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "EstebanLorenzano 12/25/2015 12:29",
+	"super" : "Object",
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
 	"instvars" : [
 		"permaLink",
 		"date",
 		"text",
 		"parsedText",
-		"referencedLinks" ],
+		"referencedLinks"
+	],
 	"name" : "WLLog",
-	"pools" : [
-		 ],
-	"super" : "Object",
-	"type" : "normal" }
+	"type" : "normal"
+}

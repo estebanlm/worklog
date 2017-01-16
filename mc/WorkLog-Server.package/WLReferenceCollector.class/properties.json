@@ -1,14 +1,13 @@
 {
-	"category" : "WorkLog-Server-Model",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
-	"instvars" : [
-		"objects" ],
-	"name" : "WLReferenceCollector",
-	"pools" : [
-		 ],
 	"super" : "PRVisitor",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"objects"
+	],
+	"name" : "WLReferenceCollector",
+	"type" : "normal"
+}

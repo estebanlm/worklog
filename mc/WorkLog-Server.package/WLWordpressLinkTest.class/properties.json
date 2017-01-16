@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Server-Tests",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "",
-	"instvars" : [
-		 ],
-	"name" : "WLWordpressLinkTest",
-	"pools" : [
-		 ],
 	"super" : "WLExternalLinkTest",
-	"type" : "normal" }
+	"category" : "WorkLog-Server-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLWordpressLinkTest",
+	"type" : "normal"
+}

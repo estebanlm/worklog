@@ -1,14 +1,11 @@
 {
-	"category" : "WorkLog-Client-CommandLine",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
 	"commentStamp" : "EstebanLorenzano 11/29/2016 14:48",
-	"instvars" : [
-		 ],
-	"name" : "WLCronoCommandLineHandler",
-	"pools" : [
-		 ],
 	"super" : "CommandLineHandler",
-	"type" : "normal" }
+	"category" : "WorkLog-Client-CommandLine",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLCronoCommandLineHandler",
+	"type" : "normal"
+}

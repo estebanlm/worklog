@@ -1,14 +1,13 @@
 {
+	"commentStamp" : "EstebanLorenzano 12/24/2015 15:42",
+	"super" : "Object",
 	"category" : "WorkLog-Client-Model",
 	"classinstvars" : [
-		"uniqueInstance" ],
-	"classvars" : [
-		 ],
-	"commentStamp" : "EstebanLorenzano 12/24/2015 15:42",
-	"instvars" : [
-		 ],
+		"uniqueInstance"
+	],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
 	"name" : "WLClient",
-	"pools" : [
-		 ],
-	"super" : "Object",
-	"type" : "normal" }
+	"type" : "normal"
+}
