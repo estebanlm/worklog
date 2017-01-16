@@ -4,4 +4,4 @@ seaside3: spec
 		spec
 			className: #ConfigurationOfSeaside3;
 			versionString: #'stable';
-			repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo50/main/' ]
+			repository: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo60/main/' ]
