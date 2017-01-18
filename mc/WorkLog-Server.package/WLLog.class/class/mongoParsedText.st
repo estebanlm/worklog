@@ -2,6 +2,6 @@ persistence
 mongoParsedText
 	<mongoDescription>
 	
-	^ VOMongoTransientDescription new 
+	^ VOTransientDescription new 
 		attributeName: 'parsedText';
 		yourself
