@@ -1,3 +1,4 @@
 accessing
 applicationHeader
-	^ WLServerConfiguration uniqueInstance header ifNil: [ WLServerConfiguration uniqueInstance user fullName , '''s log' ].
+	^ WLServerConfiguration uniqueInstance header 
+		ifNil: [ self applicationTitle ].

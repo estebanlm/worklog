@@ -1,3 +1,4 @@
 accessing
 applicationTitle
-	^ WLServerConfiguration uniqueInstance title.
+	^ WLServerConfiguration uniqueInstance title ifNil: [ 
+		WLServerConfiguration uniqueInstance user fullName , '''s log' ]
