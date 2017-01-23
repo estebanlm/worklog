@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "WLPostListComponent",
+	"category" : "WorkLog-Server-View",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"fromDate",
+		"toDate"
+	],
+	"name" : "WLSearchPostListComponent",
+	"type" : "normal"
+}
