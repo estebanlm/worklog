@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PRAsciiDocWriter",
+	"category" : "WorkLog-Server-Model",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "WLAsciiDocWriter",
+	"type" : "normal"
+}

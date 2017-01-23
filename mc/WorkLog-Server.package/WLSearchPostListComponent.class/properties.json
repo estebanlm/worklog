@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "<historical>",
 	"super" : "WLPostListComponent",
 	"category" : "WorkLog-Server-View",
 	"classinstvars" : [ ],
