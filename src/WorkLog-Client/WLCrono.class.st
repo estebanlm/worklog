@@ -38,9 +38,12 @@ WLCrono >> log: aString [
 	| nl |
 
 	nl := OSPlatform current lineEnding.
-	self todayReference writeStreamDo: [ :stream |
+	self todayReference writeStreamDo: [ :stream | | lines |
 		stream setToEnd.
-		stream << Time now logPrintTime << ' ' << aString << nl ]
+		stream << Time now logPrintTime << ' '.
+		lines := aString withNoLineLongerThan: 76.
+		stream << lines first << nl.
+		lines allButFirstDo: [ :each | stream << '      ' << each << nl ] ]
 ]
 
 { #category : #accessing }
