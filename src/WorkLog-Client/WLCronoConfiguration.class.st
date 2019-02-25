@@ -16,13 +16,15 @@ Class {
 
 { #category : #accessing }
 WLCronoConfiguration class >> configFileName [
+
 	^ 'crono.ston'
 ]
 
 { #category : #'instance creation' }
 WLCronoConfiguration class >> readFromFileSystem [
 	| reference |
-	reference := self configFileName asFileReference.
+	
+	reference := (FileLocator imageDirectory / self configFileName) asFileReference.
 	reference exists ifFalse: [ ^ self new ].
 	^ reference readStreamDo: [ :stream | 
 		STON fromStream: stream  ]

@@ -26,6 +26,7 @@ WLCrono class >> uniqueInstance [
 
 { #category : #accessing }
 WLCrono >> baseDirReference [
+
 	^ WLCronoConfiguration readFromFileSystem baseDirReference
 		ensureCreateDirectory;
 		yourself
@@ -34,18 +35,18 @@ WLCrono >> baseDirReference [
 
 { #category : #logging }
 WLCrono >> log: aString [
-	| lineEnding |
-	lineEnding := OSPlatform current lineEnding.
+	| nl |
+
+	nl := OSPlatform current lineEnding.
 	self todayReference writeStreamDo: [ :stream |
 		stream setToEnd.
-		stream
-			<< '# At ' << Time now logPrintTime << lineEnding
-			<< aString << lineEnding ]
+		stream << Time now logPrintTime << ' ' << aString << nl ]
 ]
 
 { #category : #accessing }
 WLCrono >> referenceOfDay: aDate [
-	^ (self baseDirReference / aDate yyyymmdd) withExtension: 'md' 
+
+	^ (self baseDirReference / aDate yyyymmdd) withExtension: 'txt' 
 ]
 
 { #category : #accessing }
@@ -56,5 +57,6 @@ WLCrono >> review [
 
 { #category : #accessing }
 WLCrono >> todayReference [
+
 	^ self referenceOfDay: Date today
 ]
