@@ -1,3 +1,0 @@
-accessing
-defaultContentComponent 
-	^ self createTodayComponent

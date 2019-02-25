@@ -1,3 +1,0 @@
-accessing
-config
-	^ WLServerConfiguration uniqueInstance

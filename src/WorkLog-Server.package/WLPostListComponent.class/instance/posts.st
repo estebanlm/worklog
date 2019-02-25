@@ -1,3 +1,0 @@
-accessing
-posts 
-	^ self basicPostList

@@ -1,3 +1,0 @@
-testing
-isSuitableFor: aLink
-	^ true

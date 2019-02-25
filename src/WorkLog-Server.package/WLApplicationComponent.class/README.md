@@ -1,1 +1,0 @@
-I'm the entry point to WorkLog app.

@@ -1,3 +1,0 @@
-testing
-isError
-	^ status = #error

@@ -1,3 +1,0 @@
-accessing
-basicPostList
-	^ self subclassResponsibility

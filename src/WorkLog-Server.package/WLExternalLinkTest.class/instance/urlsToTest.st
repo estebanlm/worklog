@@ -1,3 +1,0 @@
-accessing
-urlsToTest
-	^ self subclassResponsibility

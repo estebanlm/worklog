@@ -1,3 +1,0 @@
-accessing
-crono
-	^ WLCrono uniqueInstance

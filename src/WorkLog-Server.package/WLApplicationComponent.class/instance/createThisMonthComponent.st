@@ -1,3 +1,0 @@
-factory
-createThisMonthComponent
-	^ WLThisMonthPostListComponent new

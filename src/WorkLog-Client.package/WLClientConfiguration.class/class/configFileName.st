@@ -1,3 +1,0 @@
-accessing
-configFileName
-	^ 'worklog.ston'

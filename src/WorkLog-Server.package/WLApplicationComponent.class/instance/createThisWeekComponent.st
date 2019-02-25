@@ -1,3 +1,0 @@
-factory
-createThisWeekComponent 
-	^ WLThisWeekPostListComponent new
