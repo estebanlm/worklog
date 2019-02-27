@@ -8,20 +8,49 @@ So far, I just know ==#log:==, which appends an entry to the daily log.
 Class {
 	#name : #WLCrono,
 	#superclass : #Object,
-	#classInstVars : [
-		'uniqueInstance'
-	],
-	#category : 'WorkLog-Client-Model'
+	#category : #'WorkLog-Client-Model'
 }
 
-{ #category : #'instance creation' }
-WLCrono class >> new [
-	self error: 'Use #uniqueInstance'
+{ #category : #accessing }
+WLCrono class >> commandLine [
+	<commandline>
+	
+	^ (ClapCommand withName: 'crono')
+		description: 'Manage a crono worklog.';
+		add: ClapFlag forHelp;
+		add: self commandLineAdd;
+		add: self commandLineReview;
+		add: self commandLineTodayReference;
+		meaning: [ :args | 
+			args atName: 'help' ifFound: [ :help | help value; exitSuccess ] ]
 ]
 
-{ #category : #'instance creation' }
-WLCrono class >> uniqueInstance [
-	^ uniqueInstance ifNil: [ uniqueInstance := super new ]
+{ #category : #accessing }
+WLCrono class >> commandLineAdd [
+
+	^ (ClapCommand withName: 'add')
+		description: 'Log some work.';
+		add: ((ClapPositional withName: 'LOG') 
+			description: 'The work to log.';
+			multiple: true);
+		meaning: [ :args | self new log:  (' ' join: (args occurrencesNamed: 'LOG' collect: #value)) ]
+]
+
+{ #category : #accessing }
+WLCrono class >> commandLineReview [
+
+	^ (ClapCommand withName: 'review')
+		description: 'Review crono worklog dates.';
+		add: ((ClapPositional withName: 'range') implicitMeaning: [ '0' ]);
+		meaning: [ :args | self new review: (WLCronoRange fromString: (args atName: 'range') value) ]
+]
+
+{ #category : #accessing }
+WLCrono class >> commandLineTodayReference [
+
+	^ (ClapCommand withName: 'todayReference')
+		description: 'Prints path of current using file.';
+		meaning: [ :args | self new printTodayReference ]
 ]
 
 { #category : #accessing }
@@ -41,9 +70,17 @@ WLCrono >> log: aString [
 	self todayReference writeStreamDo: [ :stream | | lines |
 		stream setToEnd.
 		stream << Time now logPrintTime << ' '.
-		lines := aString withNoLineLongerThan: 76.
+		lines := (aString withNoLineLongerThan: 94) lines.
 		stream << lines first << nl.
-		lines allButFirstDo: [ :each | stream << '      ' << each << nl ] ]
+		lines allButFirstDo: [ :each | stream << '      ' << each << nl ] ].
+	
+	self stdout << 'You work, therefore you are.'; newLine
+]
+
+{ #category : #accessing }
+WLCrono >> printTodayReference [
+
+	self stdout << self todayReference fullName; newLine
 ]
 
 { #category : #accessing }
@@ -53,9 +90,25 @@ WLCrono >> referenceOfDay: aDate [
 ]
 
 { #category : #accessing }
-WLCrono >> review [
-	^ self todayReference readStreamDo: [ :stream | stream contents ].
-	
+WLCrono >> review: daysRange [
+	| stream |
+
+	stream := self stdout.
+	daysRange days 
+		do: [ :each | | dayRef |
+			stream << each ddmmyyyy; newLine. 
+			dayRef := self referenceOfDay: each.
+			stream << (dayRef exists 
+				ifTrue: [ dayRef contents ]
+				ifFalse: [ 'No records' ]) ]
+		separatedBy: [ 
+			stream newLine ]
+]
+
+{ #category : #accessing }
+WLCrono >> stdout [ 
+
+	^ ZnNewLineWriterStream on: Stdio stdout
 ]
 
 { #category : #accessing }

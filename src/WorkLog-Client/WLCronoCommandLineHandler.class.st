@@ -35,16 +35,19 @@ Class {
 
 { #category : #accessing }
 WLCronoCommandLineHandler class >> commandName [
+
 	^ 'crono'
 ]
 
 { #category : #accessing }
 WLCronoCommandLineHandler class >> description [
+
 	^ 'Appends a log into WLCrono class>>#baseDir / Date today'
 ]
 
 { #category : #activation }
 WLCronoCommandLineHandler >> activate [
+
 	self activateHelpWithoutArguments ifTrue: [ ^ self ].
 	
 	(self argumentAt: 1) = '--add' ifTrue: [ ^ self activateAdd ].
@@ -70,6 +73,7 @@ WLCronoCommandLineHandler >> activateAdd [
 
 { #category : #activation }
 WLCronoCommandLineHandler >> activateReview [
+
 	self printDailyReview.
 	self quit.
 ]
@@ -82,13 +86,15 @@ WLCronoCommandLineHandler >> activateTodayReference [
 
 { #category : #private }
 WLCronoCommandLineHandler >> addLog: aString [
+
 	self crono log: aString trimBoth.
 	self inform: 'Logged.'
 ]
 
 { #category : #accessing }
 WLCronoCommandLineHandler >> crono [
-	^ WLCrono uniqueInstance
+
+	^ WLCrono new
 ]
 
 { #category : #private }
@@ -113,15 +119,21 @@ WLCronoCommandLineHandler >> fileContents [
 
 { #category : #private }
 WLCronoCommandLineHandler >> inform: aString [ 
-	self stdout 
-		green: aString; 
-		lf; cr.
+	self stdout green: aString. 
+	self stdout << OSPlatform current lineEnding
 ]
 
 { #category : #private }
 WLCronoCommandLineHandler >> printDailyReview [
-	self stdout << self crono review.
-	
+
+	self stdout << self optionAt: 'review'.
+	self stdout << self crono review
+]
+
+{ #category : #private }
+WLCronoCommandLineHandler >> printDailyReview: daysRange [
+
+	self stdout << self crono review: daysRange
 ]
 
 { #category : #private }

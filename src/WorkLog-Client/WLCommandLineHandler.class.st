@@ -56,7 +56,10 @@ Usage:
 Class {
 	#name : #WLCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : 'WorkLog-Client-CommandLine'
+	#instVars : [
+		'remainAlive'
+	],
+	#category : #'WorkLog-Client-CommandLine'
 }
 
 { #category : #accessing }
@@ -226,14 +229,15 @@ WLCommandLineHandler >> id [
 ]
 
 { #category : #private }
-WLCommandLineHandler >> inform: aString [ 
-	self stdout 
-		green: aString; 
-		lf; cr.
+WLCommandLineHandler >> inform: aString [
+ 
+	self stdout green: aString. 
+	self stdout << OSPlatform current lineEnding
 ]
 
 { #category : #testing }
 WLCommandLineHandler >> isRemainAlive [
+
 	^ remainAlive
 ]
 

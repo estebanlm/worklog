@@ -44,6 +44,7 @@ WLClient >> add: aString [
 { #category : #private }
 WLClient >> connectionTo: aString [
 	| config |
+	
 	config := WLClientConfiguration readFromFileSystem. 
 	^ ZnClient new 
 		beOneShot;
