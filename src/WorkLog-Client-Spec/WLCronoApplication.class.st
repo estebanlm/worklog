@@ -21,3 +21,10 @@ WLCronoApplication >> initialize [
 	super initialize.
 	self useBackend: #Morphic with: WLCronoMorphicConfiguration new
 ]
+
+{ #category : #running }
+WLCronoApplication >> run [
+
+	super run.
+	Current := self
+]
