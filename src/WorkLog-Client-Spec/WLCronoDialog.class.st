@@ -19,7 +19,7 @@ WLCronoDialog class >> defaultSpec [
 WLCronoDialog class >> open [
 	<script>
 	
-	^ self new openDialogWithSpec
+	^ (self newApplication: WLCronoApplication current) openDialogWithSpec
 ]
 
 { #category : #actions }
@@ -43,7 +43,7 @@ WLCronoDialog >> initializeDialogWindow: aWindowDialogPresenter [
 WLCronoDialog >> initializePresenters [
 
 	logText := self newRichText
-		addStyle: '.cronoText';
+		addStyle: 'cronoText';
 		textStyler: SpNullTextStyler new;
 		yourself.
 ]
