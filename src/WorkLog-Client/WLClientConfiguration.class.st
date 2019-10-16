@@ -13,7 +13,7 @@ Class {
 		'username',
 		'password'
 	],
-	#category : 'WorkLog-Client-Model'
+	#category : #'WorkLog-Client-Model'
 }
 
 { #category : #accessing }
@@ -30,7 +30,7 @@ WLClientConfiguration class >> defaultUrl [
 WLClientConfiguration class >> readFromFileSystem [
 	| reference |
 
-	reference := (FileLocator imageDirectory / self configFileName) asFileReference.
+	reference := FileLocator home / '.config' / 'worklog' / self configFileName.
 	reference exists ifFalse: [ ^ self new ].
 	^ reference readStreamDo: [ :stream | 
 		STON fromStream: stream  ]

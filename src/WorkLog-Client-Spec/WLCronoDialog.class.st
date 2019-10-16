@@ -25,7 +25,13 @@ WLCronoDialog class >> open [
 { #category : #actions }
 WLCronoDialog >> addCrono [
 
-	
+	self crono log: logText text asString
+]
+
+{ #category : #accessing }
+WLCronoDialog >> crono [
+
+	^ WLCrono new
 ]
 
 { #category : #initialization }
@@ -43,9 +49,13 @@ WLCronoDialog >> initializeDialogWindow: aWindowDialogPresenter [
 WLCronoDialog >> initializePresenters [
 
 	logText := self newRichText
+		autoAccept: true;
 		addStyle: 'cronoText';
 		textStyler: SpNullTextStyler new;
-		yourself.
+		bindKeyCombination: Character cr alt toAction: [ 
+			self addCrono.
+			self window close ];
+		yourself
 ]
 
 { #category : #initialization }
