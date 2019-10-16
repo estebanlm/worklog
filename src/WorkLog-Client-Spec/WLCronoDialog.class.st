@@ -7,6 +7,21 @@ Class {
 	#category : #'WorkLog-Client-Spec'
 }
 
+{ #category : #specs }
+WLCronoDialog class >> defaultSpec [
+
+	^ SpBoxLayout newVertical
+		add: #logText;
+		yourself
+]
+
+{ #category : #'instance creation' }
+WLCronoDialog class >> open [
+	<script>
+	
+	^ self new openDialogWithSpec
+]
+
 { #category : #actions }
 WLCronoDialog >> addCrono [
 
@@ -28,7 +43,7 @@ WLCronoDialog >> initializeDialogWindow: aWindowDialogPresenter [
 WLCronoDialog >> initializePresenters [
 
 	logText := self newRichText
-		addStyle: 'crono-text';
+		addStyle: '.cronoText';
 		textStyler: SpNullTextStyler new;
 		yourself.
 ]

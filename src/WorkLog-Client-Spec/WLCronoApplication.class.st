@@ -14,3 +14,10 @@ WLCronoApplication class >> current [
 		WLCronoApplication new run.
 		Current ]
 ]
+
+{ #category : #initialization }
+WLCronoApplication >> initialize [
+
+	super initialize.
+	self useBackend: #Morphic with: WLCronoMorphicConfiguration new
+]
