@@ -5,7 +5,8 @@ Class {
 		'logText',
 		'daysInput',
 		'refreshButton',
-		'reportText'
+		'reportText',
+		'toolBar'
 	],
 	#category : #'WorkLog-Client-Spec'
 }
@@ -14,9 +15,12 @@ Class {
 WLCronoReviewWindow class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
+		spacing: 5;
 		add: (SpBoxLayout newHorizontal
+				spacing: 5;
 				add: #daysInput expand: false;
 				add: #refreshButton expand: false;
+				addLast: #toolBar expand: false;
 				yourself)
 			expand: false;
 		add: #reportText;
@@ -30,17 +34,37 @@ WLCronoReviewWindow class >> open [
 	^ (self newApplication: WLCronoApplication current) openWithSpec
 ]
 
+{ #category : #actions }
+WLCronoReviewWindow >> copyToClipboard [
+
+	Clipboard clipboardText: reportText text asString
+]
+
 { #category : #initialization }
 WLCronoReviewWindow >> initializePresenters [
 
-	daysInput := self newNumberInput number: 1.
+	daysInput := self newNumberInput 
+		autoAccept: true;
+		number: 1.
 	refreshButton := self newButton 
 		label: 'Review';
 		action: [ self review: daysInput number ];
 		yourself.
+	toolBar := self newToolBar
+		beIcons;
+		addItem: (SpToolBarButton new
+			label: 'Copy';
+			icon: (self iconNamed: #smallCopy);
+			help: 'Copy to clipboard';
+			action: [ self copyToClipboard ];
+			yourself);
+		yourself.
+			
 	reportText := self newText 
 		addStyle: 'cronoText';
 		yourself.
+		
+	
 ]
 
 { #category : #initialization }
