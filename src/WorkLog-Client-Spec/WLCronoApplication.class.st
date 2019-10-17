@@ -24,10 +24,14 @@ WLCronoApplication class >> menuCommandOn: aBuilder [
 		target: self;
 		parent: #Tools;
 		with: [ 
-			(aBuilder item: #'Crono add new entry')
+			(aBuilder item: #'add new crono log entry')
 				target: WLCronoDialog;
 				selector: #open;
-				order: 10 ]
+				order: 10. 
+			(aBuilder item: #'review crono logs')
+				target: WLCronoReviewWindow;
+				selector: #open;
+				order: 20 ]
 ]
 
 { #category : #initialization }

@@ -91,9 +91,15 @@ WLCrono >> referenceOfDay: aDate [
 
 { #category : #accessing }
 WLCrono >> review: daysRange [
-	| stream |
 
-	stream := self stdout.
+	self 
+		review: daysRange 
+		to: self stdout
+]
+
+{ #category : #accessing }
+WLCrono >> review: daysRange to: stream [
+
 	daysRange days 
 		do: [ :each | | dayRef |
 			stream << each ddmmyyyy; newLine. 

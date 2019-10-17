@@ -38,10 +38,11 @@ WLCronoDialog >> crono [
 WLCronoDialog >> initializeDialogWindow: aWindowDialogPresenter [
 
 	aWindowDialogPresenter 
-		addButton: 'Crono' do: [ :presenter |
+		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
+		addButton: ('Log {1}' format: { KMShortcutPrinter toString: Character cr alt })
+		do: [ :presenter |
 			self addCrono.
-			presenter beOk.
-			presenter close ];
+			presenter beOk; close ];
 		centered
 ]
 
@@ -49,7 +50,7 @@ WLCronoDialog >> initializeDialogWindow: aWindowDialogPresenter [
 WLCronoDialog >> initializePresenters [
 
 	logText := self newText
-		autoAccept: true;
+		placeholder: 'Enter your crono log entry';
 		addStyle: 'cronoText';
 			bindKeyCombination: Character cr alt toAction: [ 
 			self addCrono.
