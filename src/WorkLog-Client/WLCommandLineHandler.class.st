@@ -106,7 +106,7 @@ WLCommandLineHandler >> activateAdd [
 { #category : #activation }
 WLCommandLineHandler >> activateCreateConfig [
 	[ WLClientConfiguration sample writeToFile.
-	  self inform: WLClientConfiguration configFileName, ' created.' ]
+	  self inform: WLClientConfiguration fileName, ' created.' ]
 	on: Error do: [ :e | self error: e messageText ].
 	self quit.	
 ]

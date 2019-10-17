@@ -7,7 +7,7 @@ Take a look at #sample method to hints on config structure.
 "
 Class {
 	#name : #WLClientConfiguration,
-	#superclass : #Object,
+	#superclass : #WLConfiguration,
 	#instVars : [
 		'url',
 		'username',
@@ -17,23 +17,14 @@ Class {
 }
 
 { #category : #accessing }
-WLClientConfiguration class >> configFileName [
-	^ 'worklog.ston'
-]
-
-{ #category : #accessing }
 WLClientConfiguration class >> defaultUrl [ 
 	^ 'http://log.smallworks.eu'
 ]
 
-{ #category : #'instance creation' }
-WLClientConfiguration class >> readFromFileSystem [
-	| reference |
+{ #category : #accessing }
+WLClientConfiguration class >> fileName [
 
-	reference := FileLocator home / '.config' / 'worklog' / self configFileName.
-	reference exists ifFalse: [ ^ self new ].
-	^ reference readStreamDo: [ :stream | 
-		STON fromStream: stream  ]
+	^ 'worklog.ston'
 ]
 
 { #category : #'instance creation' }
@@ -87,17 +78,4 @@ WLClientConfiguration >> username [
 { #category : #accessing }
 WLClientConfiguration >> username: anObject [
 	username := anObject
-]
-
-{ #category : #writing }
-WLClientConfiguration >> writeToFile [
-	| reference |
-	reference := self class configFileName asFileReference.
-	reference exists ifTrue: [ 
-		self error: ('There is already a configuration file at {1}/{2}.' 
-			format: { 
-				FileSystem workingDirectory fullName. 
-				self class configFileName }) ]. 
-	reference writeStreamDo: [ :stream | 
-		STON put: self asJsonOnStreamPretty: stream ]
 ]

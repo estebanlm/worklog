@@ -40,6 +40,13 @@ WLCronoReviewWindow >> copyToClipboard [
 	Clipboard clipboardText: reportText text asString
 ]
 
+{ #category : #private }
+WLCronoReviewWindow >> initialBounds [
+		
+	^ WLCronoReviewWindowConfiguration readFromFileSystem bounds
+		ifNil: [ 0@0 extent: 720@700 ]
+]
+
 { #category : #initialization }
 WLCronoReviewWindow >> initializePresenters [
 
@@ -69,10 +76,14 @@ WLCronoReviewWindow >> initializePresenters [
 
 { #category : #initialization }
 WLCronoReviewWindow >> initializeWindow: aWindowPresenter [
+	| bounds |
 
+	bounds := self initialBounds.
 	aWindowPresenter 
 		title: 'Crono review';
-		initialExtent: 720@700
+		initialPosition: bounds corner;
+		initialExtent: bounds extent;
+		whenWillCloseDo: [ self storeSettings ]
 ]
 
 { #category : #'private factory' }
@@ -97,4 +108,18 @@ WLCronoReviewWindow >> review: aNumber [
 		self newCrono 
 			review: (self newRangeTo: aNumber)
 			to: (ZnNewLineWriterStream on: stream) ])
+]
+
+{ #category : #private }
+WLCronoReviewWindow >> storeSettings [
+
+	WLCronoReviewWindowConfiguration readFromFileSystem
+		bounds: self window window bounds;
+		writeToFile
+]
+
+{ #category : #events }
+WLCronoReviewWindow >> windowWillClose [
+
+	self storeSettings
 ]

@@ -7,7 +7,7 @@ Take a look at #sample method to hints on config structure.
 "
 Class {
 	#name : #WLCronoConfiguration,
-	#superclass : #Object,
+	#superclass : #WLConfiguration,
 	#instVars : [
 		'baseDir'
 	],
@@ -15,19 +15,9 @@ Class {
 }
 
 { #category : #accessing }
-WLCronoConfiguration class >> configFileName [
+WLCronoConfiguration class >> fileName [
 
 	^ 'crono.ston'
-]
-
-{ #category : #'instance creation' }
-WLCronoConfiguration class >> readFromFileSystem [
-	| reference |
-	
-	reference := FileLocator home / '.config' / 'worklog' / self configFileName.
-	reference exists ifFalse: [ ^ self new ].
-	^ reference readStreamDo: [ :stream | 
-		STON fromStream: stream  ]
 ]
 
 { #category : #'instance creation' }
@@ -78,17 +68,4 @@ WLCronoConfiguration >> baseDirReferenceWithLocator [
 	^ segments allButFirst 
 		inject: (FileLocator origin: location) asFileReference
 		into: [ :all :each | all / each ]
-]
-
-{ #category : #writing }
-WLCronoConfiguration >> writeToFile [
-	| reference |
-	reference := self class configFileName asFileReference.
-	reference exists ifTrue: [ 
-		self error: ('There is already a configuration file at {1}/{2}.' 
-			format: { 
-				FileSystem workingDirectory fullName. 
-				self class configFileName }) ]. 
-	reference writeStreamDo: [ :stream | 
-		STON put: self asJsonOnStreamPretty: stream ]
 ]
