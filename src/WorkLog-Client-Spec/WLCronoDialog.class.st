@@ -25,13 +25,7 @@ WLCronoDialog class >> open [
 { #category : #actions }
 WLCronoDialog >> addCrono [
 
-	self crono log: logText text asString
-]
-
-{ #category : #accessing }
-WLCronoDialog >> crono [
-
-	^ WLCrono new
+	self newCrono log: logText text asString
 ]
 
 { #category : #initialization }
@@ -66,4 +60,10 @@ WLCronoDialog >> initializeWindow: aWindowPresenter [
 	aWindowPresenter 
 		title: 'Crono';
 		initialExtent: 500@150
+]
+
+{ #category : #'private factory' }
+WLCronoDialog >> newCrono [
+
+	^ WLCrono new
 ]

@@ -15,9 +15,10 @@ WLCronoReviewWindow class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: (SpBoxLayout newHorizontal
-			add: #daysInput;
-			add: #refreshButton;
-			yourself);
+				add: #daysInput expand: false;
+				add: #refreshButton expand: false;
+				yourself)
+			expand: false;
 		add: #reportText;
 		yourself
 ]
@@ -27,12 +28,6 @@ WLCronoReviewWindow class >> open [
 	<script>
 	
 	^ (self newApplication: WLCronoApplication current) openWithSpec
-]
-
-{ #category : #accessing }
-WLCronoReviewWindow >> crono [
-
-	^ WLCrono new
 ]
 
 { #category : #initialization }
@@ -48,11 +43,34 @@ WLCronoReviewWindow >> initializePresenters [
 		yourself.
 ]
 
+{ #category : #initialization }
+WLCronoReviewWindow >> initializeWindow: aWindowPresenter [
+
+	aWindowPresenter 
+		title: 'Crono review';
+		initialExtent: 720@700
+]
+
+{ #category : #'private factory' }
+WLCronoReviewWindow >> newCrono [
+
+	^ WLCrono new
+]
+
+{ #category : #'private factory' }
+WLCronoReviewWindow >> newRangeTo: aNumber [
+
+	^ WLCronoRange 
+		newFrom: (Date today - (aNumber - 1) days) asDate 
+		to: Date today
+]
+
 { #category : #actions }
 WLCronoReviewWindow >> review: aNumber [
 
+	self withWindowDo: [ :w | w title: ('Review {1} days' format: { aNumber }) ].
 	reportText text: (String streamContents: [ :stream |
-		self crono 
-			review: aNumber
-			to: stream ])
+		self newCrono 
+			review: (self newRangeTo: aNumber)
+			to: (ZnNewLineWriterStream on: stream) ])
 ]
