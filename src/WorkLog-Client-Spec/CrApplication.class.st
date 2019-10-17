@@ -1,5 +1,5 @@
 Class {
-	#name : #WLCronoApplication,
+	#name : #CrApplication,
 	#superclass : #SpApplication,
 	#classVars : [
 		'Current'
@@ -8,15 +8,15 @@ Class {
 }
 
 { #category : #accessing }
-WLCronoApplication class >> current [
+CrApplication class >> current [
 
 	^ Current ifNil: [ 
-		WLCronoApplication new run.
+		CrApplication new run.
 		Current ]
 ]
 
 { #category : #'world menu' }
-WLCronoApplication class >> menuCommandOn: aBuilder [
+CrApplication class >> menuCommandOn: aBuilder [
 	<worldMenu>
 
 	(aBuilder item: #Crono)
@@ -25,49 +25,49 @@ WLCronoApplication class >> menuCommandOn: aBuilder [
 		parent: #Tools;
 		with: [ 
 			(aBuilder item: #'add new crono log entry')
-				target: WLCronoDialog;
+				target: CrLogDialog;
 				selector: #open;
 				order: 10. 
 			(aBuilder item: #'review crono logs')
-				target: WLCronoReviewWindow;
+				target: CrReviewWindow;
 				selector: #open;
 				order: 20 ]
 ]
 
 { #category : #initialization }
-WLCronoApplication >> initialize [
+CrApplication >> initialize [
 
 	super initialize.
 	self useGtk
 ]
 
 { #category : #running }
-WLCronoApplication >> run [
+CrApplication >> run [
 
 	super run.
 	Current := self
 ]
 
 { #category : #initialization }
-WLCronoApplication >> useGtk [
+CrApplication >> useGtk [
 	
 	self 
 		useBackend: #Gtk
-		with: WLCronoGtkConfiguration new
+		with: CrGtkConfiguration new
 ]
 
 { #category : #initialization }
-WLCronoApplication >> useGtkDark [
+CrApplication >> useGtkDark [
 	
 	self 
 		useBackend: #Gtk
-		with: WLCronoGtkDarkConfiguration new
+		with: CrGtkDarkConfiguration new
 ]
 
 { #category : #initialization }
-WLCronoApplication >> useMorphic [
+CrApplication >> useMorphic [
 
 	self 
 		useBackend: #Morphic 
-		with: WLCronoMorphicConfiguration new
+		with: CrMorphicConfiguration new
 ]

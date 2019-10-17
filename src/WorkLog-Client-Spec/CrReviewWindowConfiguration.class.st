@@ -1,5 +1,5 @@
 Class {
-	#name : #WLCronoReviewWindowConfiguration,
+	#name : #CrReviewWindowConfiguration,
 	#superclass : #WLConfiguration,
 	#instVars : [
 		'bounds',
@@ -9,33 +9,33 @@ Class {
 }
 
 { #category : #accessing }
-WLCronoReviewWindowConfiguration class >> fileName [
+CrReviewWindowConfiguration class >> fileName [
 
 	^ 'reviewWindow.ston'
 ]
 
 { #category : #accessing }
-WLCronoReviewWindowConfiguration >> bounds [
+CrReviewWindowConfiguration >> bounds [
 	^ bounds ifNil: [ 0@0 extent: 720@700 ]
 ]
 
 { #category : #accessing }
-WLCronoReviewWindowConfiguration >> bounds: anObject [
+CrReviewWindowConfiguration >> bounds: anObject [
 	bounds := anObject
 ]
 
 { #category : #writing }
-WLCronoReviewWindowConfiguration >> referenceExists: reference [
+CrReviewWindowConfiguration >> referenceExists: reference [
 	
 	reference ensureDelete
 ]
 
 { #category : #accessing }
-WLCronoReviewWindowConfiguration >> reviewDays [
+CrReviewWindowConfiguration >> reviewDays [
 	^ reviewDays ifNil: [ 1 ]
 ]
 
 { #category : #accessing }
-WLCronoReviewWindowConfiguration >> reviewDays: anObject [
+CrReviewWindowConfiguration >> reviewDays: anObject [
 	reviewDays := anObject
 ]

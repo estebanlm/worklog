@@ -1,5 +1,5 @@
 Class {
-	#name : #WLCronoReviewWindow,
+	#name : #CrReviewWindow,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'logText',
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #specs }
-WLCronoReviewWindow class >> defaultSpec [
+CrReviewWindow class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		spacing: 5;
@@ -29,39 +29,39 @@ WLCronoReviewWindow class >> defaultSpec [
 ]
 
 { #category : #'instance creation' }
-WLCronoReviewWindow class >> open [
+CrReviewWindow class >> open [
 	<script>
 	
-	^ (self newApplication: WLCronoApplication current) openWithSpec
+	^ (self newApplication: CrApplication current) openWithSpec
 ]
 
 { #category : #private }
-WLCronoReviewWindow >> configuration [
+CrReviewWindow >> configuration [
 
 	^ configuration ifNil: [ 
-		configuration := WLCronoReviewWindowConfiguration readFromFileSystem ]
+		configuration := CrReviewWindowConfiguration readFromFileSystem ]
 ]
 
 { #category : #actions }
-WLCronoReviewWindow >> copyToClipboard [
+CrReviewWindow >> copyToClipboard [
 
 	Clipboard clipboardText: reportText text asString
 ]
 
 { #category : #private }
-WLCronoReviewWindow >> initialBounds [
+CrReviewWindow >> initialBounds [
 		
 	^ self configuration bounds
 ]
 
 { #category : #private }
-WLCronoReviewWindow >> initialDays [
+CrReviewWindow >> initialDays [
 		
 	^ self configuration reviewDays
 ]
 
 { #category : #initialization }
-WLCronoReviewWindow >> initializePresenters [
+CrReviewWindow >> initializePresenters [
 
 	daysInput := self newNumberInput 
 		autoAccept: true;
@@ -87,7 +87,7 @@ WLCronoReviewWindow >> initializePresenters [
 ]
 
 { #category : #initialization }
-WLCronoReviewWindow >> initializeWindow: aWindowPresenter [
+CrReviewWindow >> initializeWindow: aWindowPresenter [
 	| bounds |
 
 	bounds := self initialBounds.
@@ -100,13 +100,13 @@ WLCronoReviewWindow >> initializeWindow: aWindowPresenter [
 ]
 
 { #category : #'private factory' }
-WLCronoReviewWindow >> newCrono [
+CrReviewWindow >> newCrono [
 
 	^ WLCrono new
 ]
 
 { #category : #'private factory' }
-WLCronoReviewWindow >> newRangeTo: aNumber [
+CrReviewWindow >> newRangeTo: aNumber [
 
 	^ WLCronoRange 
 		newFrom: (Date today - (aNumber - 1) days) asDate 
@@ -114,7 +114,7 @@ WLCronoReviewWindow >> newRangeTo: aNumber [
 ]
 
 { #category : #actions }
-WLCronoReviewWindow >> review [
+CrReviewWindow >> review [
 	| days |
 
 	days := daysInput number.
@@ -126,7 +126,7 @@ WLCronoReviewWindow >> review [
 ]
 
 { #category : #actions }
-WLCronoReviewWindow >> review: aNumber [
+CrReviewWindow >> review: aNumber [
 
 	self withWindowDo: [ :w | w title: ('Review {1} days' format: { aNumber }) ].
 	reportText text: (String streamContents: [ :stream |
@@ -136,16 +136,16 @@ WLCronoReviewWindow >> review: aNumber [
 ]
 
 { #category : #private }
-WLCronoReviewWindow >> storeSettings [
+CrReviewWindow >> storeSettings [
 
-	WLCronoReviewWindowConfiguration readFromFileSystem
+	CrReviewWindowConfiguration readFromFileSystem
 		bounds: self window window bounds;
 		reviewDays: daysInput number;
 		writeToFile
 ]
 
 { #category : #private }
-WLCronoReviewWindow >> updateTitle [
+CrReviewWindow >> updateTitle [
 	| days |
 
 	days := daysInput number.
@@ -156,7 +156,7 @@ WLCronoReviewWindow >> updateTitle [
 ]
 
 { #category : #events }
-WLCronoReviewWindow >> windowWillClose [
+CrReviewWindow >> windowWillClose [
 
 	self storeSettings
 ]

@@ -1,24 +1,24 @@
 Class {
-	#name : #WLCronoGtkConfiguration,
+	#name : #CrGtkConfiguration,
 	#superclass : #SpApplicationConfiguration,
 	#category : #'WorkLog-Client-Spec'
 }
 
 { #category : #private }
-WLCronoGtkConfiguration >> addProviderFromString: aString [
+CrGtkConfiguration >> addProviderFromString: aString [
 
 	(GtkCssProvider newFromString: aString) addForApplicationToDefaultScreen
 ]
 
 { #category : #configuring }
-WLCronoGtkConfiguration >> configureOSX: anApplication [
+CrGtkConfiguration >> configureOSX: anApplication [
 
 	self installTheme: self macThemeName.
 	self addProviderFromString: '.cronoText { font: 12pt "Monaco" }'
 ]
 
 { #category : #configuring }
-WLCronoGtkConfiguration >> configureUnix: anApplication [
+CrGtkConfiguration >> configureUnix: anApplication [
 
 	self unixThemeName 
 		ifNotNil: [ :aName | self installTheme: aName ].
@@ -26,32 +26,32 @@ WLCronoGtkConfiguration >> configureUnix: anApplication [
 ]
 
 { #category : #configuring }
-WLCronoGtkConfiguration >> configureWindows: anApplication [
+CrGtkConfiguration >> configureWindows: anApplication [
 
 	self installTheme: self windowsThemeName.
 	self addProviderFromString: '.cronoText { font: 10pt "Microsoft Sans Serif" }'
 ]
 
 { #category : #private }
-WLCronoGtkConfiguration >> installTheme: aString [
+CrGtkConfiguration >> installTheme: aString [
 
 	GtkSettings default themeName: aString
 ]
 
 { #category : #accessing }
-WLCronoGtkConfiguration >> macThemeName [
+CrGtkConfiguration >> macThemeName [
 		
 	^ 'Sierra-light'
 ]
 
 { #category : #accessing }
-WLCronoGtkConfiguration >> unixThemeName [
+CrGtkConfiguration >> unixThemeName [
 
 	^ 'Adwaita'
 ]
 
 { #category : #accessing }
-WLCronoGtkConfiguration >> windowsThemeName [
+CrGtkConfiguration >> windowsThemeName [
 
 	^ 'Windows-10-master'
 ]

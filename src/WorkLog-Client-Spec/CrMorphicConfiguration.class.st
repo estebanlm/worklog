@@ -1,11 +1,11 @@
 Class {
-	#name : #WLCronoMorphicConfiguration,
+	#name : #CrMorphicConfiguration,
 	#superclass : #SpApplicationConfiguration,
 	#category : #'WorkLog-Client-Spec'
 }
 
 { #category : #'as yet unclassified' }
-WLCronoMorphicConfiguration class >> cronoStyleSheet [
+CrMorphicConfiguration class >> cronoStyleSheet [
 
 	^ SpStyleSTONReader fromString: '.application [ 
 	.cronoText [
@@ -15,7 +15,7 @@ WLCronoMorphicConfiguration class >> cronoStyleSheet [
 ]
 
 { #category : #configuring }
-WLCronoMorphicConfiguration >> configure: anApplication [
+CrMorphicConfiguration >> configure: anApplication [
 
 	super configure: anApplication.
 	anApplication styleSheet: SpStyle defaultStyleSheet, self class cronoStyleSheet
