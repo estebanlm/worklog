@@ -2,7 +2,8 @@ Class {
 	#name : #WLCronoReviewWindowConfiguration,
 	#superclass : #WLConfiguration,
 	#instVars : [
-		'bounds'
+		'bounds',
+		'reviewDays'
 	],
 	#category : #'WorkLog-Client-Spec'
 }
@@ -15,7 +16,7 @@ WLCronoReviewWindowConfiguration class >> fileName [
 
 { #category : #accessing }
 WLCronoReviewWindowConfiguration >> bounds [
-	^ bounds
+	^ bounds ifNil: [ 0@0 extent: 720@700 ]
 ]
 
 { #category : #accessing }
@@ -27,4 +28,14 @@ WLCronoReviewWindowConfiguration >> bounds: anObject [
 WLCronoReviewWindowConfiguration >> referenceExists: reference [
 	
 	reference ensureDelete
+]
+
+{ #category : #accessing }
+WLCronoReviewWindowConfiguration >> reviewDays [
+	^ reviewDays ifNil: [ 1 ]
+]
+
+{ #category : #accessing }
+WLCronoReviewWindowConfiguration >> reviewDays: anObject [
+	reviewDays := anObject
 ]

@@ -6,7 +6,8 @@ Class {
 		'daysInput',
 		'refreshButton',
 		'reportText',
-		'toolBar'
+		'toolBar',
+		'configuration'
 	],
 	#category : #'WorkLog-Client-Spec'
 }
@@ -34,6 +35,13 @@ WLCronoReviewWindow class >> open [
 	^ (self newApplication: WLCronoApplication current) openWithSpec
 ]
 
+{ #category : #private }
+WLCronoReviewWindow >> configuration [
+
+	^ configuration ifNil: [ 
+		configuration := WLCronoReviewWindowConfiguration readFromFileSystem ]
+]
+
 { #category : #actions }
 WLCronoReviewWindow >> copyToClipboard [
 
@@ -43,8 +51,13 @@ WLCronoReviewWindow >> copyToClipboard [
 { #category : #private }
 WLCronoReviewWindow >> initialBounds [
 		
-	^ WLCronoReviewWindowConfiguration readFromFileSystem bounds
-		ifNil: [ 0@0 extent: 720@700 ]
+	^ self configuration bounds
+]
+
+{ #category : #private }
+WLCronoReviewWindow >> initialDays [
+		
+	^ self configuration reviewDays
 ]
 
 { #category : #initialization }
@@ -52,7 +65,7 @@ WLCronoReviewWindow >> initializePresenters [
 
 	daysInput := self newNumberInput 
 		autoAccept: true;
-		number: 1.
+		number: self initialDays.
 	refreshButton := self newButton 
 		label: 'Review';
 		action: [ self review ];
@@ -105,11 +118,11 @@ WLCronoReviewWindow >> review [
 	| days |
 
 	days := daysInput number.
-	self withWindowDo: [ :w | w title: ('Review {1} days' format: { days }) ].
 	reportText text: (String streamContents: [ :stream |
 		self newCrono 
 			review: (self newRangeTo: days)
-			to: (ZnNewLineWriterStream on: stream) ])
+			to: (ZnNewLineWriterStream on: stream) ]).
+	self updateTitle		
 ]
 
 { #category : #actions }
@@ -127,7 +140,19 @@ WLCronoReviewWindow >> storeSettings [
 
 	WLCronoReviewWindowConfiguration readFromFileSystem
 		bounds: self window window bounds;
+		reviewDays: daysInput number;
 		writeToFile
+]
+
+{ #category : #private }
+WLCronoReviewWindow >> updateTitle [
+	| days |
+
+	days := daysInput number.
+	self withWindowDo: [ :w | 
+		w title: ('Review last {1} day{2}' format: { 
+			days. 
+			days > 1 ifTrue: [ 's' ] ifFalse: [ '']}) ]
 ]
 
 { #category : #events }
