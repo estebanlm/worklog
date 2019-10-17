@@ -15,11 +15,26 @@ WLCronoApplication class >> current [
 		Current ]
 ]
 
+{ #category : #'world menu' }
+WLCronoApplication class >> menuCommandOn: aBuilder [
+	<worldMenu>
+
+	(aBuilder item: #Crono)
+		order: 1000.0;
+		target: self;
+		parent: #Tools;
+		with: [ 
+			(aBuilder item: #'Crono add new entry')
+				target: WLCronoDialog;
+				selector: #open;
+				order: 10 ]
+]
+
 { #category : #initialization }
 WLCronoApplication >> initialize [
 
 	super initialize.
-	self useBackend: #Morphic with: WLCronoMorphicConfiguration new
+	self useGtk
 ]
 
 { #category : #running }
@@ -27,4 +42,28 @@ WLCronoApplication >> run [
 
 	super run.
 	Current := self
+]
+
+{ #category : #initialization }
+WLCronoApplication >> useGtk [
+	
+	self 
+		useBackend: #Gtk
+		with: WLCronoGtkConfiguration new
+]
+
+{ #category : #initialization }
+WLCronoApplication >> useGtkDark [
+	
+	self 
+		useBackend: #Gtk
+		with: WLCronoGtkDarkConfiguration new
+]
+
+{ #category : #initialization }
+WLCronoApplication >> useMorphic [
+
+	self 
+		useBackend: #Morphic 
+		with: WLCronoMorphicConfiguration new
 ]

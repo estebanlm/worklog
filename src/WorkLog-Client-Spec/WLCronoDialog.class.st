@@ -48,19 +48,21 @@ WLCronoDialog >> initializeDialogWindow: aWindowDialogPresenter [
 { #category : #initialization }
 WLCronoDialog >> initializePresenters [
 
-	logText := self newRichText
+	logText := self newText
 		autoAccept: true;
 		addStyle: 'cronoText';
-		textStyler: SpNullTextStyler new;
-		bindKeyCombination: Character cr alt toAction: [ 
+			bindKeyCombination: Character cr alt toAction: [ 
 			self addCrono.
 			self window close ];
-		yourself
+		yourself.
+		
+	logText takeKeyboardFocus
 ]
 
 { #category : #initialization }
 WLCronoDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
-		title: 'Crono'
+		title: 'Crono';
+		initialExtent: 500@150
 ]
