@@ -55,7 +55,7 @@ WLCronoReviewWindow >> initializePresenters [
 		number: 1.
 	refreshButton := self newButton 
 		label: 'Review';
-		action: [ self review: daysInput number ];
+		action: [ self review ];
 		yourself.
 	toolBar := self newToolBar
 		beIcons;
@@ -69,9 +69,8 @@ WLCronoReviewWindow >> initializePresenters [
 			
 	reportText := self newText 
 		addStyle: 'cronoText';
-		yourself.
-		
-	
+		enabled: false;
+		yourself
 ]
 
 { #category : #initialization }
@@ -81,7 +80,7 @@ WLCronoReviewWindow >> initializeWindow: aWindowPresenter [
 	bounds := self initialBounds.
 	aWindowPresenter 
 		title: 'Crono review';
-		initialPosition: bounds corner;
+		initialPosition: bounds origin;
 		initialExtent: bounds extent;
 		whenWillCloseDo: [ self storeSettings ]
 ]
@@ -98,6 +97,18 @@ WLCronoReviewWindow >> newRangeTo: aNumber [
 	^ WLCronoRange 
 		newFrom: (Date today - (aNumber - 1) days) asDate 
 		to: Date today
+]
+
+{ #category : #actions }
+WLCronoReviewWindow >> review [
+	| days |
+
+	days := daysInput number.
+	self withWindowDo: [ :w | w title: ('Review {1} days' format: { days }) ].
+	reportText text: (String streamContents: [ :stream |
+		self newCrono 
+			review: (self newRangeTo: days)
+			to: (ZnNewLineWriterStream on: stream) ])
 ]
 
 { #category : #actions }

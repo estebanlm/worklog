@@ -41,5 +41,5 @@ WLConfiguration >> writeToFile [
 	reference exists ifTrue: [ 
 		self referenceExists: reference ]. 
 	reference writeStreamDo: [ :stream | 
-		STON put: self asJsonOnStreamPretty: stream ]
+		STON put: self onStreamPretty: stream ]
 ]
