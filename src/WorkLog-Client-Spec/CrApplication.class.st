@@ -1,11 +1,20 @@
 Class {
 	#name : #CrApplication,
 	#superclass : #SpApplication,
+	#instVars : [
+		'standalone'
+	],
 	#classVars : [
 		'Current'
 	],
 	#category : #'WorkLog-Client-Spec'
 }
+
+{ #category : #accessing }
+CrApplication class >> applicationName [
+
+	^ 'crono'
+]
 
 { #category : #accessing }
 CrApplication class >> current [
@@ -37,8 +46,21 @@ CrApplication class >> menuCommandOn: aBuilder [
 { #category : #initialization }
 CrApplication >> initialize [
 
+	standalone := false.
 	super initialize.
 	self useGtk
+]
+
+{ #category : #testing }
+CrApplication >> isStandalone [
+
+	^ standalone
+]
+
+{ #category : #initialization }
+CrApplication >> prepareAsStandaloneApplication [
+	
+	standalone := true
 ]
 
 { #category : #running }
