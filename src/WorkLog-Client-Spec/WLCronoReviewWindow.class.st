@@ -82,6 +82,7 @@ WLCronoReviewWindow >> initializeWindow: aWindowPresenter [
 		title: 'Crono review';
 		initialPosition: bounds origin;
 		initialExtent: bounds extent;
+		whenBuiltDo: [ self review ];
 		whenWillCloseDo: [ self storeSettings ]
 ]
 
