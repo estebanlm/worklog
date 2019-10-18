@@ -19,7 +19,7 @@ CrCronoDialog class >> defaultSpec [
 CrCronoDialog class >> open [
 	<script>
 	
-	^ (self newApplication: CrApplication current) openDialogWithSpec
+	^ self new openDialogWithSpec
 ]
 
 { #category : #actions }

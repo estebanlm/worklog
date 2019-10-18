@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'bounds'
 	],
-	#category : #'Crono-Spec-Config'
+	#category : #'Crono-Spec-Configuration'
 }
 
 { #category : #accessing }

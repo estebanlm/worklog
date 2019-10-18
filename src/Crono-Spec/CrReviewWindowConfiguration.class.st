@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'reviewDays'
 	],
-	#category : #'Crono-Spec-Config'
+	#category : #'Crono-Spec-Configuration'
 }
 
 { #category : #accessing }

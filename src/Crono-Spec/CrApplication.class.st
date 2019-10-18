@@ -40,7 +40,11 @@ CrApplication class >> menuCommandOn: aBuilder [
 			(aBuilder item: #'review crono logs')
 				target: CrReviewWindow;
 				selector: #open;
-				order: 20 ]
+				order: 20.
+			(aBuilder item: #'crono inbox')
+				target: CrTodoWindow;
+				selector: #open;
+				order: 30 ]
 ]
 
 { #category : #initialization }

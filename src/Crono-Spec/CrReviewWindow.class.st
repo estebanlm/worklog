@@ -28,18 +28,17 @@ CrReviewWindow class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #'instance creation' }
-CrReviewWindow class >> open [
-	<script>
-	
-	^ (self newApplication: CrApplication current) openWithSpec
-]
-
 { #category : #private }
 CrReviewWindow >> configuration [
 
 	^ configuration ifNil: [ 
 		configuration := CrReviewWindowConfiguration readFromFileSystem ]
+]
+
+{ #category : #private }
+CrReviewWindow >> configurationClass [
+
+	^ CrReviewWindowConfiguration
 ]
 
 { #category : #actions }
@@ -88,15 +87,9 @@ CrReviewWindow >> initializePresenters [
 
 { #category : #initialization }
 CrReviewWindow >> initializeWindow: aWindowPresenter [
-	| bounds |
 
-	bounds := self initialBounds.
-	aWindowPresenter 
-		title: 'Crono review';
-		initialPosition: bounds origin;
-		initialExtent: bounds extent;
-		whenBuiltDo: [ self review ];
-		whenWillCloseDo: [ self storeSettings ]
+	super initializeWindow: aWindowPresenter.
+	aWindowPresenter whenBuiltDo: [ self review ]		
 ]
 
 { #category : #'private factory' }
@@ -136,12 +129,9 @@ CrReviewWindow >> review: aNumber [
 ]
 
 { #category : #private }
-CrReviewWindow >> storeSettings [
+CrReviewWindow >> storeSettingsInto: aConfiguration [
 
-	CrReviewWindowConfiguration readFromFileSystem
-		bounds: self window window bounds;
-		reviewDays: daysInput number;
-		writeToFile
+	aConfiguration reviewDays: daysInput number
 ]
 
 { #category : #private }

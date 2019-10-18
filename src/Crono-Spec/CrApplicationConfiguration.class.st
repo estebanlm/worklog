@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'darkTheme'
 	],
-	#category : #'Crono-Spec-Config'
+	#category : #'Crono-Spec-Configuration'
 }
 
 { #category : #accessing }
