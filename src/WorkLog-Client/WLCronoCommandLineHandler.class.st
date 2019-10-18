@@ -30,7 +30,7 @@ Usage:
 Class {
 	#name : #WLCronoCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : 'WorkLog-Client-CommandLine'
+	#category : #'WorkLog-Client-CommandLine'
 }
 
 { #category : #accessing }
@@ -94,7 +94,7 @@ WLCronoCommandLineHandler >> addLog: aString [
 { #category : #accessing }
 WLCronoCommandLineHandler >> crono [
 
-	^ WLCrono new
+	^ CrCrono new
 ]
 
 { #category : #private }

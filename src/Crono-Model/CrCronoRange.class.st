@@ -1,15 +1,15 @@
 Class {
-	#name : #WLCronoRange,
+	#name : #CrCronoRange,
 	#superclass : #Object,
 	#instVars : [
 		'fromDate',
 		'toDate'
 	],
-	#category : #'WorkLog-Client-Model'
+	#category : #'Crono-Model'
 }
 
 { #category : #'instance creation' }
-WLCronoRange class >> fromString: aString [
+CrCronoRange class >> fromString: aString [
 
 	aString isEmptyOrNil ifTrue: [ ^ self newFrom: Date today ].
 	aString first = $~ ifFalse: [ self error: 'Invalid range specifications' ].	
@@ -20,13 +20,13 @@ WLCronoRange class >> fromString: aString [
 ]
 
 { #category : #'instance creation' }
-WLCronoRange class >> newFrom: aDate [
+CrCronoRange class >> newFrom: aDate [
 
 	^ self newFrom: aDate to: aDate
 ]
 
 { #category : #'instance creation' }
-WLCronoRange class >> newFrom: fromDate to: toDate [
+CrCronoRange class >> newFrom: fromDate to: toDate [
 
 	^ self basicNew 
 		initializeFrom: fromDate to: toDate;
@@ -34,7 +34,7 @@ WLCronoRange class >> newFrom: fromDate to: toDate [
 ]
 
 { #category : #enumerating }
-WLCronoRange >> days [
+CrCronoRange >> days [
 	| days |
 	
 	days := OrderedCollection new.
@@ -44,7 +44,7 @@ WLCronoRange >> days [
 ]
 
 { #category : #enumerating }
-WLCronoRange >> daysDo: aBlock [
+CrCronoRange >> daysDo: aBlock [
 	| day |
 	
 	day := fromDate.
@@ -54,7 +54,7 @@ WLCronoRange >> daysDo: aBlock [
 ]
 
 { #category : #initialization }
-WLCronoRange >> initializeFrom: aDate to: otherDate [
+CrCronoRange >> initializeFrom: aDate to: otherDate [
 
 	self initialize.
 	fromDate := aDate.

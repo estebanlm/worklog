@@ -6,13 +6,13 @@ So far, I just know ==#log:==, which appends an entry to the daily log.
 
 "
 Class {
-	#name : #WLCrono,
+	#name : #CrCrono,
 	#superclass : #Object,
-	#category : #'WorkLog-Client-Model'
+	#category : #'Crono-Model'
 }
 
 { #category : #accessing }
-WLCrono class >> commandLine [
+CrCrono class >> commandLine [
 	<commandline>
 	
 	^ (ClapCommand withName: 'crono')
@@ -26,7 +26,7 @@ WLCrono class >> commandLine [
 ]
 
 { #category : #accessing }
-WLCrono class >> commandLineAdd [
+CrCrono class >> commandLineAdd [
 
 	^ (ClapCommand withName: 'add')
 		description: 'Log some work.';
@@ -37,16 +37,16 @@ WLCrono class >> commandLineAdd [
 ]
 
 { #category : #accessing }
-WLCrono class >> commandLineReview [
+CrCrono class >> commandLineReview [
 
 	^ (ClapCommand withName: 'review')
 		description: 'Review crono worklog dates.';
 		add: ((ClapPositional withName: 'range') implicitMeaning: [ '0' ]);
-		meaning: [ :args | self new review: (WLCronoRange fromString: (args atName: 'range') value) ]
+		meaning: [ :args | self new review: (CrCronoRange fromString: (args atName: 'range') value) ]
 ]
 
 { #category : #accessing }
-WLCrono class >> commandLineTodayReference [
+CrCrono class >> commandLineTodayReference [
 
 	^ (ClapCommand withName: 'todayReference')
 		description: 'Prints path of current using file.';
@@ -54,16 +54,16 @@ WLCrono class >> commandLineTodayReference [
 ]
 
 { #category : #accessing }
-WLCrono >> baseDirReference [
+CrCrono >> baseDirReference [
 
-	^ WLCronoConfiguration readFromFileSystem baseDirReference
+	^ CrCronoConfiguration readFromFileSystem baseDirReference
 		ensureCreateDirectory;
 		yourself
 	
 ]
 
 { #category : #logging }
-WLCrono >> log: aString [
+CrCrono >> log: aString [
 	| nl |
 
 	nl := OSPlatform current lineEnding.
@@ -78,19 +78,19 @@ WLCrono >> log: aString [
 ]
 
 { #category : #accessing }
-WLCrono >> printTodayReference [
+CrCrono >> printTodayReference [
 
 	self stdout << self todayReference fullName; newLine
 ]
 
 { #category : #accessing }
-WLCrono >> referenceOfDay: aDate [
+CrCrono >> referenceOfDay: aDate [
 
 	^ (self baseDirReference / aDate yyyymmdd) withExtension: 'txt' 
 ]
 
 { #category : #accessing }
-WLCrono >> review: daysRange [
+CrCrono >> review: daysRange [
 
 	self 
 		review: daysRange 
@@ -98,7 +98,7 @@ WLCrono >> review: daysRange [
 ]
 
 { #category : #accessing }
-WLCrono >> review: daysRange to: stream [
+CrCrono >> review: daysRange to: stream [
 
 	daysRange days 
 		do: [ :each | | dayRef |
@@ -112,13 +112,13 @@ WLCrono >> review: daysRange to: stream [
 ]
 
 { #category : #accessing }
-WLCrono >> stdout [ 
+CrCrono >> stdout [ 
 
 	^ ZnNewLineWriterStream on: Stdio stdout
 ]
 
 { #category : #accessing }
-WLCrono >> todayReference [
+CrCrono >> todayReference [
 
 	^ self referenceOfDay: Date today
 ]

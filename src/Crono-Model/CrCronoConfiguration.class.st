@@ -6,22 +6,22 @@ Since we are doing a stateless command line application, there is no problem on 
 Take a look at #sample method to hints on config structure.
 "
 Class {
-	#name : #WLCronoConfiguration,
+	#name : #CrCronoConfiguration,
 	#superclass : #WLConfiguration,
 	#instVars : [
 		'baseDir'
 	],
-	#category : #'WorkLog-Client-Model'
+	#category : #'Crono-Model'
 }
 
 { #category : #accessing }
-WLCronoConfiguration class >> fileName [
+CrCronoConfiguration class >> fileName [
 
 	^ 'crono.ston'
 ]
 
 { #category : #'instance creation' }
-WLCronoConfiguration class >> sample [
+CrCronoConfiguration class >> sample [
 	"
 	self configFileName asFileReference 
 		writeStreamDo: [ :stream | STON put: self sample onStreamPretty: stream ]
@@ -32,23 +32,23 @@ WLCronoConfiguration class >> sample [
 ]
 
 { #category : #accessing }
-WLCronoConfiguration class >> stonName [
+CrCronoConfiguration class >> stonName [
 	^ #Crono
 ]
 
 { #category : #accessing }
-WLCronoConfiguration >> baseDir [
+CrCronoConfiguration >> baseDir [
 	^ baseDir
 ]
 
 { #category : #accessing }
-WLCronoConfiguration >> baseDir: anObject [
+CrCronoConfiguration >> baseDir: anObject [
 	"baseDir is a directory to the place where crono logs will be stored"
 	baseDir := anObject
 ]
 
 { #category : #accessing }
-WLCronoConfiguration >> baseDirReference [
+CrCronoConfiguration >> baseDirReference [
 	"I will interpret #baseDir to allow users to declare FileLocator positions (just in first 
 	 segment of path). 
 	 e.g. I can intepret {home}/Dev/CronoLog"
@@ -59,7 +59,7 @@ WLCronoConfiguration >> baseDirReference [
 ]
 
 { #category : #private }
-WLCronoConfiguration >> baseDirReferenceWithLocator [
+CrCronoConfiguration >> baseDirReferenceWithLocator [
 	"I interpret first entry as a location: {home}, {desktop}, {preferences}, etc. 
 	 (See FileLocator class for others)"
 	| segments location |
