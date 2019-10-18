@@ -1,8 +1,7 @@
 Class {
 	#name : #CrReviewWindowConfiguration,
-	#superclass : #WLConfiguration,
+	#superclass : #CrWindowConfiguration,
 	#instVars : [
-		'bounds',
 		'reviewDays'
 	],
 	#category : #'Crono-Spec-Config'
@@ -15,13 +14,9 @@ CrReviewWindowConfiguration class >> fileName [
 ]
 
 { #category : #accessing }
-CrReviewWindowConfiguration >> bounds [
-	^ bounds ifNil: [ 0@0 extent: 720@700 ]
-]
+CrReviewWindowConfiguration >> defaultBounds [
 
-{ #category : #accessing }
-CrReviewWindowConfiguration >> bounds: anObject [
-	bounds := anObject
+	^ 0@0 extent: 720@700
 ]
 
 { #category : #accessing }

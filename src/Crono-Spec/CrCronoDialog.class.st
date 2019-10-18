@@ -1,5 +1,5 @@
 Class {
-	#name : #CrLogDialog,
+	#name : #CrCronoDialog,
 	#superclass : #CrCronoPresenter,
 	#instVars : [
 		'logText'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #specs }
-CrLogDialog class >> defaultSpec [
+CrCronoDialog class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #logText;
@@ -16,24 +16,24 @@ CrLogDialog class >> defaultSpec [
 ]
 
 { #category : #'instance creation' }
-CrLogDialog class >> open [
+CrCronoDialog class >> open [
 	<script>
 	
 	^ (self newApplication: CrApplication current) openDialogWithSpec
 ]
 
 { #category : #actions }
-CrLogDialog >> addCrono [
+CrCronoDialog >> addCrono [
 
 	self newCrono log: logText text asString
 ]
 
 { #category : #initialization }
-CrLogDialog >> initializeDialogWindow: aWindowDialogPresenter [
+CrCronoDialog >> initializeDialogWindow: aWindowDialogPresenter [
 
 	aWindowDialogPresenter 
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
-		addButton: ('Log {1}' format: { KMShortcutPrinter toString: Character cr alt })
+		addButton: ('Crono' " format: { KMShortcutPrinter toString: Character cr alt }")
 		do: [ :presenter |
 			self addCrono.
 			presenter beOk; close ];
@@ -41,7 +41,7 @@ CrLogDialog >> initializeDialogWindow: aWindowDialogPresenter [
 ]
 
 { #category : #initialization }
-CrLogDialog >> initializePresenters [
+CrCronoDialog >> initializePresenters [
 
 	logText := self newText
 		placeholder: 'Enter your crono log entry';
@@ -55,7 +55,7 @@ CrLogDialog >> initializePresenters [
 ]
 
 { #category : #initialization }
-CrLogDialog >> initializeWindow: aWindowPresenter [
+CrCronoDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
 		title: 'Crono';
@@ -63,7 +63,7 @@ CrLogDialog >> initializeWindow: aWindowPresenter [
 ]
 
 { #category : #'private factory' }
-CrLogDialog >> newCrono [
+CrCronoDialog >> newCrono [
 
 	^ CrCrono new
 ]

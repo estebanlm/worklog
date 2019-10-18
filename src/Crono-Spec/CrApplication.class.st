@@ -34,7 +34,7 @@ CrApplication class >> menuCommandOn: aBuilder [
 		parent: #Tools;
 		with: [ 
 			(aBuilder item: #'add new crono log entry')
-				target: CrLogDialog;
+				target: CrCronoDialog;
 				selector: #open;
 				order: 10. 
 			(aBuilder item: #'review crono logs')
