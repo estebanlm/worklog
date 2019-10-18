@@ -89,7 +89,7 @@ CrReviewWindow >> initializePresenters [
 CrReviewWindow >> initializeWindow: aWindowPresenter [
 
 	super initializeWindow: aWindowPresenter.
-	aWindowPresenter whenBuiltDo: [ self review ]		
+	aWindowPresenter whenBuiltDo: [ self review ]
 ]
 
 { #category : #'private factory' }

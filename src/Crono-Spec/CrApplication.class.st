@@ -73,8 +73,14 @@ CrApplication >> prepareAsStandaloneApplication [
 { #category : #running }
 CrApplication >> run [
 
-	super run.
-	Current := self
+	Current := self.
+	super run	
+]
+
+{ #category : #running }
+CrApplication >> start [
+
+	CrTodoWindow open
 ]
 
 { #category : #initialization }
