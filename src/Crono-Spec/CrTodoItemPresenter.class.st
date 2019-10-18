@@ -3,7 +3,8 @@ Class {
 	#superclass : #CrTodoPresenter,
 	#instVars : [
 		'nameTextInput',
-		'notesText'
+		'notesText',
+		'doneCheckbox'
 	],
 	#category : #'Crono-Spec-View'
 }
@@ -11,9 +12,16 @@ Class {
 { #category : #specs }
 CrTodoItemPresenter class >> defaultSpec [
 
-	^ SpBoxLayout newVertical 
-		add: #nameTextInput expand: false;
-		add: #notesText;
+	^ SpBoxLayout newHorizontal
+		beNotHomogeneous;
+		add: (SpBoxLayout newVertical
+				add: #doneCheckbox expand: false fill: false padding: 4;
+				yourself)
+			expand: false;
+		add: (SpBoxLayout newVertical
+			add: #nameTextInput expand: false;
+			add: #notesText;
+			yourself);
 		yourself
 ]
 
@@ -32,6 +40,7 @@ CrTodoItemPresenter >> initializeDialogWindow: aWindowDialogPresenter [
 { #category : #initialization }
 CrTodoItemPresenter >> initializePresenters [
 
+	doneCheckbox := self newCheckBox.
 	nameTextInput := self newTextInput
 		placeholder: 'New To-Do';
 		yourself.

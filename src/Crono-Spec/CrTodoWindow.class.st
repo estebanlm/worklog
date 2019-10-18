@@ -35,7 +35,10 @@ CrTodoWindow >> configurationClass [
 { #category : #initialization }
 CrTodoWindow >> initializePresenters [
 
-	listOfLists := self newList.
+	listOfLists := self newList
+		items: self allLists;
+		display: #name;
+		yourself.
 	listsActionBar := self newActionBar
 		add: (self newButton 
 			label: 'New List';
