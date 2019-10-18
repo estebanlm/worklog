@@ -21,5 +21,5 @@ CrWindowConfiguration >> bounds: anObject [
 { #category : #accessing }
 CrWindowConfiguration >> defaultBounds [
 
-	^ 600@400
+	^ 0@0 extent: 600@400
 ]

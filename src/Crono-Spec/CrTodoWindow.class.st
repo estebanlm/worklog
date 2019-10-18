@@ -30,3 +30,9 @@ CrTodoWindow >> initializePresenters [
 	listOfLists := self newList.
 	list := self newList
 ]
+
+{ #category : #initialization }
+CrTodoWindow >> title [ 
+
+	^ 'ToDo'
+]

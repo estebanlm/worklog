@@ -17,6 +17,12 @@ CrPresenter class >> open [
 	^ self new openWithSpec
 ]
 
+{ #category : #private }
+CrPresenter >> configurationClass [
+	
+	^ nil
+]
+
 { #category : #initialization }
 CrPresenter >> initializeWindow: aWindowPresenter [
 
