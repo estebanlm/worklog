@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #accessing }
+CrGtkDarkConfiguration >> macAppearanceName [
+
+	^ 'NSAppearanceNameDarkAqua'
+]
+
+{ #category : #accessing }
 CrGtkDarkConfiguration >> macThemeName [
 		
 	^ 'Sierra-dark'

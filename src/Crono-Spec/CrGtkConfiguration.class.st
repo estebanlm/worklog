@@ -13,6 +13,7 @@ CrGtkConfiguration >> addProviderFromString: aString [
 { #category : #configuring }
 CrGtkConfiguration >> configureOSX: anApplication [
 
+	self ensureAppearance: self macAppearanceName. 
 	self installTheme: self macThemeName.
 	self addProviderFromString: '.cronoText { font: 12pt "Monaco" }'
 ]
@@ -32,10 +33,27 @@ CrGtkConfiguration >> configureWindows: anApplication [
 	self addProviderFromString: '.cronoText { font: 10pt "Microsoft Sans Serif" }'
 ]
 
+{ #category : #configuring }
+CrGtkConfiguration >> ensureAppearance: aName [
+	| currentAppearance appearance |
+
+	currentAppearance := #NSAppearance inObjC currentAppearance. 
+	currentAppearance name UTF8String = aName ifTrue: [ ^ self ].
+
+	appearance := #NSAppearance inObjC appearanceNamed: (#NSString inObjC stringWithUTF8String: aName).
+	#NSApplication inObjC sharedApplication setAppearance: appearance
+]
+
 { #category : #private }
 CrGtkConfiguration >> installTheme: aString [
 
 	GtkSettings default themeName: aString
+]
+
+{ #category : #accessing }
+CrGtkConfiguration >> macAppearanceName [
+
+	^ 'NSAppearanceNameAqua'
 ]
 
 { #category : #accessing }

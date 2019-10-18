@@ -29,8 +29,10 @@ WLConfiguration class >> reference [
 { #category : #writing }
 WLConfiguration >> referenceExists: reference [
 	
-	self error: ('There is already a configuration file at {1}.' 
-			format: { reference fullName })
+	"self error: ('There is already a configuration file at {1}.' 
+			format: { reference fullName })"
+	
+	reference ensureDelete			
 ]
 
 { #category : #writing }

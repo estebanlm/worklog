@@ -48,7 +48,10 @@ CrApplication >> initialize [
 
 	standalone := false.
 	super initialize.
-	self useGtk
+	CrApplicationConfiguration readFromFileSystem isDarkTheme
+		ifTrue: [ self useGtkDark ]
+		ifFalse: [ self useGtk ]
+	
 ]
 
 { #category : #testing }

@@ -5,7 +5,7 @@ Class {
 		'bounds',
 		'reviewDays'
 	],
-	#category : #'Crono-Spec-Application'
+	#category : #'Crono-Spec-Config'
 }
 
 { #category : #accessing }
@@ -22,12 +22,6 @@ CrReviewWindowConfiguration >> bounds [
 { #category : #accessing }
 CrReviewWindowConfiguration >> bounds: anObject [
 	bounds := anObject
-]
-
-{ #category : #writing }
-CrReviewWindowConfiguration >> referenceExists: reference [
-	
-	reference ensureDelete
 ]
 
 { #category : #accessing }
