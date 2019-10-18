@@ -1,9 +1,10 @@
 Class {
-	#name : #CrList,
+	#name : #CrTodoItem,
 	#superclass : #Object,
 	#instVars : [
 		'name',
-		'items'
+		'notes',
+		'doneDate'
 	],
 	#category : #'Crono-Model'
 }

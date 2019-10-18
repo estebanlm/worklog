@@ -17,6 +17,13 @@ CrPresenter class >> open [
 	^ self new openWithSpec
 ]
 
+{ #category : #'instance creation' }
+CrPresenter class >> openDialog [
+	<script>
+	
+	^ self new openDialogWithSpec
+]
+
 { #category : #private }
 CrPresenter >> configurationClass [
 	

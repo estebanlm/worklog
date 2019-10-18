@@ -15,13 +15,6 @@ CrCronoDialog class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #'instance creation' }
-CrCronoDialog class >> open [
-	<script>
-	
-	^ self new openDialogWithSpec
-]
-
 { #category : #actions }
 CrCronoDialog >> addCrono [
 
@@ -59,7 +52,8 @@ CrCronoDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
 		title: 'Crono';
-		initialExtent: 500@150
+		initialExtent: 500@150;
+		whenOpenedDo: [ logText takeKeyboardFocus ]
 ]
 
 { #category : #'private factory' }

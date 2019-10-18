@@ -16,7 +16,6 @@ Class {
 CrReviewWindow class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
-		spacing: 5;
 		add: (SpBoxLayout newHorizontal
 				spacing: 5;
 				add: #daysInput expand: false;

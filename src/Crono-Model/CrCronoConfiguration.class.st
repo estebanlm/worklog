@@ -69,3 +69,15 @@ CrCronoConfiguration >> baseDirReferenceWithLocator [
 		inject: (FileLocator origin: location) asFileReference
 		into: [ :all :each | all / each ]
 ]
+
+{ #category : #accessing }
+CrCronoConfiguration >> logReference [
+
+	^ (self baseDirReference / 'Logs') ensureCreateDirectory
+]
+
+{ #category : #accessing }
+CrCronoConfiguration >> todoReference [
+
+	^ (self baseDirReference / 'ToDo') ensureCreateDirectory
+]

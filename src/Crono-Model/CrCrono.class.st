@@ -1,9 +1,8 @@
 "
 I'm a small tool to keep a daily log. 
-I don't know if I will be useful, but Esteban sometimes wants to keep track of all stupid actions he do, without needing to publish them each time (ideally, he will be publishing a digest of this, using WorkLog ).
+I don't know if I will be useful, but Esteban sometimes wants to keep track of all stupid actions he does, without needing to publish them each time (ideally, he will be publishing a digest of this, using WorkLog).
 
 So far, I just know ==#log:==, which appends an entry to the daily log.
-
 "
 Class {
 	#name : #CrCrono,
@@ -53,15 +52,6 @@ CrCrono class >> commandLineTodayReference [
 		meaning: [ :args | self new printTodayReference ]
 ]
 
-{ #category : #accessing }
-CrCrono >> baseDirReference [
-
-	^ CrCronoConfiguration readFromFileSystem baseDirReference
-		ensureCreateDirectory;
-		yourself
-	
-]
-
 { #category : #logging }
 CrCrono >> log: aString [
 	| nl |
@@ -78,6 +68,12 @@ CrCrono >> log: aString [
 ]
 
 { #category : #accessing }
+CrCrono >> logReference [
+
+	^ CrCronoConfiguration readFromFileSystem logReference	
+]
+
+{ #category : #accessing }
 CrCrono >> printTodayReference [
 
 	self stdout << self todayReference fullName; newLine
@@ -86,7 +82,7 @@ CrCrono >> printTodayReference [
 { #category : #accessing }
 CrCrono >> referenceOfDay: aDate [
 
-	^ (self baseDirReference / aDate yyyymmdd) withExtension: 'txt' 
+	^ (self logReference / aDate yyyymmdd) withExtension: 'txt' 
 ]
 
 { #category : #accessing }
