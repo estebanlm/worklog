@@ -22,6 +22,12 @@ CrListPanel >> addNewToDo [
 
 ]
 
+{ #category : #accessing }
+CrListPanel >> firstResponder [
+
+	^ list
+]
+
 { #category : #initialization }
 CrListPanel >> initializePresenters [
 

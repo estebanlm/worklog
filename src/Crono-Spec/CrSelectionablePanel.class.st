@@ -19,6 +19,16 @@ CrSelectionablePanel class >> defaultSpec [
 ]
 
 { #category : #initialization }
+CrSelectionablePanel >> addGlobalShortcutsTo: aWindowPresenter [
+	
+
+	shortcut ifNil: [ ^ self ].
+	aWindowPresenter 
+		bindKeyCombination: shortcut 
+		toAction: [ self presenter firstResponder takeKeyboardFocus ]
+]
+
+{ #category : #initialization }
 CrSelectionablePanel >> defineInputPorts [ 
 	
 	^ self presenter defineInputPorts

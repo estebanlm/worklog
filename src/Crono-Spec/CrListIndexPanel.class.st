@@ -27,6 +27,12 @@ CrListIndexPanel >> allLists [
 	^ CrTodoList allLists
 ]
 
+{ #category : #accessing }
+CrListIndexPanel >> firstResponder [
+
+	^ list
+]
+
 { #category : #initialization }
 CrListIndexPanel >> initializePresenters [
 

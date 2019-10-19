@@ -38,7 +38,9 @@ CrPresenter >> initializeWindow: aWindowPresenter [
 		aWindowPresenter
 			initialPosition: configuration bounds origin;
 			initialExtent: configuration bounds extent;
-			whenWillCloseDo: [ self storeSettings ] ]
+			whenWillCloseDo: [ self storeSettings ] ].
+	self traversePresentersDo: [ :each |
+		each addGlobalShortcutsTo: aWindowPresenter ]
 ]
 
 { #category : #private }
