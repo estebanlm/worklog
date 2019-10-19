@@ -13,7 +13,7 @@ CrListIndexPanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #list;
-		add: #actionBar;
+		add: #actionBar expand: false;
 		yourself
 ]
 

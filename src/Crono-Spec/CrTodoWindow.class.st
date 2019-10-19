@@ -30,7 +30,10 @@ CrTodoWindow >> configurationClass [
 CrTodoWindow >> initializePresenters [
 
 	indexPanel := self instantiate: CrSelectionablePanel.
+	indexPanel number: 1.
+	indexPanel title: 'Lists'.
 	indexPanel instantiatePresenter: CrListIndexPanel.
+	
 	listPanel := self instantiate: CrSelectionablePanel.
 	listPanel instantiatePresenter: CrListPanel
 ]

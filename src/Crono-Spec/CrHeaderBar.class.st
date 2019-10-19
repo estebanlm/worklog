@@ -13,6 +13,7 @@ Class {
 CrHeaderBar class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
+		spacing: 5;
 		add: #iconImage expand: false;
 		add: #titleLabel expand: false;
 		add: #shortcutLabel expand: false;
@@ -26,4 +27,10 @@ CrHeaderBar >> initializePresenters [
 	iconImage := self newImage.
 	titleLabel := self newLabel label: 'TODO'.
 	shortcutLabel := self newLabel
+]
+
+{ #category : #accessing }
+CrHeaderBar >> title: aString [
+
+	titleLabel label: aString
 ]

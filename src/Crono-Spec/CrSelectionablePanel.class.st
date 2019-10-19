@@ -12,7 +12,7 @@ Class {
 CrSelectionablePanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
-		add: #headerBar expand: false;
+		add: #headerBar expand: false fill: false padding: 5;
 		add: #presenter;
 		yourself
 ]
@@ -58,7 +58,19 @@ CrSelectionablePanel >> instantiatePresenter: aPresenterClass on: aModel [
 ]
 
 { #category : #accessing }
+CrSelectionablePanel >> number: aNumber [
+
+	
+]
+
+{ #category : #accessing }
 CrSelectionablePanel >> presenter [
 
 	^ presenter
+]
+
+{ #category : #accessing }
+CrSelectionablePanel >> title: aString [
+
+	headerBar title: aString
 ]
