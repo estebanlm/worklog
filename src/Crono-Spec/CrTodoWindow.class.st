@@ -1,3 +1,8 @@
+"
+I'm a window to show all the todo lists, including the inbox and the active lists.
+This is more or less like a GTD. 
+
+"
 Class {
 	#name : #CrTodoWindow,
 	#superclass : #CrTodoPresenter,

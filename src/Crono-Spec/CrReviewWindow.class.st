@@ -1,3 +1,6 @@
+"
+I define a window to show a review of the crono (you can go back as many days as desired)
+"
 Class {
 	#name : #CrReviewWindow,
 	#superclass : #CrCronoPresenter,

@@ -1,3 +1,12 @@
+"
+I am a base presenter for the Crono project. 
+I define common behaviour for all Crono windows and panels, such as: 
+
+- save/retrieve window configurations.
+- configure the window with the common parameters.
+- apply window keybindings
+- apply window toolbar/menu actions
+"
 Class {
 	#name : #CrPresenter,
 	#superclass : #SpPresenter,

@@ -1,3 +1,6 @@
+"
+I define a dialog to add a new log entry to crono.
+"
 Class {
 	#name : #CrCronoDialog,
 	#superclass : #CrCronoPresenter,
