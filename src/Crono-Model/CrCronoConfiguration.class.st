@@ -77,7 +77,7 @@ CrCronoConfiguration >> logReference [
 ]
 
 { #category : #accessing }
-CrCronoConfiguration >> todoReference [
+CrCronoConfiguration >> todoListReference [
 
 	^ (self baseDirReference / 'ToDo') ensureCreateDirectory
 ]

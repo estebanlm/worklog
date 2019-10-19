@@ -27,6 +27,12 @@ CrTodoWindow >> addNewList [
 ]
 
 { #category : #accessing }
+CrTodoWindow >> allLists [
+
+	^ CrTodoList allLists
+]
+
+{ #category : #private }
 CrTodoWindow >> configurationClass [
 
 	^ CrTodoWindowConfiguration
