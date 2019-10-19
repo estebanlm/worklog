@@ -2,9 +2,10 @@ Class {
 	#name : #CrTodoWindow,
 	#superclass : #CrTodoPresenter,
 	#instVars : [
-		'listOfLists',
-		'list',
-		'listsActionBar'
+		'listsActionBar',
+		'listOfListsHeader',
+		'indexPanel',
+		'listPanel'
 	],
 	#category : #'Crono-Spec-View'
 }
@@ -14,22 +15,9 @@ CrTodoWindow class >> defaultSpec [
 
 	^ SpPanedLayout newHorizontal
 		position: 30 percent;
-		add: (SpBoxLayout newVertical 
-			add: #listOfLists;
-			addLast: #listsActionBar expand: false;
-			yourself);
-		add: #list;
+		add: #indexPanel;
+		add: #listPanel;
 		yourself
-]
-
-{ #category : #actions }
-CrTodoWindow >> addNewList [
-]
-
-{ #category : #accessing }
-CrTodoWindow >> allLists [
-
-	^ CrTodoList allLists
 ]
 
 { #category : #private }
@@ -41,18 +29,10 @@ CrTodoWindow >> configurationClass [
 { #category : #initialization }
 CrTodoWindow >> initializePresenters [
 
-	listOfLists := self newList
-		items: self allLists;
-		display: #name;
-		yourself.
-	listsActionBar := self newActionBar
-		add: (self newButton 
-			label: 'New List';
-			action: [ self addNewList ];
-			yourself);
-		yourself.
-	
-	list := self newList
+	indexPanel := self instantiate: CrSelectionablePanel.
+	indexPanel instantiatePresenter: CrListIndexPanel.
+	listPanel := self instantiate: CrSelectionablePanel.
+	listPanel instantiatePresenter: CrListPanel
 ]
 
 { #category : #initialization }
