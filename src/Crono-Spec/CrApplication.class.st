@@ -47,6 +47,12 @@ CrApplication class >> menuCommandOn: aBuilder [
 				order: 30 ]
 ]
 
+{ #category : #accessing }
+CrApplication class >> reset [
+
+	Current := nil
+]
+
 { #category : #initialization }
 CrApplication >> initialize [
 

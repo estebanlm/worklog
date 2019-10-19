@@ -3,7 +3,8 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'headerBar',
-		'presenter'
+		'presenter',
+		'shortcut'
 	],
 	#category : #'Crono-Spec-View'
 }
@@ -58,15 +59,29 @@ CrSelectionablePanel >> instantiatePresenter: aPresenterClass on: aModel [
 ]
 
 { #category : #accessing }
-CrSelectionablePanel >> number: aNumber [
+CrSelectionablePanel >> panelNumber: aNumber [
 
-	
+	shortcut := self shortcutForPanel: aNumber.
+	headerBar shortcut: shortcut
 ]
 
 { #category : #accessing }
 CrSelectionablePanel >> presenter [
 
 	^ presenter
+]
+
+{ #category : #private }
+CrSelectionablePanel >> shortcutForPanel: aNumber [
+	"This is a convenience method to assign shortcuts to panels. 
+	 panels will be different areas of a tool: a package panel in a browser, an inspector in 
+	 the debugger."
+	| char |
+	
+	char := aNumber asString first.
+	^ char command mac 
+		| char control win 
+		| char control unix
 ]
 
 { #category : #accessing }

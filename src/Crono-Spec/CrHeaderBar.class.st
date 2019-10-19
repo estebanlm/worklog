@@ -30,6 +30,12 @@ CrHeaderBar >> initializePresenters [
 ]
 
 { #category : #accessing }
+CrHeaderBar >> shortcut: aShortcut [
+
+	shortcutLabel label: (KMShortcutPrinter toString: aShortcut)
+]
+
+{ #category : #accessing }
 CrHeaderBar >> title: aString [
 
 	titleLabel label: aString
