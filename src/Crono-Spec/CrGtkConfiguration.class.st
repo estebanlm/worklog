@@ -15,7 +15,10 @@ CrGtkConfiguration >> configureOSX: anApplication [
 
 	self ensureAppearance: self macAppearanceName. 
 	self installTheme: self macThemeName.
-	self addProviderFromString: '.cronoText { font: 12pt "Monaco" }'
+	self addProviderFromString: '
+.cronoText { font: 12pt "Monaco" }
+.title { font-size: 14pt }
+.titleShortcut { color: grey }'
 ]
 
 { #category : #configuring }
@@ -23,14 +26,20 @@ CrGtkConfiguration >> configureUnix: anApplication [
 
 	self unixThemeName 
 		ifNotNil: [ :aName | self installTheme: aName ].
-	self addProviderFromString: '.cronoText { font: 11pt "Monospace Regular" }'
+	self addProviderFromString: '
+.cronoText { font: 11pt "Monospace Regular" }
+.title { font-size: 14pt }
+.titleShortcut { color: grey }'
 ]
 
 { #category : #configuring }
 CrGtkConfiguration >> configureWindows: anApplication [
 
 	self installTheme: self windowsThemeName.
-	self addProviderFromString: '.cronoText { font: 10pt "Microsoft Sans Serif" }'
+	self addProviderFromString: '
+.cronoText { font: 10pt "Microsoft Sans Serif" }
+.title { font-size: 14pt }
+.titleShortcut { color: grey }'
 ]
 
 { #category : #configuring }
