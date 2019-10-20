@@ -3,7 +3,8 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
-		'actionBar'
+		'actionBar',
+		'todoList'
 	],
 	#category : #'Crono-Spec-View'
 }
@@ -20,6 +21,27 @@ CrListPanel class >> defaultSpec [
 { #category : #actions }
 CrListPanel >> addNewToDo [
 
+	(CrTodoItemPresenter newApplication: self application)
+		onAdd: [ :todo | 
+			list items: todoList items.
+			list selectItem: todo ];
+		openDialogWithSpec
+]
+
+{ #category : #initialization }
+CrListPanel >> defineInputPorts [
+	
+	^ { SpModelPort new }
+]
+
+{ #category : #initialization }
+CrListPanel >> defineOutputPorts [ 
+
+	^ list defineOutputPorts 
+		collect: [ :each |
+			each copy 
+				delegate: [ list ];
+				yourself ]
 ]
 
 { #category : #accessing }
@@ -38,4 +60,31 @@ CrListPanel >> initializePresenters [
 			action: [ self addNewToDo ];
 			yourself);
 		yourself
+]
+
+{ #category : #accessing }
+CrListPanel >> refresh [
+	| selectedItem |
+	selectedItem := list selection selectedItem.
+	list items: self todoList items.
+	selectedItem ifNotNil: [ list selectItem: selectedItem ]
+]
+
+{ #category : #'accessing model' }
+CrListPanel >> setModel: aTodoList [
+
+	self todoList: aTodoList
+]
+
+{ #category : #accessing }
+CrListPanel >> todoList [
+
+	^ todoList
+]
+
+{ #category : #accessing }
+CrListPanel >> todoList: aList [
+
+	todoList := aList.
+	self refresh
 ]

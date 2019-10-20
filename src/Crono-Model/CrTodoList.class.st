@@ -70,10 +70,10 @@ CrTodoList class >> userLists [
 		collect: [ :each | self readList: each ]
 ]
 
-{ #category : #'instance creation' }
-CrTodoList >> fromReference: aReference [
+{ #category : #adding }
+CrTodoList >> addItem: anItem [ 
 
-	name := aReference basename
+	items add: anItem
 ]
 
 { #category : #accessing }
@@ -86,6 +86,13 @@ CrTodoList >> iconName [
 CrTodoList >> iconName: aSymbol [
 
 	iconName := aSymbol
+]
+
+{ #category : #initialization }
+CrTodoList >> initialize [
+
+	super initialize.
+	items := OrderedCollection new
 ]
 
 { #category : #accessing }

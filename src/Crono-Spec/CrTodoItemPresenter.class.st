@@ -4,7 +4,9 @@ Class {
 	#instVars : [
 		'nameTextInput',
 		'notesText',
-		'doneCheckbox'
+		'doneCheckbox',
+		'todoList',
+		'addAction'
 	],
 	#category : #'Crono-Spec-View'
 }
@@ -25,15 +27,34 @@ CrTodoItemPresenter class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #actions }
+CrTodoItemPresenter >> addTodoThen: aBlock [
+	| item |
+
+	self validate ifFalse: [ ^ self ].
+
+	item := CrTodoItem new
+		name: nameTextInput text asString trimmed;
+		notes: notesText text asString trimmed;
+		yourself.
+	doneCheckbox state ifTrue: [ item done ].
+	self todoList addItem: item.
+	
+	addAction ifNotNil: [ addAction cull: item ].
+	aBlock value
+]
+
 { #category : #initialization }
 CrTodoItemPresenter >> initializeDialogWindow: aWindowDialogPresenter [
 
 	aWindowDialogPresenter 
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
 		addButton: 'To-Do'
-		do: [ :presenter |
-			self addTodo.
-			presenter beOk; close ];
+			do: [ :presenter |
+				self addTodoThen: [ 
+					presenter 
+						beOk; 
+						close ] ];
 		centered
 ]
 
@@ -56,4 +77,28 @@ CrTodoItemPresenter >> initializeWindow: aWindowPresenter [
 		title: 'To-Do';
 		initialExtent: 500@150;
 		whenOpenedDo: [ nameTextInput takeKeyboardFocus ]
+]
+
+{ #category : #events }
+CrTodoItemPresenter >> onAdd: aBlock [
+
+	addAction := aBlock
+]
+
+{ #category : #accessing }
+CrTodoItemPresenter >> todoList [
+
+	^ todoList
+]
+
+{ #category : #accessing }
+CrTodoItemPresenter >> todoList: aList [
+
+	^ todoList := aList
+]
+
+{ #category : #actions }
+CrTodoItemPresenter >> validate [
+	
+	^ true
 ]

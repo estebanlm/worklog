@@ -27,6 +27,26 @@ CrListIndexPanel >> allLists [
 	^ CrTodoList allLists
 ]
 
+{ #category : #initialization }
+CrListIndexPanel >> defineInputPorts [
+
+	^ list defineInputPorts
+		collect: [ :each |
+			each copy 
+				delegateTo: [ list ];
+				yourself ]
+]
+
+{ #category : #initialization }
+CrListIndexPanel >> defineOutputPorts [ 
+
+	^ list defineOutputPorts 
+		collect: [ :each |
+			each copy 
+				delegateTo: [ list ];
+				yourself ]
+]
+
 { #category : #accessing }
 CrListIndexPanel >> firstResponder [
 
@@ -47,4 +67,9 @@ CrListIndexPanel >> initializePresenters [
 			action: [ self addNewList ];
 			yourself);
 		yourself
+]
+
+{ #category : #accessing }
+CrListIndexPanel >> selectedItem [
+	^ list selection selectedItem
 ]

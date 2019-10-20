@@ -32,16 +32,35 @@ CrTodoWindow >> configurationClass [
 ]
 
 { #category : #initialization }
-CrTodoWindow >> initializePresenters [
+CrTodoWindow >> initializeIndexPanel: aNumber [
 
-	indexPanel := self instantiate: CrSelectionablePanel.
-	indexPanel panelNumber: 1.
-	indexPanel title: 'Lists'.
-	indexPanel instantiatePresenter: CrListIndexPanel.
+	(indexPanel := self instantiate: CrSelectionablePanel)
+		panelNumber: aNumber;
+		title: 'Lists';
+		instantiatePresenter: CrListIndexPanel
 	
-	listPanel := self instantiate: CrSelectionablePanel.
-	listPanel panelNumber: 2.
-	listPanel instantiatePresenter: CrListPanel
+]
+
+{ #category : #initialization }
+CrTodoWindow >> initializeListPanel: aNumber [
+	| todoList |
+	
+	todoList := indexPanel presenter selectedItem.
+	(listPanel := self instantiate: CrSelectionablePanel)
+		panelNumber: aNumber;
+		title: todoList name;
+		instantiatePresenter: CrListPanel.
+	listPanel presenter todoList: todoList
+]
+
+{ #category : #initialization }
+CrTodoWindow >> initializePresenters [
+	
+	self initializeIndexPanel: 1.
+	self initializeListPanel: 2.
+	
+	indexPanel presenter transmitDo: [ :aTodoList |
+		listPanel title: aTodoList name ].
 ]
 
 { #category : #initialization }
