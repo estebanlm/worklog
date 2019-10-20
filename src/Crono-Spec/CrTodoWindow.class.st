@@ -60,7 +60,8 @@ CrTodoWindow >> initializePresenters [
 	self initializeListPanel: 2.
 	
 	indexPanel presenter transmitDo: [ :aTodoList |
-		listPanel title: aTodoList name ].
+		listPanel title: aTodoList name. 
+		listPanel presenter todoList: aTodoList ].
 ]
 
 { #category : #initialization }

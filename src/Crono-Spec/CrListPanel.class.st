@@ -22,6 +22,7 @@ CrListPanel class >> defaultSpec [
 CrListPanel >> addNewToDo [
 
 	(CrTodoItemPresenter newApplication: self application)
+		todoList: self todoList;
 		onAdd: [ :todo | 
 			list items: todoList items.
 			list selectItem: todo ];
@@ -65,6 +66,7 @@ CrListPanel >> initializePresenters [
 { #category : #accessing }
 CrListPanel >> refresh [
 	| selectedItem |
+
 	selectedItem := list selection selectedItem.
 	list items: self todoList items.
 	selectedItem ifNotNil: [ list selectItem: selectedItem ]
