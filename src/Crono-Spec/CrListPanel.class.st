@@ -75,7 +75,10 @@ CrListPanel >> initializePresenters [
 CrListPanel >> newListItemPresenters [
 	
 	^ self todoList items
-		collect: [ :each | self instantiate: CrListItemPanel on: each ]
+		collect: [ :each | 
+			(self instantiate: CrListItemPanel on: each)
+				todoList: self todoList;
+				yourself ]
 ]
 
 { #category : #accessing }

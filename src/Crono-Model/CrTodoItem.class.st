@@ -10,9 +10,11 @@ Class {
 }
 
 { #category : #accessing }
-CrTodoItem >> done [
+CrTodoItem >> done: aBoolean [
 
-	doneDate := Date today
+	doneDate := aBoolean 
+		ifTrue: [ Date today ]
+		ifFalse: [ nil ]
 ]
 
 { #category : #accessing }

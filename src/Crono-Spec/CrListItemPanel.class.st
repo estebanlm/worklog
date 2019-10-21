@@ -2,6 +2,7 @@ Class {
 	#name : #CrListItemPanel,
 	#superclass : #SpPresenter,
 	#instVars : [
+		'todoList',
 		'item',
 		'doneCheckbox',
 		'nameLabel'
@@ -21,7 +22,9 @@ CrListItemPanel class >> defaultSpec [
 { #category : #initialization }
 CrListItemPanel >> initializePresenters [
 
-	doneCheckbox := self newCheckBox state: item isDone.
+	doneCheckbox := self newCheckBox 
+		state: item isDone;
+		whenChangedDo: [ :state | self stateChangedTo: state ].
 	nameLabel := self newLabel label: item name
 ]
 
@@ -35,4 +38,21 @@ CrListItemPanel >> item [
 CrListItemPanel >> setModelBeforeInitialization: aListItem [
 
 	item := aListItem
+]
+
+{ #category : #actions }
+CrListItemPanel >> stateChangedTo: state [
+	
+	self item done: state.
+	self todoList ifNotNil: #writeToFile
+]
+
+{ #category : #accessing }
+CrListItemPanel >> todoList [
+	^ todoList
+]
+
+{ #category : #accessing }
+CrListItemPanel >> todoList: anObject [
+	todoList := anObject
 ]

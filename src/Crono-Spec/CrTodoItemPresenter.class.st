@@ -36,8 +36,9 @@ CrTodoItemPresenter >> addTodoThen: aBlock [
 	item := CrTodoItem new
 		name: nameTextInput text asString trimmed;
 		notes: notesText text asString trimmed;
+		done: doneCheckbox state;
 		yourself.
-	doneCheckbox state ifTrue: [ item done ].
+	
 	self todoList 
 		addItem: item;
 		writeToFile.
