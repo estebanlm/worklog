@@ -18,6 +18,14 @@ CrListPanel class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #initialization }
+CrListPanel >> addGlobalShortcutsTo: aWindowPresenter [
+
+	aWindowPresenter 
+		bindKey: $n 
+		toAction: [ self addNewToDo ]
+]
+
 { #category : #actions }
 CrListPanel >> addNewToDo [
 
