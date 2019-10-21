@@ -12,7 +12,7 @@ Class {
 		'toolBar',
 		'configuration'
 	],
-	#category : #'Crono-Spec-View'
+	#category : #'Crono-Spec-View-Crono'
 }
 
 { #category : #specs }

@@ -6,7 +6,7 @@ Class {
 		'presenter',
 		'shortcut'
 	],
-	#category : #'Crono-Spec-View'
+	#category : #'Crono-Spec-View-Base'
 }
 
 { #category : #specs }

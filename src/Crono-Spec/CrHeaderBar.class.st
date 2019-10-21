@@ -6,7 +6,7 @@ Class {
 		'titleLabel',
 		'shortcutLabel'
 	],
-	#category : #'Crono-Spec-View'
+	#category : #'Crono-Spec-View-Base'
 }
 
 { #category : #specs }

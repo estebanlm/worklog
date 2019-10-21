@@ -10,7 +10,7 @@ I define common behaviour for all Crono windows and panels, such as:
 Class {
 	#name : #CrPresenter,
 	#superclass : #SpPresenter,
-	#category : #'Crono-Spec-View'
+	#category : #'Crono-Spec-View-Base'
 }
 
 { #category : #'instance creation' }

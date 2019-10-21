@@ -8,7 +8,7 @@ Class {
 		'todoList',
 		'addAction'
 	],
-	#category : #'Crono-Spec-View'
+	#category : #'Crono-Spec-View-Todo'
 }
 
 { #category : #specs }

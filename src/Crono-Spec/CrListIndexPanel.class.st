@@ -5,7 +5,7 @@ Class {
 		'list',
 		'actionBar'
 	],
-	#category : #'Crono-Spec-View'
+	#category : #'Crono-Spec-View-Todo'
 }
 
 { #category : #specs }

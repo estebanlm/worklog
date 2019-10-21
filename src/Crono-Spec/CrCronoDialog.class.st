@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'logText'
 	],
-	#category : #'Crono-Spec-View'
+	#category : #'Crono-Spec-View-Crono'
 }
 
 { #category : #specs }
