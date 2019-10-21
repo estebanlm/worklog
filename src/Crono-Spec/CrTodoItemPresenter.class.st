@@ -38,7 +38,9 @@ CrTodoItemPresenter >> addTodoThen: aBlock [
 		notes: notesText text asString trimmed;
 		yourself.
 	doneCheckbox state ifTrue: [ item done ].
-	self todoList addItem: item.
+	self todoList 
+		addItem: item;
+		writeToFile.
 	
 	addAction ifNotNil: [ addAction cull: item ].
 	aBlock value
@@ -63,6 +65,7 @@ CrTodoItemPresenter >> initializePresenters [
 
 	doneCheckbox := self newCheckBox.
 	nameTextInput := self newTextInput
+		autoAccept: true;
 		placeholder: 'New To-Do';
 		yourself.
 	notesText := self newText

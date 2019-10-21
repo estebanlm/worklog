@@ -24,7 +24,7 @@ CrListPanel >> addNewToDo [
 	(CrTodoItemPresenter newApplication: self application)
 		todoList: self todoList;
 		onAdd: [ :todo | 
-			list items: todoList items.
+			list items: self newListItemPresenters.
 			list selectItem: todo ];
 		openDialogWithSpec
 ]
@@ -63,13 +63,30 @@ CrListPanel >> initializePresenters [
 		yourself
 ]
 
+{ #category : #'private factory' }
+CrListPanel >> newListItemPresenters [
+	
+	^ self todoList items
+		collect: [ :each | self instantiate: CrListItemPanel on: each ]
+]
+
 { #category : #accessing }
 CrListPanel >> refresh [
 	| selectedItem |
 
-	selectedItem := list selection selectedItem.
-	list items: self todoList items.
-	selectedItem ifNotNil: [ list selectItem: selectedItem ]
+	selectedItem := list selection selectedItem ifNotNil: #item.
+	list items: self newListItemPresenters.
+	selectedItem ifNotNil: [ 
+		self selectItem: selectedItem ]
+]
+
+{ #category : #accessing }
+CrListPanel >> selectItem: aListItem [
+
+	list items 
+		detect: [ :each | each item = aListItem ]
+		ifFound: [ :each | list selectItem: each ]
+		ifNone: [ list unselectAll ]
 ]
 
 { #category : #'accessing model' }
