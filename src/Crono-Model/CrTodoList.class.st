@@ -4,20 +4,17 @@ Class {
 	#instVars : [
 		'name',
 		'iconName',
+		'type',
 		'items'
 	],
 	#category : #'Crono-Model'
 }
 
-{ #category : #accessing }
+{ #category : #'accessing lists' }
 CrTodoList class >> active [
 
 	^ (self readListNamed: self activeFileName)
-		ifNil: [ 
-			self new 
-				name: 'Active';
-				iconName: #active;
-				writeToFile ]
+		ifNil: [ (self newType: CrTodoType active) writeToFile ]
 ]
 
 { #category : #accessing }
@@ -26,7 +23,7 @@ CrTodoList class >> activeFileName [
 	^ 'Active.ston'
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing lists' }
 CrTodoList class >> allLists [
 
 	^ self baseLists, self userLists
@@ -38,27 +35,31 @@ CrTodoList class >> baseListFileNames [
 	^ { self inboxFileName. self activeFileName }
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing lists' }
 CrTodoList class >> baseLists [
 
 	^ { self inbox. self active }
 ]
 
-{ #category : #accessing }
+{ #category : #'accessing lists' }
 CrTodoList class >> inbox [
 
 	^ (self readListNamed: self inboxFileName)
-		ifNil: [ 
-			self new 
-				name: 'Inbox';
-				iconName: #inbox;
-				writeToFile ]
+		ifNil: [ (self newType: CrTodoType inbox) writeToFile ]
 ]
 
 { #category : #accessing }
 CrTodoList class >> inboxFileName [
 			
 	^ 'Inbox.ston'
+]
+
+{ #category : #'instance creation' }
+CrTodoList class >> newType: aListType [
+
+	^ self basicNew
+		initializeType: aListType;
+		yourself
 ]
 
 { #category : #private }
@@ -75,13 +76,26 @@ CrTodoList class >> readListNamed: aName [
 	^ self readList: self todoListReference / aName
 ]
 
+{ #category : #'private accessing' }
+CrTodoList class >> stonAllInstVarNames [
+	
+	^ super stonAllInstVarNames copyWithoutAll: self transientInstVarNames
+]
+
 { #category : #private }
 CrTodoList class >> todoListReference [
 	
 	^ CrCronoConfiguration readFromFileSystem todoListReference
 ]
 
-{ #category : #accessing }
+{ #category : #'private accessing' }
+CrTodoList class >> transientInstVarNames [
+	"We will not save this in file (because it will be calculated)"
+
+	^ #()
+]
+
+{ #category : #'accessing lists' }
 CrTodoList class >> userLists [
 
 	^ (self todoListReference allChildrenMatching: '*.ston')
@@ -98,7 +112,7 @@ CrTodoList >> addItem: anItem [
 { #category : #accessing }
 CrTodoList >> iconName [
 
-	^ iconName
+	^ iconName ifNil: [ self type defaultIconName ]
 ]
 
 { #category : #accessing }
@@ -112,6 +126,13 @@ CrTodoList >> initialize [
 
 	super initialize.
 	items := OrderedCollection new
+]
+
+{ #category : #initialization }
+CrTodoList >> initializeType: aType [
+
+	self initialize.
+	type := aType
 ]
 
 { #category : #accessing }
@@ -129,7 +150,7 @@ CrTodoList >> items: aCollection [
 { #category : #accessing }
 CrTodoList >> name [
 
-	^ name
+	^ name ifNil: [ self type defaultName ]
 ]
 
 { #category : #accessing }
@@ -138,11 +159,23 @@ CrTodoList >> name: aString [
 	name := aString
 ]
 
+{ #category : #accessing }
+CrTodoList >> type [
+
+	^ type
+]
+
+{ #category : #accessing }
+CrTodoList >> type: aListType [
+
+	type := aListType
+]
+
 { #category : #writing }
 CrTodoList >> writeToFile [
 	| reference |
 
 	reference := (self class todoListReference / self name) withExtension: 'ston'.
 	reference writeStreamDo: [ :stream | 
-		STON put: self onStreamPretty: stream ]	
+		STON put: self onStreamPretty: stream ]
 ]

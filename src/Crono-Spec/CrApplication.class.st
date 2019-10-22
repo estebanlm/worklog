@@ -85,8 +85,13 @@ CrApplication >> run [
 
 { #category : #running }
 CrApplication >> start [
+	| window |
 
-	CrTodoWindow open
+	window := CrTodoWindow open.
+	"CrApplicationStandaloneConfiguration new 
+		application: self;
+		mainWindow: window;
+		visit"
 ]
 
 { #category : #initialization }
