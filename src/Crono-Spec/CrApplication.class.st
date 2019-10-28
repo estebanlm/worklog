@@ -7,6 +7,9 @@ Class {
 	#classVars : [
 		'Current'
 	],
+	#classInstVars : [
+		'session'
+	],
 	#category : #'Crono-Spec-Application'
 }
 
@@ -16,12 +19,11 @@ CrApplication class >> applicationName [
 	^ 'crono'
 ]
 
-{ #category : #accessing }
+{ #category : #'instance creation' }
 CrApplication class >> current [
 
-	^ Current ifNil: [ 
-		CrApplication new run.
-		Current ]
+	self validateSession.
+	^ Current ifNil: [ Current := self new ]
 ]
 
 { #category : #'world menu' }
@@ -51,6 +53,14 @@ CrApplication class >> menuCommandOn: aBuilder [
 CrApplication class >> reset [
 
 	Current := nil
+]
+
+{ #category : #private }
+CrApplication class >> validateSession [
+	
+	session == Smalltalk session ifTrue: [ ^ self ].
+	Current := nil.
+	session := Smalltalk session
 ]
 
 { #category : #initialization }
