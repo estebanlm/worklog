@@ -14,23 +14,26 @@ Class {
 
 { #category : #accessing }
 CrApplicationStarter >> application [
+
 	^ application
 ]
 
 { #category : #accessing }
-CrApplicationStarter >> application: anObject [
-	application := anObject
+CrApplicationStarter >> application: anApplication [
+
+	application := anApplication
 ]
 
 { #category : #accessing }
 CrApplicationStarter >> mainWindow [
+
 	^ mainWindow
 ]
 
 { #category : #'as yet unclassified' }
 CrApplicationStarter >> start [
 
-	mainWindow := CrTodoWindow new. 
+	mainWindow := CrTodoMainWindow new. 
 	self visit.
 	mainWindow openWithSpec
 ]

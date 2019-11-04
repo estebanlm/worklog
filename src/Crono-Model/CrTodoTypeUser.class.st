@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #accessing }
+CrTodoTypeUser >> defaultName [
+
+	^ 'New list'
+]
+
+{ #category : #accessing }
 CrTodoTypeUser >> name [
 	
 	^ 'User'

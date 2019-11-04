@@ -4,10 +4,10 @@ Class {
 	#category : #'Crono-Model'
 }
 
-{ #category : #default }
-CrTodoTypeInbox >> defaultName [
+{ #category : #accessing }
+CrTodoTypeInbox >> defaultIconName [
 
-	^ self name
+	^ #inbox
 ]
 
 { #category : #accessing }

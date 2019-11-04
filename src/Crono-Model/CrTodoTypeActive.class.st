@@ -5,9 +5,9 @@ Class {
 }
 
 { #category : #accessing }
-CrTodoTypeActive >> defaultName [
+CrTodoTypeActive >> defaultIconName [
 
-	^ self name
+	^ #active
 ]
 
 { #category : #accessing }

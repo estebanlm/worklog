@@ -1,5 +1,5 @@
 Class {
-	#name : #CrListPanel,
+	#name : #CrTodoListPanel,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : #specs }
-CrListPanel class >> defaultSpec [
+CrTodoListPanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #list;
@@ -19,7 +19,7 @@ CrListPanel class >> defaultSpec [
 ]
 
 { #category : #initialization }
-CrListPanel >> addGlobalShortcutsTo: aWindowPresenter [
+CrTodoListPanel >> addGlobalShortcutsTo: aWindowPresenter [
 
 	aWindowPresenter 
 		bindKey: $n 
@@ -27,7 +27,7 @@ CrListPanel >> addGlobalShortcutsTo: aWindowPresenter [
 ]
 
 { #category : #actions }
-CrListPanel >> addNewToDo [
+CrTodoListPanel >> addNewToDo [
 
 	(CrTodoItemPresenter newApplication: self application)
 		todoList: self todoList;
@@ -38,13 +38,13 @@ CrListPanel >> addNewToDo [
 ]
 
 { #category : #initialization }
-CrListPanel >> defineInputPorts [
+CrTodoListPanel >> defineInputPorts [
 	
 	^ { SpModelPort new }
 ]
 
 { #category : #initialization }
-CrListPanel >> defineOutputPorts [ 
+CrTodoListPanel >> defineOutputPorts [ 
 
 	^ list defineOutputPorts 
 		collect: [ :each |
@@ -54,13 +54,13 @@ CrListPanel >> defineOutputPorts [
 ]
 
 { #category : #accessing }
-CrListPanel >> firstResponder [
+CrTodoListPanel >> firstResponder [
 
 	^ list
 ]
 
 { #category : #initialization }
-CrListPanel >> initializePresenters [
+CrTodoListPanel >> initializePresenters [
 
 	list := self newComponentList.
 	actionBar := self newActionBar
@@ -72,17 +72,17 @@ CrListPanel >> initializePresenters [
 ]
 
 { #category : #'private factory' }
-CrListPanel >> newListItemPresenters [
+CrTodoListPanel >> newListItemPresenters [
 	
 	^ self todoList items
 		collect: [ :each | 
-			(self instantiate: CrListItemPanel on: each)
+			(self instantiate: CrTodoListItemPanel on: each)
 				todoList: self todoList;
 				yourself ]
 ]
 
 { #category : #accessing }
-CrListPanel >> refresh [
+CrTodoListPanel >> refresh [
 	| selectedItem |
 
 	selectedItem := list selection selectedItem ifNotNil: #item.
@@ -92,7 +92,7 @@ CrListPanel >> refresh [
 ]
 
 { #category : #accessing }
-CrListPanel >> selectItem: aListItem [
+CrTodoListPanel >> selectItem: aListItem [
 
 	list items 
 		detect: [ :each | each item = aListItem ]
@@ -101,19 +101,19 @@ CrListPanel >> selectItem: aListItem [
 ]
 
 { #category : #'accessing model' }
-CrListPanel >> setModel: aTodoList [
+CrTodoListPanel >> setModel: aTodoList [
 
 	self todoList: aTodoList
 ]
 
 { #category : #accessing }
-CrListPanel >> todoList [
+CrTodoListPanel >> todoList [
 
 	^ todoList
 ]
 
 { #category : #accessing }
-CrListPanel >> todoList: aList [
+CrTodoListPanel >> todoList: aList [
 
 	todoList := aList.
 	self refresh

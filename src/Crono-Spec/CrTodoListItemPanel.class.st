@@ -1,5 +1,5 @@
 Class {
-	#name : #CrListItemPanel,
+	#name : #CrTodoListItemPanel,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'todoList',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #specs }
-CrListItemPanel class >> defaultSpec [
+CrTodoListItemPanel class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
 		add: #doneCheckbox expand: false;
@@ -20,7 +20,7 @@ CrListItemPanel class >> defaultSpec [
 ]
 
 { #category : #initialization }
-CrListItemPanel >> initializePresenters [
+CrTodoListItemPanel >> initializePresenters [
 
 	doneCheckbox := self newCheckBox 
 		state: item isDone;
@@ -29,30 +29,30 @@ CrListItemPanel >> initializePresenters [
 ]
 
 { #category : #accessing }
-CrListItemPanel >> item [
+CrTodoListItemPanel >> item [
 
 	^ item
 ]
 
 { #category : #'accessing model' }
-CrListItemPanel >> setModelBeforeInitialization: aListItem [
+CrTodoListItemPanel >> setModelBeforeInitialization: aListItem [
 
 	item := aListItem
 ]
 
 { #category : #actions }
-CrListItemPanel >> stateChangedTo: state [
+CrTodoListItemPanel >> stateChangedTo: state [
 	
 	self item done: state.
 	self todoList ifNotNil: #writeToFile
 ]
 
 { #category : #accessing }
-CrListItemPanel >> todoList [
+CrTodoListItemPanel >> todoList [
 	^ todoList
 ]
 
 { #category : #accessing }
-CrListItemPanel >> todoList: anObject [
+CrTodoListItemPanel >> todoList: anObject [
 	todoList := anObject
 ]

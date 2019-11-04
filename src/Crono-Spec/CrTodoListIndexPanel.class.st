@@ -1,5 +1,5 @@
 Class {
-	#name : #CrListIndexPanel,
+	#name : #CrTodoListIndexPanel,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #specs }
-CrListIndexPanel class >> defaultSpec [
+CrTodoListIndexPanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #list;
@@ -18,17 +18,23 @@ CrListIndexPanel class >> defaultSpec [
 ]
 
 { #category : #actions }
-CrListIndexPanel >> addNewList [
+CrTodoListIndexPanel >> addNewList [
+]
+
+{ #category : #initialization }
+CrTodoListIndexPanel >> allListPresenters [
+		
+	^ self allLists collect: [ :each | self instantiate: CrTodoListIndexSummaryPanel on: each  ]
 ]
 
 { #category : #accessing }
-CrListIndexPanel >> allLists [
+CrTodoListIndexPanel >> allLists [
 
 	^ CrTodoList allLists
 ]
 
 { #category : #initialization }
-CrListIndexPanel >> defineInputPorts [
+CrTodoListIndexPanel >> defineInputPorts [
 
 	^ list defineInputPorts
 		collect: [ :each |
@@ -38,7 +44,7 @@ CrListIndexPanel >> defineInputPorts [
 ]
 
 { #category : #initialization }
-CrListIndexPanel >> defineOutputPorts [ 
+CrTodoListIndexPanel >> defineOutputPorts [ 
 
 	^ list defineOutputPorts 
 		collect: [ :each |
@@ -48,18 +54,17 @@ CrListIndexPanel >> defineOutputPorts [
 ]
 
 { #category : #accessing }
-CrListIndexPanel >> firstResponder [
+CrTodoListIndexPanel >> firstResponder [
 
 	^ list
 ]
 
 { #category : #initialization }
-CrListIndexPanel >> initializePresenters [
+CrTodoListIndexPanel >> initializePresenters [
 
-	list := self newList
-		items: self allLists;
-		display: #name;
-		selectIndex: 1;
+	list := self newComponentList
+		presenters: self allListPresenters;
+		selectIndex: 2;
 		yourself.
 	actionBar := self newActionBar
 		add: (self newButton 
@@ -70,6 +75,6 @@ CrListIndexPanel >> initializePresenters [
 ]
 
 { #category : #accessing }
-CrListIndexPanel >> selectedItem [
+CrTodoListIndexPanel >> selectedItem [
 	^ list selection selectedItem
 ]

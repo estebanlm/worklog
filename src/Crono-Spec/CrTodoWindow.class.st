@@ -7,8 +7,6 @@ Class {
 	#name : #CrTodoWindow,
 	#superclass : #CrTodoPresenter,
 	#instVars : [
-		'listsActionBar',
-		'listOfListsHeader',
 		'indexPanel',
 		'listPanel'
 	],
@@ -37,7 +35,7 @@ CrTodoWindow >> initializeIndexPanel: aNumber [
 	(indexPanel := self instantiate: CrSelectionablePanel)
 		panelNumber: aNumber;
 		title: 'Lists';
-		instantiatePresenter: CrListIndexPanel
+		instantiatePresenter: CrTodoListIndexPanel
 	
 ]
 
@@ -45,11 +43,11 @@ CrTodoWindow >> initializeIndexPanel: aNumber [
 CrTodoWindow >> initializeListPanel: aNumber [
 	| todoList |
 	
-	todoList := indexPanel presenter selectedItem.
+	todoList := indexPanel presenter selectedItem todoList.
 	(listPanel := self instantiate: CrSelectionablePanel)
 		panelNumber: aNumber;
 		title: todoList name;
-		instantiatePresenter: CrListPanel.
+		instantiatePresenter: CrTodoListPanel.
 	listPanel presenter todoList: todoList
 ]
 
@@ -59,9 +57,11 @@ CrTodoWindow >> initializePresenters [
 	self initializeIndexPanel: 1.
 	self initializeListPanel: 2.
 	
-	indexPanel presenter transmitDo: [ :aTodoList |
-		listPanel title: aTodoList name. 
-		listPanel presenter todoList: aTodoList ].
+	indexPanel presenter 
+		transmitDo: [ :aTodoList |
+			listPanel title: aTodoList name. 
+			listPanel presenter todoList: aTodoList ]
+		transform: [ :aSummaryPresenter | aSummaryPresenter todoList ]
 ]
 
 { #category : #initialization }

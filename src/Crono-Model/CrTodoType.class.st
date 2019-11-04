@@ -1,3 +1,6 @@
+"
+I'm a list type.
+"
 Class {
 	#name : #CrTodoType,
 	#superclass : #Object,
@@ -46,16 +49,18 @@ CrTodoType class >> user [
 	^ CrTodoTypeUser uniqueInstance
 ]
 
-{ #category : #default }
+{ #category : #accessing }
 CrTodoType >> defaultIconName [
+	"This is the default icon to assing to a list when it is created"
 
 	^ nil
 ]
 
-{ #category : #default }
+{ #category : #accessing }
 CrTodoType >> defaultName [
+	"This is the default name to assing to a list when it is created"
 
-	^ nil
+	^ self name
 ]
 
 { #category : #accessing }

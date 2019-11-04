@@ -2,7 +2,8 @@ Class {
 	#name : #CrApplication,
 	#superclass : #SpApplication,
 	#instVars : [
-		'standalone'
+		'standalone',
+		'iconProvider'
 	],
 	#classVars : [
 		'Current'
@@ -63,6 +64,24 @@ CrApplication class >> validateSession [
 	session := Smalltalk session
 ]
 
+{ #category : #accessing }
+CrApplication >> iconNamed: aSymbol [
+
+	^ self iconProvider iconNamed: aSymbol
+]
+
+{ #category : #accessing }
+CrApplication >> iconProvider [
+
+	^ iconProvider ifNil: [ iconProvider := CrIconProvider newLocation: self iconsDir ] 
+]
+
+{ #category : #accessing }
+CrApplication >> iconsDir [
+
+	^ self resourcesDir / 'icons' / '16'
+]
+
 { #category : #initialization }
 CrApplication >> initialize [
 
@@ -84,6 +103,12 @@ CrApplication >> isStandalone [
 CrApplication >> prepareAsStandaloneApplication [
 	
 	standalone := true
+]
+
+{ #category : #accessing }
+CrApplication >> resourcesDir [
+
+	^ FileLocator imageDirectory / 'crono'
 ]
 
 { #category : #running }
