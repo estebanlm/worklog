@@ -2,8 +2,7 @@ Class {
 	#name : #CrApplication,
 	#superclass : #SpApplication,
 	#instVars : [
-		'standalone',
-		'iconProvider'
+		'standalone'
 	],
 	#classVars : [
 		'Current'

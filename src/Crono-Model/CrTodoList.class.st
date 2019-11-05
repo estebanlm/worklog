@@ -109,6 +109,12 @@ CrTodoList >> addItem: anItem [
 	items add: anItem
 ]
 
+{ #category : #'as yet unclassified' }
+CrTodoList >> doneItems [
+
+	^ self items select: #isDone
+]
+
 { #category : #accessing }
 CrTodoList >> iconName [
 
@@ -157,6 +163,30 @@ CrTodoList >> name [
 CrTodoList >> name: aString [
 
 	name := aString
+]
+
+{ #category : #'as yet unclassified' }
+CrTodoList >> numberDoneItems [
+
+	^ self doneItems size
+]
+
+{ #category : #'as yet unclassified' }
+CrTodoList >> numberItems [
+
+	^ self items size
+]
+
+{ #category : #'as yet unclassified' }
+CrTodoList >> numberPendingItems [
+
+	^ self pendingItems size
+]
+
+{ #category : #'as yet unclassified' }
+CrTodoList >> pendingItems [
+
+	^ self items reject: #isDone
 ]
 
 { #category : #accessing }
