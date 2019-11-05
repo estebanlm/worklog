@@ -74,13 +74,7 @@ CrApplication >> iconNamed: aSymbol [
 { #category : #accessing }
 CrApplication >> iconProvider [
 
-	^ iconProvider ifNil: [ iconProvider := CrIconProvider newLocation: self iconsDir ] 
-]
-
-{ #category : #accessing }
-CrApplication >> iconsDir [
-
-	^ self resourcesDir / 'icons' / '16'
+	^ self configuration iconProvider
 ]
 
 { #category : #initialization }
@@ -104,12 +98,6 @@ CrApplication >> isStandalone [
 CrApplication >> prepareAsStandaloneApplication [
 	
 	standalone := true
-]
-
-{ #category : #accessing }
-CrApplication >> resourcesDir [
-
-	^ FileLocator imageDirectory / 'crono'
 ]
 
 { #category : #running }

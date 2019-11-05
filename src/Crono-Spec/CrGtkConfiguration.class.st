@@ -1,6 +1,9 @@
 Class {
 	#name : #CrGtkConfiguration,
 	#superclass : #SpApplicationConfiguration,
+	#instVars : [
+		'iconProvider'
+	],
 	#category : #'Crono-Spec-Application'
 }
 
@@ -53,6 +56,18 @@ CrGtkConfiguration >> ensureAppearance: aName [
 	#NSApplication inObjC sharedApplication setAppearance: appearance
 ]
 
+{ #category : #accessing }
+CrGtkConfiguration >> iconProvider [
+
+	^ iconProvider ifNil: [ iconProvider := CrIconProvider newLocation: self iconsDir ] 
+]
+
+{ #category : #'accessing resources' }
+CrGtkConfiguration >> iconsDir [
+
+	^ self resourcesDir / 'icons' / 'light' / '16'
+]
+
 { #category : #private }
 CrGtkConfiguration >> installTheme: aString [
 
@@ -69,6 +84,12 @@ CrGtkConfiguration >> macAppearanceName [
 CrGtkConfiguration >> macThemeName [
 		
 	^ 'Sierra-light'
+]
+
+{ #category : #'accessing resources' }
+CrGtkConfiguration >> resourcesDir [
+
+	^ FileLocator imageDirectory / 'crono'
 ]
 
 { #category : #accessing }
