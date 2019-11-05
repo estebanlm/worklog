@@ -21,13 +21,18 @@ CrHeaderBar class >> defaultSpec [
 		
 ]
 
+{ #category : #accessing }
+CrHeaderBar >> image: anImage [ 
+
+	iconImage image: anImage
+]
+
 { #category : #initialization }
 CrHeaderBar >> initializePresenters [
 
 	iconImage := self newImage.
 	titleLabel := self newLabel 
-		addStyle: 'title';
-		label: 'TODO'.
+		addStyle: 'title'.
 	shortcutLabel := self newLabel
 		addStyle: 'titleShortcut'
 ]

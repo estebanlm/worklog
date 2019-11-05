@@ -47,6 +47,12 @@ CrSelectionablePanel >> defineOutputPorts [
 				yourself ]
 ]
 
+{ #category : #accessing }
+CrSelectionablePanel >> image: anImage [ 
+	
+	headerBar image: anImage
+]
+
 { #category : #initialization }
 CrSelectionablePanel >> initializePresenters [
 

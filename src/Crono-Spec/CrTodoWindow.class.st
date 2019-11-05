@@ -47,6 +47,7 @@ CrTodoWindow >> initializeListPanel: aNumber [
 	(listPanel := self instantiate: CrSelectionablePanel)
 		panelNumber: aNumber;
 		title: todoList name;
+		image: (self application iconNamed: todoList iconName);
 		instantiatePresenter: CrTodoListPanel.
 	listPanel presenter todoList: todoList
 ]
@@ -59,7 +60,9 @@ CrTodoWindow >> initializePresenters [
 	
 	indexPanel presenter 
 		transmitDo: [ :aTodoList |
-			listPanel title: aTodoList name. 
+			listPanel 
+				image: (self application iconNamed: aTodoList iconName);
+				title: aTodoList name. 
 			listPanel presenter todoList: aTodoList ]
 		transform: [ :aSummaryPresenter | aSummaryPresenter todoList ]
 ]

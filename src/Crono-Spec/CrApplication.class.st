@@ -67,6 +67,7 @@ CrApplication class >> validateSession [
 { #category : #accessing }
 CrApplication >> iconNamed: aSymbol [
 
+	aSymbol ifNil: [ ^ nil ].
 	^ self iconProvider iconNamed: aSymbol
 ]
 
