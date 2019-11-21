@@ -8,7 +8,9 @@ Class {
 	#superclass : #CrTodoPresenter,
 	#instVars : [
 		'indexPanel',
-		'listPanel'
+		'listPanel',
+		'toolbar',
+		'searchField'
 	],
 	#category : #'Crono-Spec-View-Todo'
 }
@@ -16,10 +18,19 @@ Class {
 { #category : #specs }
 CrTodoWindow class >> defaultSpec [
 
-	^ SpPanedLayout newHorizontal
-		position: 30 percent;
-		add: #indexPanel;
-		add: #listPanel;
+	^ SpBoxLayout newVertical 
+		add: (SpBoxLayout newHorizontal
+				add: #toolbar;
+				addLast: #searchField expand: false;
+				yourself)
+			expand: false
+			fill: false
+			padding: 5; 
+		add: (SpPanedLayout newHorizontal
+			position: 30 percent;
+			add: #indexPanel;
+			add: #listPanel;
+			yourself);
 		yourself
 ]
 
@@ -54,7 +65,9 @@ CrTodoWindow >> initializeListPanel: aNumber [
 
 { #category : #initialization }
 CrTodoWindow >> initializePresenters [
-	
+
+	self initializeToolbar.	
+	self initializeSearchField.
 	self initializeIndexPanel: 1.
 	self initializeListPanel: 2.
 	
@@ -65,6 +78,18 @@ CrTodoWindow >> initializePresenters [
 				title: aTodoList name. 
 			listPanel presenter todoList: aTodoList ]
 		transform: [ :aSummaryPresenter | aSummaryPresenter todoList ]
+]
+
+{ #category : #initialization }
+CrTodoWindow >> initializeSearchField [
+
+	searchField := self newTextInput
+]
+
+{ #category : #initialization }
+CrTodoWindow >> initializeToolbar [
+	
+	toolbar := self newToolBar.
 ]
 
 { #category : #initialization }
