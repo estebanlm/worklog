@@ -14,11 +14,10 @@ CrHeaderBar class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
 		spacing: 5;
-		add: #iconImage expand: false;
+		add: #iconImage expand: false fill: false padding: 5;
 		add: #titleLabel expand: false;
 		add: #shortcutLabel expand: false;
 		yourself
-		
 ]
 
 { #category : #accessing }
