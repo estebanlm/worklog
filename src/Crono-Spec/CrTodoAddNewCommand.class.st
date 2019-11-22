@@ -1,6 +1,6 @@
 Class {
 	#name : #CrTodoAddNewCommand,
-	#superclass : #CmCommand,
+	#superclass : #CrCommand,
 	#category : #'Crono-Spec-View-Todo'
 }
 
@@ -10,23 +10,29 @@ CrTodoAddNewCommand class >> defaultDescription [
 	^ 'Add a new task to the current active list.'
 ]
 
+{ #category : #initialization }
+CrTodoAddNewCommand class >> defaultIconName [
+
+	^ #add
+]
+
 { #category : #default }
 CrTodoAddNewCommand class >> defaultName [
 
 	^ 'New Task'
 ]
 
-{ #category : #converting }
-CrTodoAddNewCommand >> asSpecCommand [ 
-	
-	^ super asSpecCommand 
-		iconProvider: CrApplication current;
-		iconNamed: #add;
-		yourself
-]
-
 { #category : #executing }
 CrTodoAddNewCommand >> execute [
 	
-	self halt
+	(CrTodoItemPresenter newApplication: self application)
+		todoList: self todoList;
+		onAdd: [ :todo | context announceItemAdded: todo ];
+		openDialogWithSpec
+]
+
+{ #category : #accessing }
+CrTodoAddNewCommand >> list [
+
+	^ context activeList
 ]
