@@ -14,7 +14,7 @@ CrTodoListPanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #list;
-		add: #actionBar expand: false;
+		"add: #actionBar expand: false;"
 		yourself
 ]
 
@@ -63,12 +63,12 @@ CrTodoListPanel >> firstResponder [
 CrTodoListPanel >> initializePresenters [
 
 	list := self newComponentList.
-	actionBar := self newActionBar
+	"actionBar := self newActionBar
 		add: (self newButton 
 			label: 'New To-Do';
 			action: [ self addNewToDo ];
 			yourself);
-		yourself
+		yourself"
 ]
 
 { #category : #'private factory' }
