@@ -89,6 +89,11 @@ CrTodoWindow >> initializeSearchField [
 CrTodoWindow >> initializeToolbar [
 	
 	toolbar := self newToolBar.
+	toolbar fillWith: (CmCommandGroup forSpec
+		register: (CmCommandGroup forSpec
+			register: (CrTodoAddNewCommand forSpecContext: self);
+			yourself);
+		yourself)
 ]
 
 { #category : #initialization }
