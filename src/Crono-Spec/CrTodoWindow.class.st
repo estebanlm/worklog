@@ -83,7 +83,7 @@ CrTodoWindow >> initializePresenters [
 { #category : #initialization }
 CrTodoWindow >> initializeSearchField [
 
-	searchField := self newTextInput
+	searchField := self newSearchInput
 ]
 
 { #category : #initialization }
