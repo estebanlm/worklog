@@ -72,7 +72,7 @@ CrGtkConfiguration >> iconProvider [
 { #category : #'accessing resources' }
 CrGtkConfiguration >> iconsDir [
 
-	^ self resourcesDir / 'icons' / 'light' / '16'
+	^ self resourcesDir / 'icons' / '16'
 ]
 
 { #category : #private }

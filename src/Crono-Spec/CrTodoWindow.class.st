@@ -20,12 +20,11 @@ CrTodoWindow class >> defaultSpec [
 
 	^ SpBoxLayout newVertical 
 		add: (SpBoxLayout newHorizontal
+				spacing: 5; 
 				add: #toolbar;
 				addLast: #searchField expand: false;
 				yourself)
-			expand: false
-			fill: false
-			padding: 5; 
+			expand: false; 
 		add: (SpPanedLayout newHorizontal
 			position: 30 percent;
 			add: #indexPanel;

@@ -4,12 +4,6 @@ Class {
 	#category : #'Crono-Spec-Application'
 }
 
-{ #category : #'accessing resources' }
-CrGtkDarkConfiguration >> iconsDir [
-
-	^ self resourcesDir / 'icons' / 'dark' / '16'
-]
-
 { #category : #accessing }
 CrGtkDarkConfiguration >> macAppearanceName [
 
