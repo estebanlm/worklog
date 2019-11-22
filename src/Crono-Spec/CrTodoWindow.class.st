@@ -33,6 +33,14 @@ CrTodoWindow class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #initialization }
+CrTodoWindow >> addGlobalShortcutsTo: aWindowPresenter [
+
+	aWindowPresenter 
+		bindKeyCombination: $l command mac | $l control unix | $l control win
+		toAction: [ searchField takeKeyboardFocus ]
+]
+
 { #category : #private }
 CrTodoWindow >> configurationClass [
 
@@ -83,6 +91,8 @@ CrTodoWindow >> initializePresenters [
 CrTodoWindow >> initializeSearchField [
 
 	searchField := self newSearchInput
+		help: 'Search...';
+		yourself
 ]
 
 { #category : #initialization }
