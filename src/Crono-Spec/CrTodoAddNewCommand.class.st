@@ -22,12 +22,20 @@ CrTodoAddNewCommand class >> defaultName [
 	^ 'New Task'
 ]
 
+{ #category : #converting }
+CrTodoAddNewCommand >> asSpecCommand [
+
+	^ super asSpecCommand 
+		shortcutKey: $n platformMeta;
+		yourself
+]
+
 { #category : #executing }
 CrTodoAddNewCommand >> execute [
 	
 	(CrTodoItemPresenter newApplication: self application)
 		todoList: self todoList;
-		onAdd: [ :todo | context announceItemAdded: todo ];
+		onAdd: [ :todo | context itemWasAdded: todo ];
 		openDialogWithSpec
 ]
 
@@ -35,4 +43,10 @@ CrTodoAddNewCommand >> execute [
 CrTodoAddNewCommand >> list [
 
 	^ context activeList
+]
+
+{ #category : #'as yet unclassified' }
+CrTodoAddNewCommand >> todoList [
+	
+	^ context activeTodoList
 ]

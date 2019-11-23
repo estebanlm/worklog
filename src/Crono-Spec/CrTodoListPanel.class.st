@@ -31,9 +31,7 @@ CrTodoListPanel >> addNewToDo [
 
 	(CrTodoItemPresenter newApplication: self application)
 		todoList: self todoList;
-		onAdd: [ :todo | 
-			list items: self newListItemPresenters.
-			list selectItem: todo ];
+		onAdd: [ :todo | self itemWasAdded: todo ];
 		openDialogWithSpec
 ]
 
@@ -69,6 +67,13 @@ CrTodoListPanel >> initializePresenters [
 			action: [ self addNewToDo ];
 			yourself);
 		yourself"
+]
+
+{ #category : #actions }
+CrTodoListPanel >> itemWasAdded: todo [
+		
+	list items: self newListItemPresenters.
+	list selectItem: todo	
 ]
 
 { #category : #'private factory' }

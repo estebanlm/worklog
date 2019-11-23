@@ -22,7 +22,13 @@ CrTodoWindow class >> defaultSpec [
 		add: (SpBoxLayout newHorizontal
 				spacing: 5; 
 				add: #toolbar;
-				addLast: #searchField expand: false;
+				addLast: (SpBoxLayout newVertical 
+					add: #searchField 
+						expand: false 
+						fill: false 
+						padding: 5;
+					yourself) 
+					expand: false;
 				yourself)
 			expand: false; 
 		add: (SpPanedLayout newHorizontal
@@ -33,12 +39,18 @@ CrTodoWindow class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #'as yet unclassified' }
+CrTodoWindow >> activeTodoList [
+
+	^ listPanel presenter todoList
+]
+
 { #category : #initialization }
 CrTodoWindow >> addGlobalShortcutsTo: aWindowPresenter [
 
 	aWindowPresenter 
-		bindKeyCombination: $l command mac | $l control unix | $l control win
-		toAction: [ searchField takeKeyboardFocus ]
+		bindKey: $l toAction: [ searchField takeKeyboardFocus ];
+		bindKeysWith: self toolbarActions
 ]
 
 { #category : #private }
@@ -100,11 +112,7 @@ CrTodoWindow >> initializeToolbar [
 	
 	toolbar := self newToolBar.
 	toolbar beIcons.
-	toolbar fillWith: (CmCommandGroup forSpec
-		register: (CmCommandGroup forSpec
-			register: (CrTodoAddNewCommand forSpecContext: self);
-			yourself);
-		yourself)
+	toolbar fillWith: self toolbarActions
 ]
 
 { #category : #initialization }
@@ -113,8 +121,24 @@ CrTodoWindow >> initializeWindow: aWindowPresenter [
 	super initializeWindow: aWindowPresenter
 ]
 
+{ #category : #'as yet unclassified' }
+CrTodoWindow >> itemWasAdded: aTodoItem [
+
+	listPanel presenter itemWasAdded: aTodoItem
+]
+
 { #category : #initialization }
 CrTodoWindow >> title [ 
 
 	^ 'ToDo'
+]
+
+{ #category : #private }
+CrTodoWindow >> toolbarActions [
+
+	^ (CmCommandGroup forSpec
+		register: (CmCommandGroup forSpec
+			register: (CrTodoAddNewCommand forSpecContext: self);
+			yourself);
+		yourself)
 ]
