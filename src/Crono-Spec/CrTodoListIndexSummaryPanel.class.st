@@ -14,7 +14,7 @@ Class {
 CrTodoListIndexSummaryPanel class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
-		borderWidth: 5;
+		borderWidth: 3;
 		spacing: 5;
 		add: #iconImage expand: false;
 		add: #nameLabel;
