@@ -11,10 +11,8 @@ SpWindowPresenter >> bindKey: aCharacter toAction: aBlock [
 { #category : #'*Crono-Spec' }
 SpWindowPresenter >> bindKeysWith: aCommandGroup [
 
-	contextKeyBindings ifNil: [ 
-		contextKeyBindings := aCommandGroup asKMCategory.
-		^ self ].
-	
-	aCommandGroup asKMCategory allEntries keymaps 
-		do: [ :each | contextKeyBindings addKeymapEntry: each ]
+	aCommandGroup asKMCategory allEntries keymaps do: [ :each | 
+		self 
+			bindKeyCombination: each shortcut  
+			toAction: each action ]
 ]

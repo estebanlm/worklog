@@ -50,11 +50,11 @@ CrTodoWindow >> addGlobalShortcutsTo: aWindowPresenter [
 
 	aWindowPresenter 
 		bindKey: $l toAction: [ searchField takeKeyboardFocus ];
-		bindKeysWith: self allActions
+		bindKeysWith: self allKeyBindingActions
 ]
 
 { #category : #private }
-CrTodoWindow >> allActions [
+CrTodoWindow >> allKeyBindingActions [
 
 	^ CmCommandGroup forSpec
 		register: (CrTodoAddNewCommand forSpecContext: self);

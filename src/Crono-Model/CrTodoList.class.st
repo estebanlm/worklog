@@ -32,13 +32,19 @@ CrTodoList class >> allLists [
 { #category : #accessing }
 CrTodoList class >> baseListFileNames [
 
-	^ { self inboxFileName. self activeFileName }
+	^ { 
+	self inboxFileName. 
+	self activeFileName. 
+	self unsortedFileName }
 ]
 
 { #category : #'accessing lists' }
 CrTodoList class >> baseLists [
 
-	^ { self inbox. self active }
+	^ { 
+	self inbox. 
+	self active. 
+	self unsorted }
 ]
 
 { #category : #'accessing lists' }
@@ -93,6 +99,19 @@ CrTodoList class >> transientInstVarNames [
 	"We will not save this in file (because it will be calculated)"
 
 	^ #()
+]
+
+{ #category : #'accessing lists' }
+CrTodoList class >> unsorted [
+
+	^ (self readListNamed: self unsortedFileName)
+		ifNil: [ (self newType: CrTodoType unsorted) writeToFile ]
+]
+
+{ #category : #accessing }
+CrTodoList class >> unsortedFileName [
+			
+	^ 'Unsorted.ston'
 ]
 
 { #category : #'accessing lists' }

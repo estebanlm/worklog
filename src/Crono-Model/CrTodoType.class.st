@@ -44,6 +44,12 @@ CrTodoType class >> uniqueInstance [
 ]
 
 { #category : #accessing }
+CrTodoType class >> unsorted [
+
+	^ CrTodoTypeUnsorted uniqueInstance
+]
+
+{ #category : #accessing }
 CrTodoType class >> user [
 
 	^ CrTodoTypeUser uniqueInstance
