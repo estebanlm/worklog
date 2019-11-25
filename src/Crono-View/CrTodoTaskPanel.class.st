@@ -47,7 +47,7 @@ CrTodoTaskPanel >> addTodoThen: aBlock [
 	
 	self todoList 
 		addItem: item;
-		writeToFile.
+		save.
 	
 	addAction ifNotNil: [ addAction cull: item ].
 	aBlock value
