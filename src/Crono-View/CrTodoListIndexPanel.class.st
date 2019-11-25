@@ -79,7 +79,7 @@ CrTodoListIndexPanel >> initializePresenters [
 { #category : #accessing }
 CrTodoListIndexPanel >> listWasAdded: aTodoList [
 
-	
+	self refreshThenSelect: aTodoList
 ]
 
 { #category : #accessing }

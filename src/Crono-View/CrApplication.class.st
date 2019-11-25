@@ -2,7 +2,8 @@ Class {
 	#name : #CrApplication,
 	#superclass : #SpApplication,
 	#instVars : [
-		'standalone'
+		'standalone',
+		'repository'
 	],
 	#classVars : [
 		'Current'
@@ -81,10 +82,22 @@ CrApplication >> initialize [
 
 	standalone := false.
 	super initialize.
+	self initializeBackend.
+	self initializeRepository
+]
+
+{ #category : #initialization }
+CrApplication >> initializeBackend [
+	
 	CrApplicationConfiguration readFromFileSystem isDarkTheme
 		ifTrue: [ self useGtkDark ]
 		ifFalse: [ self useGtk ]
-	
+]
+
+{ #category : #initialization }
+CrApplication >> initializeRepository [
+
+	repository := VOUnQLiteRepository on: (FileLocator imageDirectory / 'crono.db')
 ]
 
 { #category : #testing }

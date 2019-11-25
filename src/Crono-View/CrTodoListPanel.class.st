@@ -84,7 +84,7 @@ CrTodoListPanel >> itemWasAdded: todo [
 { #category : #'private factory' }
 CrTodoListPanel >> newListItemPresenters [
 	
-	^ self todoList items
+	^ self todoList tasks
 		collect: [ :each | 
 			(self instantiate: CrTodoListTaskSummaryPanel on: each)
 				todoList: self todoList;

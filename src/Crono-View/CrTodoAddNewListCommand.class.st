@@ -35,14 +35,14 @@ CrTodoAddNewListCommand >> execute [
 	| dialog list |
 	
 	dialog := CrRequestDialog new
-		title: 'Test';
-		label: 'Please blah';
+		title: 'New List';
+		label: 'Please enter your list name';
 		openDialogWithSpec.
 	
 	dialog isOk ifFalse: [ ^ self ].
 	dialog presenter text isEmptyOrNil ifTrue: [ ^ self ].
 	
 	list := CrTodoList newName: dialog presenter text.
-	list writeToDisk.
+	list writeToFile.
 	context listWasAdded: list
 ]

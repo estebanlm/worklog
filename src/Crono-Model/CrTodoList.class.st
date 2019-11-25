@@ -60,6 +60,12 @@ CrTodoList class >> inboxFileName [
 	^ 'Inbox.ston'
 ]
 
+{ #category : #testing }
+CrTodoList class >> isVoyageRoot [
+
+	^ true
+]
+
 { #category : #'instance creation' }
 CrTodoList class >> newName: aString [
 
@@ -136,6 +142,24 @@ CrTodoList class >> userLists [
 		thenCollect: [ :each | self readList: each ]
 ]
 
+{ #category : #persistence }
+CrTodoList class >> voyageCollectionName [
+
+	^ 'lists'
+]
+
+{ #category : #persistence }
+CrTodoList class >> voyageType [
+	<voyageDescription>
+	
+	^ VOToOneDescription new 
+		attributeName: 'type';
+		accessor: (MAPluggableAccessor 
+			read: [ :aList | aList type name ]
+			write: [ :aList :typeName | aList setType: (CrTodoType perform: typeName asSymbol) ]);
+		yourself
+]
+
 { #category : #comparing }
 CrTodoList >> = other [
 
@@ -185,7 +209,7 @@ CrTodoList >> initialize [
 CrTodoList >> initializeType: aType [
 
 	self initialize.
-	type := aType
+	self setType: aType
 ]
 
 { #category : #accessing }
@@ -229,6 +253,12 @@ CrTodoList >> printOn: stream [
 
 	super printOn: stream.
 	stream << '(' << self name << ')'
+]
+
+{ #category : #private }
+CrTodoList >> setType: aType [
+
+	type := aType
 ]
 
 { #category : #accessing }

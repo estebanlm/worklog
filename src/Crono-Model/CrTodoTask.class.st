@@ -9,10 +9,35 @@ Class {
 	#category : #'Crono-Model'
 }
 
+{ #category : #testing }
+CrTodoTask class >> isVoyageRoot [
+
+	^ true
+]
+
 { #category : #'ston-core' }
 CrTodoTask class >> stonName [
 
 	^ 'Task'
+]
+
+{ #category : #persistence }
+CrTodoTask class >> voyageCollectionName [
+
+	^ 'tasks'
+]
+
+{ #category : #persistence }
+CrTodoTask class >> voyageType [
+	<voyageDescription>
+	
+	^ VOToOneDescription new 
+		attributeName: 'doneDate';
+		accessor: (MAPluggableAccessor 
+			read: [ :aTask | aTask doneDate ifNotNil: #asString ]
+			write: [ :aTask :date | 
+				date ifNotNil: [ aTask setDoneDate: (DateAndTime fromString: date) ] ]);
+		yourself
 ]
 
 { #category : #accessing }
@@ -52,4 +77,10 @@ CrTodoTask >> notes [
 { #category : #accessing }
 CrTodoTask >> notes: anObject [
 	notes := anObject
+]
+
+{ #category : #private }
+CrTodoTask >> setDoneDate: aDateAndTime [
+	
+	doneDate := aDateAndTime
 ]

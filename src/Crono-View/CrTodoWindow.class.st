@@ -101,11 +101,12 @@ CrTodoWindow >> initializePresenters [
 	
 	indexPanel presenter 
 		transmitDo: [ :aTodoList |
-			listPanel 
-				image: (self application iconNamed: aTodoList iconName);
-				title: aTodoList name. 
-			listPanel presenter todoList: aTodoList ]
-		transform: [ :aSummaryPresenter | aSummaryPresenter todoList ]
+			aTodoList ifNotNil: [ 
+				listPanel 
+					image: (self application iconNamed: aTodoList iconName);
+					title: aTodoList name. 
+				listPanel presenter todoList: aTodoList ] ]
+		transform: [ :aSummaryPresenter | aSummaryPresenter ifNotNil: #todoList ]
 ]
 
 { #category : #initialization }
