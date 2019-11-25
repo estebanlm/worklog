@@ -112,6 +112,12 @@ CrApplication >> prepareAsStandaloneApplication [
 	standalone := true
 ]
 
+{ #category : #accessing }
+CrApplication >> repository [ 
+
+	^ repository
+]
+
 { #category : #running }
 CrApplication >> run [
 

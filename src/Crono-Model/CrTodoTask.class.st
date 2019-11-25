@@ -28,6 +28,12 @@ CrTodoTask class >> voyageCollectionName [
 ]
 
 { #category : #persistence }
+CrTodoTask class >> voyageRepository [
+
+	^ CrApplication current repository
+]
+
+{ #category : #persistence }
 CrTodoTask class >> voyageType [
 	<voyageDescription>
 	

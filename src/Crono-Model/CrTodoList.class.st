@@ -10,26 +10,28 @@ Class {
 	#category : #'Crono-Model'
 }
 
-{ #category : #'accessing lists' }
+{ #category : #accessing }
 CrTodoList class >> active [
 
-	^ (self readListNamed: self activeFileName)
-		ifNil: [ (self newType: CrTodoType active) writeToFile ]
+	^ self selectOne: [ :each | each type = CrTodoType active ]
 ]
 
-{ #category : #accessing }
+{ #category : #legacy }
 CrTodoList class >> activeFileName [
 			
 	^ 'Active.ston'
 ]
 
-{ #category : #'accessing lists' }
+{ #category : #accessing }
 CrTodoList class >> allLists [
-
-	^ self baseLists, self userLists
+	| allLists |
+	
+	allLists := self selectAll.
+	allLists ifEmpty: [ allLists := self createBaseLists ].
+	^ allLists
 ]
 
-{ #category : #accessing }
+{ #category : #legacy }
 CrTodoList class >> baseListFileNames [
 
 	^ { 
@@ -38,23 +40,22 @@ CrTodoList class >> baseListFileNames [
 	self unsortedFileName }
 ]
 
-{ #category : #'accessing lists' }
-CrTodoList class >> baseLists [
-
+{ #category : #private }
+CrTodoList class >> createBaseLists [
+	
 	^ { 
-	self inbox. 
-	self active. 
-	self unsorted }
-]
-
-{ #category : #'accessing lists' }
-CrTodoList class >> inbox [
-
-	^ (self readListNamed: self inboxFileName)
-		ifNil: [ (self newType: CrTodoType inbox) writeToFile ]
+		(CrTodoList newType: CrTodoType inbox) save.
+		(CrTodoList newType: CrTodoType active) save.
+		(CrTodoList newType: CrTodoType unsorted) save }
 ]
 
 { #category : #accessing }
+CrTodoList class >> inbox [
+
+	^ self selectOne: [ :each | each type = CrTodoType inbox ]
+]
+
+{ #category : #legacy }
 CrTodoList class >> inboxFileName [
 			
 	^ 'Inbox.ston'
@@ -82,7 +83,7 @@ CrTodoList class >> newType: aListType [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : #legacy }
 CrTodoList class >> readList: reference [
 
 	reference exists ifFalse: [ ^ nil ].
@@ -90,62 +91,59 @@ CrTodoList class >> readList: reference [
 		STON fromStream: stream ]
 ]
 
-{ #category : #private }
+{ #category : #legacy }
 CrTodoList class >> readListNamed: aName [
 
 	^ self readList: self todoListReference / aName
 ]
 
-{ #category : #'private accessing' }
+{ #category : #legacy }
 CrTodoList class >> stonAllInstVarNames [
 	
 	^ super stonAllInstVarNames copyWithoutAll: self transientInstVarNames
 ]
 
-{ #category : #'ston-core' }
+{ #category : #legacy }
 CrTodoList class >> stonName [
 
 	^ 'TodoList'
 ]
 
-{ #category : #private }
+{ #category : #legacy }
 CrTodoList class >> todoListReference [
 	
 	^ CrCronoConfiguration readFromFileSystem todoListReference
 ]
 
-{ #category : #'private accessing' }
+{ #category : #legacy }
 CrTodoList class >> transientInstVarNames [
 	"We will not save this in file (because it will be calculated)"
 
 	^ #()
 ]
 
-{ #category : #'accessing lists' }
+{ #category : #accessing }
 CrTodoList class >> unsorted [
 
-	^ (self readListNamed: self unsortedFileName)
-		ifNil: [ (self newType: CrTodoType unsorted) writeToFile ]
+	^ self selectOne: [ :each | each type = CrTodoType unsorted ]
 ]
 
-{ #category : #accessing }
+{ #category : #legacy }
 CrTodoList class >> unsortedFileName [
 			
 	^ 'Unsorted.ston'
-]
-
-{ #category : #'accessing lists' }
-CrTodoList class >> userLists [
-
-	^ (self todoListReference allChildrenMatching: '*.ston')
-		reject: [ :each | self baseListFileNames includes: each basename ]
-		thenCollect: [ :each | self readList: each ]
 ]
 
 { #category : #persistence }
 CrTodoList class >> voyageCollectionName [
 
 	^ 'lists'
+]
+
+{ #category : #persistence }
+CrTodoList class >> voyageRepository [
+
+	^ CrApplication current repository
 ]
 
 { #category : #persistence }
