@@ -16,7 +16,7 @@ BaselineOfCrono >> baseline: spec [
 		spec 
 			package: 'WorkLog-Client';
 			package: 'Crono-Model';
-			package: 'Crono-Spec' ]
+			package: 'Crono-View' ]
 ]
 
 { #category : #'external projects' }
