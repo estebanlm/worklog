@@ -5,7 +5,7 @@ Class {
 		'name',
 		'iconName',
 		'type',
-		'items'
+		'tasks'
 	],
 	#category : #'Crono-Model'
 }
@@ -61,6 +61,14 @@ CrTodoList class >> inboxFileName [
 ]
 
 { #category : #'instance creation' }
+CrTodoList class >> newName: aString [
+
+	^ (self newType: CrTodoType user) 
+		name: aString;
+		yourself
+]
+
+{ #category : #'instance creation' }
 CrTodoList class >> newType: aListType [
 
 	^ self basicNew
@@ -86,6 +94,12 @@ CrTodoList class >> readListNamed: aName [
 CrTodoList class >> stonAllInstVarNames [
 	
 	^ super stonAllInstVarNames copyWithoutAll: self transientInstVarNames
+]
+
+{ #category : #'ston-core' }
+CrTodoList class >> stonName [
+
+	^ 'TodoList'
 ]
 
 { #category : #private }
@@ -122,16 +136,30 @@ CrTodoList class >> userLists [
 		thenCollect: [ :each | self readList: each ]
 ]
 
-{ #category : #adding }
-CrTodoList >> addItem: anItem [ 
+{ #category : #comparing }
+CrTodoList >> = other [
 
-	items add: anItem
+	self species = other species ifFalse: [ ^ false ].
+	self type = other type ifFalse: [ ^ false ].
+	^ self name = other name
 ]
 
-{ #category : #'as yet unclassified' }
-CrTodoList >> doneItems [
+{ #category : #accessing }
+CrTodoList >> addItem: anItem [ 
 
-	^ self items select: #isDone
+	tasks add: anItem
+]
+
+{ #category : #accessing }
+CrTodoList >> doneTasks [
+
+	^ self tasks select: #isDone
+]
+
+{ #category : #comparing }
+CrTodoList >> hash [
+
+	^ self type hash bitXor: self name hash
 ]
 
 { #category : #accessing }
@@ -150,7 +178,7 @@ CrTodoList >> iconName: aSymbol [
 CrTodoList >> initialize [
 
 	super initialize.
-	items := OrderedCollection new
+	tasks := OrderedCollection new
 ]
 
 { #category : #initialization }
@@ -158,18 +186,6 @@ CrTodoList >> initializeType: aType [
 
 	self initialize.
 	type := aType
-]
-
-{ #category : #accessing }
-CrTodoList >> items [
-
-	^ items
-]
-
-{ #category : #accessing }
-CrTodoList >> items: aCollection [
-
-	items := aCollection asOrderedCollection
 ]
 
 { #category : #accessing }
@@ -184,28 +200,47 @@ CrTodoList >> name: aString [
 	name := aString
 ]
 
-{ #category : #'as yet unclassified' }
-CrTodoList >> numberDoneItems [
+{ #category : #accessing }
+CrTodoList >> numberDoneTasks [
 
-	^ self doneItems size
+	^ self doneTasks size
 ]
 
-{ #category : #'as yet unclassified' }
-CrTodoList >> numberItems [
+{ #category : #accessing }
+CrTodoList >> numberPendingTasks [
 
-	^ self items size
+	^ self pendingTasks size
 ]
 
-{ #category : #'as yet unclassified' }
-CrTodoList >> numberPendingItems [
+{ #category : #accessing }
+CrTodoList >> numberTasks [
 
-	^ self pendingItems size
+	^ self tasks size
 ]
 
-{ #category : #'as yet unclassified' }
-CrTodoList >> pendingItems [
+{ #category : #accessing }
+CrTodoList >> pendingTasks [
 
-	^ self items reject: #isDone
+	^ self tasks reject: #isDone
+]
+
+{ #category : #printing }
+CrTodoList >> printOn: stream [
+
+	super printOn: stream.
+	stream << '(' << self name << ')'
+]
+
+{ #category : #accessing }
+CrTodoList >> tasks [
+
+	^ tasks
+]
+
+{ #category : #accessing }
+CrTodoList >> tasks: aCollection [
+
+	tasks := aCollection asOrderedCollection
 ]
 
 { #category : #accessing }

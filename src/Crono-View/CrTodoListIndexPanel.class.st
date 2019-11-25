@@ -21,7 +21,7 @@ CrTodoListIndexPanel class >> defaultSpec [
 CrTodoListIndexPanel >> addNewList [
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 CrTodoListIndexPanel >> allListPresenters [
 		
 	^ self allLists collect: [ :each | self instantiate: CrTodoListIndexSummaryPanel on: each  ]
@@ -77,9 +77,28 @@ CrTodoListIndexPanel >> initializePresenters [
 ]
 
 { #category : #accessing }
+CrTodoListIndexPanel >> listWasAdded: aTodoList [
+
+	
+]
+
+{ #category : #accessing }
+CrTodoListIndexPanel >> refresh [
+
+	self refreshThenSelect: self selectedItem
+]
+
+{ #category : #accessing }
 CrTodoListIndexPanel >> refreshSelection [
 
 	self selectedItem ifNotNil: #refresh
+]
+
+{ #category : #accessing }
+CrTodoListIndexPanel >> refreshThenSelect: aTodoList [
+
+	list presenters: self allListPresenters.
+	list selectItem: aTodoList
 ]
 
 { #category : #accessing }

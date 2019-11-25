@@ -55,10 +55,10 @@ CrTodoListIndexSummaryPanel >> setModelBeforeInitialization: aTodoList [
 { #category : #accessing }
 CrTodoListIndexSummaryPanel >> statusString [
 
-	todoList numberPendingItems isZero ifTrue: [ ^ '' ].
+	todoList numberPendingTasks isZero ifTrue: [ ^ '' ].
 	^ '{1}/{2}' format: { 
-			self todoList numberDoneItems. 
-			self todoList numberItems }
+			self todoList numberDoneTasks. 
+			self todoList numberTasks }
 ]
 
 { #category : #accessing }

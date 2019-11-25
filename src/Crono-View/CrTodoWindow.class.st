@@ -39,7 +39,7 @@ CrTodoWindow class >> defaultSpec [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 CrTodoWindow >> activeTodoList [
 
 	^ listPanel presenter todoList
@@ -130,11 +130,17 @@ CrTodoWindow >> initializeWindow: aWindowPresenter [
 	super initializeWindow: aWindowPresenter
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 CrTodoWindow >> itemWasAdded: aTodoItem [
 
 	listPanel presenter itemWasAdded: aTodoItem.
 	indexPanel presenter refreshSelection.
+]
+
+{ #category : #accessing }
+CrTodoWindow >> listWasAdded: aTodoList [
+
+	indexPanel presenter listWasAdded: aTodoList
 ]
 
 { #category : #initialization }

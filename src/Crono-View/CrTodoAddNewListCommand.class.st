@@ -32,6 +32,17 @@ CrTodoAddNewListCommand >> asSpecCommand [
 
 { #category : #executing }
 CrTodoAddNewListCommand >> execute [
+	| dialog list |
 	
-	self halt
+	dialog := CrRequestDialog new
+		title: 'Test';
+		label: 'Please blah';
+		openDialogWithSpec.
+	
+	dialog isOk ifFalse: [ ^ self ].
+	dialog presenter text isEmptyOrNil ifTrue: [ ^ self ].
+	
+	list := CrTodoList newName: dialog presenter text.
+	list writeToDisk.
+	context listWasAdded: list
 ]
