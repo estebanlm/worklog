@@ -43,6 +43,6 @@ CrTodoAddNewListCommand >> execute [
 	dialog presenter text isEmptyOrNil ifTrue: [ ^ self ].
 	
 	list := CrTodoList newName: dialog presenter text.
-	list writeToFile.
+	list save.
 	context listWasAdded: list
 ]
