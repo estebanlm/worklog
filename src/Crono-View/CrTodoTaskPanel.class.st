@@ -1,5 +1,11 @@
+"
+I am a panel to show an item content.
+I can be shown as dialog or as part of another component.
+
+I show a task title, description, completion and maybe other details.
+"
 Class {
-	#name : #CrTodoItemPresenter,
+	#name : #CrTodoTaskPanel,
 	#superclass : #CrTodoPresenter,
 	#instVars : [
 		'nameTextInput',
@@ -12,7 +18,7 @@ Class {
 }
 
 { #category : #specs }
-CrTodoItemPresenter class >> defaultSpec [
+CrTodoTaskPanel class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
 		beNotHomogeneous;
@@ -28,7 +34,7 @@ CrTodoItemPresenter class >> defaultSpec [
 ]
 
 { #category : #actions }
-CrTodoItemPresenter >> addTodoThen: aBlock [
+CrTodoTaskPanel >> addTodoThen: aBlock [
 	| item |
 
 	self validate ifFalse: [ ^ self ].
@@ -48,7 +54,7 @@ CrTodoItemPresenter >> addTodoThen: aBlock [
 ]
 
 { #category : #initialization }
-CrTodoItemPresenter >> initializeDialogWindow: aWindowDialogPresenter [
+CrTodoTaskPanel >> initializeDialogWindow: aWindowDialogPresenter [
 
 	aWindowDialogPresenter 
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
@@ -62,7 +68,7 @@ CrTodoItemPresenter >> initializeDialogWindow: aWindowDialogPresenter [
 ]
 
 { #category : #initialization }
-CrTodoItemPresenter >> initializePresenters [
+CrTodoTaskPanel >> initializePresenters [
 
 	doneCheckbox := self newCheckBox.
 	nameTextInput := self newTextInput
@@ -75,7 +81,7 @@ CrTodoItemPresenter >> initializePresenters [
 ]
 
 { #category : #initialization }
-CrTodoItemPresenter >> initializeWindow: aWindowPresenter [
+CrTodoTaskPanel >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
 		title: 'To-Do';
@@ -84,25 +90,25 @@ CrTodoItemPresenter >> initializeWindow: aWindowPresenter [
 ]
 
 { #category : #events }
-CrTodoItemPresenter >> onAdd: aBlock [
+CrTodoTaskPanel >> onAdd: aBlock [
 
 	addAction := aBlock
 ]
 
 { #category : #accessing }
-CrTodoItemPresenter >> todoList [
+CrTodoTaskPanel >> todoList [
 
 	^ todoList
 ]
 
 { #category : #accessing }
-CrTodoItemPresenter >> todoList: aList [
+CrTodoTaskPanel >> todoList: aList [
 
 	^ todoList := aList
 ]
 
 { #category : #actions }
-CrTodoItemPresenter >> validate [
+CrTodoTaskPanel >> validate [
 	
 	^ true
 ]

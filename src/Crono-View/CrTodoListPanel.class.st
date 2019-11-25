@@ -1,3 +1,7 @@
+"
+I am a panel to show a list of tasks.
+
+"
 Class {
 	#name : #CrTodoListPanel,
 	#superclass : #SpPresenter,
@@ -29,7 +33,7 @@ CrTodoListPanel >> addGlobalShortcutsTo: aWindowPresenter [
 { #category : #actions }
 CrTodoListPanel >> addNewToDo [
 
-	(CrTodoItemPresenter newApplication: self application)
+	(CrTodoTaskPanel newApplication: self application)
 		todoList: self todoList;
 		onAdd: [ :todo | self itemWasAdded: todo ];
 		openDialogWithSpec
@@ -81,7 +85,7 @@ CrTodoListPanel >> newListItemPresenters [
 	
 	^ self todoList items
 		collect: [ :each | 
-			(self instantiate: CrTodoListItemPanel on: each)
+			(self instantiate: CrTodoListTaskSummaryPanel on: each)
 				todoList: self todoList;
 				yourself ]
 ]

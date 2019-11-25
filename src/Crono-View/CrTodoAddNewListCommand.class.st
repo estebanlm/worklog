@@ -1,7 +1,7 @@
 Class {
 	#name : #CrTodoAddNewListCommand,
 	#superclass : #CrCommand,
-	#category : #'Crono-View-Todo'
+	#category : #'Crono-View-Todo-Commands'
 }
 
 { #category : #default }

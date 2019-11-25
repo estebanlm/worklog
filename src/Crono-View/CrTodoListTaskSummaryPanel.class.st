@@ -1,5 +1,9 @@
+"
+I am a panel to show a summary of a task.
+Summary contains: title, completion, [project] and maybe other details.
+"
 Class {
-	#name : #CrTodoListItemPanel,
+	#name : #CrTodoListTaskSummaryPanel,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'todoList',
@@ -11,7 +15,7 @@ Class {
 }
 
 { #category : #specs }
-CrTodoListItemPanel class >> defaultSpec [
+CrTodoListTaskSummaryPanel class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
 		add: #doneCheckbox expand: false;
@@ -20,7 +24,7 @@ CrTodoListItemPanel class >> defaultSpec [
 ]
 
 { #category : #initialization }
-CrTodoListItemPanel >> initializePresenters [
+CrTodoListTaskSummaryPanel >> initializePresenters [
 
 	doneCheckbox := self newCheckBox 
 		state: item isDone;
@@ -29,30 +33,30 @@ CrTodoListItemPanel >> initializePresenters [
 ]
 
 { #category : #accessing }
-CrTodoListItemPanel >> item [
+CrTodoListTaskSummaryPanel >> item [
 
 	^ item
 ]
 
 { #category : #'accessing model' }
-CrTodoListItemPanel >> setModelBeforeInitialization: aListItem [
+CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aListItem [
 
 	item := aListItem
 ]
 
 { #category : #actions }
-CrTodoListItemPanel >> stateChangedTo: state [
+CrTodoListTaskSummaryPanel >> stateChangedTo: state [
 	
 	self item done: state.
 	self todoList ifNotNil: #writeToFile
 ]
 
 { #category : #accessing }
-CrTodoListItemPanel >> todoList [
+CrTodoListTaskSummaryPanel >> todoList [
 	^ todoList
 ]
 
 { #category : #accessing }
-CrTodoListItemPanel >> todoList: anObject [
+CrTodoListTaskSummaryPanel >> todoList: anObject [
 	todoList := anObject
 ]

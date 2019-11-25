@@ -1,7 +1,7 @@
 Class {
 	#name : #CrTodoAddNewCommand,
 	#superclass : #CrCommand,
-	#category : #'Crono-View-Todo'
+	#category : #'Crono-View-Todo-Commands'
 }
 
 { #category : #default }
@@ -33,7 +33,7 @@ CrTodoAddNewCommand >> asSpecCommand [
 { #category : #executing }
 CrTodoAddNewCommand >> execute [
 	
-	(CrTodoItemPresenter newApplication: self application)
+	(CrTodoTaskPanel newApplication: self application)
 		todoList: self todoList;
 		onAdd: [ :todo | context itemWasAdded: todo ];
 		openDialogWithSpec
