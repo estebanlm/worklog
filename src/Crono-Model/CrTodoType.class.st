@@ -36,6 +36,12 @@ CrTodoType class >> inbox [
 	^ CrTodoTypeInbox uniqueInstance
 ]
 
+{ #category : #'ston-core' }
+CrTodoType class >> stonName [
+
+	^ 'Type'
+]
+
 { #category : #'instance creation' }
 CrTodoType class >> uniqueInstance [
 

@@ -40,6 +40,12 @@ CrTodoListIndexSummaryPanel >> initializePresenters [
 		label: self statusString
 ]
 
+{ #category : #accessing }
+CrTodoListIndexSummaryPanel >> refresh [
+
+	statusLabel label: self statusString
+]
+
 { #category : #initialization }
 CrTodoListIndexSummaryPanel >> setModelBeforeInitialization: aTodoList [
 

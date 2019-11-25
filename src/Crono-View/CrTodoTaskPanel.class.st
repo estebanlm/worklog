@@ -39,7 +39,7 @@ CrTodoTaskPanel >> addTodoThen: aBlock [
 
 	self validate ifFalse: [ ^ self ].
 
-	item := CrTodoItem new
+	item := CrTodoTask new
 		name: nameTextInput text asString trimmed;
 		notes: notesText text asString trimmed;
 		done: doneCheckbox state;

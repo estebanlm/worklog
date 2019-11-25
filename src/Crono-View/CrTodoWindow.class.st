@@ -133,7 +133,8 @@ CrTodoWindow >> initializeWindow: aWindowPresenter [
 { #category : #'as yet unclassified' }
 CrTodoWindow >> itemWasAdded: aTodoItem [
 
-	listPanel presenter itemWasAdded: aTodoItem
+	listPanel presenter itemWasAdded: aTodoItem.
+	indexPanel presenter refreshSelection.
 ]
 
 { #category : #initialization }

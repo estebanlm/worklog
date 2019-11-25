@@ -1,5 +1,5 @@
 Class {
-	#name : #CrTodoItem,
+	#name : #CrTodoTask,
 	#superclass : #Object,
 	#instVars : [
 		'name',
@@ -9,8 +9,14 @@ Class {
 	#category : #'Crono-Model'
 }
 
+{ #category : #'ston-core' }
+CrTodoTask class >> stonName [
+
+	^ 'Task'
+]
+
 { #category : #accessing }
-CrTodoItem >> done: aBoolean [
+CrTodoTask >> done: aBoolean [
 
 	doneDate := aBoolean 
 		ifTrue: [ Date today ]
@@ -18,32 +24,32 @@ CrTodoItem >> done: aBoolean [
 ]
 
 { #category : #accessing }
-CrTodoItem >> doneDate [
+CrTodoTask >> doneDate [
 	^ doneDate
 ]
 
 { #category : #testing }
-CrTodoItem >> isDone [
+CrTodoTask >> isDone [
 
 	^ doneDate notNil
 ]
 
 { #category : #accessing }
-CrTodoItem >> name [
+CrTodoTask >> name [
 	^ name
 ]
 
 { #category : #accessing }
-CrTodoItem >> name: anObject [
+CrTodoTask >> name: anObject [
 	name := anObject
 ]
 
 { #category : #accessing }
-CrTodoItem >> notes [
+CrTodoTask >> notes [
 	^ notes
 ]
 
 { #category : #accessing }
-CrTodoItem >> notes: anObject [
+CrTodoTask >> notes: anObject [
 	notes := anObject
 ]

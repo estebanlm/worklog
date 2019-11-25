@@ -77,7 +77,8 @@ CrTodoListPanel >> initializePresenters [
 CrTodoListPanel >> itemWasAdded: todo [
 		
 	list items: self newListItemPresenters.
-	list selectItem: todo	
+	list selectItem: todo.
+	list takeKeyboardFocus
 ]
 
 { #category : #'private factory' }

@@ -77,6 +77,12 @@ CrTodoListIndexPanel >> initializePresenters [
 ]
 
 { #category : #accessing }
+CrTodoListIndexPanel >> refreshSelection [
+
+	self selectedItem ifNotNil: #refresh
+]
+
+{ #category : #accessing }
 CrTodoListIndexPanel >> selectedItem [
 	^ list selection selectedItem
 ]
