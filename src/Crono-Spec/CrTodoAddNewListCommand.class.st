@@ -33,20 +33,5 @@ CrTodoAddNewListCommand >> asSpecCommand [
 { #category : #executing }
 CrTodoAddNewListCommand >> execute [
 	
-	(CrTodoItemPresenter newApplication: self application)
-		todoList: self todoList;
-		onAdd: [ :todo | context itemWasAdded: todo ];
-		openDialogWithSpec
-]
-
-{ #category : #accessing }
-CrTodoAddNewListCommand >> list [
-
-	^ context activeList
-]
-
-{ #category : #'as yet unclassified' }
-CrTodoAddNewListCommand >> todoList [
-	
-	^ context activeTodoList
+	self halt
 ]

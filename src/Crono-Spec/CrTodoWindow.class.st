@@ -50,7 +50,16 @@ CrTodoWindow >> addGlobalShortcutsTo: aWindowPresenter [
 
 	aWindowPresenter 
 		bindKey: $l toAction: [ searchField takeKeyboardFocus ];
-		bindKeysWith: self toolbarActions
+		bindKeysWith: self allActions
+]
+
+{ #category : #private }
+CrTodoWindow >> allActions [
+
+	^ CmCommandGroup forSpec
+		register: (CrTodoAddNewCommand forSpecContext: self);
+		register: (CrTodoAddNewListCommand forSpecContext: self);
+		yourself
 ]
 
 { #category : #private }
@@ -136,9 +145,7 @@ CrTodoWindow >> title [
 { #category : #private }
 CrTodoWindow >> toolbarActions [
 
-	^ (CmCommandGroup forSpec
-		register: (CmCommandGroup forSpec
-			register: (CrTodoAddNewCommand forSpecContext: self);
-			yourself);
-		yourself)
+	^ CmCommandGroup forSpec
+		register: (CrTodoAddNewCommand forSpecContext: self);
+		yourself
 ]

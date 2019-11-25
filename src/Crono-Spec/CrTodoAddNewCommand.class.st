@@ -39,12 +39,6 @@ CrTodoAddNewCommand >> execute [
 		openDialogWithSpec
 ]
 
-{ #category : #accessing }
-CrTodoAddNewCommand >> list [
-
-	^ context activeList
-]
-
 { #category : #'as yet unclassified' }
 CrTodoAddNewCommand >> todoList [
 	
