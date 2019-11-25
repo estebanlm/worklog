@@ -15,3 +15,9 @@ CrTodoTypeUnsorted >> name [
 	
 	^ 'Unsorted'
 ]
+
+{ #category : #accessing }
+CrTodoTypeUnsorted >> typeName [
+
+	^ #unsorted
+]

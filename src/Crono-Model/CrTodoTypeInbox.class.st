@@ -15,3 +15,9 @@ CrTodoTypeInbox >> name [
 	
 	^ 'Inbox'
 ]
+
+{ #category : #accessing }
+CrTodoTypeInbox >> typeName [
+
+	^ #inbox
+]

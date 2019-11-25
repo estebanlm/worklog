@@ -94,3 +94,9 @@ CrTodoType >> stonOn: stonWriter [
 		writeObject: CrTodoType basicNew
 		listSingleton: self name asSymbol
 ]
+
+{ #category : #accessing }
+CrTodoType >> typeName [
+
+	^ self subclassResponsibility
+]

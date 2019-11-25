@@ -15,3 +15,9 @@ CrTodoTypeUser >> name [
 	
 	^ 'User'
 ]
+
+{ #category : #accessing }
+CrTodoTypeUser >> typeName [
+
+	^ #user
+]

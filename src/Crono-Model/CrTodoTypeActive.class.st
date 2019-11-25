@@ -15,3 +15,9 @@ CrTodoTypeActive >> name [
 	
 	^ 'Active'
 ]
+
+{ #category : #accessing }
+CrTodoTypeActive >> typeName [
+
+	^ #active
+]

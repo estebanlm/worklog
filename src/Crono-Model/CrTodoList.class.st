@@ -153,7 +153,7 @@ CrTodoList class >> voyageType [
 	^ VOToOneDescription new 
 		attributeName: 'type';
 		accessor: (MAPluggableAccessor 
-			read: [ :aList | aList type name ]
+			read: [ :aList | aList type typeName ]
 			write: [ :aList :typeName | aList setType: (CrTodoType perform: typeName asSymbol) ]);
 		yourself
 ]
