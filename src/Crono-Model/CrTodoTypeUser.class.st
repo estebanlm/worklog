@@ -5,6 +5,12 @@ Class {
 }
 
 { #category : #accessing }
+CrTodoTypeUser >> defaultIconName [
+
+	^ #todo
+]
+
+{ #category : #accessing }
 CrTodoTypeUser >> defaultName [
 
 	^ 'New list'
