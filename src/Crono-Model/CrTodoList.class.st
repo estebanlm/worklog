@@ -13,7 +13,7 @@ Class {
 { #category : #accessing }
 CrTodoList class >> active [
 
-	^ self selectOne: [ :each | each type = CrTodoType active ]
+	^ self selectOne: [ :each | each type = CrTodoType active typeName ]
 ]
 
 { #category : #legacy }
@@ -52,7 +52,7 @@ CrTodoList class >> createBaseLists [
 { #category : #accessing }
 CrTodoList class >> inbox [
 
-	^ self selectOne: [ :each | each type = CrTodoType inbox ]
+	^ self selectOne: [ :each | each type = CrTodoType inbox typeName ]
 ]
 
 { #category : #legacy }
@@ -65,6 +65,12 @@ CrTodoList class >> inboxFileName [
 CrTodoList class >> isVoyageRoot [
 
 	^ true
+]
+
+{ #category : #accessing }
+CrTodoList class >> listNamed: aString [
+	
+	^ self selectOne: [ :each | each name = aString ]
 ]
 
 { #category : #'instance creation' }
@@ -125,7 +131,7 @@ CrTodoList class >> transientInstVarNames [
 { #category : #accessing }
 CrTodoList class >> unsorted [
 
-	^ self selectOne: [ :each | each type = CrTodoType unsorted ]
+	^ self selectOne: [ :each | each type = CrTodoType unsorted typeName ]
 ]
 
 { #category : #legacy }

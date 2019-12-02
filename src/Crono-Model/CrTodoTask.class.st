@@ -85,6 +85,13 @@ CrTodoTask >> notes: anObject [
 	notes := anObject
 ]
 
+{ #category : #printing }
+CrTodoTask >> printOn: stream [
+
+	super printOn: stream.
+	stream << '(' << self name << ')'
+]
+
 { #category : #private }
 CrTodoTask >> setDoneDate: aDateAndTime [
 	
