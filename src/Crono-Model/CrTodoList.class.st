@@ -173,9 +173,9 @@ CrTodoList >> = other [
 ]
 
 { #category : #accessing }
-CrTodoList >> addItem: anItem [ 
+CrTodoList >> addTask: aTask [ 
 
-	tasks add: anItem
+	tasks add: aTask
 ]
 
 { #category : #accessing }
@@ -257,6 +257,12 @@ CrTodoList >> printOn: stream [
 
 	super printOn: stream.
 	stream << '(' << self name << ')'
+]
+
+{ #category : #accessing }
+CrTodoList >> removeAllTasks [
+	
+	tasks := Array new
 ]
 
 { #category : #private }
