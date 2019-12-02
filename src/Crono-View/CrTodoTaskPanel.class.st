@@ -22,11 +22,13 @@ CrTodoTaskPanel class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
 		beNotHomogeneous;
+		borderWidth: 3;
 		add: (SpBoxLayout newVertical
 				add: #doneCheckbox expand: false fill: false padding: 4;
 				yourself)
 			expand: false;
 		add: (SpBoxLayout newVertical
+			spacing: 3;
 			add: #nameTextInput expand: false;
 			add: #notesText;
 			yourself);
@@ -34,22 +36,22 @@ CrTodoTaskPanel class >> defaultSpec [
 ]
 
 { #category : #actions }
-CrTodoTaskPanel >> addTodoThen: aBlock [
-	| item |
+CrTodoTaskPanel >> addTaskThen: aBlock [
+	| task |
 
 	self validate ifFalse: [ ^ self ].
 
-	item := CrTodoTask new
+	task := CrTodoTask new
 		name: nameTextInput text asString trimmed;
 		notes: notesText text asString trimmed;
 		done: doneCheckbox state;
 		yourself.
 	
 	self todoList 
-		addItem: item;
+		addTask: task;
 		save.
 	
-	addAction ifNotNil: [ addAction cull: item ].
+	addAction ifNotNil: [ addAction cull: task ].
 	aBlock value
 ]
 
@@ -60,7 +62,7 @@ CrTodoTaskPanel >> initializeDialogWindow: aWindowDialogPresenter [
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
 		addButton: 'To-Do'
 			do: [ :presenter |
-				self addTodoThen: [ 
+				self addTaskThen: [ 
 					presenter 
 						beOk; 
 						close ] ];
