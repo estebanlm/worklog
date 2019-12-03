@@ -95,7 +95,7 @@ CrTodoListPanel >> newListItemPresenters [
 CrTodoListPanel >> refresh [
 	| selectedItem |
 
-	selectedItem := list selection selectedItem ifNotNil: #item.
+	selectedItem := list selection selectedItem ifNotNil: #task.
 	list items: self newListItemPresenters.
 	selectedItem ifNotNil: [ 
 		self selectItem: selectedItem ]
@@ -105,7 +105,7 @@ CrTodoListPanel >> refresh [
 CrTodoListPanel >> selectItem: aListItem [
 
 	list items 
-		detect: [ :each | each item = aListItem ]
+		detect: [ :each | each task = aListItem ]
 		ifFound: [ :each | list selectItem: each ]
 		ifNone: [ list unselectAll ]
 ]

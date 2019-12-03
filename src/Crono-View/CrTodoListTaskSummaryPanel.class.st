@@ -7,9 +7,9 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'todoList',
-		'item',
 		'doneCheckbox',
-		'nameLabel'
+		'nameLabel',
+		'task'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -27,27 +27,27 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 CrTodoListTaskSummaryPanel >> initializePresenters [
 
 	doneCheckbox := self newCheckBox 
-		state: item isDone;
+		state: task isDone;
 		whenChangedDo: [ :state | self stateChangedTo: state ].
-	nameLabel := self newLabel label: item name
+	nameLabel := self newLabel label: task name
 ]
 
 { #category : #accessing }
-CrTodoListTaskSummaryPanel >> item [
+CrTodoListTaskSummaryPanel >> item [ 
 
-	^ item
+	^ self task
 ]
 
 { #category : #'accessing model' }
-CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aListItem [
+CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aTask [
 
-	item := aListItem
+	task := aTask
 ]
 
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> stateChangedTo: state [
 	
-	self item done: state.
+	self task done: state.
 	self todoList ifNotNil: #writeToFile
 ]
 
