@@ -69,6 +69,18 @@ CrTodoWindow >> configurationClass [
 ]
 
 { #category : #initialization }
+CrTodoWindow >> doTransmitList: aTodoList [
+
+	aTodoList ifNil: [ ^ self ].
+	listPanel presenter todoList = aTodoList ifTrue: [ ^ self ].
+	 
+	listPanel 
+		image: (self application iconNamed: aTodoList iconName);
+		title: aTodoList name. 
+	listPanel presenter todoList: aTodoList
+]
+
+{ #category : #initialization }
 CrTodoWindow >> initializeIndexPanel: aNumber [
 
 	(indexPanel := self instantiate: CrSelectionablePanel)
@@ -101,12 +113,7 @@ CrTodoWindow >> initializePresenters [
 	
 	indexPanel presenter 
 		transmitDo: [ :aTodoList |
-			(aTodoList notNil and: [ listPanel presenter todoList ~= aTodoList ]) 
-				ifTrue: [ 
-					listPanel 
-						image: (self application iconNamed: aTodoList iconName);
-						title: aTodoList name. 
-					listPanel presenter todoList: aTodoList ] ]
+			self doTransmitList: aTodoList ]
 		transform: [ :aSummaryPresenter | 
 			aSummaryPresenter ifNotNil: #todoList ]
 ]
@@ -130,7 +137,9 @@ CrTodoWindow >> initializeToolbar [
 { #category : #initialization }
 CrTodoWindow >> initializeWindow: aWindowPresenter [
 
-	super initializeWindow: aWindowPresenter
+	super initializeWindow: aWindowPresenter.
+	aWindowPresenter whenOpenedDo: [
+		indexPanel firstResponder takeKeyboardFocus ]
 ]
 
 { #category : #accessing }

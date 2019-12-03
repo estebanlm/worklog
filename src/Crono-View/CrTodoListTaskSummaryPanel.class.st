@@ -32,12 +32,6 @@ CrTodoListTaskSummaryPanel >> initializePresenters [
 	nameLabel := self newLabel label: task name
 ]
 
-{ #category : #accessing }
-CrTodoListTaskSummaryPanel >> item [ 
-
-	^ self task
-]
-
 { #category : #'accessing model' }
 CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aTask [
 
@@ -66,4 +60,10 @@ CrTodoListTaskSummaryPanel >> todoList [
 { #category : #accessing }
 CrTodoListTaskSummaryPanel >> todoList: anObject [
 	todoList := anObject
+]
+
+{ #category : #actions }
+CrTodoListTaskSummaryPanel >> toggleState [
+
+	doneCheckbox state: doneCheckbox state not
 ]

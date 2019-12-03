@@ -64,13 +64,9 @@ CrTodoListPanel >> firstResponder [
 { #category : #initialization }
 CrTodoListPanel >> initializePresenters [
 
-	list := self newComponentList.
-	"actionBar := self newActionBar
-		add: (self newButton 
-			label: 'New To-Do';
-			action: [ self addNewToDo ];
-			yourself);
-		yourself"
+	(list := self newComponentList)
+		bindKeyCombination: Character space asKeyCombination 
+		toAction: [ self selectedItemToggleState ]
 ]
 
 { #category : #actions }
@@ -108,6 +104,12 @@ CrTodoListPanel >> selectItem: aListItem [
 		detect: [ :each | each task = aListItem ]
 		ifFound: [ :each | list selectItem: each ]
 		ifNone: [ list unselectAll ]
+]
+
+{ #category : #actions }
+CrTodoListPanel >> selectedItemToggleState [
+
+	list selection selectedItem ifNotNil: #toggleState
 ]
 
 { #category : #'accessing model' }

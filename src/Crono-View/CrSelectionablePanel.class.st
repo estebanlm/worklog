@@ -48,6 +48,12 @@ CrSelectionablePanel >> defineOutputPorts [
 ]
 
 { #category : #accessing }
+CrSelectionablePanel >> firstResponder [
+
+	^ self presenter
+]
+
+{ #category : #accessing }
 CrSelectionablePanel >> image: anImage [ 
 	
 	headerBar image: anImage
@@ -59,13 +65,13 @@ CrSelectionablePanel >> initializePresenters [
 	headerBar := self instantiate: CrHeaderBar
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 CrSelectionablePanel >> instantiatePresenter: aPresenterClass [ 
 
 	presenter := self instantiate: aPresenterClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 CrSelectionablePanel >> instantiatePresenter: aPresenterClass on: aModel [
 
 	presenter := self 
