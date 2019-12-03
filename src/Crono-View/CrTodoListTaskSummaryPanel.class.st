@@ -47,8 +47,9 @@ CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aTask [
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> stateChangedTo: state [
 	
-	self task done: state.
-	self todoList ifNotNil: #writeToFile
+	self task 
+		done: state;
+		save
 ]
 
 { #category : #accessing }
