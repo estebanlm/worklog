@@ -53,6 +53,12 @@ CrTodoListTaskSummaryPanel >> stateChangedTo: state [
 ]
 
 { #category : #accessing }
+CrTodoListTaskSummaryPanel >> task [
+
+	^ task
+]
+
+{ #category : #accessing }
 CrTodoListTaskSummaryPanel >> todoList [
 	^ todoList
 ]
