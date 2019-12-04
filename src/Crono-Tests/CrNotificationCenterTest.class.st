@@ -5,18 +5,31 @@ Class {
 }
 
 { #category : #tests }
+CrNotificationCenterTest >> testSubscriptionIncludesAllHierarchy [
+	| nc object |
+	
+	nc := CrNotificationCenter new.
+	object := CrNotificationCenterObjectMock new.
+	nc subscribe: object to: CrNotificationMock.
+	
+	self denyEmpty: (nc subscriptionsTo: CrNotificationMock).
+	self denyEmpty: (nc subscriptionsTo: CrNotificationMock superclass).
+
+]
+
+{ #category : #tests }
 CrNotificationCenterTest >> testSubscriptionIsRemovedWhenObjectIsNoLongerReferenced [
 	| nc object |
 	
 	nc := CrNotificationCenter new.
 	object := CrNotificationCenterObjectMock new.
-	nc subscribe: object to: CrAnnouncementMock.
+	nc subscribe: object to: CrNotificationMock.
 	
-	self denyEmpty: (nc subscriptionsTo: CrAnnouncementMock).
+	self denyEmpty: (nc subscriptionsTo: CrNotificationMock).
 	
 	object := nil.
-	3 timesRepeat: [ Smalltalk garbageCollect ].
+	Smalltalk garbageCollect.
 	
-	self assertEmpty: (nc subscriptionsTo: CrAnnouncementMock).
-	
+	self assertEmpty: (nc subscriptionsTo: CrNotificationMock).
+	self assertEmpty: (nc subscriptionsTo: CrNotificationMock superclass)	
 ]
