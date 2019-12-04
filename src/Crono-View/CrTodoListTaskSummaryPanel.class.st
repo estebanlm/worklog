@@ -9,7 +9,8 @@ Class {
 		'todoList',
 		'doneCheckbox',
 		'nameLabel',
-		'task'
+		'task',
+		'noteMarkerImage'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -20,6 +21,7 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 	^ SpBoxLayout newHorizontal
 		add: #doneCheckbox expand: false;
 		add: #nameLabel;
+		addLast: #noteMarkerImage expand: false;
 		yourself
 ]
 
@@ -29,7 +31,8 @@ CrTodoListTaskSummaryPanel >> initializePresenters [
 	doneCheckbox := self newCheckBox 
 		state: task isDone;
 		whenChangedDo: [ :state | self stateChangedTo: state ].
-	nameLabel := self newLabel label: task name
+	nameLabel := self newLabel label: task name.
+	noteMarkerImage := self newImage
 ]
 
 { #category : #'accessing model' }
