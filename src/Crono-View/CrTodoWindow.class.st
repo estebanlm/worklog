@@ -57,7 +57,9 @@ CrTodoWindow >> addGlobalShortcutsTo: aWindowPresenter [
 CrTodoWindow >> allKeyBindingActions [
 
 	^ CmCommandGroup forSpec
-		register: (CrTodoAddNewCommand forSpecContext: self);
+		register: (CrTodoAddNewCronoCommand forSpecContext: self);
+		register: (CrTodoReviewCronoCommand forSpecContext: self);
+		register: (CrTodoAddNewTaskCommand forSpecContext: self);
 		register: (CrTodoAddNewListCommand forSpecContext: self);
 		yourself
 ]
@@ -165,6 +167,8 @@ CrTodoWindow >> title [
 CrTodoWindow >> toolbarActions [
 
 	^ CmCommandGroup forSpec
-		register: (CrTodoAddNewCommand forSpecContext: self);
+		register: (CrTodoAddNewCronoCommand forSpecContext: self);
+		register: (CrTodoAddNewTaskCommand forSpecContext: self);
+		register: (CrTodoReviewCronoCommand forSpecContext: self);
 		yourself
 ]

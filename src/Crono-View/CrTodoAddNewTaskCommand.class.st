@@ -1,29 +1,29 @@
 Class {
-	#name : #CrTodoAddNewCommand,
+	#name : #CrTodoAddNewTaskCommand,
 	#superclass : #CrCommand,
 	#category : #'Crono-View-Todo-Commands'
 }
 
 { #category : #default }
-CrTodoAddNewCommand class >> defaultDescription [
+CrTodoAddNewTaskCommand class >> defaultDescription [
 
 	^ 'Add a new task to the current active list.'
 ]
 
 { #category : #initialization }
-CrTodoAddNewCommand class >> defaultIconName [
+CrTodoAddNewTaskCommand class >> defaultIconName [
 
 	^ #add
 ]
 
 { #category : #default }
-CrTodoAddNewCommand class >> defaultName [
+CrTodoAddNewTaskCommand class >> defaultName [
 
 	^ 'New Task'
 ]
 
 { #category : #converting }
-CrTodoAddNewCommand >> asSpecCommand [
+CrTodoAddNewTaskCommand >> asSpecCommand [
 
 	^ super asSpecCommand 
 		shortcutKey: $n platformMeta;
@@ -31,7 +31,7 @@ CrTodoAddNewCommand >> asSpecCommand [
 ]
 
 { #category : #executing }
-CrTodoAddNewCommand >> execute [
+CrTodoAddNewTaskCommand >> execute [
 	
 	(CrTodoTaskPanel newApplication: self application)
 		todoList: self todoList;
@@ -40,7 +40,7 @@ CrTodoAddNewCommand >> execute [
 ]
 
 { #category : #'as yet unclassified' }
-CrTodoAddNewCommand >> todoList [
+CrTodoAddNewTaskCommand >> todoList [
 	
 	^ context activeTodoList
 ]
