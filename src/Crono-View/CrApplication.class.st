@@ -3,7 +3,8 @@ Class {
 	#superclass : #SpApplication,
 	#instVars : [
 		'standalone',
-		'repository'
+		'repository',
+		'notificationCenter'
 	],
 	#classVars : [
 		'Current'
@@ -104,6 +105,12 @@ CrApplication >> initializeRepository [
 CrApplication >> isStandalone [
 
 	^ standalone
+]
+
+{ #category : #accessing }
+CrApplication >> notificationCenter [
+
+	^ notificationCenter ifNil: [ notificationCenter := CrNotificationCenter new ]
 ]
 
 { #category : #initialization }
