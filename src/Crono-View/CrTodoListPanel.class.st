@@ -65,6 +65,7 @@ CrTodoListPanel >> firstResponder [
 CrTodoListPanel >> initializePresenters [
 
 	(list := self newComponentList)
+		addStyle: 'list';
 		bindKeyCombination: Character space asKeyCombination 
 		toAction: [ self selectedItemToggleState ]
 ]

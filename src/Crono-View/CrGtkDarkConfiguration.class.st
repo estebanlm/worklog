@@ -16,6 +16,12 @@ CrGtkDarkConfiguration >> macThemeName [
 	^ 'Sierra-dark'
 ]
 
+{ #category : #'accessing resources' }
+CrGtkDarkConfiguration >> themeIconsDir [
+
+	^ self iconsDir / 'dark'
+]
+
 { #category : #accessing }
 CrGtkDarkConfiguration >> unixThemeName [
 

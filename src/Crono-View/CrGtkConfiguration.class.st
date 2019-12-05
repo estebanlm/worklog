@@ -27,8 +27,9 @@ CrGtkConfiguration >> configureOSX: anApplication [
 	self installTheme: self macThemeName.
 	self addProviderFromString: '
 .cronoText { font: 12pt "Monaco" }
-.title { font-size: 14pt }
-.titleShortcut { color: LightSlateGrey }' "LightSteelBlue?"
+.title { /*font-size: 14pt;*/ font-weight: bold }
+.titleShortcut { color: LightSlateGrey }
+.list { padding: 5px }'
 ]
 
 { #category : #configuring }
@@ -66,7 +67,11 @@ CrGtkConfiguration >> ensureAppearance: aName [
 { #category : #accessing }
 CrGtkConfiguration >> iconProvider [
 
-	^ iconProvider ifNil: [ iconProvider := CrIconProvider newLocation: self iconsDir ] 
+	^ iconProvider ifNil: [ 
+		iconProvider := CrIconProvider new
+			addLocation: self iconsDir;
+			addLocation: self themeIconsDir;
+			yourself ] 
 ]
 
 { #category : #'accessing resources' }
@@ -97,6 +102,12 @@ CrGtkConfiguration >> macThemeName [
 CrGtkConfiguration >> resourcesDir [
 
 	^ FileLocator imageDirectory / 'crono'
+]
+
+{ #category : #'accessing resources' }
+CrGtkConfiguration >> themeIconsDir [
+
+	^ self iconsDir / 'light'
 ]
 
 { #category : #accessing }

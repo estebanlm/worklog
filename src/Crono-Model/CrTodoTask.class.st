@@ -4,6 +4,7 @@ Class {
 	#instVars : [
 		'name',
 		'notes',
+		'startDate',
 		'doneDate'
 	],
 	#category : #'Crono-Model'
@@ -57,6 +58,12 @@ CrTodoTask >> done: aBoolean [
 { #category : #accessing }
 CrTodoTask >> doneDate [
 	^ doneDate
+]
+
+{ #category : #testing }
+CrTodoTask >> hasNotes [
+
+	^ self notes isEmptyOrNil not
 ]
 
 { #category : #testing }

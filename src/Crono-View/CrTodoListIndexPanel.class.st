@@ -63,6 +63,7 @@ CrTodoListIndexPanel >> firstResponder [
 CrTodoListIndexPanel >> initializePresenters [
 
 	list := self newComponentList
+		addStyle: 'list';
 		presenters: self allListPresenters;
 		selectIndex: 2;
 		yourself.

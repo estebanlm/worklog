@@ -32,7 +32,9 @@ CrTodoListTaskSummaryPanel >> initializePresenters [
 		state: task isDone;
 		whenChangedDo: [ :state | self stateChangedTo: state ].
 	nameLabel := self newLabel label: task name.
-	noteMarkerImage := self newImage
+	noteMarkerImage := self newImage.
+	self task hasNotes 
+		ifTrue: [ noteMarkerImage image: (self application iconNamed: #markNote) ].
 ]
 
 { #category : #'accessing model' }

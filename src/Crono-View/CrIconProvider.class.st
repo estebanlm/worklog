@@ -3,23 +3,15 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'icons',
-		'location'
+		'locations'
 	],
 	#category : #'Crono-View-Application'
 }
 
-{ #category : #'instance creation' }
-CrIconProvider class >> new [
+{ #category : #accessing }
+CrIconProvider >> addLocation: aReference [
 
-	self error: 'Use #newLocation:'
-]
-
-{ #category : #'instance creation' }
-CrIconProvider class >> newLocation: aReference [ 
-
-	^ self basicNew 
-		initializeLocation: aReference;
-		yourself
+	locations := locations copyWith: aReference
 ]
 
 { #category : #accessing }
@@ -40,14 +32,8 @@ CrIconProvider >> icons [
 CrIconProvider >> initialize [ 
 
 	super initialize.
+	locations := #().
 	icons := IdentityDictionary new
-]
-
-{ #category : #initialization }
-CrIconProvider >> initializeLocation: aReference [
-
-	location := aReference.
-	self initialize
 ]
 
 { #category : #inspecting }
@@ -64,17 +50,18 @@ CrIconProvider >> inspectionIcons [
 { #category : #utils }
 CrIconProvider >> loadAllIcons [
 
-	(self location filesMatching: '*.png') do: [ :each |
-		icons 
-			at: each basename
-			put: (self loadIcon: each) ]
+	self locations do: [ :eachLocation |
+		(eachLocation filesMatching: '*.png') do: [ :each |
+			icons 
+				at: each basename
+				put: (self loadIcon: each) ] ]
 ]
 
 { #category : #utils }
 CrIconProvider >> loadIcon: fileRef [
 
 	fileRef exists ifFalse: [ 
-		self error: ('Icon {1} does not exits' format: { fileRef fullName }) ].
+		self error: ('Icon {1} does not exit' format: { fileRef fullName }) ].
 
 	^ fileRef binaryReadStreamDo: [ :stream |
 		 Form fromBinaryStream: stream ]
@@ -83,11 +70,17 @@ CrIconProvider >> loadIcon: fileRef [
 { #category : #utils }
 CrIconProvider >> loadIconNamed: aSymbol [
 
-	^ self loadIcon: ((self location / aSymbol) withExtension: 'png')
+	self locations do: [ :each | | ref |
+		ref := (each / aSymbol) withExtension: 'png'.
+		ref exists ifTrue: [ 
+			^ self loadIcon: ref ] ].
+	
+	self error: ('Icon {1} does not exit' format: { aSymbol })
+	
 ]
 
 { #category : #accessing }
-CrIconProvider >> location [
+CrIconProvider >> locations [
 
-	^ location
+	^ locations
 ]

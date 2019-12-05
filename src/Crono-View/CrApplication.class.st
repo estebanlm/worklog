@@ -53,6 +53,7 @@ CrApplication class >> menuCommandOn: aBuilder [
 
 { #category : #accessing }
 CrApplication class >> reset [
+	<script>
 
 	Current := nil
 ]
