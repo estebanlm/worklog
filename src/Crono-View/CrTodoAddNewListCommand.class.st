@@ -44,5 +44,6 @@ CrTodoAddNewListCommand >> execute [
 	
 	list := CrTodoList newName: dialog presenter text.
 	list save.
-	context listWasAdded: list
+	
+	context application notificationCenter notify: (CrListAddedNotification newList: list)
 ]

@@ -51,7 +51,8 @@ CrTodoTaskPanel >> addTaskThen: aBlock [
 		addTask: task;
 		save.
 	
-	addAction ifNotNil: [ addAction cull: task ].
+	self application notificationCenter notify: (CrTaskAddedNotification newTask: task).
+
 	aBlock value
 ]
 
@@ -89,12 +90,6 @@ CrTodoTaskPanel >> initializeWindow: aWindowPresenter [
 		title: 'To-Do';
 		initialExtent: 500@150;
 		whenOpenedDo: [ nameTextInput takeKeyboardFocus ]
-]
-
-{ #category : #events }
-CrTodoTaskPanel >> onAdd: aBlock [
-
-	addAction := aBlock
 ]
 
 { #category : #accessing }

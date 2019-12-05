@@ -83,6 +83,13 @@ CrTodoWindow >> doTransmitList: aTodoList [
 ]
 
 { #category : #initialization }
+CrTodoWindow >> initialize [
+
+	super initialize.
+	self initializeSubscribers
+]
+
+{ #category : #initialization }
 CrTodoWindow >> initializeIndexPanel: aNumber [
 
 	(indexPanel := self instantiate: CrSelectionablePanel)
@@ -129,6 +136,13 @@ CrTodoWindow >> initializeSearchField [
 ]
 
 { #category : #initialization }
+CrTodoWindow >> initializeSubscribers [
+
+	self application notificationCenter 
+		subscribe: self to: CrTaskNotification
+]
+
+{ #category : #initialization }
 CrTodoWindow >> initializeToolbar [
 	
 	toolbar := self newToolBar.
@@ -144,17 +158,29 @@ CrTodoWindow >> initializeWindow: aWindowPresenter [
 		indexPanel firstResponder takeKeyboardFocus ]
 ]
 
-{ #category : #accessing }
-CrTodoWindow >> itemWasAdded: aTodoItem [
-
-	listPanel presenter itemWasAdded: aTodoItem.
-	indexPanel presenter refreshSelection.
+{ #category : #'notification handling' }
+CrTodoWindow >> noteTask: aNotification [
+ 
+	"A task has changed. I need to refresh it"
+	indexPanel presenter refreshSelection
 ]
 
-{ #category : #accessing }
-CrTodoWindow >> listWasAdded: aTodoList [
+{ #category : #'notification handling' }
+CrTodoWindow >> noteTaskAdded: aNotification [ 
+	
+	self noteTask: aNotification
+]
 
-	indexPanel presenter listWasAdded: aTodoList
+{ #category : #'notification handling' }
+CrTodoWindow >> noteTaskChanged: aNotification [ 
+	
+	self noteTask: aNotification
+]
+
+{ #category : #'notification handling' }
+CrTodoWindow >> noteTaskRemoved: aNotification [ 
+	
+	self noteTask: aNotification
 ]
 
 { #category : #initialization }

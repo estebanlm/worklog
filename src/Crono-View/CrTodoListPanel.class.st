@@ -35,7 +35,6 @@ CrTodoListPanel >> addNewToDo [
 
 	(CrTodoTaskPanel newApplication: self application)
 		todoList: self todoList;
-		onAdd: [ :todo | self itemWasAdded: todo ];
 		openDialogWithSpec
 ]
 
@@ -62,20 +61,21 @@ CrTodoListPanel >> firstResponder [
 ]
 
 { #category : #initialization }
+CrTodoListPanel >> initialize [
+
+	super initialize.
+	self application notificationCenter 
+		subscribe: self to: CrTaskAddedNotification;
+		subscribe: self to: CrTaskRemovedNotification
+]
+
+{ #category : #initialization }
 CrTodoListPanel >> initializePresenters [
 
 	(list := self newComponentList)
 		addStyle: 'list';
 		bindKeyCombination: Character space asKeyCombination 
 		toAction: [ self selectedItemToggleState ]
-]
-
-{ #category : #actions }
-CrTodoListPanel >> itemWasAdded: todo [
-		
-	list items: self newListItemPresenters.
-	list selectItem: todo.
-	list takeKeyboardFocus
 ]
 
 { #category : #'private factory' }
@@ -86,6 +86,16 @@ CrTodoListPanel >> newListItemPresenters [
 			(self instantiate: CrTodoListTaskSummaryPanel on: each)
 				todoList: self todoList;
 				yourself ]
+]
+
+{ #category : #'notification handling' }
+CrTodoListPanel >> noteTaskAdded: aNotification [
+
+	(self todoList includesTask: aNotification task) ifFalse: [ ^ self ].
+	
+	list items: self newListItemPresenters.
+	list selectItem: aNotification task.
+	list takeKeyboardFocus
 ]
 
 { #category : #accessing }

@@ -60,6 +60,13 @@ CrTodoListIndexPanel >> firstResponder [
 ]
 
 { #category : #initialization }
+CrTodoListIndexPanel >> initialize [
+
+	super initialize.
+	self initializeSubscribers
+]
+
+{ #category : #initialization }
 CrTodoListIndexPanel >> initializePresenters [
 
 	list := self newComponentList
@@ -77,10 +84,30 @@ CrTodoListIndexPanel >> initializePresenters [
 		yourself
 ]
 
-{ #category : #accessing }
-CrTodoListIndexPanel >> listWasAdded: aTodoList [
+{ #category : #initialization }
+CrTodoListIndexPanel >> initializeSubscribers [
 
-	self refreshThenSelect: aTodoList
+	self application notificationCenter
+		subscribe: self to: CrListNotification;
+		subscribe: self to: CrTaskNotification
+]
+
+{ #category : #'notification handling' }
+CrTodoListIndexPanel >> noteList: aNotification [
+
+	self refreshThenSelect: aNotification list
+]
+
+{ #category : #'notification handling' }
+CrTodoListIndexPanel >> noteListAdded: aNotification [
+
+	self noteList: aNotification
+]
+
+{ #category : #'notification handling' }
+CrTodoListIndexPanel >> noteListChanged: aNotification [
+
+	self noteList: aNotification
 ]
 
 { #category : #accessing }

@@ -29,13 +29,7 @@ CrTodoTask class >> voyageCollectionName [
 ]
 
 { #category : #persistence }
-CrTodoTask class >> voyageRepository [
-
-	^ CrApplication current repository
-]
-
-{ #category : #persistence }
-CrTodoTask class >> voyageType [
+CrTodoTask class >> voyageDoneDate [
 	<voyageDescription>
 	
 	^ VOToOneDescription new 
@@ -47,11 +41,30 @@ CrTodoTask class >> voyageType [
 		yourself
 ]
 
+{ #category : #persistence }
+CrTodoTask class >> voyageRepository [
+
+	^ CrApplication current repository
+]
+
+{ #category : #persistence }
+CrTodoTask class >> voyageStartDate [
+	<voyageDescription>
+	
+	^ VOToOneDescription new 
+		attributeName: 'startDate';
+		accessor: (MAPluggableAccessor 
+			read: [ :aTask | aTask doneDate ifNotNil: #asString ]
+			write: [ :aTask :date | 
+				date ifNotNil: [ aTask setStartDate: (DateAndTime fromString: date) ] ]);
+		yourself
+]
+
 { #category : #accessing }
 CrTodoTask >> done: aBoolean [
 
 	doneDate := aBoolean 
-		ifTrue: [ Date today ]
+		ifTrue: [ DateAndTime now ]
 		ifFalse: [ nil ]
 ]
 
@@ -64,6 +77,13 @@ CrTodoTask >> doneDate [
 CrTodoTask >> hasNotes [
 
 	^ self notes isEmptyOrNil not
+]
+
+{ #category : #initialization }
+CrTodoTask >> initialize [
+
+	super initialize. 
+	startDate := DateAndTime now
 ]
 
 { #category : #testing }
@@ -103,4 +123,16 @@ CrTodoTask >> printOn: stream [
 CrTodoTask >> setDoneDate: aDateAndTime [
 	
 	doneDate := aDateAndTime
+]
+
+{ #category : #private }
+CrTodoTask >> setStartDate: aDateAndTime [
+	
+	doneDate := aDateAndTime
+]
+
+{ #category : #accessing }
+CrTodoTask >> startDate [
+
+	^ startDate
 ]

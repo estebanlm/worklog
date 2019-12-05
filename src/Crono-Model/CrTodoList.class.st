@@ -202,6 +202,12 @@ CrTodoList >> iconName: aSymbol [
 	iconName := aSymbol
 ]
 
+{ #category : #testing }
+CrTodoList >> includesTask: aTask [
+
+	^ self tasks includes: aTask
+]
+
 { #category : #initialization }
 CrTodoList >> initialize [
 

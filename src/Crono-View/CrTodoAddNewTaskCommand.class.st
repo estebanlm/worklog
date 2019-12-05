@@ -35,7 +35,6 @@ CrTodoAddNewTaskCommand >> execute [
 	
 	(CrTodoTaskPanel newApplication: self application)
 		todoList: self todoList;
-		onAdd: [ :todo | context itemWasAdded: todo ];
 		openDialogWithSpec
 ]
 
