@@ -1,3 +1,7 @@
+"
+I am a notification center with the purpose of dispatch notifications to all subscribers.
+I ensure the subscribers are weakly referenced, to avoid possible leaks.
+"
 Class {
 	#name : #CrNotificationCenter,
 	#superclass : #Object,
@@ -7,13 +11,17 @@ Class {
 	#category : #'Crono-View-Application'
 }
 
-{ #category : #'as yet unclassified' }
-CrNotificationCenter >> basicSubscribe: anObject to: anAnnouncementClass [
+{ #category : #private }
+CrNotificationCenter >> dispatchNotification: aNotification to: anObject [
 
-	(subscriptions 
-		at: anAnnouncementClass
-		ifAbsentPut: [ WeakSet new ])
-		add: anObject
+	aNotification dispatchTo: anObject
+]
+
+{ #category : #private }
+CrNotificationCenter >> dispatchNotification: aNotification toAll: aSet [
+
+	aSet do: [ :each | 
+		self dispatchNotification: aNotification to: each ]
 ]
 
 { #category : #initialization }
@@ -23,19 +31,33 @@ CrNotificationCenter >> initialize [
 	subscriptions := Dictionary new
 ]
 
-{ #category : #'as yet unclassified' }
-CrNotificationCenter >> subscribe: anObject to: aNotificationClass [
-	| class |
-	
-	class := aNotificationClass.
-	"registers objects to top notification"
+{ #category : #notifying }
+CrNotificationCenter >> notify: aNotification [
+	"I will send notification to all direct subscribers, but also to subscribers to the parent(s)
+	 of the notification. For example, if I have 
+		Notification subclass: MyNotification
+	 if I notify MyNotification, I will dispatch to subscribers of MyNotification and Notification"
+	| class realNotification |
+	 
+	realNotification := aNotification asNotification.
+	class := realNotification class.
 	[ class = Object ] 
 	whileFalse: [ 
-		self basicSubscribe: anObject to: class.
-	 	class := class superclass ]
+		(self subscriptionsTo: class) do: [ :each | 
+			self dispatchNotification: realNotification to: each ].	
+		class := class superclass ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #subscribing }
+CrNotificationCenter >> subscribe: anObject to: anAnnouncementClass [
+
+	(subscriptions 
+		at: anAnnouncementClass
+		ifAbsentPut: [ WeakSet new ])
+		add: anObject
+]
+
+{ #category : #subscribing }
 CrNotificationCenter >> subscriptionsTo: anAnnouncementClass [ 
 	
 	^ (subscriptions 

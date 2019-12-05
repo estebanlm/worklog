@@ -1,3 +1,7 @@
+"
+I am an IconProvider for Crono application.
+I provide icons found in my locations.
+"
 Class {
 	#name : #CrIconProvider,
 	#superclass : #Object,

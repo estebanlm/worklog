@@ -1,3 +1,7 @@
+"
+I am a configuration for the Crono application to be used with Gtk backend. 
+I define a dark theme.
+"
 Class {
 	#name : #CrGtkDarkConfiguration,
 	#superclass : #CrGtkConfiguration,

@@ -1,3 +1,6 @@
+"
+I am the Crono application
+"
 Class {
 	#name : #CrApplication,
 	#superclass : #SpApplication,
