@@ -51,7 +51,9 @@ CrTodoTaskPanel >> addTaskThen: aBlock [
 		addTask: task;
 		save.
 	
-	self application notificationCenter notify: (CrTaskAddedNotification newTask: task).
+	self application notificationCenter 
+		notify: (CrTaskAddedNotification newTask: task);
+		notify: (CrListChangedNotification newList: self todoList).
 
 	aBlock value
 ]

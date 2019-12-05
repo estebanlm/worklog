@@ -46,9 +46,13 @@ CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aTask [
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> stateChangedTo: state [
 	
+	self task isDone = state ifTrue: [ ^ self ].
+	
 	self task 
 		done: state;
-		save
+		save.
+		
+	self application notificationCenter notify: (CrTaskChangedNotification newTask: self task)
 ]
 
 { #category : #accessing }

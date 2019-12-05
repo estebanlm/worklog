@@ -88,8 +88,7 @@ CrTodoListIndexPanel >> initializePresenters [
 CrTodoListIndexPanel >> initializeSubscribers [
 
 	self application notificationCenter
-		subscribe: self to: CrListNotification;
-		subscribe: self to: CrTaskNotification
+		subscribe: self to: CrListNotification
 ]
 
 { #category : #'notification handling' }

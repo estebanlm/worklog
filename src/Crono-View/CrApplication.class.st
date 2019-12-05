@@ -58,6 +58,7 @@ CrApplication class >> menuCommandOn: aBuilder [
 CrApplication class >> reset [
 	<script>
 
+	Current ifNotNil: [ Current emergencyShutdown ].
 	Current := nil
 ]
 
@@ -67,6 +68,12 @@ CrApplication class >> validateSession [
 	session == Smalltalk session ifTrue: [ ^ self ].
 	Current := nil.
 	session := Smalltalk session
+]
+
+{ #category : #initialization }
+CrApplication >> emergencyShutdown [
+
+	repository close
 ]
 
 { #category : #accessing }

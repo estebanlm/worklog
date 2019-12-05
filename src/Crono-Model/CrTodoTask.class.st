@@ -128,7 +128,7 @@ CrTodoTask >> setDoneDate: aDateAndTime [
 { #category : #private }
 CrTodoTask >> setStartDate: aDateAndTime [
 	
-	doneDate := aDateAndTime
+	startDate := aDateAndTime
 ]
 
 { #category : #accessing }
