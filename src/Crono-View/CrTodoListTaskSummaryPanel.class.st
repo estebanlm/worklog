@@ -10,7 +10,8 @@ Class {
 		'doneCheckbox',
 		'nameLabel',
 		'task',
-		'noteMarkerImage'
+		'noteMarkerImage',
+		'memento'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -29,18 +30,29 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 CrTodoListTaskSummaryPanel >> initializePresenters [
 
 	doneCheckbox := self newCheckBox 
-		state: task isDone;
 		whenChangedDo: [ :state | self stateChangedTo: state ].
-	nameLabel := self newLabel label: task name.
+	nameLabel := self newLabel.
 	noteMarkerImage := self newImage.
-	self task hasNotes 
-		ifTrue: [ noteMarkerImage image: (self application iconNamed: #markNote) ].
+
+	self updatePresenter
+]
+
+{ #category : #accessing }
+CrTodoListTaskSummaryPanel >> refreshContentIfNeeded [
+	| newMemento |
+
+	newMemento := self task takeMemento.
+	memento = newMemento ifTrue: [ ^ self ].
+
+	memento := newMemento.
+	self updatePresenter
 ]
 
 { #category : #'accessing model' }
 CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aTask [
 
-	task := aTask
+	task := aTask.
+	memento := aTask takeMemento.
 ]
 
 { #category : #actions }
@@ -75,4 +87,14 @@ CrTodoListTaskSummaryPanel >> todoList: anObject [
 CrTodoListTaskSummaryPanel >> toggleState [
 
 	doneCheckbox state: doneCheckbox state not
+]
+
+{ #category : #initialization }
+CrTodoListTaskSummaryPanel >> updatePresenter [
+
+	doneCheckbox state: task isDone.
+	nameLabel label: task name.
+	task hasNotes 
+		ifTrue: [ noteMarkerImage image: (self application iconNamed: #markNote) ]
+		ifFalse: [ noteMarkerImage image: nil ]
 ]

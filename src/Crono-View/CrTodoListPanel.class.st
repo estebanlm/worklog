@@ -38,6 +38,14 @@ CrTodoListPanel >> addNewToDo [
 		openDialogWithSpec
 ]
 
+{ #category : #private }
+CrTodoListPanel >> contextMenuActions [
+
+	^ SpMenuPresenter new 
+		addItem: [ :item | item name: 'Move to...'; action: [ ] ];
+		yourself
+]
+
 { #category : #initialization }
 CrTodoListPanel >> defineInputPorts [
 	
@@ -64,9 +72,7 @@ CrTodoListPanel >> firstResponder [
 CrTodoListPanel >> initialize [
 
 	super initialize.
-	self application notificationCenter 
-		subscribe: self to: CrTaskAddedNotification;
-		subscribe: self to: CrTaskRemovedNotification
+	self initializeSubscribers
 ]
 
 { #category : #initialization }
@@ -74,8 +80,16 @@ CrTodoListPanel >> initializePresenters [
 
 	(list := self newComponentList)
 		addStyle: 'list';
+		contextMenu: self contextMenuActions;
 		bindKeyCombination: Character space asKeyCombination 
-		toAction: [ self selectedItemToggleState ]
+			toAction: [ self selectedItemToggleState ]
+]
+
+{ #category : #initialization }
+CrTodoListPanel >> initializeSubscribers [
+
+	self application notificationCenter 
+		subscribe: self to: CrTaskNotification
 ]
 
 { #category : #'private factory' }
@@ -96,6 +110,18 @@ CrTodoListPanel >> noteTaskAdded: aNotification [
 	list items: self newListItemPresenters.
 	self selectItem: aNotification task.
 	list takeKeyboardFocus
+]
+
+{ #category : #'notification handling' }
+CrTodoListPanel >> noteTaskChanged: aNotification [
+	"Someone changed this list from another place"
+
+	"Ok, is not this window the origin, but I am not editing this list eider"
+	(self todoList includesTask: aNotification task) ifFalse: [ ^ self ].
+	
+	list presenters
+		detect: [ :each | each task = aNotification task ]
+		ifFound: [ :aPresenter | aPresenter refreshContentIfNeeded ] 
 ]
 
 { #category : #accessing }

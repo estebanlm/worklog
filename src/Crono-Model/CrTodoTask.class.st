@@ -136,3 +136,11 @@ CrTodoTask >> startDate [
 
 	^ startDate
 ]
+
+{ #category : #accessing }
+CrTodoTask >> takeMemento [
+
+	^ self class allSlots 
+		collect: [ :each | (self readSlot: each) copy ]
+		as: Array
+]
