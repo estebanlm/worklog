@@ -94,7 +94,7 @@ CrTodoListPanel >> noteTaskAdded: aNotification [
 	(self todoList includesTask: aNotification task) ifFalse: [ ^ self ].
 	
 	list items: self newListItemPresenters.
-	list selectItem: aNotification task.
+	self selectItem: aNotification task.
 	list takeKeyboardFocus
 ]
 
