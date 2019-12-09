@@ -16,6 +16,12 @@ CrTodoTypeUser >> defaultName [
 	^ 'New list'
 ]
 
+{ #category : #testing }
+CrTodoTypeUser >> isEditable [
+
+	^ true
+]
+
 { #category : #accessing }
 CrTodoTypeUser >> name [
 	

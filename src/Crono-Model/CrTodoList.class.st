@@ -208,6 +208,12 @@ CrTodoList >> initializeType: aType [
 	self setType: aType
 ]
 
+{ #category : #testing }
+CrTodoList >> isEditable [
+
+	^ self type isEditable
+]
+
 { #category : #accessing }
 CrTodoList >> name [
 

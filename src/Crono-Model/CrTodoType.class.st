@@ -75,6 +75,12 @@ CrTodoType >> defaultName [
 	^ self name
 ]
 
+{ #category : #testing }
+CrTodoType >> isEditable [
+
+	^ false
+]
+
 { #category : #accessing }
 CrTodoType >> name [
 	

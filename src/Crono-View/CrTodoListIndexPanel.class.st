@@ -57,9 +57,13 @@ CrTodoListIndexPanel >> defineOutputPorts [
 
 { #category : #actions }
 CrTodoListIndexPanel >> editList [
+	| todoList |
+
+	todoList := self selectedItem todoList.
+	todoList isEditable ifFalse: [ ^ self ].
 
 	(CrTodoEditListCommand forContext: self) 
-		list: self selectedItem todoList;
+		list: todoList;
 		execute
 ]
 
