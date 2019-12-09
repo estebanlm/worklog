@@ -3,7 +3,8 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
-		'actionBar'
+		'actionBar',
+		'inactiveList'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -13,6 +14,7 @@ CrTodoListIndexPanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #list;
+		add: #inactiveList expand: false;
 		add: #actionBar expand: false;
 		yourself
 ]
@@ -24,15 +26,29 @@ CrTodoListIndexPanel >> addList [
 ]
 
 { #category : #private }
+CrTodoListIndexPanel >> allInactiveListPresenters [
+		
+	^ self allInactiveLists collect: [ :each | 
+		self instantiate: CrTodoListIndexSummaryPanel on: each  ]
+]
+
+{ #category : #accessing }
+CrTodoListIndexPanel >> allInactiveLists [
+
+	^ CrTodoList allLists reject: #isVisible
+]
+
+{ #category : #private }
 CrTodoListIndexPanel >> allListPresenters [
 		
-	^ self allLists collect: [ :each | self instantiate: CrTodoListIndexSummaryPanel on: each  ]
+	^ self allLists collect: [ :each | 
+		self instantiate: CrTodoListIndexSummaryPanel on: each  ]
 ]
 
 { #category : #accessing }
 CrTodoListIndexPanel >> allLists [
 
-	^ CrTodoList allLists
+	^ CrTodoList allLists select: #isVisible
 ]
 
 { #category : #initialization }
@@ -48,11 +64,17 @@ CrTodoListIndexPanel >> defineInputPorts [
 { #category : #initialization }
 CrTodoListIndexPanel >> defineOutputPorts [ 
 
-	^ list defineOutputPorts 
+	^ (list defineOutputPorts 
 		collect: [ :each |
 			each copy 
 				delegateTo: [ list ];
-				yourself ]
+				yourself ]),
+		(inactiveList defineOutputPorts
+			collect: [ :each | 
+				each copy 
+					name: 'inactive-', each name;
+					delegateTo: [ inactiveList ];
+					yourself ])
 ]
 
 { #category : #actions }
@@ -88,6 +110,11 @@ CrTodoListIndexPanel >> initializePresenters [
 		presenters: self allListPresenters;
 		selectIndex: 2;
 		whenActivatedDo: [ self editList ];
+		yourself.
+		
+	inactiveList := self newComponentList
+		addStyle: 'list';
+		presenters: self allInactiveListPresenters;
 		yourself.
 		
 	actionBar := self newActionBar

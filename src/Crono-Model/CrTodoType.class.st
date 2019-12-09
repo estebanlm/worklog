@@ -42,6 +42,12 @@ CrTodoType class >> stonName [
 	^ 'Type'
 ]
 
+{ #category : #accessing }
+CrTodoType class >> trash [
+
+	^ CrTodoTypeTrash uniqueInstance
+]
+
 { #category : #'instance creation' }
 CrTodoType class >> uniqueInstance [
 
@@ -79,6 +85,12 @@ CrTodoType >> defaultName [
 CrTodoType >> isEditable [
 
 	^ false
+]
+
+{ #category : #testing }
+CrTodoType >> isVisible [
+
+	^ true
 ]
 
 { #category : #accessing }

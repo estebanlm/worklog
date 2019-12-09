@@ -121,10 +121,13 @@ CrTodoWindow >> initializePresenters [
 	self initializeListPanel: 2.
 	
 	indexPanel presenter 
-		transmitDo: [ :aTodoList |
-			self doTransmitList: aTodoList ]
-		transform: [ :aSummaryPresenter | 
-			aSummaryPresenter ifNotNil: #todoList ]
+		transmitDo: [ :aTodoList | self doTransmitList: aTodoList ]
+		transform: [ :aSummaryPresenter | aSummaryPresenter ifNotNil: #todoList ].
+		
+	indexPanel presenter 
+		transmitPort: 'inactive-selection' 
+		do: [ :aTodoList | self doTransmitList: aTodoList ]
+		transform: [ :aSummaryPresenter | aSummaryPresenter ifNotNil: #todoList ].	
 ]
 
 { #category : #initialization }

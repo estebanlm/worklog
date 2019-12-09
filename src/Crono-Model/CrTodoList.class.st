@@ -46,7 +46,8 @@ CrTodoList class >> createBaseLists [
 	^ { 
 		(CrTodoList newType: CrTodoType inbox) save.
 		(CrTodoList newType: CrTodoType active) save.
-		(CrTodoList newType: CrTodoType unsorted) save }
+		(CrTodoList newType: CrTodoType unsorted) save.
+		(CrTodoList newType: CrTodoType trash) save }
 ]
 
 { #category : #accessing }
@@ -126,6 +127,12 @@ CrTodoList class >> transientInstVarNames [
 	"We will not save this in file (because it will be calculated)"
 
 	^ #()
+]
+
+{ #category : #accessing }
+CrTodoList class >> trash [
+
+	^ self selectOne: [ :each | each type = CrTodoType trash typeName ]
 ]
 
 { #category : #accessing }
@@ -214,6 +221,12 @@ CrTodoList >> isEditable [
 	^ self type isEditable
 ]
 
+{ #category : #testing }
+CrTodoList >> isVisible [
+	
+	^ self type isVisible
+]
+
 { #category : #accessing }
 CrTodoList >> name [
 
@@ -261,6 +274,12 @@ CrTodoList >> printOn: stream [
 CrTodoList >> removeAllTasks [
 	
 	tasks := Array new
+]
+
+{ #category : #accessing }
+CrTodoList >> removeTask: aTask [
+
+	^ self tasks remove: aTask
 ]
 
 { #category : #private }
