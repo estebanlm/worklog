@@ -186,7 +186,7 @@ CrTodoWindow >> noteTaskRemoved: aNotification [
 { #category : #initialization }
 CrTodoWindow >> title [ 
 
-	^ 'ToDo'
+	^ 'Lists'
 ]
 
 { #category : #private }
