@@ -5,7 +5,8 @@ Class {
 		'name',
 		'notes',
 		'startDate',
-		'doneDate'
+		'doneDate',
+		'tags'
 	],
 	#category : #'Crono-Model'
 }
@@ -60,6 +61,12 @@ CrTodoTask class >> voyageStartDate [
 		yourself
 ]
 
+{ #category : #private }
+CrTodoTask >> collectTagsOn: aString [
+
+	^ #()
+]
+
 { #category : #accessing }
 CrTodoTask >> done: aBoolean [
 
@@ -98,8 +105,9 @@ CrTodoTask >> name [
 ]
 
 { #category : #accessing }
-CrTodoTask >> name: anObject [
-	name := anObject
+CrTodoTask >> name: aString [
+
+	name := aString
 ]
 
 { #category : #accessing }
@@ -108,8 +116,9 @@ CrTodoTask >> notes [
 ]
 
 { #category : #accessing }
-CrTodoTask >> notes: anObject [
-	notes := anObject
+CrTodoTask >> notes: aString [
+
+	notes := aString
 ]
 
 { #category : #printing }
@@ -117,6 +126,13 @@ CrTodoTask >> printOn: stream [
 
 	super printOn: stream.
 	stream << '(' << self name << ')'
+]
+
+{ #category : #persistence }
+CrTodoTask >> save [ 
+
+	self updateTags.
+	super save
 ]
 
 { #category : #private }
@@ -143,4 +159,11 @@ CrTodoTask >> takeMemento [
 	^ self class allSlots 
 		collect: [ :each | (self readSlot: each) copy ]
 		as: Array
+]
+
+{ #category : #private }
+CrTodoTask >> updateTags [
+	
+	tags := (self collectTagsOn: self name), (self collectTagsOn: self notes)
+
 ]
