@@ -40,3 +40,11 @@ CrTodoAddTaskPanel >> initializeDialogWindow: aWindowDialogPresenter [
 						close ] ];
 		centered
 ]
+
+{ #category : #initialization }
+CrTodoAddTaskPanel >> initializeWindow: aWindowPresenter [
+
+	super initializeWindow: aWindowPresenter.
+	aWindowPresenter title: 'New Task'
+
+]

@@ -52,7 +52,6 @@ CrTodoTaskPanel >> initializePresenters [
 CrTodoTaskPanel >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter 
-		title: 'To-Do';
 		initialExtent: 500@150;
 		whenOpenedDo: [ nameTextInput takeKeyboardFocus ]
 ]
