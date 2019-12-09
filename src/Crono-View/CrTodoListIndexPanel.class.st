@@ -55,6 +55,14 @@ CrTodoListIndexPanel >> defineOutputPorts [
 				yourself ]
 ]
 
+{ #category : #actions }
+CrTodoListIndexPanel >> editList [
+
+	(CrTodoEditListCommand forContext: self) 
+		list: self selectedItem todoList;
+		execute
+]
+
 { #category : #accessing }
 CrTodoListIndexPanel >> firstResponder [
 
@@ -75,7 +83,9 @@ CrTodoListIndexPanel >> initializePresenters [
 		addStyle: 'list';
 		presenters: self allListPresenters;
 		selectIndex: 2;
+		whenActivatedDo: [ self editList ];
 		yourself.
+		
 	actionBar := self newActionBar
 		add: (self newButton 
 			"label: 'New List';"
@@ -132,5 +142,6 @@ CrTodoListIndexPanel >> refreshThenSelect: aTodoList [
 
 { #category : #accessing }
 CrTodoListIndexPanel >> selectedItem [
+
 	^ list selection selectedItem
 ]
