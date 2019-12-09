@@ -164,14 +164,6 @@ CrTodoList class >> voyageType [
 		yourself
 ]
 
-{ #category : #comparing }
-CrTodoList >> = other [
-
-	self species = other species ifFalse: [ ^ false ].
-	self type = other type ifFalse: [ ^ false ].
-	^ self name = other name
-]
-
 { #category : #accessing }
 CrTodoList >> addTask: aTask [ 
 
@@ -182,12 +174,6 @@ CrTodoList >> addTask: aTask [
 CrTodoList >> doneTasks [
 
 	^ self tasks select: #isDone
-]
-
-{ #category : #comparing }
-CrTodoList >> hash [
-
-	^ self type hash bitXor: self name hash
 ]
 
 { #category : #accessing }
