@@ -18,7 +18,9 @@ CrTodoListIndexPanel class >> defaultSpec [
 ]
 
 { #category : #actions }
-CrTodoListIndexPanel >> addNewList [
+CrTodoListIndexPanel >> addList [
+
+	(CrTodoAddListCommand forSpecContext: self) execute
 ]
 
 { #category : #private }
@@ -79,7 +81,7 @@ CrTodoListIndexPanel >> initializePresenters [
 			"label: 'New List';"
 			icon: (self application iconNamed: #grayAdd);
 			help: 'New List';
-			action: [ self addNewList ];
+			action: [ self addList ];
 			yourself);
 		yourself
 ]

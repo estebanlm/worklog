@@ -60,7 +60,7 @@ CrTodoWindow >> allKeyBindingActions [
 		register: (CrTodoAddNewCronoCommand forSpecContext: self);
 		register: (CrTodoReviewCronoCommand forSpecContext: self);
 		register: (CrTodoAddTaskCommand forSpecContext: self);
-		register: (CrTodoAddNewListCommand forSpecContext: self);
+		register: (CrTodoAddListCommand forSpecContext: self);
 		yourself
 ]
 

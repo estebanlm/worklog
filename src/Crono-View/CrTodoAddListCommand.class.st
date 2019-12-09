@@ -1,29 +1,29 @@
 Class {
-	#name : #CrTodoAddNewListCommand,
+	#name : #CrTodoAddListCommand,
 	#superclass : #CrCommand,
 	#category : #'Crono-View-Todo-Commands'
 }
 
 { #category : #default }
-CrTodoAddNewListCommand class >> defaultDescription [
+CrTodoAddListCommand class >> defaultDescription [
 
 	^ 'Add a new user list.'
 ]
 
 { #category : #initialization }
-CrTodoAddNewListCommand class >> defaultIconName [
+CrTodoAddListCommand class >> defaultIconName [
 
 	^ #grayAdd
 ]
 
 { #category : #default }
-CrTodoAddNewListCommand class >> defaultName [
+CrTodoAddListCommand class >> defaultName [
 
 	^ 'New List'
 ]
 
 { #category : #converting }
-CrTodoAddNewListCommand >> asSpecCommand [
+CrTodoAddListCommand >> asSpecCommand [
 
 	^ super asSpecCommand 
 		shortcutKey: $n shift platformMeta;
@@ -31,7 +31,7 @@ CrTodoAddNewListCommand >> asSpecCommand [
 ]
 
 { #category : #executing }
-CrTodoAddNewListCommand >> execute [
+CrTodoAddListCommand >> execute [
 	| dialog list |
 	
 	dialog := CrRequestDialog new
