@@ -42,7 +42,7 @@ CrTodoWindow class >> defaultSpec [
 { #category : #accessing }
 CrTodoWindow >> activeTodoList [
 
-	^ listPanel presenter todoList
+	^ listPanel presenter activeTodoList
 ]
 
 { #category : #initialization }
@@ -59,7 +59,7 @@ CrTodoWindow >> allKeyBindingActions [
 	^ CmCommandGroup forSpec
 		register: (CrTodoAddNewCronoCommand forSpecContext: self);
 		register: (CrTodoReviewCronoCommand forSpecContext: self);
-		register: (CrTodoAddNewTaskCommand forSpecContext: self);
+		register: (CrTodoAddTaskCommand forSpecContext: self);
 		register: (CrTodoAddNewListCommand forSpecContext: self);
 		yourself
 ]
@@ -194,7 +194,7 @@ CrTodoWindow >> toolbarActions [
 
 	^ CmCommandGroup forSpec
 		register: (CrTodoAddNewCronoCommand forSpecContext: self);
-		register: (CrTodoAddNewTaskCommand forSpecContext: self);
+		register: (CrTodoAddTaskCommand forSpecContext: self);
 		register: (CrTodoReviewCronoCommand forSpecContext: self);
 		yourself
 ]

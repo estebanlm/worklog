@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 CrTodoTypeUser >> defaultIconName [
 
-	^ #todo
+	^ #user
 ]
 
 { #category : #accessing }

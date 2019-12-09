@@ -22,18 +22,30 @@ CrTodoListPanel class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #accessing }
+CrTodoListPanel >> activeTask [
+
+	^ list selection selectedItem task
+]
+
+{ #category : #accessing }
+CrTodoListPanel >> activeTodoList [
+
+	^ self todoList
+]
+
 { #category : #initialization }
 CrTodoListPanel >> addGlobalShortcutsTo: aWindowPresenter [
 
 	aWindowPresenter 
 		bindKey: $n 
-		toAction: [ self addNewToDo ]
+		toAction: [ self addTask ]
 ]
 
 { #category : #actions }
-CrTodoListPanel >> addNewToDo [
+CrTodoListPanel >> addTask [
 
-	(CrTodoTaskPanel newApplication: self application)
+	(CrTodoAddTaskPanel newApplication: self application)
 		todoList: self todoList;
 		openDialogWithSpec
 ]
@@ -62,6 +74,12 @@ CrTodoListPanel >> defineOutputPorts [
 				yourself ]
 ]
 
+{ #category : #actions }
+CrTodoListPanel >> editTask [
+
+	(CrTodoEditTaskCommand forSpecContext: self) execute
+]
+
 { #category : #accessing }
 CrTodoListPanel >> firstResponder [
 
@@ -82,7 +100,8 @@ CrTodoListPanel >> initializePresenters [
 		addStyle: 'list';
 		contextMenu: self contextMenuActions;
 		bindKeyCombination: Character space asKeyCombination 
-			toAction: [ self selectedItemToggleState ]
+			toAction: [ self selectedItemToggleState ];
+		whenActivatedDo: [ self editTask ] 
 ]
 
 { #category : #initialization }
