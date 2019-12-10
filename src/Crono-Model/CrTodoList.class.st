@@ -178,6 +178,13 @@ CrTodoList >> addTask: aTask [
 ]
 
 { #category : #accessing }
+CrTodoList >> completion [
+
+	self numberTasks = 0 ifTrue: [ ^0 ].  
+	^ self numberDoneTasks / self numberTasks
+]
+
+{ #category : #accessing }
 CrTodoList >> doneTasks [
 
 	^ self tasks select: #isDone

@@ -2,10 +2,10 @@ Class {
 	#name : #CrTodoListIndexSummaryPanel,
 	#superclass : #SpPresenter,
 	#instVars : [
+		'todoList',
 		'iconImage',
 		'nameLabel',
-		'statusLabel',
-		'todoList'
+		'completionImage'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -18,8 +18,16 @@ CrTodoListIndexSummaryPanel class >> defaultSpec [
 		spacing: 5;
 		add: #iconImage expand: false;
 		add: #nameLabel;
-		addLast: #statusLabel expand: false;
+		addLast: #completionImage expand: false;
 		yourself
+]
+
+{ #category : #accessing }
+CrTodoListIndexSummaryPanel >> completionForm [
+
+	^ CrCompletionBuilder new 
+		completion: self todoList completion;
+		build
 ]
 
 { #category : #initialization }
@@ -35,15 +43,14 @@ CrTodoListIndexSummaryPanel >> initializePresenters [
 	iconImage := self newImage
 		image: self image.
 	nameLabel := self newLabel label: self todoList name.
-	statusLabel := self newLabel 
-		addStyle: 'dim';
-		label: self statusString
+	completionImage := self newImage image: self completionForm.
+	
 ]
 
 { #category : #accessing }
 CrTodoListIndexSummaryPanel >> refresh [
 
-	statusLabel label: self statusString
+	completionImage image: self completionForm
 ]
 
 { #category : #initialization }

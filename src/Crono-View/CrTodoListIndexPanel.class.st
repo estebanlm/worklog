@@ -117,11 +117,14 @@ CrTodoListIndexPanel >> initializePresenters [
 		presenters: self allInactiveListPresenters;
 		yourself.
 		
+	list transmitDo: [ 
+		inactiveList selection unselectAll ].
+		
 	actionBar := self newActionBar
 		add: (self newButton 
-			"label: 'New List';"
+			label: 'New List';
 			icon: (self application iconNamed: #grayAdd);
-			help: 'New List';
+			help: 'Add a new List';
 			action: [ self addList ];
 			yourself);
 		yourself
