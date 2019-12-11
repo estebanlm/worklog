@@ -2,8 +2,6 @@ Class {
 	#name : #CrCompletionBuilder,
 	#superclass : #Object,
 	#instVars : [
-		'surface',
-		'fraction',
 		'completion',
 		'color'
 	],
@@ -16,52 +14,61 @@ CrCompletionBuilder class >> defaultColor [
 	^ Color gray
 ]
 
-{ #category : #building }
-CrCompletionBuilder >> build [
-	| size half form angle center canvas vertices origin |
+{ #category : #accessing }
+CrCompletionBuilder >> borderWidth [
 
-	size := self formSize.
-	fraction := self completion.
-
-	half := size // 2.
-	form := Form extent: size@size depth: 32.
-	angle := (360 * fraction) degreesToRadians.
-	center := form boundingBox center.
-	canvas := FormCanvas on: form.
-	canvas 
-		fillOval: form boundingBox 
-		color: Color transparent 
-		borderWidth: 2
-		 borderColor: self color.
-	vertices := OrderedCollection new.
-	origin := (center + (0@(half negated))).
-	vertices add: center.
-	0 to: angle by: 1 degreesToRadians do: [ :anAngle |
-    	vertices add: (origin rotateBy: anAngle negated about: center) ].
-
-	^ canvas
-		drawPolygon: vertices
-		fillStyle: self color
+	^ 1
 ]
 
-{ #category : #'not used' }
-CrCompletionBuilder >> buildSurface [
-	| extent pieColor strokeColor |
+{ #category : #building }
+CrCompletionBuilder >> build [
+	| surface |
 	
-	extent := 20@20.	
-	surface := AthensCairoSurface extent: extent.
+	surface := self buildSurface.
+	^ surface asForm
+]
+
+{ #category : #building }
+CrCompletionBuilder >> buildSurface [
+	| surface size half width center origin south angle isFull circle end arc |
+
+	size := self formSize.
+	half := size // 2.
+	width := 5.
+
+	surface := AthensCairoSurface extent: size@size.
+
+	center := half @ half.
+	origin := center + (0 @ half negated) + (0 @ width).
+	south := center + (0 @ half) - (0 @ width).
+	angle := (360 * self completion) degreesToRadians.
+
 	surface drawDuring: [ :canvas | 
-		| path |
-		
-		canvas pathTransform restoreAfter: [ 
-			canvas setPaint: pieColor.
-			(canvas setStrokePaint: strokeColor) width: 2.
-			path := canvas createPath: [ :aPath |
-				aPath
-					moveTo: 0@(extent y/2);
-					cwArcTo: 	(extent x/2)@0 angle: 180 degreesToRadians;
-					cwArcTo: (extent x/2) negated @0 angle: 180 degreesToRadians ].
-			canvas drawShape: path ] ].
+		isFull := self completion = 1.
+		isFull
+			ifTrue: [ canvas setPaint: self color ]
+			ifFalse: [ (canvas setStrokePaint: self color) width: self borderWidth ].
+
+		circle := canvas createPath: [ :builder | 
+          builder
+	          absolute;
+	          moveTo: origin;
+	          "we need to paint it as two halfs"cwArcTo: south
+	          angle: Float pi;
+	          cwArcTo: origin angle: Float pi ].
+
+		canvas drawShape: circle.
+		isFull ifFalse: [ 
+			end := origin rotateBy: angle negated about: center.
+			canvas setPaint: self color.
+			arc := canvas createPath: [ :builder | 
+		       builder
+			       absolute;
+			       moveTo: end;
+			       lineTo: center;
+			       lineTo: origin;
+			       cwArcTo: end angle: angle ].
+			canvas drawShape: arc ] ].
 	
 	^ surface
 ]
@@ -93,5 +100,5 @@ CrCompletionBuilder >> completion: aPercentage [
 { #category : #accessing }
 CrCompletionBuilder >> formSize [
 
-	^ 16
+	^ 24
 ]

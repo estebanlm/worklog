@@ -23,7 +23,7 @@ CrTodoListIndexSummaryPanel class >> defaultSpec [
 ]
 
 { #category : #accessing }
-CrTodoListIndexSummaryPanel >> completionForm [
+CrTodoListIndexSummaryPanel >> completionImage [
 
 	^ CrCompletionBuilder new 
 		completion: self todoList completion;
@@ -40,17 +40,15 @@ CrTodoListIndexSummaryPanel >> image [
 { #category : #initialization }
 CrTodoListIndexSummaryPanel >> initializePresenters [
 
-	iconImage := self newImage
-		image: self image.
+	iconImage := self newImage image: self image.
 	nameLabel := self newLabel label: self todoList name.
-	completionImage := self newImage image: self completionForm.
-	
+	completionImage := self newImage image: self completionImage
 ]
 
 { #category : #accessing }
 CrTodoListIndexSummaryPanel >> refresh [
 
-	completionImage image: self completionForm
+	completionImage image: self completionImage
 ]
 
 { #category : #initialization }
