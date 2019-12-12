@@ -30,17 +30,16 @@ CrCompletionBuilder >> build [
 
 { #category : #building }
 CrCompletionBuilder >> buildSurface [
-	| surface size half width center origin south angle isFull circle end arc |
+	| surface size half center origin south angle isFull circle end arc |
 
 	size := self formSize.
 	half := size // 2.
-	width := 5.
 
 	surface := AthensCairoSurface extent: size@size.
 
 	center := half @ half.
-	origin := center + (0 @ half negated) + (0 @ width).
-	south := center + (0 @ half) - (0 @ width).
+	origin := center + (0 @ half negated) + (0 @ (self borderWidth)).
+	south := center + (0 @ half) - (0 @ (self borderWidth)).
 	angle := (360 * self completion) degreesToRadians.
 
 	surface drawDuring: [ :canvas | 
@@ -100,5 +99,5 @@ CrCompletionBuilder >> completion: aPercentage [
 { #category : #accessing }
 CrCompletionBuilder >> formSize [
 
-	^ 24
+	^ 16
 ]
