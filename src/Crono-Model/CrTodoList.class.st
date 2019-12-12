@@ -30,7 +30,7 @@ CrTodoList class >> allLists [
 	allLists ifEmpty: [ allLists := self createBaseLists ].
 	^ allLists"
 	
-	^ { self inbox. self active. self unsorted }, self userLists
+	^ self baseLists, self userLists
 ]
 
 { #category : #legacy }
@@ -40,6 +40,17 @@ CrTodoList class >> baseListFileNames [
 	self inboxFileName. 
 	self activeFileName. 
 	self unsortedFileName }
+]
+
+{ #category : #accessing }
+CrTodoList class >> baseLists [
+
+	"This is just an easy way to keep cached the base objects to avoid making a select each time
+	 (which can be time consuming, just to bring some lists we already know are there).
+	 Yes it is a HACK :P"
+	^ CrApplication current 
+		propertyAt: #baseLists 
+		ifAbsentPut: [ { self inbox. self active. self unsorted } ]
 ]
 
 { #category : #accessing }
