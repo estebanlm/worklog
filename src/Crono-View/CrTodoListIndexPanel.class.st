@@ -171,7 +171,18 @@ CrTodoListIndexPanel >> refreshSelection [
 CrTodoListIndexPanel >> refreshThenSelect: aTodoList [
 
 	list presenters: self allListPresenters.
-	list selectItem: aTodoList
+	self selectItem: aTodoList
+]
+
+{ #category : #accessing }
+CrTodoListIndexPanel >> selectItem: aTodoList [
+
+	self flag: #TODO. "This is identical to CrTodoListPanel>>selectItem:, we need to 
+	find a way to unify them "
+	list items 
+		detect: [ :each | each todoList = aTodoList ]
+		ifFound: [ :each | list selectItem: each ]
+		ifNone: [ list unselectAll ]
 ]
 
 { #category : #accessing }
