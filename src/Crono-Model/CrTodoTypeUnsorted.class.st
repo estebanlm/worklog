@@ -16,6 +16,18 @@ CrTodoTypeUnsorted >> name [
 	^ 'Unsorted'
 ]
 
+{ #category : #testing }
+CrTodoTypeUnsorted >> showsCompletion [
+
+	^ false
+]
+
+{ #category : #testing }
+CrTodoTypeUnsorted >> showsPendingSize [
+
+	^ true
+]
+
 { #category : #accessing }
 CrTodoTypeUnsorted >> typeName [
 

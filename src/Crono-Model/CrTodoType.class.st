@@ -99,6 +99,18 @@ CrTodoType >> name [
 	^ self subclassResponsibility
 ]
 
+{ #category : #testing }
+CrTodoType >> showsCompletion [
+
+	^ true
+]
+
+{ #category : #testing }
+CrTodoType >> showsPendingSize [
+
+	^ false
+]
+
 { #category : #'ston persistence' }
 CrTodoType >> stonContainSubObjects [
  

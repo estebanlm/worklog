@@ -16,6 +16,18 @@ CrTodoTypeActive >> name [
 	^ 'Active'
 ]
 
+{ #category : #testing }
+CrTodoTypeActive >> showsCompletion [
+
+	^ false
+]
+
+{ #category : #testing }
+CrTodoTypeActive >> showsPendingSize [
+
+	^ true
+]
+
 { #category : #accessing }
 CrTodoTypeActive >> typeName [
 

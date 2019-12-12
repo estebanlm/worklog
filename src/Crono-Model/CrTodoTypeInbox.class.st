@@ -16,6 +16,18 @@ CrTodoTypeInbox >> name [
 	^ 'Inbox'
 ]
 
+{ #category : #testing }
+CrTodoTypeInbox >> showsCompletion [
+
+	^ false
+]
+
+{ #category : #testing }
+CrTodoTypeInbox >> showsPendingSize [
+
+	^ true
+]
+
 { #category : #accessing }
 CrTodoTypeInbox >> typeName [
 

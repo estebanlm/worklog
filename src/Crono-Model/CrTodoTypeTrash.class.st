@@ -22,6 +22,12 @@ CrTodoTypeTrash >> name [
 	^ 'Trash'
 ]
 
+{ #category : #testing }
+CrTodoTypeTrash >> showsCompletion [
+
+	^ false
+]
+
 { #category : #accessing }
 CrTodoTypeTrash >> typeName [
 

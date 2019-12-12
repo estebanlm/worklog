@@ -45,9 +45,7 @@ CrTodoListPanel >> addGlobalShortcutsTo: aWindowPresenter [
 { #category : #actions }
 CrTodoListPanel >> addTask [
 
-	(CrTodoAddTaskPanel newApplication: self application)
-		todoList: self todoList;
-		openDialogWithSpec
+	(CrTodoAddTaskCommand forContext: self) execute
 ]
 
 { #category : #private }
@@ -77,7 +75,7 @@ CrTodoListPanel >> defineOutputPorts [
 { #category : #actions }
 CrTodoListPanel >> editTask [
 
-	(CrTodoEditTaskCommand forSpecContext: self) execute
+	(CrTodoEditTaskCommand forContext: self) execute
 ]
 
 { #category : #accessing }

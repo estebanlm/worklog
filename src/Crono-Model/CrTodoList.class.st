@@ -180,14 +180,20 @@ CrTodoList >> addTask: aTask [
 { #category : #accessing }
 CrTodoList >> completion [
 
-	self numberTasks = 0 ifTrue: [ ^0 ].  
-	^ self numberDoneTasks / self numberTasks
+	self tasksSize = 0 ifTrue: [ ^0 ].  
+	^ self doneTasksSize / self tasksSize
 ]
 
 { #category : #accessing }
 CrTodoList >> doneTasks [
 
 	^ self tasks select: #isDone
+]
+
+{ #category : #accessing }
+CrTodoList >> doneTasksSize [
+
+	^ self doneTasks size
 ]
 
 { #category : #accessing }
@@ -247,27 +253,15 @@ CrTodoList >> name: aString [
 ]
 
 { #category : #accessing }
-CrTodoList >> numberDoneTasks [
-
-	^ self doneTasks size
-]
-
-{ #category : #accessing }
-CrTodoList >> numberPendingTasks [
-
-	^ self pendingTasks size
-]
-
-{ #category : #accessing }
-CrTodoList >> numberTasks [
-
-	^ self tasks size
-]
-
-{ #category : #accessing }
 CrTodoList >> pendingTasks [
 
 	^ self tasks reject: #isDone
+]
+
+{ #category : #accessing }
+CrTodoList >> pendingTasksSize [
+
+	^ self pendingTasks size
 ]
 
 { #category : #printing }
@@ -295,6 +289,18 @@ CrTodoList >> setType: aType [
 	type := aType
 ]
 
+{ #category : #testing }
+CrTodoList >> showsCompletion [
+
+	^ self type showsCompletion
+]
+
+{ #category : #testing }
+CrTodoList >> showsPendingSize [
+
+	^ self type showsPendingSize
+]
+
 { #category : #accessing }
 CrTodoList >> tasks [
 
@@ -305,6 +311,12 @@ CrTodoList >> tasks [
 CrTodoList >> tasks: aCollection [
 
 	tasks := aCollection asOrderedCollection
+]
+
+{ #category : #accessing }
+CrTodoList >> tasksSize [
+
+	^ self tasks size
 ]
 
 { #category : #accessing }

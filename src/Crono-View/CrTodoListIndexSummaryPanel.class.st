@@ -5,7 +5,7 @@ Class {
 		'todoList',
 		'iconImage',
 		'nameLabel',
-		'completionImage'
+		'statusPresenter'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -18,7 +18,7 @@ CrTodoListIndexSummaryPanel class >> defaultSpec [
 		spacing: 5;
 		add: #iconImage expand: false;
 		add: #nameLabel;
-		addLast: #completionImage expand: false;
+		addLast: #statusPresenter expand: false;
 		yourself
 ]
 
@@ -42,13 +42,22 @@ CrTodoListIndexSummaryPanel >> initializePresenters [
 
 	iconImage := self newImage image: self image.
 	nameLabel := self newLabel label: self todoList name.
-	completionImage := self newImage image: self completionImage
+	
+	statusPresenter := self newStatusPresenter.
+	self updateStatusPresenter
+]
+
+{ #category : #private }
+CrTodoListIndexSummaryPanel >> newStatusPresenter [
+
+	self showsCompletion ifTrue: [ ^ self newImage ].
+	^ self newLabel
 ]
 
 { #category : #accessing }
 CrTodoListIndexSummaryPanel >> refresh [
 
-	completionImage image: self completionImage
+	self updateStatusPresenter
 ]
 
 { #category : #initialization }
@@ -58,16 +67,45 @@ CrTodoListIndexSummaryPanel >> setModelBeforeInitialization: aTodoList [
 ]
 
 { #category : #accessing }
+CrTodoListIndexSummaryPanel >> showsCompletion [
+
+	^ self todoList showsCompletion
+]
+
+{ #category : #accessing }
+CrTodoListIndexSummaryPanel >> showsPendingSize [
+
+	^ self todoList showsPendingSize
+]
+
+{ #category : #accessing }
 CrTodoListIndexSummaryPanel >> statusString [
 
-	todoList numberPendingTasks isZero ifTrue: [ ^ '' ].
+	todoList pendingTasksSize isZero ifTrue: [ ^ '' ].
 	^ '{1}/{2}' format: { 
-			self todoList numberDoneTasks. 
-			self todoList numberTasks }
+			self todoList doneTasksSize. 
+			self todoList tasksSize }
 ]
 
 { #category : #accessing }
 CrTodoListIndexSummaryPanel >> todoList [
 
 	^ todoList
+]
+
+{ #category : #accessing }
+CrTodoListIndexSummaryPanel >> todoListPendingSize [
+
+	^ self todoList pendingTasksSize
+]
+
+{ #category : #private }
+CrTodoListIndexSummaryPanel >> updateStatusPresenter [
+
+	self showsCompletion ifTrue: [ ^ statusPresenter image: self completionImage ].
+	self showsPendingSize ifTrue: [ | listSize | 
+		listSize := self todoListPendingSize.
+		statusPresenter label: (listSize ~= 0 
+			ifTrue: [ listSize printString ] 
+			ifFalse: [ '' ]) ]
 ]
