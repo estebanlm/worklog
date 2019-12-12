@@ -1,10 +1,10 @@
 Class {
 	#name : #CrTodoList,
-	#superclass : #Object,
+	#superclass : #CrAbstractList,
 	#instVars : [
+		'type',
 		'name',
 		'iconName',
-		'type',
 		'tasks'
 	],
 	#category : #'Crono-Model'
@@ -13,7 +13,7 @@ Class {
 { #category : #accessing }
 CrTodoList class >> active [
 
-	^ self selectOne: [ :each | each type = CrTodoType active typeName ]
+	^ CrActiveList uniqueInstance
 ]
 
 { #category : #legacy }
@@ -24,11 +24,13 @@ CrTodoList class >> activeFileName [
 
 { #category : #accessing }
 CrTodoList class >> allLists [
-	| allLists |
+	"| allLists |
 	
 	allLists := self selectAll.
 	allLists ifEmpty: [ allLists := self createBaseLists ].
-	^ allLists
+	^ allLists"
+	
+	^ { self inbox. self active. self unsorted }, self userLists
 ]
 
 { #category : #legacy }
@@ -45,9 +47,8 @@ CrTodoList class >> createBaseLists [
 	
 	^ { 
 		(CrTodoList newType: CrTodoType inbox) save.
-		(CrTodoList newType: CrTodoType active) save.
-		(CrTodoList newType: CrTodoType unsorted) save.
-		(CrTodoList newType: CrTodoType trash) save }
+		(CrTodoList newType: CrTodoType unsorted) save
+	}
 ]
 
 { #category : #accessing }
@@ -132,7 +133,7 @@ CrTodoList class >> transientInstVarNames [
 { #category : #accessing }
 CrTodoList class >> trash [
 
-	^ self selectOne: [ :each | each type = CrTodoType trash typeName ]
+	^ CrArchiveList uniqueInstance
 ]
 
 { #category : #accessing }
@@ -145,6 +146,12 @@ CrTodoList class >> unsorted [
 CrTodoList class >> unsortedFileName [
 			
 	^ 'Unsorted.ston'
+]
+
+{ #category : #accessing }
+CrTodoList class >> userLists [
+	
+	^ self selectMany: [ :each | each type = CrTodoType user typeName ]
 ]
 
 { #category : #persistence }
@@ -185,33 +192,15 @@ CrTodoList >> completion [
 ]
 
 { #category : #accessing }
-CrTodoList >> doneTasks [
-
-	^ self tasks select: #isDone
-]
-
-{ #category : #accessing }
-CrTodoList >> doneTasksSize [
-
-	^ self doneTasks size
-]
-
-{ #category : #accessing }
 CrTodoList >> iconName [
 
-	^ iconName ifNil: [ self type defaultIconName ]
+	^ iconName ifNil: [ super iconName ]
 ]
 
 { #category : #accessing }
 CrTodoList >> iconName: aSymbol [
 
 	iconName := aSymbol
-]
-
-{ #category : #testing }
-CrTodoList >> includesTask: aTask [
-
-	^ self tasks includes: aTask
 ]
 
 { #category : #initialization }
@@ -228,18 +217,6 @@ CrTodoList >> initializeType: aType [
 	self setType: aType
 ]
 
-{ #category : #testing }
-CrTodoList >> isEditable [
-
-	^ self type isEditable
-]
-
-{ #category : #testing }
-CrTodoList >> isVisible [
-	
-	^ self type isVisible
-]
-
 { #category : #accessing }
 CrTodoList >> name [
 
@@ -252,23 +229,19 @@ CrTodoList >> name: aString [
 	name := aString
 ]
 
-{ #category : #accessing }
-CrTodoList >> pendingTasks [
-
-	^ self tasks reject: #isDone
-]
-
-{ #category : #accessing }
-CrTodoList >> pendingTasksSize [
-
-	^ self pendingTasks size
-]
-
 { #category : #printing }
 CrTodoList >> printOn: stream [
 
 	super printOn: stream.
 	stream << '(' << self name << ')'
+]
+
+{ #category : #persistence }
+CrTodoList >> remove [
+
+	self tasks copy 
+		do: [ :each | self removeTask: each ].
+	super remove
 ]
 
 { #category : #accessing }
@@ -289,18 +262,6 @@ CrTodoList >> setType: aType [
 	type := aType
 ]
 
-{ #category : #testing }
-CrTodoList >> showsCompletion [
-
-	^ self type showsCompletion
-]
-
-{ #category : #testing }
-CrTodoList >> showsPendingSize [
-
-	^ self type showsPendingSize
-]
-
 { #category : #accessing }
 CrTodoList >> tasks [
 
@@ -311,12 +272,6 @@ CrTodoList >> tasks [
 CrTodoList >> tasks: aCollection [
 
 	tasks := aCollection asOrderedCollection
-]
-
-{ #category : #accessing }
-CrTodoList >> tasksSize [
-
-	^ self tasks size
 ]
 
 { #category : #accessing }

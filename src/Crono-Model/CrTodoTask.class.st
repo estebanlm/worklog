@@ -56,7 +56,7 @@ CrTodoTask class >> voyageStartDate [
 	^ VOToOneDescription new 
 		attributeName: 'startDate';
 		accessor: (MAPluggableAccessor 
-			read: [ :aTask | aTask doneDate ifNotNil: #asString ]
+			read: [ :aTask | aTask startDate ifNotNil: #asString ]
 			write: [ :aTask :date | 
 				date ifNotNil: [ aTask setStartDate: (DateAndTime fromString: date) ] ]);
 		yourself
