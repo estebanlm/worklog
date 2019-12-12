@@ -6,7 +6,8 @@ Class {
 		'notes',
 		'startDate',
 		'doneDate',
-		'tags'
+		'tags',
+		'focused'
 	],
 	#category : #'Crono-Model'
 }
@@ -80,6 +81,12 @@ CrTodoTask >> doneDate [
 	^ doneDate
 ]
 
+{ #category : #accessing }
+CrTodoTask >> focus: aBoolean [
+
+	focused := aBoolean
+]
+
 { #category : #testing }
 CrTodoTask >> hasNotes [
 
@@ -90,13 +97,27 @@ CrTodoTask >> hasNotes [
 CrTodoTask >> initialize [
 
 	super initialize. 
-	startDate := DateAndTime now
+	startDate := DateAndTime now.
+	focused := false
 ]
 
 { #category : #testing }
 CrTodoTask >> isDone [
 
 	^ doneDate notNil
+]
+
+{ #category : #accessing }
+CrTodoTask >> isFocused [
+
+	^ focused
+]
+
+{ #category : #testing }
+CrTodoTask >> isVisible [
+
+	^ self isArchived not 
+		and: [ self isDone not or: [ self isStillShown: self doneDate ] ]
 ]
 
 { #category : #accessing }
