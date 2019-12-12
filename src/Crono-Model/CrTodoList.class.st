@@ -42,15 +42,6 @@ CrTodoList class >> baseListFileNames [
 	self unsortedFileName }
 ]
 
-{ #category : #private }
-CrTodoList class >> createBaseLists [
-	
-	^ { 
-		(CrTodoList newType: CrTodoType inbox) save.
-		(CrTodoList newType: CrTodoType unsorted) save
-	}
-]
-
 { #category : #accessing }
 CrTodoList class >> inbox [
 
@@ -73,6 +64,15 @@ CrTodoList class >> isVoyageRoot [
 CrTodoList class >> listNamed: aString [
 	
 	^ self selectOne: [ :each | each name = aString ]
+]
+
+{ #category : #private }
+CrTodoList class >> newBaseLists [
+	
+	^ { 
+		(CrTodoList newType: CrTodoType inbox).
+		(CrTodoList newType: CrTodoType unsorted)
+	}
 ]
 
 { #category : #'instance creation' }

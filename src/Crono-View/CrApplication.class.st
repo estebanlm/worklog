@@ -108,8 +108,14 @@ CrApplication >> initializeBackend [
 
 { #category : #initialization }
 CrApplication >> initializeRepository [
+	| reference isNew |
 
-	repository := VOUnQLiteRepository on: (FileLocator imageDirectory / 'crono.db')
+	reference := FileLocator imageDirectory / 'crono.db'.
+	isNew := reference exists not.
+	repository := VOUnQLiteRepository on: reference.
+	isNew ifTrue: [ 
+		CrTodoList newBaseLists 
+			do: [ :each | repository save: each ] ]
 ]
 
 { #category : #testing }
