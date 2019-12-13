@@ -71,6 +71,12 @@ CrAbstractList >> showsPendingSize [
 ]
 
 { #category : #accessing }
+CrAbstractList >> summaryString [
+
+	^ ''
+]
+
+{ #category : #accessing }
 CrAbstractList >> tasks [
 
 	^ self subclassResponsibility

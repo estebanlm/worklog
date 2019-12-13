@@ -7,7 +7,7 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'list',
-		'actionBar',
+		'statusBar',
 		'todoList'
 	],
 	#category : #'Crono-View-Todo'
@@ -18,7 +18,7 @@ CrTodoListPanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #list;
-		"add: #actionBar expand: false;"
+		add: #statusBar expand: false;
 		yourself
 ]
 
@@ -99,7 +99,9 @@ CrTodoListPanel >> initializePresenters [
 		contextMenu: self contextMenuActions;
 		bindKeyCombination: Character space asKeyCombination 
 			toAction: [ self selectedItemToggleState ];
-		whenActivatedDo: [ self editTask ] 
+		whenActivatedDo: [ self editTask ].
+		
+	statusBar := self instantiate: CrTodoListStatusBarPanel
 ]
 
 { #category : #initialization }
@@ -182,5 +184,6 @@ CrTodoListPanel >> todoList [
 CrTodoListPanel >> todoList: aList [
 
 	todoList := aList.
+	statusBar todoList: aList.
 	self refresh
 ]
