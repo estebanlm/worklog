@@ -61,11 +61,18 @@ CrTodoListTaskSummaryPanel >> refreshContentIfNeeded [
 	self updatePresenter
 ]
 
-{ #category : #'accessing model' }
-CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aTask [
+{ #category : #initialization }
+CrTodoListTaskSummaryPanel >> setModelBeforeInitialization: aTodoListAndTaskPair [
 
-	task := aTask.
-	memento := aTask takeMemento.
+	todoList := aTodoListAndTaskPair todoList.
+	task := aTodoListAndTaskPair task.
+	memento := task takeMemento.
+]
+
+{ #category : #testing }
+CrTodoListTaskSummaryPanel >> showsFocus [
+
+	^ self todoList showsFocus
 ]
 
 { #category : #actions }
@@ -91,12 +98,6 @@ CrTodoListTaskSummaryPanel >> todoList [
 	^ todoList
 ]
 
-{ #category : #accessing }
-CrTodoListTaskSummaryPanel >> todoList: aTodoList [
-
-	todoList := aTodoList
-]
-
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> toggleFocus [
 
@@ -117,7 +118,7 @@ CrTodoListTaskSummaryPanel >> updatePresenter [
 	task hasNotes 
 		ifTrue: [ noteMarkerImage image: (self application iconNamed: #markNote) ]
 		ifFalse: [ noteMarkerImage image: nil ].
-	task isFocused
+	(self showsFocus and: [ task isFocused ])
 		ifTrue: [ focusMarkerImage image: (self application iconNamed: #markFocus) ]
 		ifFalse: [ focusMarkerImage image: nil ] 
 ]

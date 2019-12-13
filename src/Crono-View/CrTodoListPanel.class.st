@@ -132,9 +132,11 @@ CrTodoListPanel >> newListItemPresenters [
 	
 	^ self todoList tasks
 		collect: [ :each | 
-			(self instantiate: CrTodoListTaskSummaryPanel on: each)
-				todoList: self todoList;
-				yourself ]
+			self 
+				instantiate: CrTodoListTaskSummaryPanel 
+				on: (CrTodoListAndTaskPair
+					newList: self todoList 
+					task: each) ]
 ]
 
 { #category : #'notification handling' }
