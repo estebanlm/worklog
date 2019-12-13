@@ -26,6 +26,18 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #actions }
+CrTodoListTaskSummaryPanel >> focusChangedTo: focus [
+	
+	self task 
+		focus: focus;
+		save.
+		
+	self application notificationCenter 
+		notify: (CrTaskChangedNotification newTask: self task);
+		notify: (CrListChangedNotification newList: CrTodoList active)
+]
+
 { #category : #initialization }
 CrTodoListTaskSummaryPanel >> initializePresenters [
 
@@ -81,6 +93,12 @@ CrTodoListTaskSummaryPanel >> todoList [
 { #category : #accessing }
 CrTodoListTaskSummaryPanel >> todoList: anObject [
 	todoList := anObject
+]
+
+{ #category : #actions }
+CrTodoListTaskSummaryPanel >> toggleFocus [
+
+	self focusChangedTo: self task isFocused not
 ]
 
 { #category : #actions }

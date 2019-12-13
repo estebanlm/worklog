@@ -269,14 +269,6 @@ CrTodoList >> setType: aType [
 ]
 
 { #category : #accessing }
-CrTodoList >> summaryString [
-
-	^ '{1} of {2} tasks completed.' format: { 
-		self doneTasksSize. 
-		self tasksSize }
-]
-
-{ #category : #accessing }
 CrTodoList >> tasks [
 
 	^ tasks

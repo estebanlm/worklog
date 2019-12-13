@@ -11,6 +11,12 @@ CrArchiveList >> name [
 ]
 
 { #category : #accessing }
+CrArchiveList >> summaryString [
+
+	^ ''
+]
+
+{ #category : #accessing }
 CrArchiveList >> tasks [
 
 	self flag: #TODO.

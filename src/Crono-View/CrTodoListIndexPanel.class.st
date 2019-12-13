@@ -152,7 +152,9 @@ CrTodoListIndexPanel >> noteListAdded: aNotification [
 { #category : #'notification handling' }
 CrTodoListIndexPanel >> noteListChanged: aNotification [
 
-	self noteList: aNotification
+	list items 
+		detect: [ :each | each todoList = aNotification list ]
+		ifFound: [ :each | each refresh ]
 ]
 
 { #category : #accessing }

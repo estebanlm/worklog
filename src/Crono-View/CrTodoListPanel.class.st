@@ -49,11 +49,25 @@ CrTodoListPanel >> addTask [
 ]
 
 { #category : #private }
+CrTodoListPanel >> contextMenu [
+
+	^ self contextMenuActions asMenuPresenter
+]
+
+{ #category : #private }
 CrTodoListPanel >> contextMenuActions [
 
-	^ SpMenuPresenter new 
-		addItem: [ :item | item name: 'Move to...'; action: [ ] ];
+	^ CmCommandGroup forSpec
+		beRoot;
+		register: (CrTodoTaskFocusCommand forSpecContext: self);
+		register: (CrTodoTaskMoveToCommand forSpecContext: self);
 		yourself
+]
+
+{ #category : #private }
+CrTodoListPanel >> contextMenuKeyBindings [
+
+	^ self contextMenuActions asKMCategory
 ]
 
 { #category : #initialization }
@@ -96,7 +110,8 @@ CrTodoListPanel >> initializePresenters [
 
 	(list := self newComponentList)
 		addStyle: 'list';
-		contextMenu: self contextMenuActions;
+		contextMenu: self contextMenu;
+		"contextKeyBindings: self contextMenuKeyBindings;"
 		bindKeyCombination: Character space asKeyCombination 
 			toAction: [ self selectedItemToggleState ];
 		whenActivatedDo: [ self editTask ].
@@ -108,7 +123,8 @@ CrTodoListPanel >> initializePresenters [
 CrTodoListPanel >> initializeSubscribers [
 
 	self application notificationCenter 
-		subscribe: self to: CrTaskNotification
+		subscribe: self to: CrTaskNotification;
+		subscribe: self to: CrListChangedNotification
 ]
 
 { #category : #'private factory' }
@@ -119,6 +135,13 @@ CrTodoListPanel >> newListItemPresenters [
 			(self instantiate: CrTodoListTaskSummaryPanel on: each)
 				todoList: self todoList;
 				yourself ]
+]
+
+{ #category : #'notification handling' }
+CrTodoListPanel >> noteListChanged: aNotification [
+
+	self todoList = aNotification list ifFalse: [ ^ self ].
+	self refresh
 ]
 
 { #category : #'notification handling' }
@@ -163,12 +186,18 @@ CrTodoListPanel >> selectItem: aListItem [
 ]
 
 { #category : #actions }
+CrTodoListPanel >> selectedItemToggleFocus [
+
+	list selection selectedItem ifNotNil: #toggleFocus
+]
+
+{ #category : #actions }
 CrTodoListPanel >> selectedItemToggleState [
 
 	list selection selectedItem ifNotNil: #toggleState
 ]
 
-{ #category : #'accessing model' }
+{ #category : #private }
 CrTodoListPanel >> setModel: aTodoList [
 
 	self todoList: aTodoList

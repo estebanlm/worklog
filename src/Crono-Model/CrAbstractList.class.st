@@ -72,8 +72,21 @@ CrAbstractList >> showsPendingSize [
 
 { #category : #accessing }
 CrAbstractList >> summaryString [
-
-	^ ''
+	| tasks tasksSize doneTasksSize pendingTasksSize |
+	
+	tasks := self tasks.
+	
+	tasksSize := tasks size.
+	tasksSize = 0 ifTrue: [ ^ 'No tasks.' ].
+	
+	doneTasksSize := (tasks select: [ :each | each isDone ]) size.
+	doneTasksSize = tasksSize ifTrue: [ ^ 'No pending tasks' ]. 
+	
+	pendingTasksSize := tasksSize - doneTasksSize.
+	
+	^ '{1} pending task{2}.' format: { 
+		pendingTasksSize. 
+		pendingTasksSize > 1 ifTrue: [ 's' ] ifFalse: [ '' ] }
 ]
 
 { #category : #accessing }
