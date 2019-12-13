@@ -13,7 +13,7 @@ CrTodoTaskFocusCommand class >> defaultDescription [
 { #category : #default }
 CrTodoTaskFocusCommand class >> defaultName [
 
-	^ 'Focus'
+	^ 'Toggle Focus'
 ]
 
 { #category : #converting }
@@ -27,5 +27,11 @@ CrTodoTaskFocusCommand >> asSpecCommand [
 { #category : #executing }
 CrTodoTaskFocusCommand >> execute [
 	
-	self inform: 'OK'
+	context selectedItemToggleFocus
+]
+
+{ #category : #accessing }
+CrTodoTaskFocusCommand >> task [
+
+	^ context activeTask
 ]

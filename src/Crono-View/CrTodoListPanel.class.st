@@ -60,7 +60,7 @@ CrTodoListPanel >> contextMenuActions [
 	^ CmCommandGroup forSpec
 		beRoot;
 		register: (CrTodoTaskFocusCommand forSpecContext: self);
-		register: (CrTodoTaskMoveToCommand forSpecContext: self);
+		register: (CrTodoTaskMoveCommand forSpecContext: self);
 		yourself
 ]
 
@@ -111,7 +111,7 @@ CrTodoListPanel >> initializePresenters [
 	(list := self newComponentList)
 		addStyle: 'list';
 		contextMenu: self contextMenu;
-		"contextKeyBindings: self contextMenuKeyBindings;"
+		contextKeyBindings: self contextMenuKeyBindings;
 		bindKeyCombination: Character space asKeyCombination 
 			toAction: [ self selectedItemToggleState ];
 		whenActivatedDo: [ self editTask ].

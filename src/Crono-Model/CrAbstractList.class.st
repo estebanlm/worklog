@@ -65,6 +65,12 @@ CrAbstractList >> showsCompletion [
 ]
 
 { #category : #testing }
+CrAbstractList >> showsFocus [
+
+	^ self type showsFocus
+]
+
+{ #category : #testing }
 CrAbstractList >> showsPendingSize [
 
 	^ self type showsPendingSize

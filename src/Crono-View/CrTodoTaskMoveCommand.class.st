@@ -1,23 +1,23 @@
 Class {
-	#name : #CrTodoTaskMoveToCommand,
+	#name : #CrTodoTaskMoveCommand,
 	#superclass : #CrCommand,
 	#category : #'Crono-View-Todo-Commands'
 }
 
 { #category : #default }
-CrTodoTaskMoveToCommand class >> defaultDescription [
+CrTodoTaskMoveCommand class >> defaultDescription [
 
 	^ 'Change the focus status of a task.'
 ]
 
 { #category : #default }
-CrTodoTaskMoveToCommand class >> defaultName [
+CrTodoTaskMoveCommand class >> defaultName [
 
-	^ 'Move To...'
+	^ 'Move'
 ]
 
 { #category : #converting }
-CrTodoTaskMoveToCommand >> asSpecCommand [
+CrTodoTaskMoveCommand >> asSpecCommand [
 
 	^ super asSpecCommand 
 		shortcutKey: $m platformMeta;
@@ -25,6 +25,6 @@ CrTodoTaskMoveToCommand >> asSpecCommand [
 ]
 
 { #category : #executing }
-CrTodoTaskMoveToCommand >> execute [
+CrTodoTaskMoveCommand >> execute [
 	
 ]

@@ -33,7 +33,8 @@ CrGtkConfiguration >> configureOSX: anApplication [
 .cronoText { font: 12pt "Monaco" }
 .title { /*font-size: 14pt;*/ font-weight: bold }
 .titleShortcut { color: LightSlateGrey }
-.list { padding: 5px }'
+.list { padding: 5px }
+.markFocus { margin-right: 3px }'
 ]
 
 { #category : #configuring }
@@ -44,7 +45,9 @@ CrGtkConfiguration >> configureUnix: anApplication [
 	self addProviderFromString: '
 .cronoText { font: 11pt "Monospace Regular" }
 .title { font-size: 14pt }
-.titleShortcut { color: LightSlateGrey }'
+.titleShortcut { color: LightSlateGrey }
+.list { padding: 5px }
+.markFocus { margin-right: 3px }'
 ]
 
 { #category : #configuring }
@@ -54,7 +57,9 @@ CrGtkConfiguration >> configureWindows: anApplication [
 	self addProviderFromString: '
 .cronoText { font: 10pt "Microsoft Sans Serif" }
 .title { font-size: 14pt }
-.titleShortcut { color: LightSlateGrey }'
+.titleShortcut { color: LightSlateGrey }
+.list { padding: 5px }
+.markFocus { margin-right: 3px }'
 ]
 
 { #category : #configuring }

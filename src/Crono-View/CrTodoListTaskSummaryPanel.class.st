@@ -11,7 +11,8 @@ Class {
 		'nameLabel',
 		'task',
 		'noteMarkerImage',
-		'memento'
+		'memento',
+		'focusMarkerImage'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -21,6 +22,7 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 
 	^ SpBoxLayout newHorizontal
 		add: #doneCheckbox expand: false;
+		add: #focusMarkerImage expand: false;
 		add: #nameLabel;
 		addLast: #noteMarkerImage expand: false;
 		yourself
@@ -43,10 +45,9 @@ CrTodoListTaskSummaryPanel >> initializePresenters [
 
 	doneCheckbox := self newCheckBox 
 		whenChangedDo: [ :state | self stateChangedTo: state ].
+	focusMarkerImage := self newImage addStyle: 'markFocus'.
 	nameLabel := self newLabel.
-	noteMarkerImage := self newImage.
-
-	self updatePresenter
+	noteMarkerImage := self newImage
 ]
 
 { #category : #accessing }
@@ -91,8 +92,9 @@ CrTodoListTaskSummaryPanel >> todoList [
 ]
 
 { #category : #accessing }
-CrTodoListTaskSummaryPanel >> todoList: anObject [
-	todoList := anObject
+CrTodoListTaskSummaryPanel >> todoList: aTodoList [
+
+	todoList := aTodoList
 ]
 
 { #category : #actions }
@@ -114,5 +116,8 @@ CrTodoListTaskSummaryPanel >> updatePresenter [
 	nameLabel label: task name.
 	task hasNotes 
 		ifTrue: [ noteMarkerImage image: (self application iconNamed: #markNote) ]
-		ifFalse: [ noteMarkerImage image: nil ]
+		ifFalse: [ noteMarkerImage image: nil ].
+	task isFocused
+		ifTrue: [ focusMarkerImage image: (self application iconNamed: #markFocus) ]
+		ifFalse: [ focusMarkerImage image: nil ] 
 ]

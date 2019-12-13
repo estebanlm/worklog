@@ -23,6 +23,12 @@ CrTodoTypeActive >> showsCompletion [
 ]
 
 { #category : #testing }
+CrTodoTypeActive >> showsFocus [
+
+	^ false
+]
+
+{ #category : #testing }
 CrTodoTypeActive >> showsPendingSize [
 
 	^ true
