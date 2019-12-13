@@ -5,7 +5,7 @@ Class {
 		'todoList',
 		'iconImage',
 		'nameLabel',
-		'statusPresenter'
+		'statusLabel'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -18,23 +18,14 @@ CrTodoListIndexSummaryPanel class >> defaultSpec [
 		spacing: 5;
 		add: #iconImage expand: false;
 		add: #nameLabel;
-		addLast: #statusPresenter expand: false;
+		addLast: #statusLabel expand: false;
 		yourself
 ]
 
-{ #category : #accessing }
-CrTodoListIndexSummaryPanel >> completionImage [
-
-	^ CrCompletionBuilder new 
-		completion: self todoList completion;
-		build
-]
-
-{ #category : #initialization }
+{ #category : #'private accessing' }
 CrTodoListIndexSummaryPanel >> image [
-		
-	^ self todoList iconName 
-		ifNotNil: [ :iconName | self application iconNamed: iconName ]
+	
+	^ self todoList iconOn: self application
 ]
 
 { #category : #initialization }
@@ -42,22 +33,15 @@ CrTodoListIndexSummaryPanel >> initializePresenters [
 
 	iconImage := self newImage image: self image.
 	nameLabel := self newLabel label: self todoList name.
-	
-	statusPresenter := self newStatusPresenter.
-	self updateStatusPresenter
-]
+	statusLabel := self newLabel label: self statusString
 
-{ #category : #private }
-CrTodoListIndexSummaryPanel >> newStatusPresenter [
-
-	self showsCompletion ifTrue: [ ^ self newImage ].
-	^ self newLabel
 ]
 
 { #category : #accessing }
 CrTodoListIndexSummaryPanel >> refresh [
 
-	self updateStatusPresenter
+	self updateStatus.
+	self updateImage
 ]
 
 { #category : #initialization }
@@ -78,13 +62,16 @@ CrTodoListIndexSummaryPanel >> showsPendingSize [
 	^ self todoList showsPendingSize
 ]
 
-{ #category : #accessing }
+{ #category : #'private accessing' }
 CrTodoListIndexSummaryPanel >> statusString [
+	| listSize |
 
-	todoList pendingTasksSize isZero ifTrue: [ ^ '' ].
-	^ '{1}/{2}' format: { 
-			self todoList doneTasksSize. 
-			self todoList tasksSize }
+	self showsPendingSize ifFalse: [ ^ '' ].
+
+	listSize := self todoListPendingSize.
+	^ listSize ~= 0 
+		ifTrue: [ listSize printString ] 
+		ifFalse: [ '' ]
 ]
 
 { #category : #accessing }
@@ -99,13 +86,19 @@ CrTodoListIndexSummaryPanel >> todoListPendingSize [
 	^ self todoList pendingTasksSize
 ]
 
-{ #category : #private }
-CrTodoListIndexSummaryPanel >> updateStatusPresenter [
+{ #category : #'private updating' }
+CrTodoListIndexSummaryPanel >> updateImage [
 
-	self showsCompletion ifTrue: [ ^ statusPresenter image: self completionImage ].
-	self showsPendingSize ifTrue: [ | listSize | 
-		listSize := self todoListPendingSize.
-		statusPresenter label: (listSize ~= 0 
-			ifTrue: [ listSize printString ] 
-			ifFalse: [ '' ]) ]
+	self todoList showsCompletion ifFalse: [ ^ self ].
+	
+	iconImage image: (self todoList iconOn: self application)	
+	
+]
+
+{ #category : #'private updating' }
+CrTodoListIndexSummaryPanel >> updateStatus [
+
+	self showsPendingSize ifFalse: [ ^ self ].
+
+	statusLabel label: self statusString
 ]

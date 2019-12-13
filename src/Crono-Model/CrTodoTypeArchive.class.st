@@ -1,35 +1,35 @@
 Class {
-	#name : #CrTodoTypeTrash,
+	#name : #CrTodoTypeArchive,
 	#superclass : #CrTodoType,
 	#category : #'Crono-Model'
 }
 
 { #category : #accessing }
-CrTodoTypeTrash >> defaultIconName [
+CrTodoTypeArchive >> defaultIconName [
 
 	^ #trash
 ]
 
 { #category : #testing }
-CrTodoTypeTrash >> isVisible [
+CrTodoTypeArchive >> isVisible [
 
 	^ false
 ]
 
 { #category : #accessing }
-CrTodoTypeTrash >> name [
+CrTodoTypeArchive >> name [
 	
-	^ 'Trash'
+	^ 'Archive'
 ]
 
 { #category : #testing }
-CrTodoTypeTrash >> showsCompletion [
+CrTodoTypeArchive >> showsCompletion [
 
 	^ false
 ]
 
 { #category : #accessing }
-CrTodoTypeTrash >> typeName [
+CrTodoTypeArchive >> typeName [
 
-	^ #trash
+	^ #archive
 ]

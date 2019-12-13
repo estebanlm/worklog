@@ -54,6 +54,12 @@ CrSelectionablePanel >> firstResponder [
 ]
 
 { #category : #accessing }
+CrSelectionablePanel >> headerBar [
+
+	^ headerBar
+]
+
+{ #category : #accessing }
 CrSelectionablePanel >> image: anImage [ 
 	
 	headerBar image: anImage
@@ -62,7 +68,21 @@ CrSelectionablePanel >> image: anImage [
 { #category : #initialization }
 CrSelectionablePanel >> initializePresenters [
 
-	headerBar := self instantiate: CrHeaderBar
+	self instantiateHeaderBar: CrHeaderBar
+]
+
+{ #category : #'instance creation' }
+CrSelectionablePanel >> instantiateHeaderBar: aPresenterClass [ 
+
+	headerBar := self instantiate: aPresenterClass
+]
+
+{ #category : #'instance creation' }
+CrSelectionablePanel >> instantiateHeaderBar: aPresenterClass on: aModel [
+
+	headerBar := self 
+		instantiate: aPresenterClass 
+		on: aModel
 ]
 
 { #category : #'instance creation' }

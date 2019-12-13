@@ -45,7 +45,7 @@ CrTodoType class >> stonName [
 { #category : #accessing }
 CrTodoType class >> trash [
 
-	^ CrTodoTypeTrash uniqueInstance
+	^ CrTodoTypeArchive uniqueInstance
 ]
 
 { #category : #'instance creation' }

@@ -24,11 +24,6 @@ CrTodoList class >> activeFileName [
 
 { #category : #accessing }
 CrTodoList class >> allLists [
-	"| allLists |
-	
-	allLists := self selectAll.
-	allLists ifEmpty: [ allLists := self createBaseLists ].
-	^ allLists"
 	
 	^ self baseLists, self userLists
 ]

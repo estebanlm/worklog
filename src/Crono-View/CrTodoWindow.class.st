@@ -76,10 +76,8 @@ CrTodoWindow >> doTransmitList: aTodoList [
 	aTodoList ifNil: [ ^ self ].
 	listPanel presenter todoList = aTodoList ifTrue: [ ^ self ].
 	 
-	listPanel 
-		image: (self application iconNamed: aTodoList iconName);
-		title: aTodoList name. 
-	listPanel presenter todoList: aTodoList
+	listPanel presenter todoList: aTodoList.
+	self updateListPanel: aTodoList
 ]
 
 { #category : #initialization }
@@ -106,10 +104,10 @@ CrTodoWindow >> initializeListPanel: aNumber [
 	todoList := indexPanel presenter selectedItem todoList.
 	(listPanel := self instantiate: CrSelectionablePanel)
 		panelNumber: aNumber;
-		title: todoList name;
-		image: (self application iconNamed: todoList iconName);
 		instantiatePresenter: CrTodoListPanel.
-	listPanel presenter todoList: todoList
+	listPanel presenter todoList: todoList.
+	self updateListPanel: todoList.
+	
 ]
 
 { #category : #initialization }
@@ -165,7 +163,10 @@ CrTodoWindow >> initializeWindow: aWindowPresenter [
 CrTodoWindow >> noteTask: aNotification [
  
 	"A task has changed. I need to refresh it"
-	indexPanel presenter refreshSelection
+	indexPanel presenter refreshSelection.
+	"... and I maybe need to refresh the header"
+	self activeTodoList showsCompletion ifFalse: [ ^ self ].
+	self updateListPanel: self activeTodoList
 ]
 
 { #category : #'notification handling' }
@@ -200,4 +201,12 @@ CrTodoWindow >> toolbarActions [
 		register: (CrTodoAddTaskCommand forSpecContext: self);
 		register: (CrTodoReviewCronoCommand forSpecContext: self);
 		yourself
+]
+
+{ #category : #'private updating' }
+CrTodoWindow >> updateListPanel: todoList [
+	
+	listPanel 
+		title: todoList name;
+		image: (todoList iconOn: self application)
 ]

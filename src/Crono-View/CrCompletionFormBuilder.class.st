@@ -1,5 +1,5 @@
 Class {
-	#name : #CrCompletionBuilder,
+	#name : #CrCompletionFormBuilder,
 	#superclass : #Object,
 	#instVars : [
 		'completion',
@@ -8,20 +8,28 @@ Class {
 	#category : #'Crono-View-Todo-Extras'
 }
 
-{ #category : #initialization }
-CrCompletionBuilder class >> defaultColor [
+{ #category : #building }
+CrCompletionFormBuilder class >> buildCompletion: aNumber [
+
+	^ self new 
+		completion: aNumber;
+		build
+]
+
+{ #category : #accessing }
+CrCompletionFormBuilder class >> defaultColor [
 	
 	^ Color gray
 ]
 
 { #category : #accessing }
-CrCompletionBuilder >> borderWidth [
+CrCompletionFormBuilder >> borderWidth [
 
 	^ 1
 ]
 
 { #category : #building }
-CrCompletionBuilder >> build [
+CrCompletionFormBuilder >> build [
 	| surface |
 	
 	surface := self buildSurface.
@@ -29,7 +37,7 @@ CrCompletionBuilder >> build [
 ]
 
 { #category : #building }
-CrCompletionBuilder >> buildSurface [
+CrCompletionFormBuilder >> buildSurface [
 	| surface size half center origin south angle isFull circle end arc |
 
 	size := self formSize.
@@ -73,31 +81,31 @@ CrCompletionBuilder >> buildSurface [
 ]
 
 { #category : #accessing }
-CrCompletionBuilder >> color [
+CrCompletionFormBuilder >> color [
 
 	^ color ifNil: [ self class defaultColor ]
 ]
 
 { #category : #accessing }
-CrCompletionBuilder >> color: aColor [
+CrCompletionFormBuilder >> color: aColor [
 
 	color := aColor
 ]
 
 { #category : #accessing }
-CrCompletionBuilder >> completion [
+CrCompletionFormBuilder >> completion [
 
 	^ completion
 ]
 
 { #category : #accessing }
-CrCompletionBuilder >> completion: aPercentage [
+CrCompletionFormBuilder >> completion: aPercentage [
 
 	completion := aPercentage
 ]
 
 { #category : #accessing }
-CrCompletionBuilder >> formSize [
+CrCompletionFormBuilder >> formSize [
 
 	^ 16
 ]
