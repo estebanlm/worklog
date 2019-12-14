@@ -25,10 +25,12 @@ CrTodoWindow class >> defaultSpec [
 				addLast: (SpBoxLayout newVertical 
 					add: #searchField 
 						expand: false 
-						fill: false 
+						fill: false
 						padding: 5;
 					yourself) 
-					expand: false;
+					expand: false
+					fill: false
+					padding: 5;
 				yourself)
 			expand: false; 
 		add: (SpPanedLayout newHorizontal

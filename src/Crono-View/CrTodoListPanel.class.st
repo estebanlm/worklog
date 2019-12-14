@@ -165,7 +165,9 @@ CrTodoListPanel >> noteTaskChanged: aNotification [
 	
 	list presenters
 		detect: [ :each | each task = aNotification task ]
-		ifFound: [ :aPresenter | aPresenter refreshContentIfNeeded ] 
+		ifFound: [ :aPresenter | aPresenter refreshContentIfNeeded ].
+		
+	statusBar refresh
 ]
 
 { #category : #accessing }
@@ -175,7 +177,8 @@ CrTodoListPanel >> refresh [
 	selectedItem := list selection selectedItem ifNotNil: #task.
 	list items: self newListItemPresenters.
 	selectedItem ifNotNil: [ 
-		self selectItem: selectedItem ]
+		self selectItem: selectedItem ].
+	statusBar refresh
 ]
 
 { #category : #accessing }
