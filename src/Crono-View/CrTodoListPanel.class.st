@@ -160,14 +160,13 @@ CrTodoListPanel >> noteTaskAdded: aNotification [
 CrTodoListPanel >> noteTaskChanged: aNotification [
 	"Someone changed this list from another place"
 
-	"Ok, is not this window the origin, but I am not editing this list eider"
-	(self todoList includesTask: aNotification task) ifFalse: [ ^ self ].
-	
 	list presenters
 		detect: [ :each | each task = aNotification task ]
-		ifFound: [ :aPresenter | aPresenter refreshContentIfNeeded ].
-		
-	statusBar refresh
+		ifFound: [ :aPresenter | 
+			aPresenter refreshContentIfNeeded.
+			statusBar refresh ].
+
+	
 ]
 
 { #category : #accessing }
