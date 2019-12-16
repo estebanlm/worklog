@@ -4,8 +4,18 @@ I am a virtual list that will answer focused tasks.
 Class {
 	#name : #CrFocusList,
 	#superclass : #CrVirtualList,
+	#instVars : [
+		'tasksCache'
+	],
 	#category : #'Crono-Model'
 }
+
+{ #category : #accessing }
+CrFocusList >> basicTasks [
+
+	^ CrTodoTask selectMany: [ :each | each at: 'focused' ]	
+
+]
 
 { #category : #accessing }
 CrFocusList >> name [
@@ -13,10 +23,30 @@ CrFocusList >> name [
 	^ self type name
 ]
 
+{ #category : #'notification handling' }
+CrFocusList >> noteListChanged: aNotification [
+	
+	aNotification list type = CrTodoType focus ifFalse: [ ^ self ].
+	self resetCache
+]
+
+{ #category : #initialization }
+CrFocusList >> onApplicationStart: anApplication [ 
+
+	anApplication notificationCenter 
+		subscribe: self to: CrListChangedNotification
+]
+
+{ #category : #private }
+CrFocusList >> resetCache [
+
+	tasksCache := nil
+]
+
 { #category : #accessing }
 CrFocusList >> tasks [
 
-	^ CrTodoTask selectMany: [ :each | each at: 'focused' ]
+	^ tasksCache ifNil: [ tasksCache := self basicTasks ]
 ]
 
 { #category : #accessing }
