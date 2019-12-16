@@ -1,3 +1,6 @@
+"
+I'm a status bar for a list panel.
+"
 Class {
 	#name : #CrTodoListStatusBarPanel,
 	#superclass : #SpPresenter,

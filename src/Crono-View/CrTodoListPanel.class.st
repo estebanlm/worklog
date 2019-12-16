@@ -10,7 +10,8 @@ Class {
 		'statusBar',
 		'actionBar',
 		'todoList',
-		'shownArchived'
+		'shownArchived',
+		'showArchivedButton'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -27,7 +28,7 @@ CrTodoListPanel class >> defaultSpec [
 { #category : #accessing }
 CrTodoListPanel >> activeTask [
 
-	^ list selection selectedItem task
+	^ list selection selectedItem ifNotNil: #task
 ]
 
 { #category : #accessing }
@@ -74,8 +75,20 @@ CrTodoListPanel >> contextMenuActions [
 
 	^ CmCommandGroup forSpec
 		beRoot;
-		register: (CrTodoTaskFocusCommand forSpecContext: self);
-		register: (CrTodoTaskMoveCommand forSpecContext: self);
+		register: ((CmCommandGroup named: 'Organisation') asSpecGroup
+			register: (CrTodoTaskToggleFocusCommand forSpecContext: self);
+			register: (CrTodoTaskMoveCommand forSpecContext: self);
+			beDisplayedAsGroup;
+			yourself);
+		register: ((CmCommandGroup named: 'Management') asSpecGroup
+			beDisplayedAsGroup;
+			register: (CrTodoViewArchivedCommand forSpecContext: self);
+			register: (CrTodoArchiveCompletedCommand forSpecContext: self);
+			yourself);
+		register: ((CmCommandGroup named: 'Critical') asSpecGroup
+			beDisplayedAsGroup;
+			register: (CrTodoTaskDeleteCommand forSpecContext: self);
+			yourself);
 		yourself
 ]
 
@@ -101,6 +114,13 @@ CrTodoListPanel >> defineOutputPorts [
 				yourself ]
 ]
 
+{ #category : #'private actions' }
+CrTodoListPanel >> doToggleShownArchived [
+
+	shownArchived := shownArchived not.
+	self refresh
+]
+
 { #category : #actions }
 CrTodoListPanel >> editTask [
 
@@ -116,9 +136,10 @@ CrTodoListPanel >> firstResponder [
 { #category : #initialization }
 CrTodoListPanel >> initialize [
 
+	shownArchived := false.
 	super initialize.
 	self initializeSubscribers.
-	shownArchived := false
+
 ]
 
 { #category : #initialization }
@@ -126,18 +147,17 @@ CrTodoListPanel >> initializePresenters [
 
 	(list := self newComponentList)
 		addStyle: 'list';
-		contextMenu: self contextMenu;
+		contextMenu: [ self contextMenu ];
 		contextKeyBindings: self contextMenuKeyBindings;
 		bindKeyCombination: Character space asKeyCombination 
 			toAction: [ self selectedItemToggleState ];
 		whenActivatedDo: [ self editTask ].
 		
-	statusBar := self instantiate: CrTodoListStatusBarPanel.
 	actionBar := self newActionBar
-		add: statusBar;
-		addLast: (self newToggleButton
+		add: (statusBar := self instantiate: CrTodoListStatusBarPanel);
+		addLast: ((showArchivedButton := self newToggleButton)
 			icon: (self application iconNamed: #actionShow);
-			whenChangedDo: [ self toggleShownArchived ];
+			whenChangedDo: [ self doToggleShownArchived ];
 			yourself);
 		addLast: (self newButton
 			icon: (self application iconNamed: #actionTrash);
@@ -270,8 +290,7 @@ CrTodoListPanel >> todoList: aList [
 { #category : #actions }
 CrTodoListPanel >> toggleShownArchived [
 
-	shownArchived := shownArchived not.
-	self refresh
+	showArchivedButton state: showArchivedButton state not
 ]
 
 { #category : #private }

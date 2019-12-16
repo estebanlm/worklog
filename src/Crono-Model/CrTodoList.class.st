@@ -224,6 +224,15 @@ CrTodoList >> removeTask: aTask [
 	^ self tasks remove: aTask
 ]
 
+{ #category : #actions }
+CrTodoList >> removeTask: aTask follow: follow [
+
+	self class voyageRepository commit: [  
+		self removeTask: aTask.
+		self save.
+		follow ifTrue: [ aTask remove ] ].
+]
+
 { #category : #private }
 CrTodoList >> setType: aType [
 
