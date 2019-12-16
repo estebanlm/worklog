@@ -1,3 +1,6 @@
+"
+I'm a list type inbox.
+"
 Class {
 	#name : #CrTodoTypeInbox,
 	#superclass : #CrTodoType,

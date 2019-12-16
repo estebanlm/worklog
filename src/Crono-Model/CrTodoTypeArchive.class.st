@@ -1,3 +1,6 @@
+"
+I'm a list type archive.
+"
 Class {
 	#name : #CrTodoTypeArchive,
 	#superclass : #CrTodoType,

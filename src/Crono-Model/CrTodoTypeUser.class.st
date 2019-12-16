@@ -1,3 +1,6 @@
+"
+I'm a list type user.
+"
 Class {
 	#name : #CrTodoTypeUser,
 	#superclass : #CrTodoType,

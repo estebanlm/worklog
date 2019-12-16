@@ -1,3 +1,6 @@
+"
+I'm a list type unsorted.
+"
 Class {
 	#name : #CrTodoTypeUnsorted,
 	#superclass : #CrTodoType,
