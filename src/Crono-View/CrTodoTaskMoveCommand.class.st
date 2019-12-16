@@ -16,12 +16,10 @@ CrTodoTaskMoveCommand class >> defaultName [
 	^ 'Move'
 ]
 
-{ #category : #converting }
-CrTodoTaskMoveCommand >> asSpecCommand [
+{ #category : #default }
+CrTodoTaskMoveCommand class >> defaultShortcut [
 
-	^ super asSpecCommand 
-		shortcutKey: $m platformMeta;
-		yourself
+	^ $m platformMeta
 ]
 
 { #category : #executing }

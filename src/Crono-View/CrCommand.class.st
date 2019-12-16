@@ -4,8 +4,14 @@ Class {
 	#category : #'Crono-View-Base'
 }
 
-{ #category : #initialization }
+{ #category : #default }
 CrCommand class >> defaultIconName [
+
+	^ nil
+]
+
+{ #category : #default }
+CrCommand class >> defaultShortcut [
 
 	^ nil
 ]
@@ -18,9 +24,15 @@ CrCommand >> application [
 
 { #category : #converting }
 CrCommand >> asSpecCommand [ 
+	| command |
 	
-	^ super asSpecCommand 
+	command := super asSpecCommand 
 		iconProvider: self application;
 		iconName: self class defaultIconName;
-		yourself
+		yourself.
+		
+	self class defaultShortcut 
+		ifNotNil: [ :keyCombination | command shortcutKey: keyCombination ].
+		
+	^ command
 ]

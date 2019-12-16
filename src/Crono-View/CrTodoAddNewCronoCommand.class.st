@@ -13,7 +13,7 @@ CrTodoAddNewCronoCommand class >> defaultDescription [
 	^ 'Add a new DONE unsorted task.'
 ]
 
-{ #category : #initialization }
+{ #category : #default }
 CrTodoAddNewCronoCommand class >> defaultIconName [
 
 	^ #done
@@ -25,12 +25,10 @@ CrTodoAddNewCronoCommand class >> defaultName [
 	^ 'New DONE Task'
 ]
 
-{ #category : #converting }
-CrTodoAddNewCronoCommand >> asSpecCommand [
+{ #category : #default }
+CrTodoAddNewCronoCommand class >> defaultShortcut [
 
-	^ super asSpecCommand 
-		shortcutKey: $d platformMeta;
-		yourself
+	^ $d platformMeta
 ]
 
 { #category : #executing }

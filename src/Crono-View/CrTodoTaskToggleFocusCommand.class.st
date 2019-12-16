@@ -16,12 +16,10 @@ CrTodoTaskToggleFocusCommand class >> defaultName [
 	^ 'Toggle Focus'
 ]
 
-{ #category : #converting }
-CrTodoTaskToggleFocusCommand >> asSpecCommand [
+{ #category : #default }
+CrTodoTaskToggleFocusCommand class >> defaultShortcut [
 
-	^ super asSpecCommand 
-		shortcutKey: $f platformMeta;
-		yourself
+	^ $f platformMeta
 ]
 
 { #category : #executing }

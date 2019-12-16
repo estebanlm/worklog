@@ -16,21 +16,25 @@ CrTodoTaskDeleteCommand class >> defaultName [
 	^ 'Delete'
 ]
 
-{ #category : #converting }
-CrTodoTaskDeleteCommand >> asSpecCommand [
+{ #category : #default }
+CrTodoTaskDeleteCommand class >> defaultShortcut [
 
-	^ super asSpecCommand
-		shortcutKey: $x platformMeta;
-		yourself
+	^ $x platformMeta
 ]
 
 { #category : #executing }
 CrTodoTaskDeleteCommand >> execute [
 	
+	self flag: #TODO. "Confirm!"
+	
 	self todoList 
 		removeTask: self task 
 		follow: true.
-	context refresh
+	context refresh.
+	
+	context application notificationCenter
+		notify: (CrTaskChangedNotification newTask: self task);
+		notify: (CrListChangedNotification newList: self todoList)	
 	
 ]
 

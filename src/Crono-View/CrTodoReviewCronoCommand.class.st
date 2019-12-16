@@ -15,7 +15,7 @@ CrTodoReviewCronoCommand class >> defaultDescription [
 	^ 'Review done tasks.'
 ]
 
-{ #category : #initialization }
+{ #category : #default }
 CrTodoReviewCronoCommand class >> defaultIconName [
 
 	^ #reviewDone
@@ -27,12 +27,10 @@ CrTodoReviewCronoCommand class >> defaultName [
 	^ 'Review'
 ]
 
-{ #category : #converting }
-CrTodoReviewCronoCommand >> asSpecCommand [
+{ #category : #default }
+CrTodoReviewCronoCommand class >> defaultShortcut [
 
-	^ super asSpecCommand 
-		shortcutKey: $r platformMeta;
-		yourself
+	^ $r platformMeta
 ]
 
 { #category : #executing }

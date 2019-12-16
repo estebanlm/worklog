@@ -13,7 +13,7 @@ CrTodoViewArchivedCommand class >> defaultDescription [
 { #category : #default }
 CrTodoViewArchivedCommand class >> defaultName [
 
-	^ 'View Archive'
+	^ 'View Archived'
 ]
 
 { #category : #executing }

@@ -64,6 +64,15 @@ CrTodoTask class >> voyageStartDate [
 ]
 
 { #category : #actions }
+CrTodoTask >> archive [
+
+	self isArchived ifTrue: [ ^ self ].
+	self archived: true.
+	self focus: false.
+	self save
+]
+
+{ #category : #actions }
 CrTodoTask >> archiveIfDone [
 
 	self archiveIfDoneAfterDays: 0
@@ -233,6 +242,14 @@ CrTodoTask >> takeMemento [
 CrTodoTask >> toggleFocus [
 	
 	self changeFocusTo: self isFocused not
+]
+
+{ #category : #actions }
+CrTodoTask >> unarchive [
+
+	self isArchived ifFalse: [ ^ self ].
+	self archived: false.
+	self save
 ]
 
 { #category : #private }

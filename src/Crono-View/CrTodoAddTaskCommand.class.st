@@ -10,7 +10,7 @@ CrTodoAddTaskCommand class >> defaultDescription [
 	^ 'Add a new task to the current active list.'
 ]
 
-{ #category : #initialization }
+{ #category : #default }
 CrTodoAddTaskCommand class >> defaultIconName [
 
 	^ #add
@@ -22,12 +22,10 @@ CrTodoAddTaskCommand class >> defaultName [
 	^ 'New Task'
 ]
 
-{ #category : #converting }
-CrTodoAddTaskCommand >> asSpecCommand [
+{ #category : #default }
+CrTodoAddTaskCommand class >> defaultShortcut [
 
-	^ super asSpecCommand 
-		shortcutKey: $n platformMeta;
-		yourself
+	^ $n platformMeta
 ]
 
 { #category : #executing }

@@ -13,7 +13,7 @@ CrTodoArchiveCompletedCommand class >> defaultDescription [
 { #category : #default }
 CrTodoArchiveCompletedCommand class >> defaultName [
 
-	^ 'Archive'
+	^ 'Archive All Completed'
 ]
 
 { #category : #executing }

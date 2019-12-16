@@ -76,17 +76,18 @@ CrTodoListPanel >> contextMenuActions [
 	^ CmCommandGroup forSpec
 		beRoot;
 		register: ((CmCommandGroup named: 'Organisation') asSpecGroup
+			beDisplayedAsGroup;
 			register: (CrTodoTaskToggleFocusCommand forSpecContext: self);
 			register: (CrTodoTaskMoveCommand forSpecContext: self);
-			beDisplayedAsGroup;
 			yourself);
 		register: ((CmCommandGroup named: 'Management') asSpecGroup
 			beDisplayedAsGroup;
 			register: (CrTodoViewArchivedCommand forSpecContext: self);
-			register: (CrTodoArchiveCompletedCommand forSpecContext: self);
 			yourself);
 		register: ((CmCommandGroup named: 'Critical') asSpecGroup
 			beDisplayedAsGroup;
+			register: (CrTodoArchiveCompletedCommand forSpecContext: self);
+			register: (CrTodoTaskArchiveCommand forSpecContext: self);
 			register: (CrTodoTaskDeleteCommand forSpecContext: self);
 			yourself);
 		yourself
@@ -164,7 +165,7 @@ CrTodoListPanel >> initializePresenters [
 			help: 'Archive completed tasks now';
 			action: [ self archiveCompletedTasks ];
 			yourself);
-		yourself.
+		yourself
 ]
 
 { #category : #initialization }

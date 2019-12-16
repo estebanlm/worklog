@@ -10,10 +10,10 @@ CrTodoAddListCommand class >> defaultDescription [
 	^ 'Add a new user list.'
 ]
 
-{ #category : #initialization }
+{ #category : #default }
 CrTodoAddListCommand class >> defaultIconName [
 
-	^ #grayAdd
+	^ #actionAdd
 ]
 
 { #category : #default }
@@ -22,12 +22,10 @@ CrTodoAddListCommand class >> defaultName [
 	^ 'New List'
 ]
 
-{ #category : #converting }
-CrTodoAddListCommand >> asSpecCommand [
+{ #category : #default }
+CrTodoAddListCommand class >> defaultShortcut [
 
-	^ super asSpecCommand 
-		shortcutKey: $n shift platformMeta;
-		yourself
+	^ $n shift platformMeta
 ]
 
 { #category : #executing }
