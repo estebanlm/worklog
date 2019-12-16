@@ -95,7 +95,8 @@ CrApplication >> initialize [
 	standalone := false.
 	super initialize.
 	self initializeBackend.
-	self initializeRepository
+	self initializeRepository.
+	self initializeVirtualLists
 ]
 
 { #category : #initialization }
@@ -116,6 +117,13 @@ CrApplication >> initializeRepository [
 	isNew ifTrue: [ 
 		CrTodoList newBaseLists 
 			do: [ :each | repository save: each ] ]
+]
+
+{ #category : #initialization }
+CrApplication >> initializeVirtualLists [
+
+	CrVirtualList allLists do: [ :each | 
+		each onApplicationStart: self ]
 ]
 
 { #category : #testing }

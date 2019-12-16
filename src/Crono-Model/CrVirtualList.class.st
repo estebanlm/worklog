@@ -12,6 +12,12 @@ Class {
 	#category : #'Crono-Model'
 }
 
+{ #category : #accessing }
+CrVirtualList class >> allLists [
+
+	^ self allSubclasses collect: #uniqueInstance
+]
+
 { #category : #'instance creation' }
 CrVirtualList class >> new [
 
@@ -22,4 +28,9 @@ CrVirtualList class >> new [
 CrVirtualList class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := super new ]
+]
+
+{ #category : #initialization }
+CrVirtualList >> onApplicationStart: anApplication [
+	"Override this if the virtual list needs some initialization on startup"
 ]
