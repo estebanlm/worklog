@@ -11,30 +11,16 @@ Class {
 		'type',
 		'name',
 		'iconName',
-		'tasks'
+		'tasks',
+		'archived'
 	],
 	#category : #'Crono-Model'
 }
-
-{ #category : #legacy }
-CrTodoList class >> activeFileName [
-			
-	^ 'Active.ston'
-]
 
 { #category : #accessing }
 CrTodoList class >> allLists [
 	
 	^ self baseLists, self userLists
-]
-
-{ #category : #legacy }
-CrTodoList class >> baseListFileNames [
-
-	^ { 
-	self inboxFileName. 
-	self activeFileName. 
-	self unsortedFileName }
 ]
 
 { #category : #accessing }
@@ -58,12 +44,6 @@ CrTodoList class >> focus [
 CrTodoList class >> inbox [
 
 	^ self selectOne: [ :each | each type = CrTodoType inbox typeName ]
-]
-
-{ #category : #legacy }
-CrTodoList class >> inboxFileName [
-			
-	^ 'Inbox.ston'
 ]
 
 { #category : #testing }
@@ -103,49 +83,10 @@ CrTodoList class >> newType: aListType [
 		yourself
 ]
 
-{ #category : #legacy }
-CrTodoList class >> readList: reference [
-
-	reference exists ifFalse: [ ^ nil ].
-	^ reference readStreamDo: [ :stream |
-		STON fromStream: stream ]
-]
-
-{ #category : #legacy }
-CrTodoList class >> readListNamed: aName [
-
-	^ self readList: self todoListReference / aName
-]
-
-{ #category : #legacy }
-CrTodoList class >> stonAllInstVarNames [
-	
-	^ super stonAllInstVarNames copyWithoutAll: self transientInstVarNames
-]
-
-{ #category : #legacy }
-CrTodoList class >> stonName [
-
-	^ 'TodoList'
-]
-
 { #category : #accessing }
 CrTodoList class >> summaryString [
 
 	^ '{1} pending task{2} ({3} completed).'
-]
-
-{ #category : #legacy }
-CrTodoList class >> todoListReference [
-	
-	^ CrCronoConfiguration readFromFileSystem todoListReference
-]
-
-{ #category : #legacy }
-CrTodoList class >> transientInstVarNames [
-	"We will not save this in file (because it will be calculated)"
-
-	^ #()
 ]
 
 { #category : #accessing }
@@ -158,12 +99,6 @@ CrTodoList class >> trash [
 CrTodoList class >> unsorted [
 
 	^ self selectOne: [ :each | each type = CrTodoType unsorted typeName ]
-]
-
-{ #category : #legacy }
-CrTodoList class >> unsortedFileName [
-			
-	^ 'Unsorted.ston'
 ]
 
 { #category : #accessing }
@@ -203,6 +138,12 @@ CrTodoList >> addTask: aTask [
 ]
 
 { #category : #accessing }
+CrTodoList >> archived: aBoolean [
+
+	archived := aBoolean
+]
+
+{ #category : #accessing }
 CrTodoList >> completion [
 
 	self tasksSize = 0 ifTrue: [ ^ 0 ].  
@@ -225,6 +166,7 @@ CrTodoList >> iconName: aSymbol [
 CrTodoList >> initialize [
 
 	super initialize.
+	archived := false.
 	tasks := OrderedCollection new
 ]
 
@@ -233,6 +175,12 @@ CrTodoList >> initializeType: aType [
 
 	self initialize.
 	self setType: aType
+]
+
+{ #category : #accessing }
+CrTodoList >> isArchived [
+
+	^ archived
 ]
 
 { #category : #accessing }
@@ -257,9 +205,11 @@ CrTodoList >> printOn: stream [
 { #category : #persistence }
 CrTodoList >> remove [
 
-	self tasks copy 
-		do: [ :each | self removeTask: each ].
-	super remove
+	self class voyageRepository commit: [ 
+		self tasks copy do: [ :each | 
+			self removeTask: each.
+			each remove ].
+		super remove ]
 ]
 
 { #category : #accessing }

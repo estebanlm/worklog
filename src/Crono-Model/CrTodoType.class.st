@@ -17,6 +17,12 @@ CrTodoType class >> allTypes [
 ]
 
 { #category : #accessing }
+CrTodoType class >> archive [
+
+	^ CrTodoTypeArchive uniqueInstance
+]
+
+{ #category : #accessing }
 CrTodoType class >> focus [
 
 	^ CrTodoTypeFocus uniqueInstance
@@ -40,12 +46,6 @@ CrTodoType class >> inbox [
 CrTodoType class >> stonName [
 
 	^ 'Type'
-]
-
-{ #category : #accessing }
-CrTodoType class >> trash [
-
-	^ CrTodoTypeArchive uniqueInstance
 ]
 
 { #category : #'instance creation' }

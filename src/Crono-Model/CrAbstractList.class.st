@@ -102,7 +102,7 @@ CrAbstractList >> summaryString [
 	tasksSize = 0 ifTrue: [ ^ 'No tasks.' ].
 	
 	doneTasksSize := (tasks select: [ :each | each isDone ]) size.
-	doneTasksSize = tasksSize ifTrue: [ ^ 'No pending tasks' ]. 
+	doneTasksSize = tasksSize ifTrue: [ ^ 'No pending tasks.' ]. 
 	
 	pendingTasksSize := tasksSize - doneTasksSize.
 	
@@ -110,9 +110,9 @@ CrAbstractList >> summaryString [
 		stream << ('{1} pending task{2}' format: { 
 			pendingTasksSize. 
 			pendingTasksSize > 1 ifTrue: [ 's' ] ifFalse: [ '' ] }).
-		self showsCompletion ifTrue: [ 
+		(self showsCompletion and: [ doneTasksSize > 0]) ifTrue: [ 
 			stream << ', '.
-			stream << ('{1} completed' format: { pendingTasksSize }) ].
+			stream << ('{1} completed' format: { doneTasksSize }) ].
 		stream << '.' ]
 ]
 
