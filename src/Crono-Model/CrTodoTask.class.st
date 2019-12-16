@@ -7,7 +7,8 @@ Class {
 		'startDate',
 		'doneDate',
 		'tags',
-		'focused'
+		'focused',
+		'archived'
 	],
 	#category : #'Crono-Model'
 }
@@ -62,6 +63,45 @@ CrTodoTask class >> voyageStartDate [
 		yourself
 ]
 
+{ #category : #actions }
+CrTodoTask >> archiveIfDone [
+
+	self archiveIfDoneAfterDays: 0
+	
+]
+
+{ #category : #actions }
+CrTodoTask >> archiveIfDoneAfterDays: daysNumber [
+
+	self isArchived ifTrue: [ ^ self ].
+	self isDone ifFalse: [ ^ self ].
+	(self doneDate < (DateAndTime now - daysNumber days)) ifFalse: [ ^ self ].
+	
+	self archived: true.
+	self focus: false.
+	self save
+]
+
+{ #category : #accessing }
+CrTodoTask >> archived: aBoolean [
+
+	archived := aBoolean
+]
+
+{ #category : #actions }
+CrTodoTask >> changeFocusTo: aBoolean [
+
+	self focus: aBoolean.
+	self save
+]
+
+{ #category : #actions }
+CrTodoTask >> changeStatusTo: aBoolean [
+
+	self done: aBoolean.
+	self save
+]
+
 { #category : #private }
 CrTodoTask >> collectTagsOn: aString [
 
@@ -98,7 +138,14 @@ CrTodoTask >> initialize [
 
 	super initialize. 
 	startDate := DateAndTime now.
-	focused := false
+	focused := false.
+	archived := false
+]
+
+{ #category : #testing }
+CrTodoTask >> isArchived [
+
+	^ archived
 ]
 
 { #category : #testing }
@@ -180,6 +227,12 @@ CrTodoTask >> takeMemento [
 	^ self class allSlots 
 		collect: [ :each | (self readSlot: each) copy ]
 		as: Array
+]
+
+{ #category : #actions }
+CrTodoTask >> toggleFocus [
+	
+	self changeFocusTo: self isFocused not
 ]
 
 { #category : #private }

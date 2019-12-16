@@ -29,22 +29,20 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 ]
 
 { #category : #actions }
-CrTodoListTaskSummaryPanel >> focusChangedTo: focus [
+CrTodoListTaskSummaryPanel >> changeStatusTo: state [
 	
-	self task 
-		focus: focus;
-		save.
-		
+	self task isDone = state ifTrue: [ ^ self ].
+	
+	self task changeStatusTo: state.
 	self application notificationCenter 
-		notify: (CrTaskChangedNotification newTask: self task);
-		notify: (CrListChangedNotification newList: CrTodoList active)
+		notify: (CrTaskChangedNotification newTask: self task)
 ]
 
 { #category : #initialization }
 CrTodoListTaskSummaryPanel >> initializePresenters [
 
 	doneCheckbox := self newCheckBox 
-		whenChangedDo: [ :state | self stateChangedTo: state ].
+		whenChangedDo: [ :state | self changeStatusTo: state ].
 	focusMarkerImage := self newImage addStyle: 'markFocus'.
 	nameLabel := self newLabel.
 	noteMarkerImage := self newImage
@@ -75,18 +73,6 @@ CrTodoListTaskSummaryPanel >> showsFocus [
 	^ self todoList showsFocus
 ]
 
-{ #category : #actions }
-CrTodoListTaskSummaryPanel >> stateChangedTo: state [
-	
-	self task isDone = state ifTrue: [ ^ self ].
-	
-	self task 
-		done: state;
-		save.
-		
-	self application notificationCenter notify: (CrTaskChangedNotification newTask: self task)
-]
-
 { #category : #accessing }
 CrTodoListTaskSummaryPanel >> task [
 
@@ -100,13 +86,17 @@ CrTodoListTaskSummaryPanel >> todoList [
 
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> toggleFocus [
-
-	self focusChangedTo: self task isFocused not
+	
+	self task toggleFocus.
+	self application notificationCenter 
+		notify: (CrTaskChangedNotification newTask: self task);
+		notify: (CrListChangedNotification newList: CrTodoList active)
 ]
 
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> toggleState [
 
+	"this will fire the change event, which is where the actual change happens"
 	doneCheckbox state: doneCheckbox state not
 ]
 

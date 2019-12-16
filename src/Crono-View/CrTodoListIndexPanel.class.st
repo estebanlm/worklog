@@ -122,8 +122,8 @@ CrTodoListIndexPanel >> initializePresenters [
 		
 	actionBar := self newActionBar
 		add: (self newButton 
-			label: 'New List';
-			icon: (self application iconNamed: #addGray);
+			"label: 'New List';"
+			icon: (self application iconNamed: #actionAdd);
 			help: 'Add a new List';
 			action: [ self addList ];
 			yourself);

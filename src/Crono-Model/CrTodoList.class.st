@@ -1,3 +1,9 @@
+"
+I'm a user defined lists. 
+Of course, this is the most important list we can have since is the one that keep usert tasks.
+
+
+"
 Class {
 	#name : #CrTodoList,
 	#superclass : #CrAbstractList,
@@ -123,6 +129,12 @@ CrTodoList class >> stonName [
 	^ 'TodoList'
 ]
 
+{ #category : #accessing }
+CrTodoList class >> summaryString [
+
+	^ '{1} pending task{2} ({3} completed).'
+]
+
 { #category : #legacy }
 CrTodoList class >> todoListReference [
 	
@@ -193,7 +205,7 @@ CrTodoList >> addTask: aTask [
 { #category : #accessing }
 CrTodoList >> completion [
 
-	self tasksSize = 0 ifTrue: [ ^0 ].  
+	self tasksSize = 0 ifTrue: [ ^ 0 ].  
 	^ self doneTasksSize / self tasksSize
 ]
 

@@ -1,3 +1,8 @@
+"
+I am a virtual list. 
+I can keep different kind of lists (for example, the focused tasks or archived, but also ""smart lists"").
+The correspondent behaviour will be defined in my children.
+"
 Class {
 	#name : #CrVirtualList,
 	#superclass : #CrAbstractList,

@@ -19,7 +19,7 @@ CrTodoListStatusBarPanel class >> defaultSpec [
 { #category : #initialization }
 CrTodoListStatusBarPanel >> initializePresenter [
 
-	summaryLabel := self newStatusBar.
+	summaryLabel := self newLabel.
 
 	self refresh
 ]
@@ -27,9 +27,7 @@ CrTodoListStatusBarPanel >> initializePresenter [
 { #category : #accessing }
 CrTodoListStatusBarPanel >> refresh [
 
-	summaryLabel 
-		popMessage;
-		pushMessage: (self todoList ifNotNil: #summaryString)
+	summaryLabel label: (self todoList ifNotNil: #summaryString)
 ]
 
 { #category : #initialization }

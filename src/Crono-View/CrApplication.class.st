@@ -101,7 +101,7 @@ CrApplication >> initialize [
 { #category : #initialization }
 CrApplication >> initializeBackend [
 	
-	CrApplicationConfiguration readFromFileSystem isDarkTheme
+	self settings isDarkTheme
 		ifTrue: [ self useGtkDark ]
 		ifFalse: [ self useGtk ]
 ]
@@ -127,7 +127,8 @@ CrApplication >> isStandalone [
 { #category : #accessing }
 CrApplication >> notificationCenter [
 
-	^ notificationCenter ifNil: [ notificationCenter := CrNotificationCenter new ]
+	^ notificationCenter ifNil: [ 
+		notificationCenter := CrNotificationCenter new ]
 ]
 
 { #category : #initialization }
@@ -147,6 +148,12 @@ CrApplication >> run [
 
 	Current := self.
 	super run	
+]
+
+{ #category : #accessing }
+CrApplication >> settings [ 
+
+	^ CrApplicationConfiguration readFromFileSystem
 ]
 
 { #category : #running }

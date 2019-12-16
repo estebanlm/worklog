@@ -8,7 +8,9 @@ Class {
 	#instVars : [
 		'list',
 		'statusBar',
-		'todoList'
+		'actionBar',
+		'todoList',
+		'shownArchived'
 	],
 	#category : #'Crono-View-Todo'
 }
@@ -18,7 +20,7 @@ CrTodoListPanel class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		add: #list;
-		add: #statusBar expand: false;
+		add: #actionBar expand: false;
 		yourself
 ]
 
@@ -46,6 +48,19 @@ CrTodoListPanel >> addGlobalShortcutsTo: aWindowPresenter [
 CrTodoListPanel >> addTask [
 
 	(CrTodoAddTaskCommand forContext: self) execute
+]
+
+{ #category : #actions }
+CrTodoListPanel >> archiveCompletedTasks [
+
+	self todoList archiveCompletedTasks.
+	self refresh
+]
+
+{ #category : #private }
+CrTodoListPanel >> autoArchiveAfterDays [
+
+	^ self application settings autoArchiveAfterDays
 ]
 
 { #category : #private }
@@ -102,7 +117,8 @@ CrTodoListPanel >> firstResponder [
 CrTodoListPanel >> initialize [
 
 	super initialize.
-	self initializeSubscribers
+	self initializeSubscribers.
+	shownArchived := false
 ]
 
 { #category : #initialization }
@@ -116,7 +132,19 @@ CrTodoListPanel >> initializePresenters [
 			toAction: [ self selectedItemToggleState ];
 		whenActivatedDo: [ self editTask ].
 		
-	statusBar := self instantiate: CrTodoListStatusBarPanel
+	statusBar := self instantiate: CrTodoListStatusBarPanel.
+	actionBar := self newActionBar
+		add: statusBar;
+		addLast: (self newToggleButton
+			icon: (self application iconNamed: #actionShow);
+			whenChangedDo: [ self toggleShownArchived ];
+			yourself);
+		addLast: (self newButton
+			icon: (self application iconNamed: #actionTrash);
+			help: 'Archive completed tasks now';
+			action: [ self archiveCompletedTasks ];
+			yourself);
+		yourself.
 ]
 
 { #category : #initialization }
@@ -128,7 +156,7 @@ CrTodoListPanel >> initializeSubscribers [
 ]
 
 { #category : #'private factory' }
-CrTodoListPanel >> newListItemPresenters [
+CrTodoListPanel >> newTaskPresenters [
 	
 	^ self todoList tasks
 		collect: [ :each | 
@@ -137,6 +165,17 @@ CrTodoListPanel >> newListItemPresenters [
 				on: (CrTodoListAndTaskPair
 					newList: self todoList 
 					task: each) ]
+]
+
+{ #category : #'private factory' }
+CrTodoListPanel >> newTaskPresentersFor: aCollection [
+	
+	^ aCollection collect: [ :each | 
+		self 
+			instantiate: CrTodoListTaskSummaryPanel 
+			on: (CrTodoListAndTaskPair
+				newList: self todoList 
+				task: each) ]
 ]
 
 { #category : #'notification handling' }
@@ -151,7 +190,7 @@ CrTodoListPanel >> noteTaskAdded: aNotification [
 
 	(self todoList includesTask: aNotification task) ifFalse: [ ^ self ].
 	
-	list items: self newListItemPresenters.
+	list items: self newTaskPresenters.
 	self selectItem: aNotification task.
 	list takeKeyboardFocus
 ]
@@ -171,10 +210,11 @@ CrTodoListPanel >> noteTaskChanged: aNotification [
 
 { #category : #accessing }
 CrTodoListPanel >> refresh [
-	| selectedItem |
+	| selectedItem tasks |
 
 	selectedItem := list selection selectedItem ifNotNil: #task.
-	list items: self newListItemPresenters.
+	tasks := self visibleTasksInRightOrder.
+	list items: (self newTaskPresentersFor: tasks).
 	selectedItem ifNotNil: [ 
 		self selectItem: selectedItem ].
 	statusBar refresh
@@ -207,6 +247,12 @@ CrTodoListPanel >> setModel: aTodoList [
 	self todoList: aTodoList
 ]
 
+{ #category : #testing }
+CrTodoListPanel >> shownArchived [
+
+	^ shownArchived
+]
+
 { #category : #accessing }
 CrTodoListPanel >> todoList [
 
@@ -219,4 +265,26 @@ CrTodoListPanel >> todoList: aList [
 	todoList := aList.
 	statusBar todoList: aList.
 	self refresh
+]
+
+{ #category : #actions }
+CrTodoListPanel >> toggleShownArchived [
+
+	shownArchived := shownArchived not.
+	self refresh
+]
+
+{ #category : #private }
+CrTodoListPanel >> visibleTasksInRightOrder [
+	| tasks |
+	
+	tasks := self todoList tasks.
+	self flag: #TODO. "This will be todoList directly once we introduce a cache system for tasks
+	(now is like this to avoid double query"
+	tasks do: [ :each | each archiveIfDoneAfterDays: self autoArchiveAfterDays ].
+	self shownArchived ifFalse: [ ^ tasks reject: #isArchived ].
+	
+	tasks := tasks groupedBy: #isArchived.
+	^ (tasks at: false ifAbsent: [ #() ]), 
+	  (tasks at: true ifAbsent: [ #() ])
 ]

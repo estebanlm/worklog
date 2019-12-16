@@ -1,8 +1,24 @@
+"
+I am a base for lists.
+My childrne define whether this is a real list or a virtual, but in any case I have always a type, a name and a lists of tasks.
+"
 Class {
 	#name : #CrAbstractList,
 	#superclass : #Object,
 	#category : #'Crono-Model'
 }
+
+{ #category : #actions }
+CrAbstractList >> archiveCompletedTasks [
+
+	self tasks do: [ :each | each archiveIfDone ]
+]
+
+{ #category : #actions }
+CrAbstractList >> archiveCompletedTasksAfterDays: daysNumber [
+
+	self tasks do: [ :each | each archiveIfDoneAfterDays: daysNumber ]
+]
 
 { #category : #accessing }
 CrAbstractList >> doneTasks [
@@ -90,9 +106,14 @@ CrAbstractList >> summaryString [
 	
 	pendingTasksSize := tasksSize - doneTasksSize.
 	
-	^ '{1} pending task{2}.' format: { 
-		pendingTasksSize. 
-		pendingTasksSize > 1 ifTrue: [ 's' ] ifFalse: [ '' ] }
+	^ String streamContents: [ :stream |
+		stream << ('{1} pending task{2}' format: { 
+			pendingTasksSize. 
+			pendingTasksSize > 1 ifTrue: [ 's' ] ifFalse: [ '' ] }).
+		self showsCompletion ifTrue: [ 
+			stream << ', '.
+			stream << ('{1} completed' format: { pendingTasksSize }) ].
+		stream << '.' ]
 ]
 
 { #category : #accessing }
