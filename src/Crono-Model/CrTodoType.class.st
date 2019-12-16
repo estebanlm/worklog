@@ -11,15 +11,15 @@ Class {
 }
 
 { #category : #accessing }
-CrTodoType class >> active [
-
-	^ CrTodoTypeActive uniqueInstance
-]
-
-{ #category : #accessing }
 CrTodoType class >> allTypes [
 
 	^ CrTodoType allSubclasses collect: #uniqueInstance
+]
+
+{ #category : #accessing }
+CrTodoType class >> focus [
+
+	^ CrTodoTypeFocus uniqueInstance
 ]
 
 { #category : #'instance creation' }

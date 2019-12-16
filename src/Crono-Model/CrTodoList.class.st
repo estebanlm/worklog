@@ -16,12 +16,6 @@ Class {
 	#category : #'Crono-Model'
 }
 
-{ #category : #accessing }
-CrTodoList class >> active [
-
-	^ CrActiveList uniqueInstance
-]
-
 { #category : #legacy }
 CrTodoList class >> activeFileName [
 			
@@ -51,7 +45,13 @@ CrTodoList class >> baseLists [
 	 Yes it is a HACK :P"
 	^ CrApplication current 
 		propertyAt: #baseLists 
-		ifAbsentPut: [ { self inbox. self active. self unsorted } ]
+		ifAbsentPut: [ { self inbox. self focus. self unsorted } ]
+]
+
+{ #category : #accessing }
+CrTodoList class >> focus [
+
+	^ CrFocusList uniqueInstance
 ]
 
 { #category : #accessing }

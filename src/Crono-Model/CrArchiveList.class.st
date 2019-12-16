@@ -1,3 +1,6 @@
+"
+I am a virtual list that will answer archived tasks.
+"
 Class {
 	#name : #CrArchiveList,
 	#superclass : #CrVirtualList,

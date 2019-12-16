@@ -1,41 +1,41 @@
 Class {
-	#name : #CrTodoTypeActive,
+	#name : #CrTodoTypeFocus,
 	#superclass : #CrTodoType,
 	#category : #'Crono-Model'
 }
 
 { #category : #accessing }
-CrTodoTypeActive >> defaultIconName [
+CrTodoTypeFocus >> defaultIconName [
 
 	^ #active
 ]
 
 { #category : #accessing }
-CrTodoTypeActive >> name [
+CrTodoTypeFocus >> name [
 	
-	^ 'Active'
+	^ 'Focus'
 ]
 
 { #category : #testing }
-CrTodoTypeActive >> showsCompletion [
+CrTodoTypeFocus >> showsCompletion [
 
 	^ false
 ]
 
 { #category : #testing }
-CrTodoTypeActive >> showsFocus [
+CrTodoTypeFocus >> showsFocus [
 
 	^ false
 ]
 
 { #category : #testing }
-CrTodoTypeActive >> showsPendingSize [
+CrTodoTypeFocus >> showsPendingSize [
 
 	^ true
 ]
 
 { #category : #accessing }
-CrTodoTypeActive >> typeName [
+CrTodoTypeFocus >> typeName [
 
-	^ #active
+	^ #focus
 ]

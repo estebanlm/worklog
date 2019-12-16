@@ -21,6 +21,14 @@ BaselineOfCrono >> baseline: spec [
 ]
 
 { #category : #'external projects' }
+BaselineOfCrono >> grouper: spec [
+
+	spec
+		baseline: 'Grouper'
+		with: [ spec repository: 'github://juliendelplanque/Grouper' ]
+]
+
+{ #category : #'external projects' }
 BaselineOfCrono >> marsGtk: spec [
 
 	spec

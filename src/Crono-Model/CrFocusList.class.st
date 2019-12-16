@@ -1,23 +1,26 @@
+"
+I am a virtual list that will answer focused tasks.
+"
 Class {
-	#name : #CrActiveList,
+	#name : #CrFocusList,
 	#superclass : #CrVirtualList,
 	#category : #'Crono-Model'
 }
 
 { #category : #accessing }
-CrActiveList >> name [
+CrFocusList >> name [
 
 	^ self type name
 ]
 
 { #category : #accessing }
-CrActiveList >> tasks [
+CrFocusList >> tasks [
 
 	^ CrTodoTask selectMany: [ :each | each at: 'focused' ]
 ]
 
 { #category : #accessing }
-CrActiveList >> type [
+CrFocusList >> type [
 
-	^ CrTodoType active
+	^ CrTodoType focus
 ]

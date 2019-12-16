@@ -90,7 +90,7 @@ CrTodoListTaskSummaryPanel >> toggleFocus [
 	self task toggleFocus.
 	self application notificationCenter 
 		notify: (CrTaskChangedNotification newTask: self task);
-		notify: (CrListChangedNotification newList: CrTodoList active)
+		notify: (CrListChangedNotification newList: CrTodoList focus)
 ]
 
 { #category : #actions }
