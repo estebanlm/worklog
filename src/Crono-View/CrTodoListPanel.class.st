@@ -202,7 +202,7 @@ CrTodoListPanel >> newTaskPresentersFor: aCollection [
 { #category : #'notification handling' }
 CrTodoListPanel >> noteListChanged: aNotification [
 
-	self todoList = aNotification list ifFalse: [ ^ self ].
+	(aNotification appliesToList: self todoList) ifFalse: [ ^ self ].
 	self refresh
 ]
 

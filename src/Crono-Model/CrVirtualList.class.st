@@ -30,7 +30,29 @@ CrVirtualList class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := super new ]
 ]
 
+{ #category : #testing }
+CrVirtualList >> isVirtual [
+
+	^ true
+]
+
+{ #category : #accessing }
+CrVirtualList >> listForAddTask [
+	"We cannot use a virtual list as tasks repository (since they are calculated). 
+	 In that case we need to provide one 'default', which will be 'unsorted'"
+
+	^ CrTodoList unsorted
+]
+
 { #category : #initialization }
 CrVirtualList >> onApplicationStart: anApplication [
 	"Override this if the virtual list needs some initialization on startup"
+]
+
+{ #category : #actions }
+CrVirtualList >> saveTask: aTask [ 
+	"Adding a task here is in fact adding it to unsorted"
+	
+	aTask focus: true.
+	^ CrTodoList unsorted saveTask: aTask. 
 ]

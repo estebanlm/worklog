@@ -24,5 +24,6 @@ CrTodoTaskMoveCommand class >> defaultShortcut [
 
 { #category : #executing }
 CrTodoTaskMoveCommand >> execute [
-	
+
+	self halt
 ]

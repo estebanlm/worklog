@@ -24,9 +24,11 @@ CrTodoTaskDeleteCommand class >> defaultShortcut [
 
 { #category : #executing }
 CrTodoTaskDeleteCommand >> execute [
+	| focused |
 	
 	self flag: #TODO. "Confirm!"
 	
+	focused := self task isFocused.
 	self todoList 
 		removeTask: self task 
 		follow: true.
@@ -34,8 +36,10 @@ CrTodoTaskDeleteCommand >> execute [
 	
 	context application notificationCenter
 		notify: (CrTaskChangedNotification newTask: self task);
-		notify: (CrListChangedNotification newList: self todoList)	
-	
+		notify: (CrListChangedNotification newList: self todoList).
+	focused ifTrue: [ 
+		context application notificationCenter
+			notify: (CrListChangedNotification newList: CrTodoList focus) ]
 ]
 
 { #category : #accessing }

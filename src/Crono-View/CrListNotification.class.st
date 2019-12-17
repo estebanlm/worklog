@@ -13,6 +13,12 @@ CrListNotification class >> newList: aTodoList [
 	^ self new list: aTodoList
 ]
 
+{ #category : #testing }
+CrListNotification >> appliesToList: aTodoList [
+
+	^ self list = aTodoList
+]
+
 { #category : #accessing }
 CrListNotification >> dispatchTo: anObject [ 
 

@@ -43,14 +43,6 @@ CrFocusList >> resetCache [
 	tasksCache := nil
 ]
 
-{ #category : #actions }
-CrFocusList >> saveTask: aTask [ 
-	"Adding a task here is in fact adding it to unsorted"
-	
-	aTask focus: true.
-	^ CrTodoList unsorted saveTask: aTask. 
-]
-
 { #category : #accessing }
 CrFocusList >> tasks [
 

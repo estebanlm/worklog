@@ -51,6 +51,12 @@ CrAbstractList >> isEditable [
 ]
 
 { #category : #testing }
+CrAbstractList >> isVirtual [
+
+	^ false
+]
+
+{ #category : #testing }
 CrAbstractList >> isVisible [
 	
 	^ self type isVisible
