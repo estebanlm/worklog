@@ -108,9 +108,17 @@ CrGtkConfiguration >> macThemeName [
 ]
 
 { #category : #'accessing resources' }
+CrGtkConfiguration >> repositoryDir [
+	"This is an util method to get the place where resources are located in development mode"
+	^ (IceRepository registry detect: [ :each | each name = 'worklog' ]) location
+]
+
+{ #category : #'accessing resources' }
 CrGtkConfiguration >> resourcesDir [
 
-	^ FileLocator imageDirectory / 'crono'
+	^ CrApplication isDevelopment 
+		ifTrue: [ self repositoryDir / 'resources' ]
+		ifFalse: [ FileLocator imageDirectory / 'resources' ]
 ]
 
 { #category : #'accessing resources' }

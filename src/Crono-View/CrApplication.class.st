@@ -10,7 +10,8 @@ Class {
 		'notificationCenter'
 	],
 	#classVars : [
-		'Current'
+		'Current',
+		'Development'
 	],
 	#classInstVars : [
 		'session'
@@ -24,11 +25,37 @@ CrApplication class >> applicationName [
 	^ 'crono'
 ]
 
+{ #category : #accessing }
+CrApplication class >> beDevelopment [
+	<script>
+
+	Development := true
+]
+
+{ #category : #accessing }
+CrApplication class >> beProduction [
+	<script>
+
+	Development := false
+]
+
 { #category : #'instance creation' }
 CrApplication class >> current [
 
 	self validateSession.
 	^ Current ifNil: [ Current := self new ]
+]
+
+{ #category : #'class initialization' }
+CrApplication class >> initialize [
+
+	self beDevelopment
+]
+
+{ #category : #testing }
+CrApplication class >> isDevelopment [
+
+	^ Development
 ]
 
 { #category : #'world menu' }
