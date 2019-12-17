@@ -21,3 +21,11 @@ CrTodoViewArchivedCommand >> execute [
 	
 	context toggleShownArchived
 ]
+
+{ #category : #accessing }
+CrTodoViewArchivedCommand >> name [
+
+	^ context shownArchived
+		ifTrue: [ 'Hide Archived' ]
+		ifFalse: [ 'Show Archived' ]
+]
