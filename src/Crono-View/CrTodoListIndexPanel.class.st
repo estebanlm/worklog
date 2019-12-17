@@ -151,10 +151,12 @@ CrTodoListIndexPanel >> noteListAdded: aNotification [
 
 { #category : #'notification handling' }
 CrTodoListIndexPanel >> noteListChanged: aNotification [
-
+	
+	"notification can be applied to more than one list (in case of virtual list
+	 operations)"
 	list items 
-		detect: [ :each | aNotification appliesToList: each todoList ]
-		ifFound: [ :each | each refresh ]
+		select: [ :each | aNotification appliesToList: each todoList ]
+		thenDo: [ :each | each refresh ]
 ]
 
 { #category : #accessing }
