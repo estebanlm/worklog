@@ -132,7 +132,7 @@ CrTodoList class >> voyageType [
 ]
 
 { #category : #accessing }
-CrTodoList >> addTask: aTask [ 
+CrTodoList >> addTask: aTask [
 
 	tasks add: aTask
 ]
@@ -231,6 +231,13 @@ CrTodoList >> removeTask: aTask follow: follow [
 		self removeTask: aTask.
 		self save.
 		follow ifTrue: [ aTask remove ] ].
+]
+
+{ #category : #actions }
+CrTodoList >> saveTask: aTask [
+
+	self addTask: aTask.
+	self save
 ]
 
 { #category : #private }

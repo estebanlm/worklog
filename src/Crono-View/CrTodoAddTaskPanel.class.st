@@ -16,9 +16,7 @@ CrTodoAddTaskPanel >> addTaskThen: aBlock [
 		done: doneCheckbox state;
 		yourself.
 	
-	self todoList 
-		addTask: task;
-		save.
+	self todoList saveTask: task.
 	
 	self application notificationCenter 
 		notify: (CrTaskAddedNotification newTask: task);

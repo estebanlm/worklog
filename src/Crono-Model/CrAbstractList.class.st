@@ -74,6 +74,12 @@ CrAbstractList >> pendingTasksSize [
 	^ self pendingTasks size
 ]
 
+{ #category : #actions }
+CrAbstractList >> saveTask: aTask [ 
+
+	self subclassResponsibility
+]
+
 { #category : #testing }
 CrAbstractList >> showsCompletion [
 
