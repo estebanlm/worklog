@@ -29,7 +29,7 @@ CrTodoEditListCommand >> execute [
 	dialog := CrRequestDialog new
 		title: ('Rename {1}' format: { list name });
 		label: 'Please enter your list name';
-		openDialogWithSpec.
+		openDialogWithSpecParent: context window.
 	
 	dialog isOk ifFalse: [ ^ self ].
 	dialog presenter text isEmptyOrNil ifTrue: [ ^ self ].

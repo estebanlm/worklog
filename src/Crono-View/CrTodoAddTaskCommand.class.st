@@ -33,7 +33,7 @@ CrTodoAddTaskCommand >> execute [
 	
 	(CrTodoAddTaskPanel newApplication: self application)
 		todoList: self todoList;
-		openDialogWithSpec
+		openDialogWithSpecParent: context window
 ]
 
 { #category : #accessing }

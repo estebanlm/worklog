@@ -8,17 +8,17 @@ Class {
 }
 
 { #category : #initialization }
-CrTodoEditTaskPanel >> initializeDialogWindow: aWindowDialogPresenter [
+CrTodoEditTaskPanel >> initializeDialogWindow: aDialogWindowPresenter [
 
-	aWindowDialogPresenter 
+	super initializeDialogWindow: aDialogWindowPresenter.
+	aDialogWindowPresenter
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
 		addButton: 'Update'
 			do: [ :presenter |
 				self updateTaskThen: [ 
 					presenter 
 						beOk; 
-						close ] ];
-		centered
+						close ] ]
 ]
 
 { #category : #initialization }

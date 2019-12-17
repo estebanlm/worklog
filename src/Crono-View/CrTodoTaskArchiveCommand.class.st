@@ -13,7 +13,7 @@ CrTodoTaskArchiveCommand class >> defaultDescription [
 { #category : #default }
 CrTodoTaskArchiveCommand class >> defaultName [
 
-	^ 'Archive Task'
+	^ 'Archive'
 ]
 
 { #category : #default }
@@ -40,8 +40,8 @@ CrTodoTaskArchiveCommand >> name [
 
 	self task ifNil: [ ^ super name ].
 	^ self task isArchived 
-		ifTrue: [ 'Recover Task' ]
-		ifFalse: [ 'Archive Task' ]
+		ifTrue: [ 'Unarchive' ]
+		ifFalse: [ 'Archive' ]
 ]
 
 { #category : #accessing }

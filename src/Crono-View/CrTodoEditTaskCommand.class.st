@@ -25,7 +25,7 @@ CrTodoEditTaskCommand >> execute [
 	(CrTodoEditTaskPanel newApplication: self application)
 		todoList: self todoList;
 		task: self task;
-		openDialogWithSpec
+		openDialogWithSpecParent: context window
 ]
 
 { #category : #accessing }

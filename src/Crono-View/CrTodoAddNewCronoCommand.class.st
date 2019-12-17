@@ -34,5 +34,5 @@ CrTodoAddNewCronoCommand class >> defaultShortcut [
 { #category : #executing }
 CrTodoAddNewCronoCommand >> execute [
 	
-	CrCronoDialog openDialog
+	CrCronoDialog new openDialogWithSpecParent: context window
 ]

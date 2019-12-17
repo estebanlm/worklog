@@ -78,6 +78,7 @@ CrTodoListPanel >> contextMenuActions [
 		register: ((CmCommandGroup named: 'Organisation') asSpecGroup
 			beDisplayedAsGroup;
 			register: (CrTodoTaskToggleFocusCommand forSpecContext: self);
+			"register: (CrTodoAddTaskCommand forSpecContext: self);"
 			register: (CrTodoTaskMoveCommand forSpecContext: self);
 			yourself);
 		register: ((CmCommandGroup named: 'Management') asSpecGroup
@@ -298,13 +299,10 @@ CrTodoListPanel >> toggleShownArchived [
 CrTodoListPanel >> visibleTasksInRightOrder [
 	| tasks |
 	
-	tasks := self todoList tasks.
-	self flag: #TODO. "This will be todoList directly once we introduce a cache system for tasks
-	(now is like this to avoid double query"
-	tasks do: [ :each | each archiveIfDoneAfterDays: self autoArchiveAfterDays ].
-	self shownArchived ifFalse: [ ^ tasks reject: #isArchived ].
+	self todoList archiveCompletedTasksAfterDays: self autoArchiveAfterDays.
+	self shownArchived ifFalse: [ ^ self todoList tasks reject: #isArchived ].
 	
-	tasks := tasks groupedBy: #isArchived.
+	tasks := self todoList tasks groupedBy: #isArchived.
 	^ (tasks at: false ifAbsent: [ #() ]), 
 	  (tasks at: true ifAbsent: [ #() ])
 ]

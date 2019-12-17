@@ -10,6 +10,9 @@ I define common behaviour for all Crono windows and panels, such as:
 Class {
 	#name : #CrPresenter,
 	#superclass : #SpPresenter,
+	#instVars : [
+		'#parentWindow => WeakSlot'
+	],
 	#category : #'Crono-View-Base'
 }
 
@@ -40,6 +43,19 @@ CrPresenter >> configurationClass [
 ]
 
 { #category : #initialization }
+CrPresenter >> initialize [
+	super initialize.
+]
+
+{ #category : #initialization }
+CrPresenter >> initializeDialogWindow: aDialogWindowPresenter [
+
+	self parentWindow 
+		ifNotNil: [ :w | aDialogWindowPresenter centeredRelativeTo: w ] 
+		ifNil: [ aDialogWindowPresenter centered ]
+]
+
+{ #category : #initialization }
 CrPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter title: self title.
@@ -50,6 +66,19 @@ CrPresenter >> initializeWindow: aWindowPresenter [
 			whenWillCloseDo: [ self storeSettings ] ].
 	self traversePresentersDo: [ :each |
 		each addGlobalShortcutsTo: aWindowPresenter ]
+]
+
+{ #category : #api }
+CrPresenter >> openDialogWithSpecParent: aWindow [ 
+	
+	parentWindow := aWindow.
+	^ self openDialogWithSpec
+]
+
+{ #category : #accessing }
+CrPresenter >> parentWindow [
+
+	^ parentWindow
 ]
 
 { #category : #private }

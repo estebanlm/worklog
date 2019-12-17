@@ -80,6 +80,7 @@ CrRequestDialog >> extent: aPoint [
 { #category : #initialization }
 CrRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
+	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
 		addButton: self cancelLabel do: [ :presenter | presenter beCancel; close ];
 		addButton: self acceptLabel do: [ :presenter | presenter beOk; close ]

@@ -26,17 +26,17 @@ CrTodoAddTaskPanel >> addTaskThen: aBlock [
 ]
 
 { #category : #initialization }
-CrTodoAddTaskPanel >> initializeDialogWindow: aWindowDialogPresenter [
+CrTodoAddTaskPanel >> initializeDialogWindow: aDialogWindowPresenter [
 
-	aWindowDialogPresenter 
+	super initializeDialogWindow: aDialogWindowPresenter.	
+	aDialogWindowPresenter 
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
 		addButton: 'Add'
 			do: [ :presenter |
 				self addTaskThen: [ 
 					presenter 
 						beOk; 
-						close ] ];
-		centered
+						close ] ]
 ]
 
 { #category : #initialization }

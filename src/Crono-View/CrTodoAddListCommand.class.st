@@ -35,7 +35,7 @@ CrTodoAddListCommand >> execute [
 	dialog := CrRequestDialog new
 		title: 'New List';
 		label: 'Please enter your list name';
-		openDialogWithSpec.
+		openDialogWithSpecParent: context window.
 	
 	dialog isOk ifFalse: [ ^ self ].
 	dialog presenter text isEmptyOrNil ifTrue: [ ^ self ].
