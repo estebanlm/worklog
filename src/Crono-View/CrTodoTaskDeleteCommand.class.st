@@ -24,9 +24,14 @@ CrTodoTaskDeleteCommand class >> defaultShortcut [
 
 { #category : #executing }
 CrTodoTaskDeleteCommand >> execute [
-	| focused |
+	| ok focused |
 	
-	self flag: #TODO. "Confirm!"
+	ok := (CrConfirmDialog new 
+		title: 'Delete Task';
+		label: ('You are about to delete "{1}"' format: { self task name });
+		openDialogWithSpecParent: context window)
+		isOk.
+	ok ifFalse: [ ^ self ].
 	
 	focused := self task isFocused.
 	self todoList 

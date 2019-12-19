@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #accessing }
-CrListRemovedNotification >> dispatchTo: anObject [ 
+CrListRemovedNotification class >> receiverSelector [
 
-	anObject noteListRemoved: self
+	^ #noteListRemoved:
 ]

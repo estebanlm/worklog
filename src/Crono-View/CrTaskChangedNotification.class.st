@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #accessing }
-CrTaskChangedNotification >> dispatchTo: anObject [ 
-
-	anObject noteTaskChanged: self
+CrTaskChangedNotification class >> receiverSelector [
+	
+	^ #noteTaskChanged:
 ]

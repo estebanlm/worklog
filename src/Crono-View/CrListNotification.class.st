@@ -13,16 +13,16 @@ CrListNotification class >> newList: aTodoList [
 	^ self new list: aTodoList
 ]
 
+{ #category : #accessing }
+CrListNotification class >> receiverSelector [
+
+	^ #noteList:
+]
+
 { #category : #testing }
 CrListNotification >> appliesToList: aTodoList [
 
 	^ self list = aTodoList
-]
-
-{ #category : #accessing }
-CrListNotification >> dispatchTo: anObject [ 
-
-	anObject noteList: self
 ]
 
 { #category : #accessing }

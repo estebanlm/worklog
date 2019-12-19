@@ -18,6 +18,12 @@ CrNotification class >> asNotification [
 ]
 
 { #category : #accessing }
+CrNotification class >> receiverSelector [
+
+	^ #note:
+]
+
+{ #category : #accessing }
 CrNotification class >> systemIconName [
 
 	^ #announcementIcon
@@ -32,5 +38,32 @@ CrNotification >> asNotification [
 { #category : #accessing }
 CrNotification >> dispatchTo: anObject [
 
-	anObject note: self
+	anObject 
+		perform: (self lookupSelectorOn: anObject)
+		with: self
+]
+
+{ #category : #private }
+CrNotification >> lookupSelectorOn: anObject [
+
+	^ self 
+		lookupSelectorOn: anObject 
+		for: self class
+]
+
+{ #category : #private }
+CrNotification >> lookupSelectorOn: anObject for: aNotificationClass [
+
+	^ (anObject respondsTo: aNotificationClass receiverSelector)
+		ifTrue: [ aNotificationClass receiverSelector ]
+		ifFalse: [ 
+			(aNotificationClass = CrNotification) ifTrue: [ 
+				self error: 'Notification receiver not defined.' ]. 
+			self lookupSelectorOn: anObject for: aNotificationClass superclass ].
+]
+
+{ #category : #accessing }
+CrNotification >> receiverSelector [
+
+	^ self class receiverSelector
 ]

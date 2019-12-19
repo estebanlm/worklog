@@ -36,3 +36,9 @@ CrCommand >> asSpecCommand [
 		
 	^ command
 ]
+
+{ #category : #accessing }
+CrCommand >> notificationCenter [
+
+	^ self application notificationCenter
+]

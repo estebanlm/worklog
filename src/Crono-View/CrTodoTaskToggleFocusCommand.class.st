@@ -25,7 +25,10 @@ CrTodoTaskToggleFocusCommand class >> defaultShortcut [
 { #category : #executing }
 CrTodoTaskToggleFocusCommand >> execute [
 	
-	context selectedItemToggleFocus
+	self task toggleFocus.
+	self application notificationCenter 
+		notify: (CrTaskChangedNotification newTask: self task);
+		notify: (CrListChangedNotification newList: CrTodoList focus)	
 ]
 
 { #category : #accessing }

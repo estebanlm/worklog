@@ -100,7 +100,8 @@ CrApplication class >> validateSession [
 { #category : #initialization }
 CrApplication >> emergencyShutdown [
 
-	repository close
+	repository close.
+	CrTodoList focus resetCache
 ]
 
 { #category : #accessing }

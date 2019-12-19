@@ -1,12 +1,9 @@
-"
-I am a simple dialog to request some information (a text)
-"
 Class {
-	#name : #CrRequestDialog,
+	#name : #CrConfirmDialog,
 	#superclass : #CrPresenter,
 	#instVars : [
 		'label',
-		'textInput',
+		'image',
 		'title',
 		'initialExtent',
 		'acceptLabel',
@@ -16,72 +13,75 @@ Class {
 }
 
 { #category : #accessing }
-CrRequestDialog class >> defaultAcceptLabel [
+CrConfirmDialog class >> defaultAcceptLabel [
 
-	^ 'Accept'
+	^ 'Yes'
 ]
 
 { #category : #accessing }
-CrRequestDialog class >> defaultCancelLabel [
+CrConfirmDialog class >> defaultCancelLabel [
 
-	^ 'Cancel'
+	^ 'No'
 ]
 
 { #category : #accessing }
-CrRequestDialog class >> defaultExtent [
+CrConfirmDialog class >> defaultExtent [
 
 	^ 400@100
 ]
 
 { #category : #specs }
-CrRequestDialog class >> defaultSpec [
+CrConfirmDialog class >> defaultSpec [
 
 	^ SpBoxLayout newVertical
 		borderWidth: 5;
 		spacing: 5;
-		add: #label expand: false;
-		add: #textInput expand: false;
+		add: (SpBoxLayout newHorizontal
+			spacing: 5;
+			add: #image expand: false;
+			add: #label;
+			yourself);
 		yourself
 ]
 
 { #category : #accessing }
-CrRequestDialog >> acceptLabel [
+CrConfirmDialog >> acceptLabel [
 
 	^ acceptLabel ifNil: [ self class defaultAcceptLabel ]
 ]
 
 { #category : #accessing }
-CrRequestDialog >> acceptLabel: aString [
+CrConfirmDialog >> acceptLabel: aString [
 
 	acceptLabel := aString
 ]
 
 { #category : #accessing }
-CrRequestDialog >> cancelLabel [
+CrConfirmDialog >> cancelLabel [
 
 	^ cancelLabel ifNil: [ self class defaultCancelLabel ]
 ]
 
 { #category : #accessing }
-CrRequestDialog >> cancelLabel: aString [
+CrConfirmDialog >> cancelLabel: aString [
 
 	cancelLabel := aString
 ]
 
 { #category : #accessing }
-CrRequestDialog >> extent [
+CrConfirmDialog >> extent [
 
 	^ initialExtent ifNil: [ self class defaultExtent ]
 ]
 
 { #category : #accessing }
-CrRequestDialog >> extent: aPoint [
+CrConfirmDialog >> extent: aPoint [
 
 	initialExtent := aPoint
 ]
 
 { #category : #initialization }
-CrRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
+CrConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
@@ -91,47 +91,35 @@ CrRequestDialog >> initializeDialogWindow: aDialogWindowPresenter [
 ]
 
 { #category : #initialization }
-CrRequestDialog >> initializePresenters [
+CrConfirmDialog >> initializePresenters [
 
+	image := self newImage.
 	label := self newLabel.
-	textInput := self newTextInput autoAccept: true
+	
 ]
 
 { #category : #initialization }
-CrRequestDialog >> initializeWindow: aWindowPresenter [
+CrConfirmDialog >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: self title;
-		initialExtent: self extent;
-		whenOpenedDo: [ textInput takeKeyboardFocus ]
+		initialExtent: self extent
 ]
 
 { #category : #accessing }
-CrRequestDialog >> label: aString [
+CrConfirmDialog >> label: aString [
 
 	label label: aString
 ]
 
 { #category : #accessing }
-CrRequestDialog >> text [ 
-	
-	^ textInput text trimmed
-]
-
-{ #category : #accessing }
-CrRequestDialog >> text: aString [
-
-	textInput text: aString
-]
-
-{ #category : #accessing }
-CrRequestDialog >> title [
+CrConfirmDialog >> title [
 
 	^ title
 ]
 
 { #category : #accessing }
-CrRequestDialog >> title: aString [
+CrConfirmDialog >> title: aString [
 
 	title := aString
 ]

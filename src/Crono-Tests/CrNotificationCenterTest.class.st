@@ -19,6 +19,20 @@ CrNotificationCenterTest >> testNotify [
 ]
 
 { #category : #tests }
+CrNotificationCenterTest >> testNotifySubscribedToSubclassNotifiesSuperclassReceiver [
+	| nc object |
+	
+	nc := CrNotificationCenter new.
+	object := CrNotificationCenterObject2Mock new.
+	nc subscribe: object to: CrNotificationMock.
+	
+	nc notify: CrNotificationMock.	
+
+	self assert: object noted size equals: 1. 
+	self assert: object noted first class equals: CrNotificationMock
+]
+
+{ #category : #tests }
 CrNotificationCenterTest >> testNotifyWhenSubscribedToClassAndSuperclass [
 	| nc object |
 	

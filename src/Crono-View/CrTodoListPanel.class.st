@@ -252,12 +252,6 @@ CrTodoListPanel >> selectItem: aListItem [
 ]
 
 { #category : #actions }
-CrTodoListPanel >> selectedItemToggleFocus [
-
-	list selection selectedItem ifNotNil: #toggleFocus
-]
-
-{ #category : #actions }
 CrTodoListPanel >> selectedItemToggleState [
 
 	list selection selectedItem ifNotNil: #toggleState

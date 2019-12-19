@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #accessing }
-CrNotificationMock >> dispatchTo: anObject [
+CrNotificationMock class >> receiverSelector [ 
 
-	anObject noteMock: self
+	^ #noteMock:
 ]

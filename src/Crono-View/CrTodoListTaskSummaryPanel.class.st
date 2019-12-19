@@ -28,14 +28,18 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #accessing }
+CrTodoListTaskSummaryPanel >> activeTask [
+
+	^ self task
+]
+
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> changeStatusTo: state [
 	
-	self task isDone = state ifTrue: [ ^ self ].
-	
-	self task changeStatusTo: state.
-	self application notificationCenter 
-		notify: (CrTaskChangedNotification newTask: self task)
+	(CrTodoTaskChangeDoneStatusCommand forContext: self)
+		state: state;
+		execute
 ]
 
 { #category : #initialization }
@@ -87,10 +91,7 @@ CrTodoListTaskSummaryPanel >> todoList [
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> toggleFocus [
 	
-	self task toggleFocus.
-	self application notificationCenter 
-		notify: (CrTaskChangedNotification newTask: self task);
-		notify: (CrListChangedNotification newList: CrTodoList focus)
+	(CrTodoTaskToggleFocusCommand forContext: self) execute
 ]
 
 { #category : #actions }

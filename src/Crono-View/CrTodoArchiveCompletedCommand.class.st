@@ -22,7 +22,7 @@ CrTodoArchiveCompletedCommand >> execute [
 	self todoList archiveCompletedTasks.
 	context refresh.
 	
-	context application notificationCenter 
+	self notificationCenter 
 		notify: (CrListAddedNotification newList: self todoList)
 ]
 

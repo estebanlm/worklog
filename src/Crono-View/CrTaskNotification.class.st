@@ -14,9 +14,9 @@ CrTaskNotification class >> newTask: aTask [
 ]
 
 { #category : #accessing }
-CrTaskNotification >> dispatchTo: anObject [
+CrTaskNotification class >> receiverSelector [
 
-	anObject noteTask: self
+	^ #noteTask:
 ]
 
 { #category : #accessing }
