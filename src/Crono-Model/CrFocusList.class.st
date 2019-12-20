@@ -30,6 +30,10 @@ CrFocusList >> noteListChanged: aNotification [
 	self resetCache
 ]
 
+{ #category : #'notification handling' }
+CrFocusList >> noteListTaskChanged: aNotification [
+]
+
 { #category : #initialization }
 CrFocusList >> onApplicationStart: anApplication [ 
 

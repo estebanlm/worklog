@@ -171,24 +171,6 @@ CrTodoWindow >> noteTask: aNotification [
 	self updateListPanel: self activeTodoList
 ]
 
-{ #category : #'notification handling' }
-CrTodoWindow >> noteTaskAdded: aNotification [ 
-	
-	self noteTask: aNotification
-]
-
-{ #category : #'notification handling' }
-CrTodoWindow >> noteTaskChanged: aNotification [ 
-	
-	self noteTask: aNotification
-]
-
-{ #category : #'notification handling' }
-CrTodoWindow >> noteTaskRemoved: aNotification [ 
-	
-	self noteTask: aNotification
-]
-
 { #category : #initialization }
 CrTodoWindow >> title [ 
 

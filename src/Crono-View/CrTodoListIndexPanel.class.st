@@ -144,12 +144,6 @@ CrTodoListIndexPanel >> noteList: aNotification [
 ]
 
 { #category : #'notification handling' }
-CrTodoListIndexPanel >> noteListAdded: aNotification [
-
-	self noteList: aNotification
-]
-
-{ #category : #'notification handling' }
 CrTodoListIndexPanel >> noteListChanged: aNotification [
 	
 	"notification can be applied to more than one list (in case of virtual list
