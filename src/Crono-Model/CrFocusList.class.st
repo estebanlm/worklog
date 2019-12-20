@@ -33,6 +33,7 @@ CrFocusList >> noteListChanged: aNotification [
 { #category : #initialization }
 CrFocusList >> onApplicationStart: anApplication [ 
 
+	self resetCache.
 	anApplication notificationCenter 
 		subscribe: self to: CrListChangedNotification
 ]
