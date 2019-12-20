@@ -41,7 +41,7 @@ CrVirtualList >> listForAddTask [
 	"We cannot use a virtual list as tasks repository (since they are calculated). 
 	 In that case we need to provide one 'default', which will be 'unsorted'"
 
-	^ CrTodoList unsorted
+	^ CrTodoList inbox
 ]
 
 { #category : #initialization }
@@ -53,6 +53,5 @@ CrVirtualList >> onApplicationStart: anApplication [
 CrVirtualList >> saveTask: aTask [ 
 	"Adding a task here is in fact adding it to unsorted"
 	
-	aTask focus: true.
-	^ CrTodoList unsorted saveTask: aTask. 
+	^ self listForAddTask saveTask: aTask. 
 ]

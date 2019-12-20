@@ -43,6 +43,13 @@ CrFocusList >> resetCache [
 	tasksCache := nil
 ]
 
+{ #category : #actions }
+CrFocusList >> saveTask: aTask [
+
+	aTask focus: true.
+	super saveTask: aTask
+]
+
 { #category : #accessing }
 CrFocusList >> tasks [
 
