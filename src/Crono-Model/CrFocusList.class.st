@@ -31,7 +31,8 @@ CrFocusList >> noteListChanged: aNotification [
 ]
 
 { #category : #'notification handling' }
-CrFocusList >> noteListTaskChanged: aNotification [
+CrFocusList >> noteVirtualListTaskChanged: aNotification [
+	"do nothing (prevent unnecesary refresh)"
 ]
 
 { #category : #initialization }

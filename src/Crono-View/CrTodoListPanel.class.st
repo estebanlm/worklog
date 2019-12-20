@@ -230,6 +230,11 @@ CrTodoListPanel >> noteTaskChanged: aNotification [
 	
 ]
 
+{ #category : #'notification handling' }
+CrTodoListPanel >> noteVirtualListTaskChanged: aNotification [
+	"do not refresh if task in virtial list changed (the change will be impacted differently)"
+]
+
 { #category : #accessing }
 CrTodoListPanel >> refresh [
 	| selectedItem tasks |

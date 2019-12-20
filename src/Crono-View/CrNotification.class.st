@@ -37,9 +37,11 @@ CrNotification >> asNotification [
 
 { #category : #accessing }
 CrNotification >> dispatchTo: anObject [
+	| selector |
 
-	anObject 
-		perform: (self lookupSelectorOn: anObject)
+	selector := self lookupSelectorOn: anObject.
+	anObject
+		perform: selector
 		with: self
 ]
 

@@ -24,7 +24,7 @@ CrTodoTaskChangeDoneStatusCommand >> execute [
 		notify: (CrTaskChangedNotification newTask: self task).	
 	self task isFocused ifTrue: [ 
 		self application notificationCenter 
-			notify: (CrListTaskChangedNotification 
+			notify: (CrVirtualListTaskChangedNotification 
 				newList: CrTodoList focus
 				task: self task) ]
 ]

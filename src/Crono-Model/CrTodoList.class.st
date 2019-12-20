@@ -43,7 +43,9 @@ CrTodoList class >> focus [
 { #category : #accessing }
 CrTodoList class >> inbox [
 
-	^ self selectOne: [ :each | each type = CrTodoType inbox typeName ]
+	^ CrApplication current 
+		propertyAt: #inbox 
+		ifAbsentPut: [ self selectOne: [ :each | each type = CrTodoType inbox typeName ] ]
 ]
 
 { #category : #testing }
