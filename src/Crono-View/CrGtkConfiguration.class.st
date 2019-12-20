@@ -4,18 +4,12 @@ I define a light theme.
 "
 Class {
 	#name : #CrGtkConfiguration,
-	#superclass : #SpApplicationConfiguration,
+	#superclass : #SpGtkConfiguration,
 	#instVars : [
 		'iconProvider'
 	],
 	#category : #'Crono-View-Application'
 }
-
-{ #category : #private }
-CrGtkConfiguration >> addProviderFromString: aString [
-
-	(GtkCssProvider newFromString: aString) addForApplicationToDefaultScreen
-]
 
 { #category : #configuring }
 CrGtkConfiguration >> configure: anApplication [
@@ -29,7 +23,7 @@ CrGtkConfiguration >> configureOSX: anApplication [
 
 	self ensureAppearance: self macAppearanceName. 
 	self installTheme: self macThemeName.
-	self addProviderFromString: '
+	self addCSSProviderFromString: '
 .cronoText { font: 12pt "Monaco" }
 .title { /*font-size: 14pt;*/ font-weight: bold }
 .titleShortcut { color: LightSlateGrey }
@@ -42,7 +36,7 @@ CrGtkConfiguration >> configureUnix: anApplication [
 
 	self unixThemeName 
 		ifNotNil: [ :aName | self installTheme: aName ].
-	self addProviderFromString: '
+	self addCSSProviderFromString: '
 .cronoText { font: 11pt "Monospace Regular" }
 .title { font-size: 14pt }
 .titleShortcut { color: LightSlateGrey }
@@ -54,7 +48,7 @@ CrGtkConfiguration >> configureUnix: anApplication [
 CrGtkConfiguration >> configureWindows: anApplication [
 
 	self installTheme: self windowsThemeName.
-	self addProviderFromString: '
+	self addCSSProviderFromString: '
 .cronoText { font: 10pt "Microsoft Sans Serif" }
 .title { font-size: 14pt }
 .titleShortcut { color: LightSlateGrey }
@@ -87,12 +81,6 @@ CrGtkConfiguration >> iconProvider [
 CrGtkConfiguration >> iconsDir [
 
 	^ self resourcesDir / 'icons' / '16'
-]
-
-{ #category : #private }
-CrGtkConfiguration >> installTheme: aString [
-
-	GtkSettings default themeName: aString
 ]
 
 { #category : #accessing }
