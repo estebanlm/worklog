@@ -6,10 +6,21 @@ Class {
 	#name : #CrNotificationCenter,
 	#superclass : #Object,
 	#instVars : [
-		'subscriptions'
+		'prioritySubscriptions'
+	],
+	#classVars : [
+		'PRIORITY_DEFAULT',
+		'PRIORITY_HIGH'
 	],
 	#category : #'Crono-View-Application'
 }
+
+{ #category : #'class initialization' }
+CrNotificationCenter class >> initialize [
+
+	PRIORITY_DEFAULT := 100.
+	PRIORITY_HIGH := 0
+]
 
 { #category : #private }
 CrNotificationCenter >> dispatchNotification: aNotification to: anObject [
@@ -28,7 +39,7 @@ CrNotificationCenter >> dispatchNotification: aNotification toAll: aSet [
 CrNotificationCenter >> initialize [
 
 	super initialize.
-	subscriptions := Dictionary new
+	prioritySubscriptions := OrderedDictionary new
 ]
 
 { #category : #notifying }
@@ -48,20 +59,49 @@ CrNotificationCenter >> notify: aNotification [
 		class := class superclass ]
 ]
 
+{ #category : #private }
+CrNotificationCenter >> prioritySubscriptionsAt: aNumber [
+		
+	^ prioritySubscriptions 
+		at: aNumber 
+		ifAbsentPut: [ Dictionary new ]
+]
+
 { #category : #subscribing }
 CrNotificationCenter >> subscribe: anObject to: anAnnouncementClass [
 
-	(subscriptions 
+	self 
+		subscribe: anObject 
+		to: anAnnouncementClass 
+		priority: PRIORITY_DEFAULT
+]
+
+{ #category : #subscribing }
+CrNotificationCenter >> subscribe: anObject to: anAnnouncementClass priority: aNumber [
+
+	((self prioritySubscriptionsAt: aNumber)
 		at: anAnnouncementClass
 		ifAbsentPut: [ WeakSet new ])
 		add: anObject
 ]
 
 { #category : #subscribing }
+CrNotificationCenter >> subscribeHigh: anObject to: anAnnouncementClass [
+
+	self 
+		subscribe: anObject 
+		to: anAnnouncementClass 
+		priority: PRIORITY_HIGH
+]
+
+{ #category : #subscribing }
 CrNotificationCenter >> subscriptionsTo: anAnnouncementClass [ 
 	
-	^ (subscriptions 
-		at: anAnnouncementClass 
-		ifAbsent: [ #() ])
+	^ (prioritySubscriptions values 
+		collect: [ :each | 
+			each 
+				at: anAnnouncementClass 
+				ifAbsent: [ #() ] ])
+		flattened
 		asArray
 ]

@@ -19,6 +19,28 @@ CrNotificationCenterTest >> testNotify [
 ]
 
 { #category : #tests }
+CrNotificationCenterTest >> testNotifyDifferentPriorities [
+	| nc object1 object2 noted |
+	
+	nc := CrNotificationCenter new.
+	noted := OrderedCollection new.
+	
+	object1 := CrNotificationCenterObject3Mock new.
+	object1 onNote: [ noted add: object1 ].
+	nc subscribe: object1 to: CrNotificationMock priority: 0.
+
+	object2 := CrNotificationCenterObject3Mock new.
+	object2 onNote: [ noted add: object2 ].
+	nc subscribe: object2 to: CrNotificationMock priority: 100.
+		
+	nc notify: CrNotificationMock.	
+
+	self assert: noted size equals: 2. 
+	self assert: noted first equals: object1.
+	self assert: noted second equals: object2
+]
+
+{ #category : #tests }
 CrNotificationCenterTest >> testNotifySubscribedToSubclassNotifiesSuperclassReceiver [
 	| nc object |
 	

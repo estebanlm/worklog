@@ -40,7 +40,8 @@ CrFocusList >> onApplicationStart: anApplication [
 
 	self resetCache.
 	anApplication notificationCenter 
-		subscribe: self to: CrListChangedNotification
+		subscribeHigh: self
+		to: CrListChangedNotification
 ]
 
 { #category : #private }

@@ -40,7 +40,10 @@ CrNotification >> dispatchTo: anObject [
 	| selector |
 
 	selector := self lookupSelectorOn: anObject.
-	anObject
+	
+	"(anObject className,'>>',selector,'(', self receiverSelector, ')') crTrace. "
+		
+	anObject 
 		perform: selector
 		with: self
 ]
