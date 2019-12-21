@@ -27,11 +27,11 @@ CrNotificationCenterTest >> testNotifyDifferentPriorities [
 	
 	object1 := CrNotificationCenterObject3Mock new.
 	object1 onNote: [ noted add: object1 ].
-	nc subscribe: object1 to: CrNotificationMock priority: 0.
+	nc subscribeHigh: object1 to: CrNotificationMock.
 
 	object2 := CrNotificationCenterObject3Mock new.
 	object2 onNote: [ noted add: object2 ].
-	nc subscribe: object2 to: CrNotificationMock priority: 100.
+	nc subscribe: object2 to: CrNotificationMock.
 		
 	nc notify: CrNotificationMock.	
 

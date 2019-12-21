@@ -18,8 +18,8 @@ Class {
 { #category : #'class initialization' }
 CrNotificationCenter class >> initialize [
 
-	PRIORITY_DEFAULT := 100.
-	PRIORITY_HIGH := 0
+	PRIORITY_DEFAULT := 2.
+	PRIORITY_HIGH := 1
 ]
 
 { #category : #private }
@@ -39,7 +39,10 @@ CrNotificationCenter >> dispatchNotification: aNotification toAll: aSet [
 CrNotificationCenter >> initialize [
 
 	super initialize.
-	prioritySubscriptions := OrderedDictionary new
+	prioritySubscriptions := (Array new: 2)
+		at: PRIORITY_HIGH put: Dictionary new;
+		at: PRIORITY_DEFAULT put: Dictionary new;
+		yourself
 ]
 
 { #category : #notifying }
@@ -62,9 +65,7 @@ CrNotificationCenter >> notify: aNotification [
 { #category : #private }
 CrNotificationCenter >> prioritySubscriptionsAt: aNumber [
 		
-	^ prioritySubscriptions 
-		at: aNumber 
-		ifAbsentPut: [ Dictionary new ]
+	^ prioritySubscriptions at: aNumber
 ]
 
 { #category : #subscribing }
@@ -76,7 +77,7 @@ CrNotificationCenter >> subscribe: anObject to: anAnnouncementClass [
 		priority: PRIORITY_DEFAULT
 ]
 
-{ #category : #subscribing }
+{ #category : #private }
 CrNotificationCenter >> subscribe: anObject to: anAnnouncementClass priority: aNumber [
 
 	((self prioritySubscriptionsAt: aNumber)
@@ -97,11 +98,8 @@ CrNotificationCenter >> subscribeHigh: anObject to: anAnnouncementClass [
 { #category : #subscribing }
 CrNotificationCenter >> subscriptionsTo: anAnnouncementClass [ 
 	
-	^ (prioritySubscriptions values 
-		collect: [ :each | 
-			each 
-				at: anAnnouncementClass 
-				ifAbsent: [ #() ] ])
+	^ (prioritySubscriptions collect: [ :each | 
+			each at: anAnnouncementClass ifAbsent: [ #() ] ])
 		flattened
 		asArray
 ]
