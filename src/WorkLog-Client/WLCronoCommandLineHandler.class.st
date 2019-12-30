@@ -94,7 +94,7 @@ WLCronoCommandLineHandler >> addLog: aString [
 { #category : #accessing }
 WLCronoCommandLineHandler >> crono [
 
-	^ CrCrono new
+	^ CrCronoFile new
 ]
 
 { #category : #private }

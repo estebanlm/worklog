@@ -62,5 +62,5 @@ CrCronoDialog >> initializeWindow: aWindowPresenter [
 { #category : #'private factory' }
 CrCronoDialog >> newCrono [
 
-	^ CrCrono new
+	^ CrCronoFile new
 ]
