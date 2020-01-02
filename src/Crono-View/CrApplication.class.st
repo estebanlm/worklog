@@ -82,6 +82,12 @@ CrApplication class >> menuCommandOn: aBuilder [
 ]
 
 { #category : #accessing }
+CrApplication class >> repositoryName [ 
+
+	^ 'todo.db'
+]
+
+{ #category : #accessing }
 CrApplication class >> reset [
 	<script>
 
@@ -139,7 +145,7 @@ CrApplication >> initializeBackend [
 CrApplication >> initializeRepository [
 	| reference isNew |
 
-	reference := FileLocator imageDirectory / 'crono.db'.
+	reference := FileLocator imageDirectory / self class repositoryName.
 	isNew := reference exists not.
 	repository := VOUnQLiteRepository on: reference.
 	isNew ifTrue: [ 
