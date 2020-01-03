@@ -40,7 +40,7 @@ CrTodoTask class >> voyageDoneDate [
 		accessor: (MAPluggableAccessor 
 			read: [ :aTask | aTask doneDate ifNotNil: #asString ]
 			write: [ :aTask :date | 
-				date ifNotNil: [ aTask setDoneDate: (DateAndTime fromString: date) ] ]);
+				date ifNotNil: [ aTask setDoneDate: (ZTimestamp fromString: date) ] ]);
 		yourself
 ]
 
@@ -84,7 +84,7 @@ CrTodoTask >> archiveIfDoneAfterDays: daysNumber [
 
 	self isArchived ifTrue: [ ^ self ].
 	self isDone ifFalse: [ ^ self ].
-	(self doneDate < (DateAndTime now - daysNumber days)) ifFalse: [ ^ self ].
+	(self doneDate < (ZTimestamp now - daysNumber days)) ifFalse: [ ^ self ].
 	
 	self archived: true.
 	self focus: false.

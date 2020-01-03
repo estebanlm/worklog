@@ -10,13 +10,14 @@ BaselineOfCrono >> baseline: spec [
 	
 	spec for: #pharo do: [
 
+		self zTimestamp: spec.
 		self voyage: spec.
 		self marsGtk: spec.
 		self objCBridge: spec.
 
 		spec 
 			package: 'WorkLog-Client';
-			package: 'Crono-Model' with: [ spec requires: #('Voyage') ];
+			package: 'Crono-Model' with: [ spec requires: #('ZTimestamp' 'Voyage') ];
 			package: 'Crono-View' ]
 ]
 
@@ -53,4 +54,12 @@ BaselineOfCrono >> voyage: spec [
 			spec 
 				loads: #('memory' 'unqlite');
 				repository: 'github://pharo-nosql/voyage' ]
+]
+
+{ #category : #'external projects' }
+BaselineOfCrono >> zTimestamp: spec [
+
+	spec
+		baseline: 'ZTimestamp'
+		with: [ spec repository: 'github://svenc/ztimestamp' ]
 ]
