@@ -17,6 +17,5 @@ CrTestCase >> runCase [
 	oldApplication := CrApplication current.
 	CrApplication setCurrent: CrApplicationForTest new.
 	[ super runCase ]
-	ensure: [ 
-		CrApplication setCurrent: oldApplication ]
+	ensure: [ CrApplication setCurrent: oldApplication ]
 ]

@@ -5,6 +5,13 @@ Class {
 }
 
 { #category : #initialization }
+CrApplicationForTest >> initializeBackend [
+
+	GtkApplication ensureRunning.
+	self useBackend: SpGtkConfiguration new
+]
+
+{ #category : #initialization }
 CrApplicationForTest >> initializeRepository [
 
 	repository := VOUnQLiteRepository onMemory.
