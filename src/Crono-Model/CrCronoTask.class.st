@@ -45,15 +45,7 @@ CrCronoTask class >> voyageRepository [
 { #category : #private }
 CrCronoTask >> collectTagsOn: aString [
 
-	^ #()
-]
-
-{ #category : #accessing }
-CrCronoTask >> done: aBoolean [
-
-	doneDate := aBoolean 
-		ifTrue: [ ZTimestamp now ]
-		ifFalse: [ nil ]
+	^ CrTagCollector collectTagsOn: aString
 ]
 
 { #category : #accessing }
@@ -95,6 +87,7 @@ CrCronoTask >> printOn: stream [
 { #category : #persistence }
 CrCronoTask >> save [ 
 
+	self setDoneDate: ZTimestamp now.
 	self updateTags.
 	super save
 ]
@@ -103,6 +96,12 @@ CrCronoTask >> save [
 CrCronoTask >> setDoneDate: aZTimestamp [
 	
 	doneDate := aZTimestamp
+]
+
+{ #category : #accessing }
+CrCronoTask >> tags [
+
+	^ tags
 ]
 
 { #category : #private }

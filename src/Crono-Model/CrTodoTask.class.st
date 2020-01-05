@@ -59,7 +59,7 @@ CrTodoTask class >> voyageStartDate [
 		accessor: (MAPluggableAccessor 
 			read: [ :aTask | aTask startDate ifNotNil: #asString ]
 			write: [ :aTask :date | 
-				date ifNotNil: [ aTask setStartDate: (DateAndTime fromString: date) ] ]);
+				date ifNotNil: [ aTask setStartDate: (ZTimestamp fromString: date) ] ]);
 		yourself
 ]
 
@@ -121,7 +121,7 @@ CrTodoTask >> collectTagsOn: aString [
 CrTodoTask >> done: aBoolean [
 
 	doneDate := aBoolean 
-		ifTrue: [ DateAndTime now ]
+		ifTrue: [ ZTimestamp now ]
 		ifFalse: [ nil ]
 ]
 
@@ -146,7 +146,7 @@ CrTodoTask >> hasNotes [
 CrTodoTask >> initialize [
 
 	super initialize. 
-	startDate := DateAndTime now.
+	startDate := ZTimestamp now.
 	focused := false.
 	archived := false
 ]

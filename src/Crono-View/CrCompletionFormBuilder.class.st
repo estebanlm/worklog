@@ -5,7 +5,7 @@ Class {
 		'completion',
 		'color'
 	],
-	#category : #'Crono-View-Todo-Extras'
+	#category : #'Crono-View-Todo-Utils'
 }
 
 { #category : #building }

@@ -96,6 +96,12 @@ CrApplication class >> reset [
 ]
 
 { #category : #private }
+CrApplication class >> setCurrent: anApplication [
+
+	Current := anApplication
+]
+
+{ #category : #private }
 CrApplication class >> validateSession [
 	
 	session == Smalltalk session ifTrue: [ ^ self ].

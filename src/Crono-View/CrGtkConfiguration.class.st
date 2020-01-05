@@ -12,13 +12,6 @@ Class {
 }
 
 { #category : #configuring }
-CrGtkConfiguration >> configure: anApplication [
-
-	GtkRunLoop defer: [
-		super configure: anApplication ]
-]
-
-{ #category : #configuring }
 CrGtkConfiguration >> configureOSX: anApplication [
 
 	self ensureAppearance: self macAppearanceName. 

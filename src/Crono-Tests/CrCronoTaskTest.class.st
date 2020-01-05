@@ -1,6 +1,6 @@
 Class {
 	#name : #CrCronoTaskTest,
-	#superclass : #TestCase,
+	#superclass : #CrTestCase,
 	#category : #'Crono-Tests'
 }
 
@@ -24,7 +24,7 @@ CrCronoTaskTest >> testPrintInChangeLogFormat [
 CrCronoTaskTest >> testSave [
 	| task |
 
-	task := CrCronoTask new 
+	task := CrCronoTask new
 		notes: 'Test';
 		save.
 		
@@ -39,7 +39,7 @@ CrCronoTaskTest >> testSaveWithTags [
 	| task |
 
 	task := CrCronoTask new 
-		notes: 'Test with [tag]';
+		notes: 'Test with [tag1] and [tag2]';
 		save.
 		
 	self assert: task isDone.
@@ -47,5 +47,5 @@ CrCronoTaskTest >> testSaveWithTags [
 	
 	self assert: CrCronoTask selectAll anyOne equals: task.
 	
-	self assert: task tags equals: #('tag')
+	self assert: task tags equals: #('tag1' 'tag2')
 ]

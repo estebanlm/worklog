@@ -18,7 +18,8 @@ BaselineOfCrono >> baseline: spec [
 		spec 
 			package: 'WorkLog-Client';
 			package: 'Crono-Model' with: [ spec requires: #('ZTimestamp' 'Voyage') ];
-			package: 'Crono-View' ]
+			package: 'Crono-View';
+			package: 'Crono-Tests' ]
 ]
 
 { #category : #'external projects' }
