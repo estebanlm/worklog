@@ -95,12 +95,6 @@ CrReviewWindow >> initializeWindow: aWindowPresenter [
 ]
 
 { #category : #'private factory' }
-CrReviewWindow >> newCrono [
-
-	^ CrCrono newActive
-]
-
-{ #category : #'private factory' }
 CrReviewWindow >> newRangeTo: aNumber [
 
 	^ CrCronoRange 

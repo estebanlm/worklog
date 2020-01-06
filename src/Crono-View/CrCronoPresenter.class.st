@@ -6,3 +6,9 @@ Class {
 	#superclass : #CrPresenter,
 	#category : #'Crono-View-Crono'
 }
+
+{ #category : #'private factory' }
+CrCronoPresenter >> newCrono [
+
+	^ CrCrono newActive
+]

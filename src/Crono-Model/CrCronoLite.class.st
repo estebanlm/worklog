@@ -6,3 +6,31 @@ Class {
 	#superclass : #CrCrono,
 	#category : #'Crono-Model'
 }
+
+{ #category : #actions }
+CrCronoLite >> log: aString [
+
+	CrCronoTask new 
+		notes: aString;
+		save
+]
+
+{ #category : #actions }
+CrCronoLite >> review: daysRange to: aStream [
+	| startDate endDate stream |
+	
+	stream := ZnNewLineWriterStream on: aStream.
+
+	startDate := daysRange fromDate asZTimestamp.
+	endDate := (daysRange toDate + 1 day) asDate asZTimestamp.
+	((CrCronoTask 
+		findTasksDoneBetween: startDate 
+		and: endDate)
+		groupedBy: [ :each | each doneDate asDate ])
+		keysAndValuesDo: [ :day :tasks | 
+			stream << day ddmmyyyy; newLine. 
+			tasks 
+				do: [ :each | each printCronoTimeLogOn: stream ]
+				separatedBy: [ stream newLine ].
+			stream newLine ]
+]

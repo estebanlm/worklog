@@ -81,6 +81,12 @@ CrCrono class >> useCronoFile [
 	self activeClass: CrCronoFile
 ]
 
+{ #category : #accessing }
+CrCrono class >> useCronoLite [
+
+	self activeClass: CrCronoLite
+]
+
 { #category : #actions }
 CrCrono >> log: aString [
 

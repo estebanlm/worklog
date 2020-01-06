@@ -12,10 +12,14 @@ CrTestCase class >> isAbstract [
 
 { #category : #running }
 CrTestCase >> runCase [
-	| oldApplication |
+	| oldApplication oldModelApplication |
 
 	oldApplication := CrApplication current.
+	oldModelApplication := CrModelApplication current.
 	CrApplication setCurrent: CrApplicationForTest new.
+	CrModelApplication setCurrent: CrModelApplicationForTest new.
 	[ super runCase ]
-	ensure: [ CrApplication setCurrent: oldApplication ]
+	ensure: [
+		CrModelApplication setCurrent: oldModelApplication.
+		CrApplication setCurrent: oldApplication ]
 ]

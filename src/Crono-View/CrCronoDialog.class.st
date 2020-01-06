@@ -58,9 +58,3 @@ CrCronoDialog >> initializeWindow: aWindowPresenter [
 		initialExtent: 500@150;
 		whenOpenedDo: [ logText takeKeyboardFocus ]
 ]
-
-{ #category : #'private factory' }
-CrCronoDialog >> newCrono [
-
-	^ CrCrono newActive
-]

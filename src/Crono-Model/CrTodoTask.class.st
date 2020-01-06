@@ -47,7 +47,7 @@ CrTodoTask class >> voyageDoneDate [
 { #category : #persistence }
 CrTodoTask class >> voyageRepository [
 
-	^ CrApplication current repository
+	^ CrModelApplication current repository
 ]
 
 { #category : #persistence }

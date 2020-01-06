@@ -6,12 +6,10 @@ Class {
 	#superclass : #SpApplication,
 	#instVars : [
 		'standalone',
-		'repository',
 		'notificationCenter'
 	],
 	#classVars : [
-		'Current',
-		'Development'
+		'Current'
 	],
 	#classInstVars : [
 		'session'
@@ -25,60 +23,11 @@ CrApplication class >> applicationName [
 	^ 'crono'
 ]
 
-{ #category : #accessing }
-CrApplication class >> beDevelopment [
-	<script>
-
-	Development := true
-]
-
-{ #category : #accessing }
-CrApplication class >> beProduction [
-	<script>
-
-	Development := false
-]
-
 { #category : #'instance creation' }
 CrApplication class >> current [
 
 	self validateSession.
 	^ Current ifNil: [ Current := self new ]
-]
-
-{ #category : #'class initialization' }
-CrApplication class >> initialize [
-
-	self beDevelopment
-]
-
-{ #category : #testing }
-CrApplication class >> isDevelopment [
-
-	^ Development
-]
-
-{ #category : #'world menu' }
-CrApplication class >> menuCommandOn: aBuilder [
-	<worldMenu>
-
-	(aBuilder item: #Crono)
-		order: 1000.0;
-		target: self;
-		parent: #Tools;
-		with: [ 
-			(aBuilder item: #'crono add entry')
-				target: CrCronoDialog;
-				selector: #openDialog;
-				order: 10. 
-			(aBuilder item: #'crono review logs')
-				target: CrReviewWindow;
-				selector: #open;
-				order: 20.
-			(aBuilder item: #'crono todo')
-				target: CrTodoWindow;
-				selector: #open;
-				order: 30 ]
 ]
 
 { #category : #accessing }
@@ -112,8 +61,8 @@ CrApplication class >> validateSession [
 { #category : #initialization }
 CrApplication >> emergencyShutdown [
 
-	repository close.
-	CrTodoList focus resetCache
+	self model shutDown.
+	CrModelApplication reset
 ]
 
 { #category : #accessing }
@@ -135,7 +84,7 @@ CrApplication >> initialize [
 	standalone := false.
 	super initialize.
 	self initializeBackend.
-	self initializeRepository.
+	self initializeModel.
 	self initializeVirtualLists
 ]
 
@@ -148,15 +97,9 @@ CrApplication >> initializeBackend [
 ]
 
 { #category : #initialization }
-CrApplication >> initializeRepository [
-	| reference isNew |
-
-	reference := FileLocator imageDirectory / self class repositoryName.
-	isNew := reference exists not.
-	repository := VOUnQLiteRepository on: reference.
-	isNew ifTrue: [ 
-		CrTodoList newBaseLists 
-			do: [ :each | repository save: each ] ]
+CrApplication >> initializeModel [
+	
+	CrModelApplication reset
 ]
 
 { #category : #initialization }
@@ -170,6 +113,12 @@ CrApplication >> initializeVirtualLists [
 CrApplication >> isStandalone [
 
 	^ standalone
+]
+
+{ #category : #accessing }
+CrApplication >> model [
+
+	^ CrModelApplication current
 ]
 
 { #category : #accessing }
@@ -188,7 +137,7 @@ CrApplication >> prepareAsStandaloneApplication [
 { #category : #accessing }
 CrApplication >> repository [ 
 
-	^ repository
+	^ self model repository
 ]
 
 { #category : #running }

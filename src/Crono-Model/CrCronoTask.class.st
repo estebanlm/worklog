@@ -9,6 +9,19 @@ Class {
 	#category : #'Crono-Model'
 }
 
+{ #category : #accessing }
+CrCronoTask class >> findTasksDoneBetween: start and: end [
+	| startTS endTS | 
+
+	startTS := start asZTimestamp.
+	endTS := end asZTimestamp.
+	^ self selectMany: [ :each | 
+		"Do not use the helper to not use the DNU mechanism (to increase query speed)"
+		(each at: 'doneDate') asZTimestamp 
+			between: startTS
+			and: endTS ]
+]
+
 { #category : #testing }
 CrCronoTask class >> isVoyageRoot [
 
@@ -39,7 +52,7 @@ CrCronoTask class >> voyageDoneDate [
 { #category : #persistence }
 CrCronoTask class >> voyageRepository [
 
-	^ CrApplication current repository
+	^ CrModelApplication current cronoRepository
 ]
 
 { #category : #persistence }

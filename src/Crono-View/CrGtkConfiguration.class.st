@@ -73,7 +73,7 @@ CrGtkConfiguration >> iconProvider [
 { #category : #'accessing resources' }
 CrGtkConfiguration >> iconsDir [
 
-	^ self resourcesDir / 'icons' / '16'
+	^ self model paths iconsDir
 ]
 
 { #category : #accessing }
@@ -88,18 +88,16 @@ CrGtkConfiguration >> macThemeName [
 	^ 'Sierra-light'
 ]
 
-{ #category : #'accessing resources' }
-CrGtkConfiguration >> repositoryDir [
-	"This is an util method to get the place where resources are located in development mode"
-	^ (IceRepository registry detect: [ :each | each name = 'worklog' ]) location
+{ #category : #accessing }
+CrGtkConfiguration >> model [
+
+	^ CrModelApplication current
 ]
 
 { #category : #'accessing resources' }
 CrGtkConfiguration >> resourcesDir [
 
-	^ CrApplication isDevelopment 
-		ifTrue: [ self repositoryDir / 'resources' ]
-		ifFalse: [ FileLocator imageDirectory / 'resources' ]
+	^ self model paths resourcesDir
 ]
 
 { #category : #'accessing resources' }

@@ -118,7 +118,7 @@ CrTodoList class >> voyageCollectionName [
 { #category : #persistence }
 CrTodoList class >> voyageRepository [
 
-	^ CrApplication current repository
+	^ CrModelApplication current repository
 ]
 
 { #category : #persistence }

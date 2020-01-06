@@ -53,10 +53,22 @@ CrCronoRange >> daysDo: aBlock [
 		day := (day + 1 day) asDate ]
 ]
 
+{ #category : #accessing }
+CrCronoRange >> fromDate [
+
+	^ fromDate
+]
+
 { #category : #initialization }
 CrCronoRange >> initializeFrom: aDate to: otherDate [
 
 	self initialize.
 	fromDate := aDate.
 	toDate := otherDate
+]
+
+{ #category : #accessing }
+CrCronoRange >> toDate [
+
+	^ toDate
 ]
