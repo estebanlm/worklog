@@ -10,7 +10,7 @@ BaselineOfCrono >> baseline: spec [
 	
 	spec for: #pharo do: [
 
-		self zTimestamp: spec.
+		self ztimestamp: spec.
 		self voyage: spec.
 		self marsGtk: spec.
 		self objCBridge: spec.
@@ -58,9 +58,9 @@ BaselineOfCrono >> voyage: spec [
 ]
 
 { #category : #'external projects' }
-BaselineOfCrono >> zTimestamp: spec [
+BaselineOfCrono >> ztimestamp: spec [
 
 	spec
 		baseline: 'ZTimestamp'
-		with: [ spec repository: 'github://svenc/ztimestamp' ]
+		with: [ spec repository: 'github://svenvc/ztimestamp' ]
 ]
