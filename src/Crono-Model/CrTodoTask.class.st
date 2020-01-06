@@ -63,6 +63,16 @@ CrTodoTask class >> voyageStartDate [
 		yourself
 ]
 
+{ #category : #persistence }
+CrTodoTask class >> voyageTags [
+	<voyageDescription>
+	
+	^ VOToManyDescription new 
+		attributeName: 'tags';
+		kindCollection: Array;
+		yourself
+]
+
 { #category : #actions }
 CrTodoTask >> archive [
 

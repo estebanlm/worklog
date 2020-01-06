@@ -42,6 +42,16 @@ CrCronoTask class >> voyageRepository [
 	^ CrApplication current repository
 ]
 
+{ #category : #persistence }
+CrCronoTask class >> voyageTags [
+	<voyageDescription>
+	
+	^ VOToManyDescription new 
+		attributeName: 'tags';
+		kindCollection: Array;
+		yourself
+]
+
 { #category : #private }
 CrCronoTask >> collectTagsOn: aString [
 
@@ -76,6 +86,31 @@ CrCronoTask >> notes [
 CrCronoTask >> notes: aString [
 
 	notes := aString
+]
+
+{ #category : #printing }
+CrCronoTask >> printChangeLogOn: stream [ 
+	
+	(('* ', self notes) withNoLineLongerThan: 96) lines 
+		do: [ :each | stream << '    ' << each ]
+		separatedBy: [ stream cr ]
+]
+
+{ #category : #printing }
+CrCronoTask >> printCronoTimeLogOn: stream [ 
+	| time separator |
+	
+	separator := String new: 6 withAll: Character space.
+	time :=  self doneDate 
+		ifNotNil: [ :ts | ts asTime logPrintTime, ' ' ]
+		ifNil: [ separator ].
+		
+	(self notes withNoLineLongerThan: 94) lines 
+		do: [ :each | 
+			stream << time << each.
+			time := separator ]
+		separatedBy: [ 
+			stream cr ]
 ]
 
 { #category : #printing }

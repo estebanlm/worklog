@@ -8,7 +8,7 @@ Class {
 CrApplicationForTest >> initializeBackend [
 
 	GtkApplication ensureRunning.
-	self useBackend: SpGtkConfiguration new
+	self useBackend: #Gtk with: SpGtkConfiguration new
 ]
 
 { #category : #initialization }
