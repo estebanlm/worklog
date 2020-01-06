@@ -3,7 +3,7 @@ I log to a text file.
 "
 Class {
 	#name : #CrCronoFile,
-	#superclass : #CrBaseCrono,
+	#superclass : #CrCrono,
 	#category : #'Crono-Model'
 }
 

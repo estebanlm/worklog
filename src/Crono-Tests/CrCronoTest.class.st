@@ -7,7 +7,9 @@ Class {
 { #category : #tests }
 CrCronoTest >> testLog [ 
 
-	self fail: 'TODO'
+	self assert: CrCronoTask selectAll isEmpty.
+	CrCronoLite new log: 'Test.'.
+	self assert: CrCronoTask selectAll notEmpty
 ]
 
 { #category : #tests }

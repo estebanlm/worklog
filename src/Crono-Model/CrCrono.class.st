@@ -5,7 +5,7 @@ I don't know if I will be useful, but Esteban sometimes wants to keep track of a
 So far, I just know ==#log:==, which appends an entry to the daily log.
 "
 Class {
-	#name : #CrBaseCrono,
+	#name : #CrCrono,
 	#superclass : #Object,
 	#classVars : [
 		'ActiveClass'
@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #accessing }
-CrBaseCrono class >> activeClass [
+CrCrono class >> activeClass [
 
 	^ ActiveClass ifNil: [ 
 		self useCronoFile.
@@ -22,13 +22,13 @@ CrBaseCrono class >> activeClass [
 ]
 
 { #category : #accessing }
-CrBaseCrono class >> activeClass: aClass [
+CrCrono class >> activeClass: aClass [
 
 	ActiveClass := aClass
 ]
 
 { #category : #'command line' }
-CrBaseCrono class >> commandLine [
+CrCrono class >> commandLine [
 	<commandline>
 	
 	^ (ClapCommand withName: 'crono')
@@ -42,7 +42,7 @@ CrBaseCrono class >> commandLine [
 ]
 
 { #category : #'command line' }
-CrBaseCrono class >> commandLineAdd [
+CrCrono class >> commandLineAdd [
 
 	^ (ClapCommand withName: 'add')
 		description: 'Log some work.';
@@ -53,7 +53,7 @@ CrBaseCrono class >> commandLineAdd [
 ]
 
 { #category : #'command line' }
-CrBaseCrono class >> commandLineReview [
+CrCrono class >> commandLineReview [
 
 	^ (ClapCommand withName: 'review')
 		description: 'Review crono worklog dates.';
@@ -62,27 +62,33 @@ CrBaseCrono class >> commandLineReview [
 ]
 
 { #category : #'command line' }
-CrBaseCrono class >> commandLineTodayReference [
+CrCrono class >> commandLineTodayReference [
 
 	^ (ClapCommand withName: 'todayReference')
 		description: 'Prints path of current using file.';
 		meaning: [ :args | self new printTodayReference ]
 ]
 
+{ #category : #'instance creation' }
+CrCrono class >> newActive [
+
+	^ self activeClass new
+]
+
 { #category : #accessing }
-CrBaseCrono class >> useCronoFile [
+CrCrono class >> useCronoFile [
 
 	self activeClass: CrCronoFile
 ]
 
 { #category : #actions }
-CrBaseCrono >> log: aString [
+CrCrono >> log: aString [
 
 	self subclassResponsibility
 ]
 
 { #category : #actions }
-CrBaseCrono >> review: daysRange [
+CrCrono >> review: daysRange [
 
 	self 
 		review: daysRange 
@@ -90,13 +96,13 @@ CrBaseCrono >> review: daysRange [
 ]
 
 { #category : #actions }
-CrBaseCrono >> review: daysRange to: stream [
+CrCrono >> review: daysRange to: stream [
 
 	self subclassResponsibility
 ]
 
 { #category : #accessing }
-CrBaseCrono >> stdout [ 
+CrCrono >> stdout [ 
 
 	^ ZnNewLineWriterStream on: Stdio stdout
 ]

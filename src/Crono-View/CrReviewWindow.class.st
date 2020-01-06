@@ -97,7 +97,7 @@ CrReviewWindow >> initializeWindow: aWindowPresenter [
 { #category : #'private factory' }
 CrReviewWindow >> newCrono [
 
-	^ CrCronoFile new
+	^ CrCrono newActive
 ]
 
 { #category : #'private factory' }

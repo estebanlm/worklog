@@ -3,6 +3,6 @@ I log to a unqlite database.
 "
 Class {
 	#name : #CrCronoLite,
-	#superclass : #CrBaseCrono,
+	#superclass : #CrCrono,
 	#category : #'Crono-Model'
 }
