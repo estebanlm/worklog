@@ -235,6 +235,13 @@ CrTodoTask >> setStartDate: aDateAndTime [
 ]
 
 { #category : #accessing }
+CrTodoTask >> shortName [
+
+	"maybe truncateWithElipsisTo: ?"
+	^ self name contractTo: 20
+]
+
+{ #category : #accessing }
 CrTodoTask >> startDate [
 
 	^ startDate

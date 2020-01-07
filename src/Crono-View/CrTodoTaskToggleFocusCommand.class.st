@@ -1,6 +1,6 @@
 Class {
 	#name : #CrTodoTaskToggleFocusCommand,
-	#superclass : #CrCommand,
+	#superclass : #CrTodoTaskCommand,
 	#category : #'Crono-View-Todo-Commands'
 }
 
@@ -38,10 +38,4 @@ CrTodoTaskToggleFocusCommand >> name [
 	^ self task isFocused
 		ifTrue: [ 'Remove Focus' ]
 		ifFalse: [ 'Focus' ]
-]
-
-{ #category : #accessing }
-CrTodoTaskToggleFocusCommand >> task [
-
-	^ context activeTask
 ]

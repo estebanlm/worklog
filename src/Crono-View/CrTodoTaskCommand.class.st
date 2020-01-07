@@ -1,9 +1,6 @@
 Class {
 	#name : #CrTodoTaskCommand,
 	#superclass : #CrCommand,
-	#instVars : [
-		'state'
-	],
 	#category : #'Crono-View-Todo-Commands'
 }
 

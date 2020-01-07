@@ -11,7 +11,7 @@ Class {
 		'todoList',
 		'task'
 	],
-	#category : #'Crono-View-Todo'
+	#category : #'Crono-View-Todo-Utils'
 }
 
 { #category : #'instance creation' }

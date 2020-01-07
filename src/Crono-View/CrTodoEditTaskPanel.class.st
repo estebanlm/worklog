@@ -25,7 +25,7 @@ CrTodoEditTaskPanel >> initializeDialogWindow: aDialogWindowPresenter [
 CrTodoEditTaskPanel >> initializeWindow: aWindowPresenter [
 
 	super initializeWindow: aWindowPresenter.
-	aWindowPresenter title: ('Edit "{1}"' format: { self task name truncateWithElipsisTo: 20 })
+	aWindowPresenter title: ('Edit "{1}"' format: { self task shortName })
 ]
 
 { #category : #accessing }

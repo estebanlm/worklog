@@ -5,6 +5,9 @@ I'm a command to change the done status of a task.
 Class {
 	#name : #CrTodoTaskChangeDoneStatusCommand,
 	#superclass : #CrTodoTaskCommand,
+	#instVars : [
+		'state'
+	],
 	#category : #'Crono-View-Todo-Commands'
 }
 

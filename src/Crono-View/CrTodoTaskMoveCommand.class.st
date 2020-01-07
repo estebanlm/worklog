@@ -1,6 +1,6 @@
 Class {
 	#name : #CrTodoTaskMoveCommand,
-	#superclass : #CrCommand,
+	#superclass : #CrTodoTaskCommand,
 	#category : #'Crono-View-Todo-Commands'
 }
 
@@ -24,6 +24,26 @@ CrTodoTaskMoveCommand class >> defaultShortcut [
 
 { #category : #executing }
 CrTodoTaskMoveCommand >> execute [
+	| dialog task |
 
-	self halt
+	task := self task. "keep task because if this is moved, selection will be lost"
+	dialog := CrMoveToDialog new 
+		task: self task;
+		todoList: self todoList;
+		openDialogWithSpecParent: context window.
+
+	self application notificationCenter 
+		notify: (CrListChangedNotification newList: self todoList);
+		notify: (CrListChangedNotification newList: dialog presenter selectedItem).	
+	task isFocused ifTrue: [ 
+		self application notificationCenter 
+			notify: (CrVirtualListTaskChangedNotification 
+				newList: CrTodoList focus
+				task: task) ]
+]
+
+{ #category : #accessing }
+CrTodoTaskMoveCommand >> todoList [
+
+	^ context activeTodoList
 ]

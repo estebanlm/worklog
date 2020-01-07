@@ -60,6 +60,12 @@ CrTodoList class >> listNamed: aString [
 	^ self selectOne: [ :each | each name = aString ]
 ]
 
+{ #category : #accessing }
+CrTodoList class >> lists [
+	
+	^ self allLists copyWithout: self focus
+]
+
 { #category : #private }
 CrTodoList class >> newBaseLists [
 	
@@ -185,6 +191,17 @@ CrTodoList >> isArchived [
 	^ archived
 ]
 
+{ #category : #actions }
+CrTodoList >> moveTask: aTask to: aTodoList [
+
+	(self includesTask: aTask) ifFalse: [ 
+		^ self error: 'Task does not belong to this list' ].
+	
+	aTodoList receiveTask: aTask from: self
+	
+		
+]
+
 { #category : #accessing }
 CrTodoList >> name [
 
@@ -202,6 +219,16 @@ CrTodoList >> printOn: stream [
 
 	super printOn: stream.
 	stream << '(' << self name << ')'
+]
+
+{ #category : #'private actions' }
+CrTodoList >> receiveTask: aTask from: aTodoList [
+
+	self class voyageRepository commit: [ 
+		self saveTask: aTask.
+		aTodoList 
+			removeTask: aTask 
+			follow: false ]
 ]
 
 { #category : #persistence }
