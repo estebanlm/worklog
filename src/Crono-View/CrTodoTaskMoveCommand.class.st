@@ -22,6 +22,12 @@ CrTodoTaskMoveCommand class >> defaultShortcut [
 	^ $m platformMeta
 ]
 
+{ #category : #testing }
+CrTodoTaskMoveCommand >> canBeExecuted [
+
+	^ self todoList isVirtual not
+]
+
 { #category : #executing }
 CrTodoTaskMoveCommand >> execute [
 	| dialog task |
