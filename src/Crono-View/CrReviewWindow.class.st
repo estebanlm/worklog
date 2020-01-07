@@ -21,8 +21,14 @@ CrReviewWindow class >> defaultSpec [
 	^ SpBoxLayout newVertical
 		add: (SpBoxLayout newHorizontal
 				spacing: 5;
-				add: #daysInput expand: false;
-				add: #refreshButton expand: false;
+				add: (SpBoxLayout newVertical 
+					add: #daysInput expand: false fill: false padding: 5;
+					yourself)
+					expand: false;
+				add: (SpBoxLayout newVertical 
+					add: #refreshButton expand: false fill: false padding: 5;
+					yourself)
+					expand: false;
 				addLast: #toolBar expand: false;
 				yourself)
 			expand: false;
