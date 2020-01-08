@@ -15,14 +15,19 @@ CrTodoListTest >> testMoveTaskTo [
 		yourself.
 
 	list1 := CrTodoList newName: 'List 1'.
+	list1 save.
 	list2 := CrTodoList newName: 'List 2'.
+	list2 save.
 	
 	list1 saveTask: task.
+	self assert: task owner equals: list1.
+	
 	list1 moveTask: task to: list2.
 		
 	self assert: list1 tasks isEmpty.
 	self assert: list2 tasks anyOne equals: task.
 	self assert: CrTodoTask selectAll anyOne equals: task.
+	self assert: task owner equals: list2
 ]
 
 { #category : #tests }

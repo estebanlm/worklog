@@ -77,7 +77,7 @@ CrTodoWindow >> doTransmitList: aTodoList [
 
 	aTodoList ifNil: [ ^ self ].
 	listPanel presenter todoList = aTodoList ifTrue: [ ^ self ].
-	 
+
 	listPanel presenter todoList: aTodoList.
 	self updateListPanel: aTodoList
 ]

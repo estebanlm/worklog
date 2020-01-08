@@ -7,6 +7,13 @@ Class {
 	#category : #'Crono-Model'
 }
 
+{ #category : #private }
+CrCronoLite >> allTasksBetween: startDate and: endDate [
+		
+	^ (CrCronoTask findTasksDoneBetween: startDate and: endDate),
+	  (CrTodoTask findTasksDoneBetween: startDate and: endDate)
+]
+
 { #category : #actions }
 CrCronoLite >> log: aString [
 
@@ -23,9 +30,7 @@ CrCronoLite >> review: daysRange to: aStream [
 
 	startDate := daysRange fromDate asZTimestamp.
 	endDate := (daysRange toDate + 1 day) asDate asZTimestamp.
-	((CrCronoTask 
-		findTasksDoneBetween: startDate 
-		and: endDate)
+	((self allTasksBetween: startDate and: endDate)
 		groupedBy: [ :each | each doneDate asDate ])
 		keysAndValuesDo: [ :day :tasks | 
 			stream << day ddmmyyyy; newLine. 

@@ -63,7 +63,7 @@ CrTodoList class >> listNamed: aString [
 { #category : #accessing }
 CrTodoList class >> lists [
 	
-	^ self allLists copyWithout: self focus
+	^ self allLists reject: #isVirtual
 ]
 
 { #category : #private }
@@ -142,6 +142,7 @@ CrTodoList class >> voyageType [
 { #category : #accessing }
 CrTodoList >> addTask: aTask [
 
+	aTask owner: self.
 	tasks add: aTask
 ]
 
@@ -198,8 +199,6 @@ CrTodoList >> moveTask: aTask to: aTodoList [
 		^ self error: 'Task does not belong to this list' ].
 	
 	aTodoList receiveTask: aTask from: self
-	
-		
 ]
 
 { #category : #accessing }
@@ -225,10 +224,14 @@ CrTodoList >> printOn: stream [
 CrTodoList >> receiveTask: aTask from: aTodoList [
 
 	self class voyageRepository commit: [ 
-		self saveTask: aTask.
+		"remove task from previous list"
 		aTodoList 
 			removeTask: aTask 
-			follow: false ]
+			follow: false.
+		"add the task as a regular task"
+		self saveTask: aTask.
+		"ensure task is saved with changes"
+		aTask save ]
 ]
 
 { #category : #persistence }
@@ -250,11 +253,15 @@ CrTodoList >> removeAllTasks [
 { #category : #accessing }
 CrTodoList >> removeTask: aTask [
 
+	aTask owner: nil.
 	^ self tasks remove: aTask
 ]
 
 { #category : #actions }
 CrTodoList >> removeTask: aTask follow: follow [
+
+	(self includesTask: aTask) ifFalse: [ 
+		self error: 'Task does not belong to this list.' ].
 
 	self class voyageRepository commit: [  
 		self removeTask: aTask.

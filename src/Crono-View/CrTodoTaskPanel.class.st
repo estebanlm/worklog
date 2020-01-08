@@ -65,7 +65,7 @@ CrTodoTaskPanel >> todoList [
 { #category : #accessing }
 CrTodoTaskPanel >> todoList: aList [
 
-	^ todoList := aList
+	todoList := aList
 ]
 
 { #category : #actions }

@@ -2,6 +2,7 @@ Class {
 	#name : #CrTodoTask,
 	#superclass : #Object,
 	#instVars : [
+		'owner',
 		'name',
 		'notes',
 		'startDate',
@@ -12,6 +13,19 @@ Class {
 	],
 	#category : #'Crono-Model'
 }
+
+{ #category : #accessing }
+CrTodoTask class >> findTasksDoneBetween: start and: end [
+	| startTS endTS | 
+
+	startTS := start asZTimestamp.
+	endTS := end asZTimestamp.
+	^ self selectMany: [ :each | 
+		"Do not use the helper to not use the DNU mechanism (to increase query speed)"
+		(each at: 'doneDate') 
+			ifNotNil: [ :date | date asZTimestamp between: startTS and: endTS ]
+			ifNil: [ false ] ]
+]
 
 { #category : #testing }
 CrTodoTask class >> isVoyageRoot [
@@ -146,6 +160,13 @@ CrTodoTask >> focus: aBoolean [
 	focused := aBoolean
 ]
 
+{ #category : #accessing }
+CrTodoTask >> fullName [
+
+	^ String streamContents: [ :stream |
+		stream << self owner name << ': ' << self name ]
+]
+
 { #category : #testing }
 CrTodoTask >> hasNotes [
 
@@ -206,6 +227,53 @@ CrTodoTask >> notes [
 CrTodoTask >> notes: aString [
 
 	notes := aString
+]
+
+{ #category : #accessing }
+CrTodoTask >> owner [
+	
+	^ owner
+]
+
+{ #category : #accessing }
+CrTodoTask >> owner: aTodoList [
+
+	owner := aTodoList
+]
+
+{ #category : #printing }
+CrTodoTask >> printChangeLogOn: stream [ 
+	
+	(('* ', self fullName) withNoLineLongerThan: 96) lines 
+		do: [ :each | stream << '    ' << each ]
+		separatedBy: [ stream cr ]
+]
+
+{ #category : #printing }
+CrTodoTask >> printCronoTimeLines: aString time: aBoolean on: stream [
+	| time separator |
+	
+	separator := String new: 6 withAll: Character space.
+	time :=  (aBoolean and: [ self doneDate notNil ]) 
+		ifTrue: [ self doneDate asTime logPrintTime, ' ' ]
+		ifFalse: [ separator ].	
+			
+	(aString withNoLineLongerThan: 94) lines 
+		do: [ :each | 
+			stream << time << each.
+			time := separator ]
+		separatedBy: [ 
+			stream newLine ]
+]
+
+{ #category : #printing }
+CrTodoTask >> printCronoTimeLogOn: stream [ 
+
+	self printCronoTimeLines: self fullName time: true on: stream.
+	self notes isEmptyOrNil ifTrue: [ ^ self ].  
+
+	stream newLine.
+	self printCronoTimeLines: self notes time: false on: stream
 ]
 
 { #category : #printing }
