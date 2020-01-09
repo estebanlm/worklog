@@ -3,7 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'completion',
-		'color'
+		'color',
+		'strokeColor'
 	],
 	#category : #'Crono-View-Todo-Utils'
 }
@@ -54,7 +55,7 @@ CrCompletionFormBuilder >> buildSurface [
 		isFull := self completion = 1.
 		isFull
 			ifTrue: [ canvas setPaint: self color ]
-			ifFalse: [ (canvas setStrokePaint: self color) width: self borderWidth ].
+			ifFalse: [ (canvas setStrokePaint: self strokeColor) width: self borderWidth ].
 
 		circle := canvas createPath: [ :builder | 
           builder
@@ -108,4 +109,16 @@ CrCompletionFormBuilder >> completion: aPercentage [
 CrCompletionFormBuilder >> formSize [
 
 	^ 16
+]
+
+{ #category : #accessing }
+CrCompletionFormBuilder >> strokeColor [
+
+	^ strokeColor ifNil: [ self color ]
+]
+
+{ #category : #accessing }
+CrCompletionFormBuilder >> strokeColor: aColor [
+
+	strokeColor := aColor
 ]

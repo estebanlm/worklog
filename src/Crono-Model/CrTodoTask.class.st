@@ -208,6 +208,12 @@ CrTodoTask >> isVisible [
 ]
 
 { #category : #accessing }
+CrTodoTask >> listName [
+
+	^ self owner name
+]
+
+{ #category : #accessing }
 CrTodoTask >> name [
 	^ name
 ]

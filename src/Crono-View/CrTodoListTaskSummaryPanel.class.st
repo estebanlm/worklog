@@ -9,6 +9,7 @@ Class {
 		'todoList',
 		'doneCheckbox',
 		'nameLabel',
+		'listLabel',
 		'task',
 		'noteMarkerImage',
 		'memento',
@@ -24,6 +25,7 @@ CrTodoListTaskSummaryPanel class >> defaultSpec [
 		add: #doneCheckbox expand: false;
 		add: #focusMarkerImage expand: false;
 		add: #nameLabel;
+		add: #listLabel expand: false;
 		addLast: #noteMarkerImage expand: false;
 		yourself
 ]
@@ -49,6 +51,7 @@ CrTodoListTaskSummaryPanel >> initializePresenters [
 		whenChangedDo: [ :state | self changeStatusTo: state ].
 	focusMarkerImage := self newImage addStyle: 'markFocus'.
 	nameLabel := self newLabel.
+	listLabel := self newLabel addStyle: 'listNameLabel'.
 	noteMarkerImage := self newImage
 ]
 
@@ -106,6 +109,8 @@ CrTodoListTaskSummaryPanel >> updatePresenter [
 
 	doneCheckbox state: task isDone.
 	nameLabel label: task name.
+	self todoList isVirtual ifTrue: [ 
+		listLabel label: task listName ].
 	task hasNotes 
 		ifTrue: [ noteMarkerImage image: (self application iconNamed: #markNote) ]
 		ifFalse: [ noteMarkerImage image: nil ].

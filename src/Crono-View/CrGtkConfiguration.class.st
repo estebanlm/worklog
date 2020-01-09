@@ -11,17 +11,25 @@ Class {
 	#category : #'Crono-View-Application'
 }
 
+{ #category : #'accessing style' }
+CrGtkConfiguration >> commonStyle [
+
+	^ '
+.title { font-weight: bold }
+.titleShortcut { color: LightSlateGrey }
+.list { padding: 5px }
+.listNameLabel { color: LightSlateGrey; font-size: smaller; margin-right: 3px }
+.markFocus { margin-right: 3px }
+'
+]
+
 { #category : #configuring }
 CrGtkConfiguration >> configureOSX: anApplication [
 
 	self ensureAppearance: self macAppearanceName. 
 	self installTheme: self macThemeName.
-	self addCSSProviderFromString: '
-.cronoText { font: 12pt "Monaco" }
-.title { /*font-size: 14pt;*/ font-weight: bold }
-.titleShortcut { color: LightSlateGrey }
-.list { padding: 5px }
-.markFocus { margin-right: 3px }'
+	self addCSSProviderFromString: self commonStyle.
+	self addCSSProviderFromString: self macStyle
 ]
 
 { #category : #configuring }
@@ -29,24 +37,16 @@ CrGtkConfiguration >> configureUnix: anApplication [
 
 	self unixThemeName 
 		ifNotNil: [ :aName | self installTheme: aName ].
-	self addCSSProviderFromString: '
-.cronoText { font: 11pt "Monospace Regular" }
-.title { font-size: 14pt }
-.titleShortcut { color: LightSlateGrey }
-.list { padding: 5px }
-.markFocus { margin-right: 3px }'
+	self addCSSProviderFromString: self commonStyle.
+	self addCSSProviderFromString: self unixStyle
 ]
 
 { #category : #configuring }
 CrGtkConfiguration >> configureWindows: anApplication [
 
 	self installTheme: self windowsThemeName.
-	self addCSSProviderFromString: '
-.cronoText { font: 10pt "Microsoft Sans Serif" }
-.title { font-size: 14pt }
-.titleShortcut { color: LightSlateGrey }
-.list { padding: 5px }
-.markFocus { margin-right: 3px }'
+	self addCSSProviderFromString: self commonStyle.
+	self addCSSProviderFromString: self windowsStyle
 ]
 
 { #category : #configuring }
@@ -82,6 +82,14 @@ CrGtkConfiguration >> macAppearanceName [
 	^ 'NSAppearanceNameAqua'
 ]
 
+{ #category : #'accessing style' }
+CrGtkConfiguration >> macStyle [
+
+	^ '
+.cronoText { font: 12pt "Monaco" }
+'
+]
+
 { #category : #accessing }
 CrGtkConfiguration >> macThemeName [
 		
@@ -106,10 +114,26 @@ CrGtkConfiguration >> themeIconsDir [
 	^ self iconsDir / 'light'
 ]
 
+{ #category : #'accessing style' }
+CrGtkConfiguration >> unixStyle [
+
+	^ '
+.cronoText { font: 11pt "Monospace Regular" }
+'
+]
+
 { #category : #accessing }
 CrGtkConfiguration >> unixThemeName [
 
 	^ 'Adwaita'
+]
+
+{ #category : #'accessing style' }
+CrGtkConfiguration >> windowsStyle [
+
+	^ '
+.cronoText { font: 10pt "Microsoft Sans Serif" }
+'
 ]
 
 { #category : #accessing }

@@ -17,7 +17,7 @@ Class {
 CrCrono class >> activeClass [
 
 	^ ActiveClass ifNil: [ 
-		self useCronoFile.
+		self useCronoLite.
 		ActiveClass ]
 ]
 
