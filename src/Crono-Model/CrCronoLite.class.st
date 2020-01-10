@@ -10,8 +10,9 @@ Class {
 { #category : #private }
 CrCronoLite >> allTasksBetween: startDate and: endDate [
 		
-	^ (CrCronoTask findTasksDoneBetween: startDate and: endDate),
-	  (CrTodoTask findTasksDoneBetween: startDate and: endDate)
+	^ ((CrCronoTask findTasksDoneBetween: startDate and: endDate),
+	  (CrTodoTask findTasksDoneBetween: startDate and: endDate))
+	sort: #doneDate ascending
 ]
 
 { #category : #actions }
