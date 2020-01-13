@@ -17,7 +17,7 @@ CrGtkDarkConfiguration >> macAppearanceName [
 { #category : #accessing }
 CrGtkDarkConfiguration >> macThemeName [
 		
-	^ 'Sierra-dark'
+	^ 'Mojave-dark'
 ]
 
 { #category : #'accessing resources' }

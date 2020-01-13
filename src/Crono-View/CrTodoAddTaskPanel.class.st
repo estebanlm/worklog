@@ -31,7 +31,7 @@ CrTodoAddTaskPanel >> initializeDialogWindow: aDialogWindowPresenter [
 	super initializeDialogWindow: aDialogWindowPresenter.	
 	aDialogWindowPresenter 
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
-		addButton: 'Add'
+		addDefaultButton: 'Add'
 			do: [ :presenter |
 				self addTaskThen: [ 
 					presenter 

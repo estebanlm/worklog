@@ -27,7 +27,7 @@ CrMoveToDialog >> initializeDialogWindow: aDialogWindowPresenter [
 	aDialogWindowPresenter 
 		addButton: 'Cancel' do: [ :presenter | 
 			presenter beCancel; close ];
-		addButton: 'Move' do: [ :presenter | 
+		addDefaultButton: 'Move' do: [ :presenter | 
 			self moveTaskThen: [ presenter beOk; close ] ]
 ]
 

@@ -30,10 +30,10 @@ CrCronoDialog >> initializeDialogWindow: aDialogWindowPresenter [
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter 
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
-		addButton: ('Crono' " format: { KMShortcutPrinter toString: Character cr alt }")
-		do: [ :presenter |
-			self addCrono.
-			presenter beOk; close ]
+		addDefaultButton: ('Crono' " format: { KMShortcutPrinter toString: Character cr alt }")
+			do: [ :presenter |
+				self addCrono.
+				presenter beOk; close ]
 ]
 
 { #category : #initialization }

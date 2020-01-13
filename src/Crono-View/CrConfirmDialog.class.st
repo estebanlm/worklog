@@ -86,7 +86,7 @@ CrConfirmDialog >> initializeDialogWindow: aDialogWindowPresenter [
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
 		addButton: self cancelLabel do: [ :presenter | presenter beCancel; close ];
-		addButton: self acceptLabel do: [ :presenter | presenter beOk; close ]
+		addDefaultButton: self acceptLabel do: [ :presenter | presenter beOk; close ]
 		
 ]
 

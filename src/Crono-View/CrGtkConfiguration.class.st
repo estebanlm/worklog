@@ -93,7 +93,7 @@ CrGtkConfiguration >> macStyle [
 { #category : #accessing }
 CrGtkConfiguration >> macThemeName [
 		
-	^ 'Sierra-light'
+	^ 'Mojave-light'
 ]
 
 { #category : #accessing }

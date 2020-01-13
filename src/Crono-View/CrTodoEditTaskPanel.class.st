@@ -13,7 +13,7 @@ CrTodoEditTaskPanel >> initializeDialogWindow: aDialogWindowPresenter [
 	super initializeDialogWindow: aDialogWindowPresenter.
 	aDialogWindowPresenter
 		addButton: 'Cancel' do: [ :presenter | presenter beCancel; close ];
-		addButton: 'Update'
+		addDefaultButton: 'Update'
 			do: [ :presenter |
 				self updateTaskThen: [ 
 					presenter 
