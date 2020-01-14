@@ -100,7 +100,8 @@ CrTodoListTaskSummaryPanel >> toggleFocus [
 { #category : #actions }
 CrTodoListTaskSummaryPanel >> toggleState [
 
-	"this will fire the change event, which is where the actual change happens"
+	"this will fire the change event, which is where the actual change happens (in 
+	 #changeStatusTo:"
 	doneCheckbox state: doneCheckbox state not
 ]
 

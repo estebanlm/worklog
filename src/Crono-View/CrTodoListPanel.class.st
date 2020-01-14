@@ -54,8 +54,7 @@ CrTodoListPanel >> addTask [
 { #category : #actions }
 CrTodoListPanel >> archiveCompletedTasks [
 
-	self todoList archiveCompletedTasks.
-	self refresh
+	(CrTodoArchiveCompletedCommand forContext: self) execute
 ]
 
 { #category : #private }
